@@ -1,0 +1,37 @@
+### Sitios de muestreo:
+    A partir de los trabajos de inventario de emisión de PM~2.5~ publicados por Enrique Pugliafito para la Argentina, se logró extraer el valor de emisión en Mg/año de PM~2.5~ para las actividades productivas que mayor influencia generan en la emisión de este contaminante. Como estos valores surgen a partir de una interpolación para el territorio del país, no se podrá realizar inferencia respecto a sus valores, pero permitirá identificar las fuentes más importantes de emisión para cada uno de los sitios de muestreo. De esta forma podremos comprender de mejor forma lo que sucede en la micro escala de cada uno de los sitios y así poder interpretar mejor las mediciones realizadas en cada uno de ellos.
+  
+  Las fuentes de emisión disponibles son: agricultura, aeropuertos, caminos, cementeras, comercios, energía, ganadería, industrias, biomasa, residencial y trenes. A pesar de poseer las mismas unidades, sus valores discrepan notablemente como consecuencia de que hay fuentes que contribuyen en mayor medida a la contaminación del aire. De esta forma al interpolar sus valores para el territorio del país, las zonas intermedias sin datos, adquieren valores de la magnitud de las observaciones disponibles generando una gran brecha en los órdenes de magnitud de los distintos mapas. De esta forma, a pesar de que haya sitios con grandes valores de emisión para una determinada fuente, esto no quiere decir que esa fuente domine las emisiones en el sitio a menos que sea corroborado en función de su ubicación espacial. Por este motivo a partir de los valores de emisión y la ubicación espacial del sitio se determinaron las fuentes de emisión más importantes en cada uno de ellos.
+  
+    Este es un estándar para caracterizar los paisajes urbanos, proporcionando un enfoque de clasificación holístico que tiene en cuenta la cobertura del suelo a microescala y las propiedades físicas asociadas. 
+
+  En este sistema de clasificación existen 17 clases, 10 de las cuales pueden describirse como urbanas y cuya clasificación puede surgir a partir de la combinación de diferentes clases para dar más especificidad a la caracterización, donde la primera categoría es la que posee mayor importancia respecto a las que las siguen. El sistema se diseñó originalmente para proporcionar un marco para los estudios de isla de calor urbana. Las clases de LCZ se definen formalmente como "regiones de cobertura superficial, estructura, material y actividad humana uniformes que abarcan desde cientos de metros hasta varios kilómetros en escala horizontal". 
+  
+  Ayudado por los resultados del inventario de emisión, la ubicación espacial del sitio y las características físicas del mismo se llevó a cabo la clasificación en LCZ de cada uno de ellos, a partir de la cual quedaron clasificados como:
+  
+### Meteorologico:
+  Se vera de que a pesar de que los datos tienen frecuencia de variación horaria, muchas de las relaciones entre las variables se logran destacar a una escala temporal mayor, por ejemplo, a lo largo del mes, escala temporal que demuestra una marcada variación de las condiciones meteorológicas. Otra escala temporal de gran relevancia es la horaria, la cual se asocia a los ciclos que ocurren a lo largo de las horas de un día, característicos en las variables meteorológicas y como vimos anteriormente en la concentración del PM2.5. Otras escalas temporales en las que podríamos analizar los dato son las diarias y semanales, a pesar de esto, estas serán evitadas como consecuencia de que no abarcan una notable variación de las condiciones meteorológicas, lo cual lleva a interpretar y obtener conclusiones equivocadas.
+  
+  Además, podemos destacar las principales hipótesis acerca de la relación entre las variables meteorológicas y la concentración de material particulado en una escala mensual (Tabla). A partir de los valores resúmenes se logra identificar que la temperatura, velocidad del viento, precipitación y radiación solar parecen describir una relación inversamente proporcional con la concentración de PM2.5. Mientras que, para el caso de la presión, humedad relativa, caída y profundidad de nieve, en esta escala temporal no parece encontrarse una relación evidente. Por otra parte, para el caso de la dirección del viento podemos interpretar que un promedio mensual con media menor a los 155 grados se asocia con concentraciones bajas, mientras que direcciones del viento con un promedio mensual con una media mayor a los 155 grados, lo hace con concentraciones altas.
+  
+### Presion
+```{r presdia, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:presdia)"}
+knitr::include_graphics("images/imagescap4/presdia.png")
+```
+(ref:presdia) Variación de la presión a lo largo de los distintos periodos del día.
+  
+  Podemos ver que la presión permanece prácticamente constate a lo largo del día, sufriendo un descenso por la noche, momento en el cual se registran elevadas concentraciones de PM2.5. De esta forma suponemos que la reducción de la presión atmosférica podría encontrarse vinculada con el pico nocturno descripto por la concentración de material particulado. 
+  
+### Direccion del viento
+
+  
+  A partir de la figura, podemos observar que el mes de septiembre es el que se aprecian vientos de mayores velocidades, luego en orden decreciente encontramos a los meses de octubre, agosto y noviembre. Por otra parte, podemos ver, que a pesar de que todos los meses se caracterizan por tener viento, este varia notablemente su velocidad. Durante los meses de enero, febrero, marzo y abril se aprecian los vientos de menor velocidad.
+
+###### con pbl
+  A partir del análisis exploratorio realizado previamente podemos notar que ambas variables influyen en la dinámica de variación a lo largo del día de la concentración de material particulado en distinta medida, la variación de la capa limite atmosférica parece ser más determinante que la variación del tráfico para la variable respuesta. La relación descripta anteriormente para ambas variables permitiría hallar valores alto de concentración durante las horas del día en que la altura de la capa limite atmosférica es baja o bien sufre rápido decrecimiento y cuando el tráfico de vehículos es alto o bien sufre un aumento. Podemos ver que le pico de material particulado entre las 8 y 9 horas se caracteriza por una altura de capa limite atmosférica baja y un aumento en el tráfico. Por otra parte, el bache de concentración entre las 11 y 19 horas se encuentra determinado principalmente por el gran aumento de la altura de la capa limite atmosférica. Finalmente, el pico de las 22 horas se encuentra vinculado a la reducción de la altura de la capa limite atmosférica y al alto tráfico, que ocurre desde las 19 horas en adelante. 
+
+###### con uso
+  La figura permite observar que el trafico difiere en funcion del uso de suelo a lo largo de las horas del dia, los picos maximos de trafico se alcanzan en los sitios con uso de suelo urbano, el uso de suelo cuyo trafico es mayor en promedio y sostenidamente es en el industrial, y el menor trafico es registrado en el uso de suelo agricola/area verde, podria suponerse que este sea un factor relevante en determinar las concentraciones en los distintos usos de suelo. 
+  
+  
+  

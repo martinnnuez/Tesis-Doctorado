@@ -1,0 +1,12 @@
+
+* **[Capítulo 1](#cap:ig):** introduce al lector en el concepto del **material particulado fino**, sus implicancias en la salud y la importancia de su estudio.
+
+* **[Capítulo 2](#cap:sens):** expone el desarrollo y la validación de **sensores de bajo costo** con el objetivo de recopilar información sobre el material particulado fino.
+
+* **[Capítulo 3](#cap:expl):** muestra el estudio de la **variabilidad espacio temporal** de la concentración de material particulado fino en sitios del área metropolitana de la provincia de Córdoba, Argentina. Además, se deriva un agrupamiento de uso de suelo a partir del patrón de emisión la concentración de material particulado fino emitida en los distintos sitios de muestreo.
+
+* **[Capítulo 4](#cap:var):** presenta el estudio de la variabilidad conjunta de la concentración de material particulado fino con respecto a **variables satelitales y meteorológicas** relevantes para explicar sus fluctuaciones. 
+
+* **[Capítulo 5](#cap:pred):** exhibe el procedimiento de ajuste y comparación de **modelos predictivos** para la concentración de material particulado fino en los distintos usos de suelo derivados del análisis de conglomerados.
+
+* **[Capítulo 6](#cap:sint):** muestra las principales **conclusiones y trabajos futuros** producto de la presente tesis. Se destacan los diferentes aportes realizados al estado del arte, así como también las posibles líneas que se pueden continuar a partir de lo realizado a lo largo del doctorado.

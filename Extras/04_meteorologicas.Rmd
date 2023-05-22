@@ -1,0 +1,896 @@
+#	Influencia variables meteorologicas {#cap:met}
+
+## Resumen
+
+## Introducción
+
+  Variabilidad del material particulado con variables meteorológicas, buscar referencias. 
+  
+## Objetivos
+
+### Objetivo general
+
+  Analizar la influencia de variables meteorológicas en los patrones de variación temporal de aerosoles en el Área Metropolitana de Córdoba.
+
+### Objetivos específicos
+
+## Metodología
+  
+### Procedimiento de análisis. 
+  
+  1. Análisis descriptivo de las series de las variables meteorológicas, variabilidad individual y conjunta respecto de la variable respuesta.
+  
+  2. Análisis de estacionalidad de las series de las variables meteorológicas, y en caso de no serlo transformarlas.
+  
+  3. Caracterización de la serie temporal de las variables meteorológicas: análisis de correlación simple y parcial de la serie y ajuste de un modelo teórico por medio de la Metodología de Box-Jenkins.
+  
+  4. Análisis de correlación cruzada de las series de variables meteorológicas respecto de la serie de material particulado, implementando la metodología de pre-whitening. 
+
+### Climatología.
+  
+### Análisis estadístico.
+  
+  El test de Kruscal Wallies, también conocido como test H, es una alternativa no paramétrica al test ANOVA de una vía para datos no pareados. Las hipótesis que plantea son:
+  
+  * H0: todas las muestras provienen de la misma población (distribución).
+
+  * H1: Al menos una muestra proviene de una población con una distribución distinta.
+
+  La estacionariedad de las series temporales se analizara por medio de la prueba de Augmented Dickey-Fuller (ADF) test y Kwiatkowski–Phillips–Schmidt–Shin (KPSS) test. La prueba de ADF chequea la presencia de una raíz unitaria en la serie, este test chequea la estacionariedad estacional, mientras que el segundo test chequea la presencia de una raíz unitaria en la serie en torno a una tendencia. 
+  
+  Augmented Dickey-Fuller Test, testea la diferencia estacional.
+  * $\ H^0 : \sigma = 0$ Existe raíz unitaria, xt no es estacionaria.
+  * $\ H^1 : \sigma \neq 0$ No existe raíz unitaria, xt es estacionaria
+
+  KPSS test, testea la tendencia.
+  * $\ H^0 : \sigma \neq 0$ No existe raíz unitaria, xt es estacionaria.
+  * $\ H^1 : \sigma = 0$ Existe raíz unitaria, xt no es estacionaria.
+
+  Comprendamos que existen diferentes tipos de estacionariedad y hay una forma de interpretar los resultados de las pruebas realizadas anteriormente de forma conjunta. Tipos de estacionariedad:
+  
+  1. Estacionariedad estricta: Una serie estacionaria estricta satisface la definición matemática de un proceso estacionario. Para una serie estacionaria estricta, la media, la varianza y la covarianza no son función del tiempo. El objetivo es convertir una serie no estacionaria en una serie estacionaria estricta para hacer predicciones.
+ 
+  2. Estacionaria tendencial: Una serie que no tiene raíz unitaria, pero presenta una tendencia se denomina serie estacionaria de tendencia. Una vez eliminada la tendencia, la serie resultante será estacionaria estricta. La prueba KPSS clasifica una serie como estacionaria por la ausencia de raíz unitaria. Esto significa que la serie puede ser estacionaria estricta o estacionaria de tendencia.
+ 
+  3. Estacionariedad diferencial: Una serie temporal que puede hacerse estacionaria estricta mediante la diferenciación se clasifica como estacionaria por diferencia. La prueba ADF también se conoce como prueba de estacionariedad por diferencia.
+  
+  Siempre es mejor aplicar ambas pruebas, para estar seguros de que la serie es realmente estacionaria. Veamos los posibles resultados de la aplicación de estas pruebas de estacionariedad.
+  
+  Caso 1: Ambas pruebas concluyen que la serie no es estacionaria -> la serie no es estacionaria.
+ 
+  Caso 2: Ambas pruebas concluyen que la serie es estacionaria -> la serie es estacionaria.
+ 
+  Caso 3: KPSS = estacionaria y ADF = no estacionaria -> tendencia estacionaria, eliminar la tendencia para que la serie sea estrictamente estacionaria.
+  
+  Caso 4: KPSS = no estacionario y ADF = estacionario -> diferencia estacionaria, utilice la diferenciación para hacer la serie estacionaria.
+  
+  Una vez que las series han sido transformadas a una estacionaria, se procede al análisis de la correlación cruzada para caracterizar la relación entre las variables e identificar las diferencias temporales que demuestran correlación significativa. Para llevar a cabo esto se implementó la metodología de pre-whitening con objetivo de interpretar la correlación cruzada entre las series, este establece que esta correlación se ve afectada por la estructura de la serie temporal de las variables de análisis, motivo por el cual esta debe ser extraida. 
+  
+  Una estrategia para llevar a cabo esta metodologia es la de preblanqueo o pre-whitening. Los pasos son:
+  1. Determinar un modelo de serie temporal para la variable predictora y almacenar los residuos de este modelo.
+  2. Filtrar la serie de la variable respuesta utilizando el modelo de la variable predictora (utilizando los coeficientes estimados del paso 1). En este paso encontramos las diferencias entre los valores y observados y los valores y estimados basados en el modelo de la variable x.
+ 3. Examinar la correlacion cruzada entre los residuos obtenidos en ambos pasos.
+
+  No es absolutamente crucial que encontremos el modelo exacto para la variable predictora, sólo queremos acercarnos a la situación de ruido blanco.
+
+## Resultados y discusión 
+
+### Analisis exploratorio variables meteorologicas:
+
+  Al analizar las variables meteorológicas es importante describir, tanto la variación en las distintas escalas temporales de la variable, como analizar la relación conjunta con la variable predictora que es la concentración de material particulado. 
+
+#### Temperatura
+
+```{r tempmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:tempmes)"}
+knitr::include_graphics("images/imagescap4/tempmes.png")
+```
+(ref:tempmes) Perfil de variación promedio mensual de la temperatura a lo largo del año.
+
+  Menores temperaturas durante el otoño e invierno y mayores durante la primavera y verano. 
+  
+```{r temphor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:temphor)"}
+knitr::include_graphics("images/imagescap4/temphor.png")
+```
+(ref:temphor) Perfil de variación promedio horario de la temperatura a lo largo de las horas del día.
+
+  Se aprecia el ciclo que describe la temperatura a lo largo de las horas del día, podemos ver en el mismo dos puntos de inflexión, uno ocurre a las 11 hs y el otro a las 19 hs. A partir de esto podemos destacar que entre las 11 y las 19 hs, la temperatura va en incremento, describiendo un periodo de mayores temperaturas y que entre las 19 hs y 11 hs, la temperatura decrece, denotando una reducción de la misma. A partir de estos resultados suponemos que el ciclo de la temperatura a lo largo de las horas del día podría encontrarse relacionado con fluctuaciones de la concentración de material particulado en la misma escala temporal, de manera inversamente proporcional. 
+  
+```{r tempesthor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:tempesthor)"}
+knitr::include_graphics("images/imagescap4/tempesthor.png")
+```
+(ref:tempesthor) Perfil de variación promedio horario de la temperatura a lo largo de las horas del día en las distintas estaciones del año.
+
+  El ciclo de variación horaria se mantiene prácticamente constante a lo largo de las estaciones del año, existe una variación de los valores que toma la variable al cambiar las estaciones, mayores valores se registran durante la primavera y el verano, mientras que menores valores durante el otoño y el invierno. 
+
+```{r pmtempmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmtempmes)"}
+knitr::include_graphics("images/imagescap4/pmtempmes.png")
+```
+(ref:pmtempmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la temperatura a lo largo del año.
+
+  A partir de la figura, se ve la relación que describen los promedios mensuales de la temperatura y la concentración de PM2.5 a lo largo del año, se ve que los meses con menores temperaturas la concentración aumenta y a medida que la temperatura aumenta las concentraciones bajan.
+
+```{r pmtemphor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmtemphor)"}
+knitr::include_graphics("images/imagescap4/pmtemphor.png")
+```
+(ref:pmtemphor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la temperatura a lo largo del día.
+
+  Se puede ver que a temperaturas bajas la concentración registrada es mayor, mientras que cuando la temperatura aumenta la concentración disminuye, dispersión vertical de contaminantes. 
+
+```{r pmtempesthor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmtempesthor)"}
+knitr::include_graphics("images/imagescap4/pmtempesthor.png")
+```
+(ref:pmtempesthor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la temperatura a lo largo del dia en las distintas estaciones del año.
+
+  El perfil muestra que cuando la temperatura es menor las concentraciones promedio registradas son mayores que cuando la temperatura auemnta, donde se registran concentraciones altas. Ademas vemos que independientemente de la estación en el momento del dia en que la temperatura aumenta la concentración disminuye y cuando las temperaturas son bajas lsa concentraciones aumentan. 
+
+Table: PM~2.5~ promedio horario en los días en que la temperatura es mayor y menor a la media.\label{tab:temp}
+
+| Temperatura | PM~2.5~ |
+|-------------|:-------:|
+| Alta | 10.97 |
+| Baja | 12.90 |
+
+  Podemos ver que en las horas del día con temperaturas bajas la concentración media de material particulado horaria registrada es superior a la registrada en las horas en que las temperaturas son altas.
+
+Table: Test de Kruskal-Wallies para el PM~2.5~ promedio horario en los días en que la temperatura es mayor y menor a la media.\label{tab:tempKW}
+
+| Test | Chi-squared | df	| p-valor |
+|------------------------------|:------:|:-----:|:-----:|
+| Kruskal-Wallis rank sum test | 49.43	| 1 |	0 |
+
+  A un nivel de significancia del 5% podemos establecer que la muestra reúne evidencias suficientes para rechazar la hipótesis nula, con lo cual se concluye que las muestras provienen de poblaciones con distribución distinta, o bien que sus medias son significativamente diferentes.
+
+#### Humedad relativa
+
+```{r hummes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:hummes)"}
+knitr::include_graphics("images/imagescap4/hummes.png")
+```
+(ref:hummes) Perfil de variación promedio mensual de la humedad relativa a lo largo del año.
+
+ Podemos ver que la humedad relativa aumenta durante el verano, llegando a tomar los mayores valores durante el otoño entre los meses de abril y junio, luego durante el invierno y la primavera describe un descenso general hasta llegar a su minimo durante el mes de octubre donde comienza a describir una tendencia ascendente. 
+
+```{r humhor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:)"}
+knitr::include_graphics("images/imagescap4/humhor.png")
+```
+(ref:humhor) Perfil de variación promedio horario de la humedad relativa a lo largo de las horas del día..
+
+  Se aprecia el ciclo que describe la humedad relativa a lo largo de las horas del día (Figura), se puede notar que este es prácticamente inverso al que describe la temperatura (Figura). En este comportamiento cíclico podemos apreciar dos puntos de inflexión, uno ocurre a las 10 hs y el otro a las 18 hs. A partir de esto podemos destacar que entre las 10 y las 18 hs, la humedad relativa va en decrecimiento, describiendo un periodo de menores valores y que entre las 18 hs y 10 hs, sufre un gradual incremento, denotando un aumento de la misma. A partir de estos resultados suponemos que el ciclo de la humedad relativa a lo largo de las horas del día podría encontrarse relacionado con las fluctuaciones de la concentración de material particulado en la misma escala temporal de manera directamente proporcional. 
+
+```{r humesthor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:humesthor)"}
+knitr::include_graphics("images/imagescap4/humesthor.png")
+```
+(ref:humesthor) Perfil de variación promedio horario de la humedad relativa a lo largo de las horas del día en las distintas estaciones del año.
+
+  Se puede apreciar que el perfil de variacion horaria de la humedad relativa permanece constante a lo largo de las estaciones del año, describiendo mayor valores durante los meses de otoño, seguido por el verano, y menores valores durante el invierno y la primavera. 
+  
+```{r pmhummes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmhummes)"}
+knitr::include_graphics("images/imagescap4/pmhummes.png")
+```
+(ref:pmhummes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la humedad relativa a lo largo del año.
+
+  La tendencia general de la variación conjunta del material particulado y la humedad relativa a lo largo de los meses del año permite apreciar que cuando la humedad relativa es alta las concentraciones tienden a disminuir, mientras que cuando esta disminuye las concentraciones aumentan. 
+
+```{r pmhumhor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmhumhor)"}
+knitr::include_graphics("images/imagescap4/pmhumhor.png")
+```
+(ref:pmhumhor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la humedad relativa a lo largo del día.
+
+  La variación a lo largo de las horas del día permite apreciar una relación directamente proporcional, las curvas representadas en la imagen parecen describir la misma tendencia desplazada en el tiempo dos horas. Cuando la humedad relativa es alta las concentraciones de material particulado son elevadas a lo largo de las horas del día, mientras que cuando esta disminuye las concentraciones se reducen a lo largo del día. 
+
+```{r pmhumesthor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmhumesthor)"}
+knitr::include_graphics("images/imagescap4/pmhumesthor.png")
+```
+(ref:pmhumesthor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la humedad relativa a lo largo del dia en las distintas estaciones del año.
+
+  El perfil de variación horaria de la humedad relativa permanece prácticamente constante a lo largo de las estaciones en el año y sus magnitudes también se mantienen dentro de un rango acotado, la tendencia general permite ver una relación directamente proporcional a lo largo de las horas del dia entre ambas variables. Aumentos de la humedad relativa se caracteriza por aumentos del material particulado y disminuciones por reducciones de la concentración. 
+
+Table: PM~2.5~ promedio horario en los días en que la humedad relativa es mayor y menor a la media.\label{tab:hum}
+
+| Humedad Relativa | PM~2.5~ |
+|-------------|:-------:|
+| Alta | 12.94 |
+| Baja | 10.99 |
+
+  Podemos ver que en las horas del día con humedad relativa baja la concentración media de material particulado horaria registrada es menor a la registrada en las horas en que la humedad relativa es alta.
+
+Table: Test de Kruskal-Wallies para el PM~2.5~ promedio horario en los días en que es mayor y menor a la media.\label{tab:humKW}
+
+| Test | Chi-squared | df	| p-valor |
+|------------------------------|:------:|:-----:|:-------:|
+| Kruskal-Wallis rank sum test | 138.24	| 1 |	0 |
+
+  A un nivel de significancia del 5% podemos establecer que la muestra reúne evidencias suficientes para rechazar la hipótesis nula, con lo cual se concluye que las muestras provienen de poblaciones con distribución distinta, o bien que sus medias son significativamente diferentes.
+
+#### Presión
+
+```{r presmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:presmes)"}
+knitr::include_graphics("images/imagescap4/presmes.png")
+```
+(ref:presmes) Perfil de variación promedio mensual de la presión a lo largo del año.
+
+  La presión a lo largo de los meses durante el año describe sus mayores valores durante el otoño e invierno, llegando a los máximos en los meses de junio y julio, mientras que durante la primavera y el verano se pueden observar menores valores, aunque con distinta tendencia, en la primavera la tendencia de la presión es a disminuir, mientras que durante el verano es a aumentar.
+  
+```{r preshor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:preshor)"}
+knitr::include_graphics("images/imagescap4/preshor.png")
+```
+(ref:preshor) Perfil de variación promedio horario de la presión a lo largo de las horas del día.
+  
+  Se aprecia el ciclo que describe la presión a lo largo de las horas del día, podemos ver en el mismo dos mínimos, uno ocurre generalmente entre las 8 y 9 hs y el otro entre las 20 y 21 hs. Además, se pueden observar dos picos máximos, uno entre las 2 y 4 hs y el otro entre las 13 y 14 hs.
+
+```{r presesthor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:presesthor)"}
+knitr::include_graphics("images/imagescap4/presesthor.png")
+```
+(ref:presesthor) Perfil de variación promedio horario de la presión a lo largo de las horas del día en las distintas estaciones del año.
+
+  Podemos ver que el ciclo de la presion a lo largo de las horas del dia en las distintas estaciones permanece constante, describiendo diferencias en su magnitud en funcion de la estacion del año, durante el verano y la primavera se registran menores valores, mientras que durante el otoño y el invierno se registran mayores, siendo los maximos durante el invierno. 
+
+```{r pmpresmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmpresmes)"}
+knitr::include_graphics("images/imagescap4/pmpresmes.png")
+```
+(ref:pmpresmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la presión a lo largo del año.
+
+  La presión parece estar influyendo de manera directamente proporcional a la concentración de material particulado, durante los meses en que se registran mayores concentraciones la presión es máxima, mientras que la disminuir la presión la concentración también lo hace. 
+
+```{r pmpreshor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmpreshor)"}
+knitr::include_graphics("images/imagescap4/pmpreshor.png")
+```
+(ref:pmpreshor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la presión a lo largo del día.
+  
+  En cuanto a la variación horaria de la presión podemos ver que los picos de presión generan una notable reducción de la concentración de material particulado, mientras que reducciones de la presión generan picos de concentración. 
+
+```{r pmpresesthor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmpresesthor)"}
+knitr::include_graphics("images/imagescap4/pmpresesthor.png")
+```
+(ref:pmpresesthor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la presión a lo largo del dia en las distintas estaciones del año.
+  
+  Durante los meses en que se registran mayores presiones como consecuencia de la variación de las condiciones meteorológicas, la concentración de material particulado parece aumentar, a pesar de esto el perfil de variación horario conjunto de la presión y el material particulado lo largo de las estaciones permanece prácticamente constante a lo largo del día, se puede apreciar que mayores valores de presión generan reducciones de la concentración y menores valores de presión generan aumentos de la concentración. 
+
+Table: PM~2.5~ promedio horario en los días en que la presión es mayor y menor a la media.\label{tab:pres}
+
+| Presión | PM~2.5~ |
+|-------------|:-------:|
+| Alta | 11.45 |
+| Baja | 12.57 |
+  
+  Podemos ver que la presión es prácticamente constante a lo largo del día, y las horas en que esta es baja y alta poseen concentraciones similares. 
+
+Table: Test de Kruskal-Wallies para el PM~2.5~ promedio horario en los días en que la presión es mayor y menor a la media.\label{tab:presKW}
+
+| Test | Chi-squared | df	| p-valor |
+|------------------------------|:------:|:-----:|:-------:|
+| Kruskal-Wallis rank sum test | 100.39	| 1 |	0.1 |
+
+  A un nivel de significancia del 5% podemos establecer que la muestra no reúne evidencias suficientes para rechazar la hipótesis nula, con lo cual se concluye que las muestras provienen de poblaciones con la misma distribución, o bien que sus medias son iguales.
+  
+#### Velocidad del viento
+
+```{r vvientomes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:vvientomes)"}
+knitr::include_graphics("images/imagescap4/vvientomes.png")
+```
+(ref:vvientomes) Perfil de variación promedio mensual de la velocidad del viento a lo largo del año.
+
+  Se puede apreciar que los promedios mensuales de velocidad del viento a lo largo del año muestran mayores valores durante parte del invierno y la primavera describiendo sus máximos valores entre septiembre y octubre, mientras que los menores valores se registran durante el verano y el otoño, describiendo el mínimo en febrero. 
+
+```{r vvientohor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:vvientohor)"}
+knitr::include_graphics("images/imagescap4/vvientohor.png")
+```
+(ref:vvientohor) Perfil de variación promedio horario de la velocidad del viento a lo largo de las horas del día.
+
+  Se aprecia el ciclo que describe la velocidad del viento a lo largo del día, podemos ver en el mismo que generalmente el pico de velocidades ocurre al anochecer a las 21 hs y que gradualmente decrece hasta un mínimo alrededor de las 3 hs, que además puede estar acompañado por otro mínimo entre las 11 y 12 hs. 
+
+```{r vvientoesthor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:vvientoesthor)"}
+knitr::include_graphics("images/imagescap4/vvientoesthor.png")
+```
+(ref:vvientoesthor) Perfil de variación promedio horario de la velocidad del viento a lo largo de las horas del día en las distintas estaciones del año.
+
+  Podemos ver que el perfil de variacion de la velocidad del viento horario a lo largo de las estaciones parece permanecer practicamente constante, describiendo mayores valores durante el invierno y la primavera, y menores durante el verano y el otoño. 
+
+```{r pmvvientomes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmvvientomes)"}
+knitr::include_graphics("images/imagescap4/pmvvientomes.png")
+```
+(ref:pmvvientomes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la velocidad del viento a lo largo del año.
+
+  La relación que parece observarse a lo largo de los meses del año no parece describir una clara relación con la variación mensual del material particulado. 
+  No parece haber una marcada relación entre la velocidad del viento y la concentración de PM2.5 a lo largo del año. Debemos analizar en una menor escala para observar si a lo largo de las horas del día podemos ver algún tipo de tendencia con la concentración del material particulado (Figura).
+
+```{r pmvvientohor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmvvientohor)"}
+knitr::include_graphics("images/imagescap4/pmvvientohor.png")
+```
+(ref:pmvvientohor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la velocidad del viento a lo largo del día.
+
+  El perfil de variación conjunto horario de la velocidad del viento y la concentración de material particulado permite apreciar que cuando la velocidad del viento es baja la concentración de material particulado es alta, mientras que cuando la velocidad del viento aumenta, la concentración disminuye como consecuencia del fenómeno de dispersión. 
+
+De esta forma suponemos que la relación que puede vincular ambas variables es una inversamente proporcional. 
+
+```{r pmvvientoesthor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmvvientoesthor)"}
+knitr::include_graphics("images/imagescap4/pmvvientoesthor.png")
+```
+(ref:pmvvientoesthor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la velocidad del viento a lo largo del día en las distintas estaciones del año.
+  
+  En primavera donde las concentraciones de material particulado registradas son las mas bajas podemos apreciar que la velocidad del viento registra sus mayores valores, de modo que durante esta estación, la velocidad del viento parece ser determinante en la concentración de material particulado, mientas que en el invierno, el segundo mes en que las velocidades son mayores, las concentraciones describen sus máximos valores, lo que parece no ser consistente con lo previamente descrito y esto podría verse vinculado a que otras variables meteorológicas podrían estar influyendo la concentración de material particulado generando que la velocidad del viento no sea determinante. Por otra parte durante las estaciones de otoño y verano la velocidad del viento no se encuentra en sus mayores valores permitiendo concentraciones mayores a las descriptas durante la primavera. 
+  
+Table: PM~2.5~ promedio horario en los días en que es mayor y menor a la media.\label{tab:}
+
+| Velocidad del viento | PM~2.5~ |
+|-------------|:-------:|
+| Alta | 10.19 |
+| Baja | 13.32 |
+
+  Podemos ver que en las horas del día en que la velocidad del viento es baja la concentración media de material particulado horaria registrada es superior a la registrada en las horas en que la velocidad del viento es alta.
+
+Table: Test de Kruskal-Wallies para el PM~2.5~ promedio horario en los días en que es mayor y menor a la media.\label{tab:KW}
+
+| Test | Chi-squared | df	| p-valor |
+|------------------------------|:------:|:-----:|:-------:|
+| Kruskal-Wallis rank sum test | 343.82	| 1 |	0 |
+
+  Podemos ver que en las horas del día en que la velocidad del viento es baja la concentración media de material particulado horaria registrada es superior a la registrada en las horas en que la velocidad del viento es alta.
+A un nivel de significancia del 5% podemos establecer que la muestra reúne evidencias suficientes para rechazar la hipótesis nula, con lo cual se concluye que las muestras provienen de poblaciones con distribución distinta, o bien que sus medias son significativamente diferentes.
+
+
+#### Dirección del viento
+
+```{r dvientohor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:dvientohor)"}
+knitr::include_graphics("images/imagescap4/dvientohor.png")
+```
+(ref:dvientohor) Perfil de variación de la dirección del viento horaria a lo largo de las horas del día. 
+
+  Se aprecia el ciclo que describe la dirección del viento a lo largo de las horas del día, podemos ver que desde las 0 hasta las 9 hs la dirección del viento tiende a pasar desde direcciones bajos grados hasta direcciones de mayores grados, alcanzando el máximo a la 9 hs, luego la dirección tiende a reducirse hasta iniciar nuevamente el ciclo. Entendiendo el norte como los 0º, el este como los 90º, el sur como los 180º y el oeste como los 270º, vemos que bajos grados promedios son principalmente contribuciones relacionadas al noreste y sureste y mayores grados promedios refieren principalmente a contribuciones noroeste y suroeste. 
+
+```{r dvientoesthor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:dvientoesthor)"}
+knitr::include_graphics("images/imagescap4/dvientoesthor.png")
+```
+(ref:dvientoesthor) Perfil de variación de la dirección del viento a lo largo de las horas del día en las distintas estaciones del año.
+
+  Se aprecia el ciclo que describe la dirección del viento a lo largo del del día en las distintas estaciones del año, podemos ver el perfil horario permanece prácticamente constante a lo largo de las distintas estaciones. 
+  La tendencia general establece que los vientos en la madrugada provienen principalmente del este, al acercarnos al medio día fluctúan hacia el oeste, y desde el mediodía a la noche vuelven las contribuciones del este. A partir de estos resultados suponemos que el ciclo de la dirección del viento a lo largo de las horas del día podría encontrarse relacionado con las fluctuaciones de la concentración de material particulado en la misma escala temporal. 
+
+```{r rosaprom, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:rosaprom)"}
+knitr::include_graphics("images/imagescap4/rosaprom.png")
+```
+(ref:rosaprom) Rosa de los vientos promedio para la provincia de Córdoba en el periodo de muestreo.
+  
+  Podemos ver que los principales aportes de viento a lo largo del año son de la dirección noreste, norte, noroeste, sur, sureste y suroeste en menor medida, además podemos ver que las mayores velocidades del viento provienen de las direcciones norte, noroeste y sur. 
+  
+```{r rosapromest1, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:rosapromest1)"}
+knitr::include_graphics("images/imagescap4/rosapromest1.png")
+```
+(ref:rosapromest1) Rosa de los vientos promedio para la provincia de Córdoba durante el Otoño.
+
+  Durante el otoño la mayor parte de los vientos provienen del noreste y noroeste, mientras que las mayores velocidades del viento son registradas en los que provienen del suroeste y noreste.
+
+```{r rosapromest2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:rosapromest2)"}
+knitr::include_graphics("images/imagescap4/rosapromest2.png")
+```
+(ref:rosapromest2) Rosa de los vientos promedio para la provincia de Córdoba durante el Invierno.
+
+  Los vientos provienen principalmente del noroeste, norte, noreste, suroeste, sur y sureste, mientrsa que las mayores velocidades son registradas provenientes del noreste y suroeste. 
+  
+```{r rosapromest3, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:rosapromest3)"}
+knitr::include_graphics("images/imagescap4/rosapromest3.png")
+```
+(ref:rosapromest3) Rosa de los vientos promedio para la provincia de Córdoba durante la Primavera.
+
+  Vemos que lso vientos se encuentran principalemnte contenidos del en el cuadrante de la direccion este, la principal contribucion de vientos proviene del noreste y las mayores velocidades registrasdas del sur y sureste. 
+  
+```{r rosapromest4, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:rosapromest4)"}
+knitr::include_graphics("images/imagescap4/rosapromest4.png")
+```
+(ref:rosapromest4) Rosa de los vientos promedio para la provincia de Córdoba durante el Verano.
+
+  Se puede apreciar que las mayores contribuciones de viento provienen del este, principalmente del noreste y sureste, y las mayores velocidades fueron registradas provenientes de la dirección noreste. 
+
+Table: PM~2.5~ y velocidad del viento promedio horario en las distintas direcciones del viento.\label{tab:dvpmvv}
+
+| Direccion del viento | PM~2.5~ | Velocidad del viento |
+|-------|:---------:|:---------:|
+| S | 7.79 | 2.67 |
+| E | 11.39 |	2.23 |
+| N | 13.14 |	2.41 |
+| O | 15.95 |	2.11 |
+| SE | 8.74 | 2.46 |
+| SO | 9.52 | 2.48 |
+| NE | 12.05 |	2.48 |
+| NO | 15.03 |	2.18 |
+
+  A partir de las tablas podemos apreciar que concentraciones promedio bajas de material particulado se encuentran asociadas con la dirección sur y altas velocidades del viento y que concentraciones altas de material particulado se encuentran vinculadas con la dirección norte con menores velocidades del viento.
+
+#### Precipitación
+
+```{r rainmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:rainmes)"}
+knitr::include_graphics("images/imagescap4/rainmes.png")
+```
+(ref:rainmes) Perfil de variación promedio mensual de la precipitación a lo largo del año.
+
+  Se puede apreciar la variación del promedio mensual de la precipitación a lo largo del año, podemos apreciar que durante la primavera y el verano las precipitaciones aumentan notablemente respecto al otoño y precipitación invierno. Los meses en que mayores precipitaciones se registraron fueron los meses de noviembre y marzo, y entre los meses de mayo y octubre se registraron los mínimos de precipitación. 
+
+```{r pmrain, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmrain)"}
+knitr::include_graphics("images/imagescap4/pmrain.png")
+```
+(ref:pmrain) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la precipitación a lo largo del año.
+
+  A partir de la figura, se ve la relación que describen los promedios mensuales de la precipitación y la concentración de PM~2.5~ a lo largo del año, se puede ver que los meses en que ocurren precipitaciones la concentración baja y en los meses en que no ocurren o son muy bajas las concentraciones aumentan. 
+
+Table: PM~2.5~ promedio horario en los días en que la precipitación es mayor y menor a la media.\label{tab:}
+
+| Precipitación | PM~2.5~ |
+|-------------|:-------:|
+| Alta | 9.44 |
+| Baja | 12.27 |
+
+  A partir de la tabla podemos ver que las horas del día en que la precipitación es baja la concentración media de material particulado horaria registrada es superior a la registrada cuando la precipitación es alta.
+  
+Table: Test de Kruskal-Wallies para el PM~2.5~ promedio horario en los días en que la precipitación es mayor y menor a la media.\label{tab:KW}
+
+| Test | Chi-squared | df	| p-valor |
+|------------------------------|:------:|:-----:|:-------:|
+| Kruskal-Wallis rank sum test | 82.64	| 1 |	0 |
+
+  A un nivel de significancia del 5% podemos establecer que la muestra reúne evidencias suficientes para rechazar la hipótesis nula, con lo cual se concluye que las muestras provienen de poblaciones con distribución distinta, o bien que sus medias son significativamente diferentes.
+
+#### Radiación de corta longitud de onda
+
+```{r radmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:radmes)"}
+knitr::include_graphics("images/imagescap4/radmes.png")
+```
+(ref:radmes) Perfil de variación promedio mensual de la radiación de corta longitud de onda a lo largo del año.
+
+  Se puede apreciar el ciclo que describe la radiación de onda corta a lo largo del año, podemos ver que esta disminuye notablemente durante el otoño y el invierno, describiendo sus mayores valores durante la primavera y el verano, los máximos valores registrados se corresponden a los meses de noviembre y diciembre y el mínimo a los meses de mayo y junio. 
+
+```{r radhor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:radhor)"}
+knitr::include_graphics("images/imagescap4/radhor.png")
+```
+(ref:radhor) Perfil de variación promedio horario de la radiación de corta longitud de onda a lo largo de las horas del día.
+
+  A lo largo de las horas del día podemos aprecias que el primer punto de inflexión ocurre a las 11 hs de la mañana, a partir del cual se describe una tendencia positiva en los valores registrados, a las 18 hs se llega al máximo valor y segundo punto de inflexión a partir del cual se genera una disminución, hasta alcanzar los valores mas bajos y constantes que se describen durante parte de la noche y madrugada.
+  
+```{r radesthor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:radesthor)"}
+knitr::include_graphics("images/imagescap4/radesthor.png")
+```
+(ref:radesthor) Perfil de variación promedio horario de la radiación de corta longitud de onda a lo largo de las horas del día en las distintas estaciones del año.
+
+  Se aprecia que el perfil de variacion horario a lo largo del dia en las distintas estaciones permanece constante, describiendo un pequeño aumento en la magnitud de los valores registrados durante la primavera y el verano respecto al otoño e invierno. 
+
+```{r pmradmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmradmes)"}
+knitr::include_graphics("images/imagescap4/pmradmes.png")
+```
+(ref:pmradmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la radiación de corta longitud de onda a lo largo del año.
+
+  A partir de la figura, se ve la relación que describen los promedios mensuales de la radiación de corta longitud de onda y la concentración de PM2.5 a lo largo del año, se ve que a radiaciones bajas la concentración aumenta y a medida que la radiación aumenta las concentraciones bajan. Podemos ver que esta variable se encuentra estrechamente vinculada a la temperatura y que se describe una relacion inversamente proporcional en los meses a lo largo del año. 
+
+```{r pmradhor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmradhor)"}
+knitr::include_graphics("images/imagescap4/pmradhor.png")
+```
+(ref:pmradhor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la radiación de corta longitud de onda a lo largo del día.
+
+  Se puede apreciar que a lo largo de las horas del día el perfil que describen conjuntamente la radiación y la concentración de material particulado se encuentran vinculadas, cuando la radiación aumenta las concentraciones tienden a disminuir, mientras que cuando la radiación disminuye las concentraciones aumentan. 
+
+```{r pmradesthor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmradesthor)"}
+knitr::include_graphics("images/imagescap4/pmradesthor.png")
+```
+(ref:pmradesthor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la radiación de corta longitud de onda a lo largo del dia en las distintas estaciones del año.
+
+  El perfil horario de la radiación a lo largo de las estaciones en el año permanece prácticamente constante, describiendo mayores valores durante la primavera y verano, y menores durante el otoño e invierno. A pesar de esto, la relación horaria descripta previamente entre la concentración y la radiación se mantiene, cuando la radiacion disminuye las concentraciones aumentan, mientras que cuando la radiacion aumenta las concentraciones disminuyen. 
+
+Table: PM~2.5~ promedio horario en los días en que la radiación de corta longitud de onda es mayor y menor a la media.\label{tab:}
+
+| Radiación | PM~2.5~ |
+|-------------|:-------:|
+| Alta | 8.97 |
+| Baja | 13.73 |
+
+  Podemos ver que las horas del día en que la radiación solar de onda corta es baja la concentración media de material particulado horaria registrada es superior a la registrada cuando la radiación solar de onda corta es alta.
+
+Table: Test de Kruskal-Wallies para el PM~2.5~ promedio horario en los días en que es mayor y menor a la media.\label{tab:KW}
+
+| Test | Chi-squared | df	| p-valor |
+|------------------------------|:------:|:-----:|:-------:|
+| Kruskal-Wallis rank sum test | 681.45	| 1 |	0 |
+
+  Para un nivel de significancia del 5% podemos establecer que la muestra reúne evidencias suficientes para rechazar la hipótesis nula, con lo cual se concluye que las muestras provienen de poblaciones con distribución distinta, o bien que sus medias son significativamente diferentes.
+
+#### Verificamos estacionareidad para las series:
+  
+  Los resultados obtenidos establecen que:
+ * Augmented Dickey-Fuller Test: Todas las series resultaron estacionarias en tendencia.
+ * KPSS Level: Ninguna de las series resulto estacionaria en diferencia estacional.
+  De esta forma nos encontramos ante el caso 4, y por lo tanto con la diferencia estacional de primer orden las transformamos en una serie estacionaria. 
+  
+  De esta forma nos encontramos ante el caso 4, y por lo tanto con la diferencia estacional de primer orden deberíamos poder transformarlas en series estacionarias. 
+  
+  Casos disintos del resto:
+ * Tempertura: No es estacionaria en ninguna, ambas diferencias.
+ * LST: No es estacionaria en ninguna, ambas diferencias.
+ * Precipitacion: Es estacionaria en ambas, no hace falta diferencia.
+
+  Poner una vez habiendo realizado las diferenciaciones necesarias para que las series sean estacionarias se procedio a realizar el siguiente analisis.
+
+### Temperatura
+
+```{r tempserie, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:tempserie)"}
+knitr::include_graphics("images/imagescap4/tempserie.png")
+```
+(ref:tempserie) Gráfico de la serie horaria de temperatura.
+
+```{r tempacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:tempacf)"}
+knitr::include_graphics("images/imagescap4/tempacf1.png")
+```
+(ref:tempacf) Gráfico de la función de autocorrelación simple de la serie.
+
+```{r temppacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:temppacf)"}
+knitr::include_graphics("images/imagescap4/temppacf1.png")
+```
+(ref:temppacf) Gráfico de la función de autocorrelación simple de la serie.
+
+  Un modelo teórico es ajustado, de esta forma se logra filtrar la estructura de la serie de la variable en cuestión, así se quitan las tendencias, ciclos y patrones, luego la variable respuesta es filtrada por este modelo teórico y de esta forma se evitar que el calculo de la correlación cruzada se vea afectado por estos factores. 
+
+```{r tempacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:tempacf2)"}
+knitr::include_graphics("images/imagescap4/tempacf2.png")
+```
+(ref:tempacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+```{r temppacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:temppacf2)"}
+knitr::include_graphics("images/imagescap4/temppacf2.png")
+```
+(ref:temppacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+  Se puede apreciar que luego del ajuste del modelo teórico las tendencias ciclos y patrones existentes previamente en la serie se han reducido notablemente, esto nos permitirá calcular la correlación cruzada sin la influencia de estos efectos espuria. 
+
+```{r tempccfantes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:tempccfantes)"}
+knitr::include_graphics("images/imagescap4/tempccfantes.png")
+```
+(ref:tempccfantes) Gráfico de la correlación cruzada entre las series previo al filtrado por el modelo teórico.
+
+  Previo al filtrado de las series por el modelo teórico ajustado, se puede apreciar que la correlación cruzada permite identificar como correlacionados significativamente con el PM~2.5~ en el tiempo en el presente a numerosos valores en tiempos pasados de la temperatura, esta correlación es principalmente negativa. 
+
+```{r tempccf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:tempccf)"}
+knitr::include_graphics("images/imagescap4/tempccf.png")
+```
+(ref:tempccf) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico.
+
+  A partir de la figura (), se puede apreciar que las correlaciones significativas que perduran luego del procedimiento de filtrado de las series son los tiempos pasados t-24, t-21, t-12 y t-11, cuyos coeficientes de correlación son negativos, excepto el t-12, que no se condice con lo analizado previamente y lo atribuiremos a errores de muestreo. A partir de este procedimiento se determino que los pasados en tiempos t-24, t-21 y t-11  de la temperatura tienen capacidad para predecir el material particulado en el presente y que la relación que vincula ambas variables es inversamente proporcional.  
+
+Table: Transferencia de entropía por medio del incide de Shannon, de la variable analizada al PM~2.5~.\label{tab:tempSE}
+Transferencia de entropía; Transferencia de entropía efectiva; Error estándar; Valor p.
+
+| Transferencia | Transferencia efectiva | Error estándar	| p-valor |
+|:--------:|:--------:|:--------:|:--------:|
+| 0.00106 | 0.00049 | 0.00027 | 0.05 |
+
+  La estimación de la transferencia de entropía de Shannon resultante indica que hay un flujo de información significativo de la variable en análisis al PM~2.5~.
+
+### Humedad relativa
+
+```{r humserie, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:humserie)"}
+knitr::include_graphics("images/imagescap4/humserie.png")
+```
+(ref:humserie) Gráfico de la serie horaria de humedad relativa.
+
+```{r humacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:humacf)"}
+knitr::include_graphics("images/imagescap4/humacf1.png")
+```
+(ref:humacf) Gráfico de la función de autocorrelación simple de la serie.
+
+```{r humpacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:humpacf)"}
+knitr::include_graphics("images/imagescap4/humpacf1.png")
+```
+(ref:humpacf) Gráfico de la función de autocorrelación simple de la serie.
+
+  Un modelo teórico es ajustado, de esta forma se logra filtrar la estructura de la serie de la variable en cuestión, asi se quitan las tendencias, ciclos y patrones, luego la variable respuesta es filtrada por este modelo teórico y de esta forma se evitar que el calculo de la correlación cruzada se vea afectado por estos factores. 
+
+```{r humacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:humacf2)"}
+knitr::include_graphics("images/imagescap4/humacf2.png")
+```
+(ref:humacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+```{r humpacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:humpacf2)"}
+knitr::include_graphics("images/imagescap4/humpacf2.png")
+```
+(ref:humpacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+  Se puede apreciar que luego del ajuste del modelo teórico las tendencias ciclos y patrones existentes previamente en la serie se han reducido notablemente, esto nos permitirá calcular la correlación cruzada sin la influencia de estos efectos espuria. 
+
+```{r humccfantes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:humccfantes)"}
+knitr::include_graphics("images/imagescap4/humccfantes.png")
+```
+(ref:humccfantes) Gráfico de la correlación cruzada entre las series previo al filtrado por el modelo teórico.
+
+  Previo al filtrado de las series por el modelo teórico ajustado, se puede apreciar que la correlación cruzada permite identificar como correlacionados significativamente con el PM~2.5~ en el tiempo en el presente a numerosos valores en tiempos pasados de la humedad relativa, esta correlación es negativa en tiempos pasados cercanos y positiva en tiempos pasados mas alejados. 
+
+```{r humccf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:humccf)"}
+knitr::include_graphics("images/imagescap4/humccf.png")
+```
+(ref:humccf) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico.
+
+  A partir de la figura (), se puede apreciar que las correlaciones significativas que perduran luego del procedimiento de filtrado de las series son los pasados en los tiempos t-24, t-21 y t-11, cuyos coeficientes son positivos. A partir de este procedimiento se determino que los pasados en tiempos t-24, t-21 y t-11  de la humedad relativa tienen capacidad para predecir el material particulado en el presente, describiendo una relación directamente proporcional.   
+
+Table: Transferencia de entropía por medio del incide de Shannon, de la variable analizada al PM~2.5~.\label{tab:humSE}
+Transferencia de entropía; Transferencia de entropía efectiva; Error estándar; Valor p.
+
+| Transferencia | Transferencia efectiva | Error estándar	| p-valor |
+|:--------:|:--------:|:--------:|:--------:|
+| 0.0015 | 0.00071 | 0.00032 | 0.03 |
+
+  La estimación de la transferencia de entropía de Shannon resultante indica que hay un flujo de información significativo de la variable en análisis al PM~2.5~.
+
+### Presion
+
+```{r presserie, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:presserie)"}
+knitr::include_graphics("images/imagescap4/presserie.png")
+```
+(ref:presserie) Gráfico de la serie horaria de presion.
+
+```{r presacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:presacf)"}
+knitr::include_graphics("images/imagescap4/presacf1.png")
+```
+(ref:presacf) Gráfico de la función de autocorrelación simple de la serie.
+
+```{r prespacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:prespacf)"}
+knitr::include_graphics("images/imagescap4/prespacf1.png")
+```
+(ref:prespacf) Gráfico de la función de autocorrelación simple de la serie.
+
+  Un modelo teórico es ajustado, de esta forma se logra filtrar la estructura de la serie de la variable en cuestión, asi se quitan las tendencias, ciclos y patrones, luego la variable respuesta es filtrada por este modelo teórico y de esta forma se evitar que el calculo de la correlación cruzada se vea afectado por estos factores. 
+
+```{r presacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:presacf2)"}
+knitr::include_graphics("images/imagescap4/presacf2.png")
+```
+(ref:presacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+```{r prespacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:prespacf2)"}
+knitr::include_graphics("images/imagescap4/prespacf2.png")
+```
+(ref:prespacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+  Se puede apreciar que luego del ajuste del modelo teórico las tendencias ciclos y patrones existentes previamente en la serie se han reducido notablemente, esto nos permitirá calcular la correlación cruzada sin la influencia de estos efectos espuria. 
+
+```{r presccfantes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:presccfantes)"}
+knitr::include_graphics("images/imagescap4/presccfantes.png")
+```
+(ref:presccfantes) Gráfico de la correlación cruzada entre las series previo a ser filtradas por el modelo teórico.
+
+  Previo al filtrado de las series por el modelo teórico ajustado, se puede apreciar que la correlación cruzada permite identificar como correlacionados significativamente con el PM~2.5~ en el presente a todos los valores en tiempos pasados de la presión, ademas esta correlación es positiva.
+
+```{r presccf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:presccf)"}
+knitr::include_graphics("images/imagescap4/presccf.png")
+```
+(ref:presccf) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico.
+
+  A partir de la figura (), se puede apreciar que no hay correlaciones significativas que perduren luego del procedimiento de filtrado de las series, es decir que los pasados horarios de la presión no tendrían capacidad para predecir el material particulado en el presente, por este motivo y por lo visto previamente en el análisis exploratorio se procederá a analizar en una escala temporal diaria.
+  
+```{r presccfdiario, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:presccfdiario)"}
+knitr::include_graphics("images/imagescap4/presccfdiario.png")
+```
+(ref:presccfdiario) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico diario.
+
+  A partir de la figura (), se puede apreciar que las correlaciones significativas que perduran luego del procedimiento de filtrado de las series son los pasados en los tiempos t-1 y t, cuyos coeficientes son negativos. A partir de este procedimiento se determino que los valores del día anterior y presente de la presión tienen capacidad para predecir el material particulado en el presente, describiendo una relación inversamente proporcional.   
+  
+Table: Transferencia de entropía por medio del incide de Shannon, de la variable analizada al PM~2.5~.\label{tab:presSE}
+Transferencia de entropía; Transferencia de entropía efectiva; Error estándar; Valor p.
+
+| Transferencia | Transferencia efectiva | Error estándar	| p-valor |
+|:--------:|:--------:|:--------:|:--------:|
+| 0.02823 | 0.01518 | 0.00558 | 0.01 |
+  
+  La estimación de la transferencia de entropía de Shannon resultante indica que hay un flujo de información significativo de la variable en análisis al PM~2.5~ en la escala temporal diaria. 
+  
+### Velocidad del viento
+
+```{r vvientoserie, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:vvientoserie)"}
+knitr::include_graphics("images/imagescap4/vvientoserie.png")
+```
+(ref:) Gráfico de la serie horaria de velocidad del viento.
+
+```{r vvientoacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:vvientoacf)"}
+knitr::include_graphics("images/imagescap4/vvientoacf1.png")
+```
+(ref:vvientoacf) Gráfico de la función de autocorrelación simple de la serie.
+
+```{r vvientopacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:vvientopacf)"}
+knitr::include_graphics("images/imagescap4/vvientopacf1.png")
+```
+(ref:vvientopacf) Gráfico de la función de autocorrelación simple de la serie.
+
+  Un modelo teórico es ajustado, de esta forma se logra filtrar la estructura de la serie de la variable en cuestión, asi se quitan las tendencias, ciclos y patrones, luego la variable respuesta es filtrada por este modelo teórico y de esta forma se evitar que el calculo de la correlación cruzada se vea afectado por estos factores. 
+
+```{r vvientoacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:vvientoacf2)"}
+knitr::include_graphics("images/imagescap4/vvientoacf2.png")
+```
+(ref:vvientoacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+```{r vvientopacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:vvientopacf2)"}
+knitr::include_graphics("images/imagescap4/vvientopacf2.png")
+```
+(ref:vvientopacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+  Se puede apreciar que luego del ajuste del modelo teórico las tendencias ciclos y patrones existentes previamente en la serie se han reducido notablemente, esto nos permitirá calcular la correlación cruzada sin la influencia de estos efectos espuria. 
+
+```{r vvientoccfantes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:vvientoccfantes)"}
+knitr::include_graphics("images/imagescap4/vvientoccfantes.png")
+```
+(ref:vvientoccfantes) Gráfico de la correlación cruzada entre las series previo a ser filtradas por el modelo teórico.
+
+  Previo al filtrado de las series por el modelo teórico ajustado, se puede apreciar que la correlación cruzada permite identificar como correlacionados significativamente con el PM~2.5~ en el tiempo presente a numerosos tiempos pasados de la velocidad del viento, ademas esta correlación es negativa. 
+
+```{r vvientoccf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:vvientoccf)"}
+knitr::include_graphics("images/imagescap4/vvientoccf.png")
+```
+(ref:vvientoccf) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico.
+
+  A partir de la figura (), se puede apreciar que las correlaciones significativas que perduran luego del procedimiento de filtrado de las series son los pasados en los tiempos t-8, t-5 y t-4, cuyos coeficientes son negativos. A partir de este procedimiento se determino que los pasados de la velocidad del viento en los tiempos t-8, t-5 y t-4 tienen capacidad para predecir el material particulado en el presente, describiendo una relación inversamente mente proporcional, es decir que cambio en la variable respuesta pueden encontrarse explicados por estos pasados de la variable predictora.    
+  
+Table: Transferencia de entropía por medio del incide de Shannon, de la variable analizada al PM~2.5~.\label{tab:vvientoSE}
+Transferencia de entropía; Transferencia de entropía efectiva; Error estándar; Valor p.
+
+| Transferencia | Transferencia efectiva | Error estándar	| p-valor |
+|:--------:|:--------:|:--------:|:--------:|
+| 0.00207 | 0.0015 | 0.00026 | 0 |
+
+  La estimación de la transferencia de entropía de Shannon resultante indica que hay un flujo de información significativo de la variable en análisis al PM~2.5~.
+
+### Direccion del viento
+
+```{r dvientoserie, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:dvientoserie)"}
+knitr::include_graphics("images/imagescap4/dvientoserie.png")
+```
+(ref:dvientoserie) Gráfico de la serie horaria de direccion del viento.
+
+```{r dvientoacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:dvientoacf)"}
+knitr::include_graphics("images/imagescap4/dvientoacf1.png")
+```
+(ref:dvientoacf) Gráfico de la función de autocorrelación simple de la serie.
+
+```{r dvientopacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:dvientopacf)"}
+knitr::include_graphics("images/imagescap4/dvientopacf1.png")
+```
+(ref:dvientopacf) Gráfico de la función de autocorrelación simple de la serie.
+
+  Un modelo teórico es ajustado, de esta forma se logra filtrar la estructura de la serie de la variable en cuestión, asi se quitan las tendencias, ciclos y patrones, luego la variable respuesta es filtrada por este modelo teórico y de esta forma se evitar que el calculo de la correlación cruzada se vea afectado por estos factores. 
+
+```{r dvientoacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:dvientoacf2)"}
+knitr::include_graphics("images/imagescap4/dvientoacf2.png")
+```
+(ref:dvientoacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+```{r dvientopacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:dvientopacf2)"}
+knitr::include_graphics("images/imagescap4/dvientopacf2.png")
+```
+(ref:dvientopacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+  Se puede apreciar que luego del ajuste del modelo teórico las tendencias ciclos y patrones existentes previamente en la serie se han reducido notablemente, esto nos permitirá calcular la correlación cruzada sin la influencia de estos efectos espuria. 
+
+```{r dvientoccfantes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:dvientoccfantes)"}
+knitr::include_graphics("images/imagescap4/dvientoccfantes.png")
+```
+(ref:dvientoccfantes) Gráfico de la correlación cruzada entre las series previo a ser filtradas por el modelo teórico.
+
+  Previo al filtrado de las series por el modelo teórico ajustado, se puede apreciar que la correlación cruzada permite identificar como correlacionados significativamente con el PM~2.5~ en el tiempo presente a numerosos tiempos pasados de la dirección del viento, los pasados cercanos se correlacionan negativamente, mientras que los lejanos lo hacen de forma positiva.  
+
+```{r dvientoccf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:dvientoccf)"}
+knitr::include_graphics("images/imagescap4/dvientoccf.png")
+```
+(ref:dvientoccf) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico.
+
+  A partir de la figura (), se puede apreciar que las correlaciones significativas que perduran luego del procedimiento de filtrado de las series son los pasados en los tiempos t-18, t-17, t-16, t-15, t-14, t-13, t-12, t-11, t-10 y t-9, cuyos coeficientes son negativos. A partir de este procedimiento se determino que los pasados de la velocidad del viento en estos tiempos tienen capacidad para predecir el material particulado en el presente, describiendo una relación inversamentemente proporcional, es decir que cambios en la variable respuesta pueden encontrarse explicados por estos pasados de la variable predictora.    
+  
+Table: Transferencia de entropía por medio del incide de Shannon, de la variable analizada al PM~2.5~.\label{tab:dvientoSE}
+Transferencia de entropía; Transferencia de entropía efectiva; Error estándar; Valor p.
+
+| Transferencia | Transferencia efectiva | Error estándar	| p-valor |
+|:--------:|:--------:|:--------:|:--------:|
+| 0.001 | 0.00014 | 0.00034 | 0.23 |
+
+  La estimación de la transferencia de entropía de Shannon resultante indica que no hay un flujo de información significativo de la variable en análisis al PM~2.5~. Esto puede deberse a que la relación entre las variables puede estar caracterizada por una notable complejidad que es incapaz de ser captada por esta metodología. 
+
+### Precipitacion
+
+```{r rainserie, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:rainserie)"}
+knitr::include_graphics("images/imagescap4/rainserie.png")
+```
+(ref:rainserie) Gráfico de la serie horaria de precipitacion.
+
+```{r rainacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:rainacf)"}
+knitr::include_graphics("images/imagescap4/rainacf1.png")
+```
+(ref:rainacf) Gráfico de la función de autocorrelación simple de la serie.
+
+```{r rainpacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:rainpacf)"}
+knitr::include_graphics("images/imagescap4/rainpacf1.png")
+```
+(ref:rainpacf) Gráfico de la función de autocorrelación simple de la serie.
+
+  Un modelo teórico es ajustado, de esta forma se logra filtrar la estructura de la serie de la variable en cuestión, asi se quitan las tendencias, ciclos y patrones, luego la variable respuesta es filtrada por este modelo teórico y de esta forma se evitar que el calculo de la correlación cruzada se vea afectado por estos factores. 
+
+```{r rainacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:rainacf2)"}
+knitr::include_graphics("images/imagescap4/rainacf2.png")
+```
+(ref:rainacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+```{r rainpacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:rainpacf2)"}
+knitr::include_graphics("images/imagescap4/rainpacf2.png")
+```
+(ref:rainpacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+  Se puede apreciar que luego del ajuste del modelo teórico las tendencias ciclos y patrones existentes previamente en la serie se han reducido notablemente, esto nos permitirá calcular la correlación cruzada sin la influencia de estos efectos espuria. 
+
+```{r rainccfantes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:rainccfantes)"}
+knitr::include_graphics("images/imagescap4/rainccfantes.png")
+```
+(ref:rainccfantes) Gráfico de la correlación cruzada entre las series previo a ser filtradas por el modelo teórico.
+
+  Previo al filtrado de las series por el modelo teórico ajustado, se puede apreciar que la correlación cruzada permite identificar como correlacionados significativamente con el PM~2.5~ en el tiempo presente a numerosos tiempos pasados de la precipitación, los cuales se correlacionan negativamente.
+
+```{r rainccf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:rainccf)"}
+knitr::include_graphics("images/imagescap4/rainccf.png")
+```
+(ref:rainccf) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico.
+
+  A partir de la figura (), se puede apreciar que las correlaciones significativas que perduran luego del procedimiento de filtrado de las series es el pasado en el tiempos t-3, cuyo coeficiente es negativo. A partir de este procedimiento se determino que el pasado de la precipitación en este tiempo tiene capacidad para predecir el material particulado en el presente, describiendo una relación inversamentemente proporcional, es decir que cambios en la variable respuesta pueden explicarse por el pasado de la variable predictora. 
+
+  A partir de la figura (), se observa que los lags en los tiempos t-3 tiene capacidad para predecir el material particulado en el presente.  
+  
+Table: Transferencia de entropía por medio del incide de Shannon, de la variable analizada al PM~2.5~.\label{tab:rainSE}
+Transferencia de entropía; Transferencia de entropía efectiva; Error estándar; Valor p.
+
+| Transferencia | Transferencia efectiva | Error estándar	| p-valor |
+|:--------:|:--------:|:--------:|:--------:|
+| 0.00076 | 0 | 0.00032 | 0.52 |
+
+  La estimación de la transferencia de entropía de Shannon resultante indica que no hay un flujo de información significativo de la variable en análisis al PM~2.5~. Esto puede deberse a que la relación entre las variables puede estar caracterizada por una notable complejidad que es incapaz de ser captada por esta metodología. 
+  
+
+### Radiacion solar de baja longitud de onda
+
+```{r radserie, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:radserie)"}
+knitr::include_graphics("images/imagescap4/radserie.png")
+```
+(ref:radserie) Gráfico de la serie horaria de radiacion solar de baja longitud de onda.
+
+```{r radacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:radacf)"}
+knitr::include_graphics("images/imagescap4/radacf1.png")
+```
+(ref:radacf) Gráfico de la función de autocorrelación simple de la serie.
+
+```{r radpacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:radpacf)"}
+knitr::include_graphics("images/imagescap4/radpacf1.png")
+```
+(ref:radpacf) Gráfico de la función de autocorrelación simple de la serie.
+
+  Un modelo teórico es ajustado, de esta forma se logra filtrar la estructura de la serie de la variable en cuestión, asi se quitan las tendencias, ciclos y patrones, luego la variable respuesta es filtrada por este modelo teórico y de esta forma se evitar que el calculo de la correlación cruzada se vea afectado por estos factores. 
+
+```{r radacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:radacf2)"}
+knitr::include_graphics("images/imagescap4/radacf2.png")
+```
+(ref:radacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+```{r radpacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:radpacf2)"}
+knitr::include_graphics("images/imagescap4/radpacf2.png")
+```
+(ref:radpacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+  Se puede apreciar que luego del ajuste del modelo teórico las tendencias ciclos y patrones existentes previamente en la serie se han reducido notablemente, esto nos permitirá calcular la correlación cruzada sin la influencia de estos efectos espuria. 
+
+```{r radccfantes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:radccfantes)"}
+knitr::include_graphics("images/imagescap4/radccfantes.png")
+```
+(ref:radccfantes) Gráfico de la correlación cruzada entre las series previo a ser filtradas por el modelo teórico.
+
+  Previo al filtrado de las series por el modelo teórico ajustado, se puede apreciar que la correlación cruzada permite identificar como correlacionados significativamente con el PM~2.5~ en el tiempo presente a numerosos tiempos pasados de la radiación de corta longitud de onda, los cuales se correlacionan positivamente en el pasado cercano y negativamente en el lejano. 
+
+```{r radccf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:radccf)"}
+knitr::include_graphics("images/imagescap4/radccf.png")
+```
+(ref:radccf) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico.
+
+  A partir de la figura (), se puede apreciar que las correlaciones significativas que perduran luego del procedimiento de filtrado de las series son los pasados en los tiempos t-19, t-13, t-11, t-9 y t-1, cuyos coeficientes son positivos. A partir de este procedimiento se determino que los pasados de la radiación en estos tiempos tienen capacidad para predecir el material particulado en el presente, describiendo una relación directamente proporcional, es decir que cambios en la variable respuesta pueden ser explicados por el pasado de la variable predictora.   
+
+Table: Transferencia de entropía por medio del incide de Shannon, de la variable analizada al PM~2.5~.\label{tab:radSE}
+Transferencia de entropía; Transferencia de entropía efectiva; Error estándar; Valor p.
+
+| Transferencia | Transferencia efectiva | Error estándar	| p-valor |
+|:--------:|:--------:|:--------:|:--------:|
+| 0.00229 | 0.00145 | 0.00034 | 0 |
+			
+  La estimación de la transferencia de entropía de Shannon resultante indica que hay un flujo de información significativo de la variable en análisis al PM~2.5~.
+
+## Conclusión

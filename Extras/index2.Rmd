@@ -1,0 +1,42 @@
+---
+author: 'Rodriguez Nuñez Martin'
+date: 'Noviembre 2022'
+institution: 'Universidad Nacional de Córdoba'
+division: 'Facultad de Ciencias Económicas, Facultad de Ciencias Agropecuarias y Facultad de Matemática, Astronomía, Física y Computación (FAMAF)'
+advisor: 'Monica Balzarini'
+title: 'MODELACIÓN PARA ESTIMAR CONCENTRACIÓN DE AEROSOLES EN ATMOSFERAS DEL AREA METROPOLITANA DE LA CIUIDAD DE CÓRDOBA'
+department: ''
+degree: 'Magíster en Estadística Aplicada'
+knit: "bookdown::render_book"
+site: bookdown::bookdown_site
+output: 
+  thesisdown::thesis_pdf: default
+
+#### Important!
+#### When compiling gitbook, comment following 4 lines to get references
+resumen: |
+  `r if(knitr:::is_latex_output()) paste(readLines("resumen.Rmd"), collapse = '\n  ')`
+
+acknowledgements: |
+  `r if(knitr:::is_latex_output()) paste(readLines("agradecimientos.Rmd"), collapse = '\n  ')`
+
+dedication: |
+  _Dedicacion_
+  _._
+
+preface: |
+  `r if(knitr:::is_latex_output()) paste(readLines("prefacio.Rmd"), collapse = '\n  ')`
+
+#   This is an example of a thesis setup to use the reed thesis document class
+#   (for LaTeX) and the R bookdown package, in general.
+bibliography: bib/thesis.bib
+# bibliography: ./bib/thesis.bib
+# Download your specific bibliography database file and refer to it in the line above.
+csl: csl/apa.csl
+lot: false
+lof: false
+---
+
+```{r include_packages, include = FALSE}
+library("thesisdown")
+```

@@ -1,0 +1,344 @@
+# Variacion espacio temporal de la concentracion de aerosoles {#cap:expl}
+
+## Resumen
+  
+## Introducción
+    
+  Variabilidad espacio temporal del material particulado. 
+  
+## Metodología
+
+### Procedimiento de análisis. 
+
+  1. Pre procesamiento de los datos, filtrado de outliers globales y temporales. 
+
+  2. Análisis la variación temporal de la concentración de aerosoles colectados en zonas del Área Metropolitana de Córdoba. 
+  
+  3. Inferir el uso de suelo a partir de un análisis de los datos. Análisis de clúster entre las series de los distintos sitios. Análisis de clúster jerárquico empleando distancia "Dynamic Time Wraping" y el método empleado para la construcción de los clústeres es el método de Ward, determinar la cantidad de grupos a formar. Verificación de los resultados obtenidos por medio del método aglomerativo K-shapes. 
+  
+  3.	Análisis descriptivo de la variación espacial de la concentración de aerosoles colectados en zonas del Área Metropolitana de Córdoba.
+
+  4. Caracterización de la serie temporal de material particulado promedio para el Área Metropolitana de Córdoba: análisis de correlación simple y parcial de la serie y ajuste de un modelo teórico por medio de la Metodología de Box-Jenkins.
+  
+### Sitios de muestreo.
+
+  A continuación se describirá cada uno de los sitios de muestreo, para una mejor comprensión de los mismos se incorpora la interpretación de los inventarios de emisión de PM~2.5~ publicados por Enrique Pugliafito para la Argentina y una comparación con la clasificación de uso de suelo de zonas climáticas locales (LCZ).
+  
+```{r ubicacion, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:ubicacion)"}
+knitr::include_graphics("images/imagescap3/SitiosNombreCompleto.png")
+```
+(ref:ubicacion) Ubicación de los sitios de muestreo.
+
+  1. Ferreyra: La Empresa Tubos Trans-Electric, se ubica en barrio Ferreyra, al sur este de la Ciudad Capital de la provincia de Córdoba y se dedica a la producción de bienes y servicios exportables relacionados con el rubro de la energía eléctrica, focalizándose en la producción de transformadores de distribución. La mayoría de las edificaciones vecinas son empresas, las más cercanas se dedican al rubro de la metalurgia, producción de envases de plástico, producción de piezas de automóviles, logística y reparación de vehículos particulares. Además, esta empresa se encuentra situada sobre la avenida Amadeo Sabattini, que es uno de los principales accesos a la Avenida de Circunvalación de Córdoba, facilitando el acceso de camiones y despacho de mercaderías, esta avenida se caracteriza por tener un tráfico vehicular moderado y constante a lo largo de las horas del día. La cobertura de vegetación en la zona es muy escasa y la principal característica que llama la atención es la gran densidad de empresas presentes en este polo industrial. Las principales fuentes de emisión detectadas en el sitio son industrias, tráfico vehicular, residencial y trenes. 
+  Dentro de la clasificación LCZ, este sitio seria clasificado como LCZ8~10~, una combinación de las categorías large low-rise y heavy industry, donde la primera hace referencia a un sitio con una disposición abierta de grandes edificios de baja y mediana altura (1 a 3 pisos), cuya cubierta del suelo se encuentra mayoritariamente pavimentada, con pocos o ningún árbol y donde principalmente los materiales de construcción empleados son acero, hormigón, metal y piedra. La segunda y menos importante categoría muestra el estilo industrial del sitio, la cual no se caracteriza por ser una industria pesada. 
+
+  2. Ciudad Universitaria: La Facultad de Ciencias Exactas, Físicas y Naturales de la Universidad Nacional de Córdoba se encuentra ubicada en Ciudad Universitaria, en el centro sur de la Ciudad Capital de la provincia de Córdoba, sitio que aglomera los edificios centrales de las principales universidades públicas de la provincia. La principal característica es el gran número de personas que frecuentan diariamente la zona implementando todo tipo de medios de transporte como motocicletas, automóviles y colectivos, además de otros que no generan emisiones como lo son a pie y en bicicleta. Es una zona con una gran cantidad de espacios verdes donde la cobertura del suelo es compartida por la vegetación, el pavimento y la edificación. Las principales fuente de emisión detectadas en el sitio son el tránsito vehicular y la residencial.
+  Dentro de la clasificación LCZ, este sitio se clasificaría como LCZ5~8~, una combinación de las categorías open midrise y large low-rise, la primera hace referencia a una disposición abierta de edificios de mediana altura (3-9 plantas), donde abunda la cubierta de suelo permeable (plantas bajas, árboles dispersos) y cuyos materiales de construcción son principalmente hormigón, acero, piedra y vidrio. Mientras que la segunda y menos importante categoría busca hacer un aporte de uso de suelo urbano con un trafico de vehículos notable.  
+
+  3. Los Boulevares: Esta Empresa, se ubica en barrio Los Boulevares al norte de la Ciudad Capital de la provincia de Córdoba y se dedica a la mecánica y puesta a punto de camiones. La mayoría de las edificaciones vecinas son empresas, las más cercanas se dedican al rubro de la electrónica, logística, automóviles, productos de limpieza y productos lácteos. Además, esta empresa se encuentra situada muy cerca a la Avenida La Voz del Interior (E53) que conecta la Avenida de Circunvalación de Córdoba con otras aglomeraciones urbanas como Villa Allende, Mendiolaza y Río Ceballos, esta avenida se caracteriza por tener un tráfico vehicular moderado y constante a lo largo de las horas del día. La cobertura de vegetación en la zona esta es muy escasa y la principal característica es la gran densidad de empresas que hay funcionando. Las principales fuentes de emisión detectadas en el sitio son las industrias, el tráfico vehicular, la residencial, el transito aéreo, los caminos y el comercio.
+  Dentro de la clasificación LCZ, este sitio se clasificaría como LCZ8~10~, una combinación de las categorías large low-rise y heavy industry, donde la primera categoría hace referencia a un sitio con una disposición abierta de grandes edificios de baja y mediana altura (1 a 3 pisos), cuya cubierta del suelo se encuentra mayoritariamente pavimentada, con pocos o ningún árbol y donde principalmente los materiales de construcción empleados son acero, hormigón, metal y piedra. La segunda y menos importante categoría muestra el estilo industrial del sitio, la cual no se caracteriza por ser una industria pesada. 
+
+  4. Casa Radical: La Casa Radical, ubicada en barrio Nueva Córdoba, en el centro de la Ciudad Capital de la provincia de Córdoba, es un edificio donde se llevan a cabo actividades políticas como reuniones y debates del partido radical. Sus alrededores se encuentran habitados por una gran cantidad de población, como consecuencia de la predominancia de edificios residenciales con numerosos pisos. Además, este sitio se encuentra frente al Boulevard San Juan, una de las calles más transitadas de la provincia, donde además de edificios residenciales se localizan numerosas empresas de servicios y locales comerciales. La vegetación que caracteriza la zona es escasa y las principales fuentes de emisión detectadas son el tráfico vehicular, la residencial y el comercio. 
+  Dentro de la clasificación LCZ, este sitio se clasificaría como LCZ2~8~, una combinación de las categorías compact midrise y large low-rise, donde la primera hace referencia a un sitio que posee una mezcla densa de edificios de mediana altura (3-9 pisos), con muy poca vegetación (pocos o ningún árbol), donde la superficie se encuentra mayoritariamente pavimentada y cuyos materiales de construcción son principalmente roca, ladrillo, teja y hormigón. Mientras que la segunda y menos importante categoría hace referencia a la disposición abierta de edificios que existe.
+
+  5. Tablada Park: Se trata de un hogar familiar ubicado en el barrio residencial Tablada Park en la zona noroeste de la Ciudad Capital de la provincia de Córdoba. Este sitio se encuentra muy cercano a la calle Rodríguez Del Busto, que aglomera numerosos locales comerciales como supermercados y posee un alto tránsito vehicular. Los alrededores del sitio se caracterizan por ser hogares residenciales y comercios, algo muy característico de las zonas residenciales. La principales fuentes de emisión detectadas en el sitio son el tránsito vehicular, la residencial y el comercio, ademas la vegetación en la zona es moderada. 
+   Dentro de la clasificación LCZ, este sitio se clasificaría como LCZ3~6~, una combinación de las categorías compact low rise y open low rise, donde la primera hace referencia a una mezcla densa de edificios de baja altura (1-3 pisos), cuya superficie se encuentra mayoritariamente pavimentada con pocos o ningún árbol y donde los principales materiales de construcción son roca, ladrillo, teja y hormigón. La segunda categoría, hace referencia a la presencia de árboles y plantas que caracterizan la zona. 
+
+  6. Alta Córdoba: Se trata de un hogar familiar ubicado en el barrio residencial Alta Córdoba en la zona centro norte de la Ciudad Capital de la provincia de Córdoba. Este sitio se encuentra sobre la calle Mariano Fragueiro que aglomera los principales comercios de la zona y posee un alto tránsito vehicular. Los alrededores del sitio se caracterizan por ser hogares residenciales y locales comerciales, algo característico de los sitios residenciales.La principales fuentes de emisión detectadas en el sitio son el tránsito vehicular, la residencial, el comercio y trenes, ademas la vegetación en la zona es baja.
+   Dentro de la clasificación LCZ, este sitio se clasificaría como LCZ3, una combinación de las categorías compact low rise y open low rise, donde la primera hace referencia a una mezcla densa de edificios de baja altura (1-3 pisos), cuya superficie se encuentra mayoritariamente pavimentada con pocos o ningún árbol y donde los principales materiales de construcción son piedra, ladrillo, teja y hormigón.
+  
+  7. La Reserva: La Reserva Natural Urbana San Martín se ubica en la zona noreste de la de la Ciudad Capital de la provincia de Córdoba, al margen de la Avenida de Circunvalación de Córdoba, su actividad principal es proteger y preservar alrededor de 115 hectáreas de bosques nativos además de concientizar acerca de la protección del medio ambiente. A pesar de ser un área verde donde predomina la cobertura de vegetación, existe una gran cantidad de barrios residenciales rodeándola, generando aportes de contaminantes provenientes del tránsito vehicular. Además, este sitio cuenta con un camping que promueve las actividades regenerativas al aire libre y que es frecuentado por un gran número de personas principalmente durante los fines de semana. Las principales fuentes de emisión detectadas en el sitio son el tránsito vehicular, la residencial y cementeras. 
+  Dentro de la clasificación LCZ, este sitio se clasificaría como LCZB~A9~, una combinación de las categorías scattered tres, dense trees y sparsely built, donde la primera hace referencia a un sitio con un paisaje ligeramente arbolado de especímenes de hoja caduca y/o de hoja perenne, cuya cobertura del suelo es mayoritariamente permeable (plantas bajas) y su función principal es la de una zona de bosque natural, cultivo de árboles o parque urbano. La segunda categoría busca dar información acerca de la gran densidad de arboles que existe en los alrededores y su tercera categoría a la disposición dispersa de construcciones de pequeño y mediano tamaño.
+
+  8. Rio Ceballos: Se trata de un hogar familiar ubicado en las afueras de la Ciudad de Río Ceballos de la provincia de Córdoba, que se caracteriza por tener un uso de suelo de área verde. Este sitio se encuentra ubicado en una zona montañosa donde predomina la cobertura de vegetación y los principales accesos son calles no pavimentadas. Es un sitio prácticamente prístino, donde las principales fuentes de material particulado pueden ser consideradas la resuspensión de polvo de las calles e incendios generados como consecuencia de la quema, ya sea de residuos o bien de biomasa para generar calor. La principal fuente de emisión detectada en la zona es la ganadería y el tránsito vehicular en los alrededores es notablemente reducido. 
+  Dentro de la clasificación LCZ, este sitio se clasificaría como LCZA~B9~, una combinación de las categorías dense trees, scattered tres y sparsely built, donde la primera hace referencia a un sitio con un paisaje muy arbolado, de especímenes de hoja caduca y/o de hoja perenne, cuya cobertura del suelo es mayoritariamente permeable (plantas bajas) y donde su función principal es de zona de bosque natural, cultivo de árboles o parque urbano. La segunda categoría busca dar información acerca de algunas zonas poco arboladas que existen en los alrededores y su tercera categoría a la disposición dispersa de construcciones de pequeño y mediano tamaño.
+  
+  9. Campo Escuela: El Campo Escuela de la Facultad de Ciencias Agropecuarias de la Universidad Nacional de Córdoba, se encuentra ubicado camino a Capilla de los Remedios, al sur este de la de la Ciudad Capital de la provincia de Córdoba, la aglomeración poblacional más cercana es Villa Corazón de María y se caracteriza por tener un uso de suelo agrícola. En este sitio se lleva a cabo formación práctica de alumnos de la Facultad de Ciencias Agropecuarias, generalmente se desarrollan actividades vinculadas a la agricultura y la ganadería, la cobertura de vegetación es abundante y sus calles no se encuentran pavimentadas. Las principales fuentes emisión de material particulado detectadas en la zona son la agricultura y la ganadería. 
+  Dentro de la clasificación LCZ, este sitio se clasificaría como LCZD~9~, una combinación de las categorías low plants y sparsely built, donde la primera hace referencia a un sitio con un paisaje principalmente de hierbas, plantas o cultivos, con pocos árboles y cuya función principal es de pasto natural, agrícola o parque urbano. Además, la segunda categoría refleja disposición dispersa de construcciones de pequeño y mediano tamaño.
+
+  10. Juarez Celman: Se trata de un campo productivo ubicado en la ciudad de Juárez Celman al norte de la Ciudad Capital de la provincia de Córdoba, este se caracteriza por tener un uso de suelo agrícola. En el se desarrollan actividades productivas agropecuarias, la cobertura de vegetación es alta y sus calles no se encuentran pavimentadas. Este sitio se encuentra al margen de la Ruta Nacional 9, la cual podría generar un aporte de material particulado importante debido al tránsito vehicular. Las principales fuentes de material particulado detectadas en la zona son el tránsito vehicular, la agricultura y la ganadería. 
+  Dentro de la clasificación LCZ, este sitio se clasificaría como LCZD~9~, una combinación de las categorías low plants y sparsely built, donde la primera categoría hace referencia a un sitio con un paisaje principalmente de hierbas, plantas o cultivos, con pocos árboles y cuya función principal es de pasto natural, agrícola o parque urbano. Además, la segunda categoría refleja disposición dispersa de construcciones de pequeño y mediano tamaño.
+
+  A partir de la descripción realizada podemos agrupar los sitios en función de su parentesco, de donde se deduce el uso de suelo que los clasifica en primera instancia, el uso de suelo agrícola, agruparía los sitios de Campo Escuela y Juárez Celman, el uso de suelo de área verde se conforma por los sitios de La Reserva y Río Ceballos, el uso de suelo urbano se forma por los sitios de Casa Radical, Ciudad Universitaria, Tablada Park y Alta Córdoba y finalmente el uso de suelo industrial por los sitios de Ferreyra y Los Boulevares.
+
+### Normativa.
+  
+  A fin de evaluar la variación de la concentración de material particulado a lo largo del tiempo en los distintos usos de suelo, se tomó como referencia los límites propuestos por la Organización Mundial de la Salud en el año 2021 y la Resolución 105/17 de la Provincia de Córdoba, para material particulado PM~2.5~.
+
+  Límite de la Organización Mundial de la Salud para el PM~2.5~:
+  *	10 $\frac{µg}{m^3}$ media anual
+  *	25 $\frac{µg}{m^3}$ media de 24 horas
+  
+  Límite de la Resolución 105/17 de la Provincia de Córdoba para el PM~2.5~:
+  *	35 $\frac{µg}{m^3}$ 24 horas.
+  
+### Muestreo.
+  
+  Datos de medias horarias de concentración de material particulado fueron recopilados durante un año y tres meses (30/03/2021 - 01/06/2022) en los diez sitios de muestreo.
+  
+### Análisis estadístico.
+
+## Resultados y Discusión
+
+### Seccion depuracion de los datos:
+
+  Este apartado busca describir el pre procesamiento realizado sobre los datos previo al comienzo del análisis. Dos etapas de limpieza de los datos fueron ejecutadas, la primera llevo a cabo un filtrado de outliers globales generales, mientras que la segunda filtro los outliers temporales.
+
+#### Filtrado outliers globales.
+
+  En este filtrado se excluyeron las observaciones de PM~2.5~ que se encontraban alejados de la media por más de 5 desvíos estándares. De esta forma se filtraron un total de 218 datos cuyos valores de material particulado se correspondían con eventos anómalos sucedidos en los sitios durante el muestreo, como por ejemplo, incendios cercanos o caídas del sensor. Estos eran notablemente superiores al resto de los datos, interpretándose como una fuente de ruido para el análisis. 
+
+#### Filtrado outliers temporales.
+
+  En primer lugar, se ajustó un Modelo Lineal Generalizado Mixto, con el objetivo de determinar cuáles eran las variables temporales que mayor porcentaje de varianza explicaban en la base de datos.
+Para realizar este ajuste se analizó la distribución de la variable respuesta y se evaluó cual era la que mejor ajustaba a los datos, para esto, se ajustaron múltiples distribuciones a la variable respuesta y se seleccionó la que minimizo las métricas de AIC y BIC. La distribución que mejor ajusto a la variable respuesta fue la distribución Gamma.
+  
+  Una vez determinado esto, se procedió a ajustar el GLMM, a continuación, se brinda la variabilidad explicada por cada una de las variables temporales.
+
+Table: Variabilidad explicada por las componentes temporales de la base de datos.\label{tab:comptemp}
+Componente temporal; varianza estimada; desvió estándar estimado; porcentaje de varianza explicado relativo al total.
+
+| Componente |Varianza |Desvió estándar|Porcentaje de varianza|
+|------------|:--------------:|:--------------:|:--------------:|
+| Hora | 0.070 | 0.265 |  4.975 |
+| Mes | 0.172 | 0.414 | 12.184 |
+| Día | 0.011 | 0.106 |  0.797 |
+| Semana | 0.001 | 0.026 |  0.049 |
+| Residual | 1.155 | 1.075 | 81.995 |
+
+  A partir de la tabla, se puede observar que las variables temporales que mayor porcentaje de variabilidad de la variable respuesta explican son en primer lugar los meses del año y en segundo lugar las horas del día.
+  
+  Una vez obtenidas estas variables, aquellas observaciones que, para un mismo sitio, mes del año y hora del día, se encontraban a más de tres desvíos estándares de su respectiva media fueron filtradas. El filtro aplicado removió en total 1184 valores, que representan el 1.55% de la base de datos, dado a que serían problemáticos tanto en el análisis exploratorio, como también en la etapa de modelado predictivo.
+
+### Caracterizticas temporales de la serie de material particulado:
+
+  Este apartado busca demostrar la variabilidad de la concentración media horaria de material particulado en las distintas escalas temporales, para así poder observar las tendencias, ciclos y patrones temporales en la variable respuesta. Es importante describir la variabilidad que existe a lo largo de las horas del día para las distintas escalas temporales, ya que esto permitirá comprender la fluctuación de la concentración a lo largo del año y guiará el ajuste de un modelo teórico a la serie de tiempo.
+  
+#### Analisis horario
+
+```{r pmhorariolinea, echo=FALSE, out.width="100%", fig.align="center", fig.cap="(ref:pmhorariolinea)"}
+knitr::include_graphics("images/imagescap3/pmhorariolinea.png")
+```
+(ref:pmhorariolinea) Perfil de concentración promedio horario de PM~2.5~ a lo largo de los días.
+
+  En la figura se puede observar el patrón de variabilidad de la concentración promedio horaria de material particulado ~2.5~ a lo largo de las horas del día. Este se caracteriza por mostrar un bache mínimo de concentración entre las 15 y 17 horas, encerrado por dos picos que ocurren por la mañana entre las 7 y 9 horas y por la noche entre las 21 y 23 horas.
+
+  Este fenómeno de variación descripto por la concentración de material particulado, se asume que podría encontrarse principalmente vinculado a la variación de la altura de la capa limite atmosférica y en menor medida a las contribuciones del tráfico de vehículos a este contaminante, más adelante se buscara vincular estas variables y demostrar su relación a partir de los datos.
+  
+#### Analisis diario
+
+```{r pmdialineageneral, echo=F, out.width="100%", fig.align='center', fig.cap="(ref:pmdialineageneral)"}
+knitr::include_graphics("images/imagescap3/pmdialineageneral.png")
+```
+(ref:pmdialineageneral) Perfil de concentración promedio diario de PM~2.5~ a lo largo de la semana.
+
+```{r pmdialinea, echo=F, out.width="100%", fig.align='center', fig.cap="(ref:pmdialinea)"}
+knitr::include_graphics("images/imagescap3/pmdialinea.png")
+```
+(ref:pmdialinea) Perfil de concentración promedio horario de PM~2.5~ en cada día de la semana a lo largo de la semana.
+
+  En la figura puede apreciarse el patrón de variabilidad de la concentración de material particulado a lo largo de las horas del día en los distintos días de la semana, este determina que la concentración a lo largo de las horas del día entre los distintos días de la semana se encuentra fuertemente vinculada, demostrando una estructura de dependencia entre las horas del día a lo largo de los días de la semana. De esta forma la misma hora del día, es propensa a tener concentraciones similares a lo largo de los distintos días de la semana y, estas concentración se asemejan más mientras los días de la semana se encuentren más próximos entre sí. 
+
+#### Analisis Semanal:
+
+```{r pmsemlinea, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmsemlinea)"}
+knitr::include_graphics("images/imagescap3/pmsemlinea.png")
+```
+(ref:pmsemlinea) Perfil de concentración promedio horario de PM~2.5~ en cada semana del mes a lo largo del mes.
+
+  En la figura puede verse reflejado el patrón de variabilidad de la concentración de material particulado a lo largo de las horas del día en las distintas semanas del mes, se visualiza que la concentración a lo largo de las distintas horas del día en las distintas semanas del mes se encuentra fuertemente vinculado. De esta forma la misma hora del dia es propensa a poseer concentraciones similares de material particulado a lo largo de las distintas semanas del mes, y esta concentración se asemeja mientras más cercanas sean las semanas a lo largo del mes. De esta forma queda en evidencia una estructura de dependencia semanal para la concentración promedio de material particulado.
+
+#### Análisis mensual
+
+```{r pmmeslineageneral, echo=F, out.width="100%", fig.align='center', fig.cap="(ref:pmmeslineageneral)"}
+knitr::include_graphics("images/imagescap3/pmmeslineageneral.png")
+```
+(ref:pmmeslineageneral) Perfil de concentración promedio mensual de PM~2.5~ a lo largo del año.
+
+  A partir de la figura, se puede observar las concentraciones promedio registradas a lo largo de los distintos meses del año, las mayores concentraciones de material particulado se registraron en los meses de mayo, junio, julio y agosto, por otra parte, los meses de menores concentraciones fueron los de noviembre, marzo y diciembre. A partir de los resultados previamente obtenidos, tenemos evidencias de que las condiciones meteorológicas de la época invernal generan condiciones adversas de calidad de aire, mientras que condiciones más cálidas se asocian con concentraciones menores.
+
+```{r pmmeslinea, echo=F, out.width="100%", fig.align='center',  fig.cap="(ref:pmmeslinea)"}
+knitr::include_graphics("images/imagescap3/pmmeslinea.png")
+```
+(ref:pmmeslinea) Perfil de concentración promedio horario de PM~2.5~ para cada mes a lo largo del año.
+
+  Finalmente, en la figura se destaca el patrón de variabilidad en la concentración del material particulado a lo largo de las horas del día en los distintos meses del año, este refleja otra estructura de dependencia temporal de la variable respuesta, entre las horas del día a lo largo de los meses del año.
+  
+  Puede verse que la cercanía entre meses juega un papel importante en cuanto al parentesco existente en la concentración de material particulado, es decir que meses cercanos poseerán concentraciones similares en la misma hora del día. Esto es así, como consecuencia de que, al ser la escala temporal de mayor magnitud, su variación a lo largo se da conjuntamente con la variación de las condiciones meteorológicas, dejando en evidencia que la variación de las condiciones meteorológicas tienen una notable influencia en la concentración de material particulado. 
+  
+  Por otra parte, puede apreciarse que, desde las 20 hasta las 12 horas, la concentración de material particulado ~2.5~ sufre un incremento respecto al resto de las horas del día, desde las 8 hasta las 20 horas. Esta variación se encuentra principalmente vinculada a la fluctuación de la altura de la capa de mezcla, siguiendo una relación inversamente proporcional con el material particulado a lo largo de las horas del día, además puede verse que el incremento en la concentración es más marcado en los meses en que las inversiones térmicas son más frecuentes (mayo, junio, julio y agosto) (Figura ).
+  
+  Los patrones de variabilidad identificados en las distintas escalas temporales demuestran la estructura de dependencia existente en la serie que buscamos reproducir con un modelo teórico. Otra característica de la dependencia existente entre los datos es la similitud en el perfil de variabilidad horaria de la concentración de PM~2.5~ entre meses, semanas y días que ocurren de forma continua, los cuales destacan una dependencia mensual, semanal y diaria entre las horas del día. De aquí nace la necesidad de extraer los patrones temporales existentes en la variabilidad del material particulado para poder realizar comparaciones con otras series.
+
+### Análisis espacial de la concentracion de material particulado:
+
+#### Descripción de la concentración promedio por sitio y uso de suelo
+
+Table: Concentración promedio anual de PM~2.5~ en cada sitio de muestreo.\label{tab:concanual}
+Sitio de muestreo; concentración promedio anual de PM~~2.5~~.
+
+| Sitio | Concentración|
+|--------|:--------:|
+| Ferreyra | 16.37 |
+| Los Boulevares | 14.70 |
+| Tablada Park | 13.89 |
+| Casa Radical | 12.98 |
+| Ciudad Universitaria | 12.81 |
+| La Reserva | 11.17 |
+| Alta Córdoba | 10.97 |
+| Campo Escuela | 10.30 |
+| Río Ceballos | 7.74 |
+| Juarez Celman | 7.25 |
+
+  La concentración anual de material particulado permite determinar diferencias y similitudes entre los sitios con distintos usos de suelo e intuir que quizá la clasificación deducida no es la que realmente los caracteriza. 
+  
+  Se puede ver que la concentración media anual registrada para la mayoría de los sitios de muestreo supera el estándar anual propuesto por la OMS (Tabla). Los únicos sitios cuyo promedio anual no supera dicha reglamentación son: Río Ceballos y Juarez Celman.
+
+```{r calendarcba, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:calendarcba)"}
+knitr::include_graphics("images/imagescap3/calendarcba.png")
+```
+(ref:calendarcba) Diagrama de concentración de material particulado promedio diario en la provincia de Córdoba a lo largo del año (Calendar Plot).
+
+  En la figura, pueden identificarse meses en que las condiciones atmosféricas favorecen condiciones adversas de calidad de aire, es decir, que las condiciones meteorológicas características de los mismos favorecen notablemente el aumento de la concentración del contaminante o bien impiden la dispersión del mismo, estos son los meses de mayo, junio, julio y agosto, en los cuales se describen sostenidas concentraciones elevadas de material particulado respecto al resto del año. Por otra parte puede notarse la numerosa cantidad de veces en el año que la concentración media diaria de material particulado se encuentra por encima las normativas usadas como guia para el Área Metropolitana de Córdoba. 
+
+#### Comparar el uso de suelo propuesto con el que surge de un análisis de los datos.
+
+```{r clust, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:clust)"}
+knitr::include_graphics("images/imagescap3/clus1.png")
+```
+(ref:clust) Dendrograma resultante a partir del análisis de clúster.
+
+  A partir del historial de conglomeración resultante del método jerárquico de conformación de clústeres, pueden visualizarse todos posibles grupos de usos de suelo que pueden ser obtenidos a partir de los datos, de acuerdo con las caracterizaras de cada uno de los sitios de muestreo, su ubicación espacial, el uso de suelo detallado (LCZ) y la identificación de las fuentes de emisión, fue determinada la formación 3 grupos para diferenciar el uso de suelo.
+  A modo de verificación de los resultados obtenidos, el algoritmo aglomerativo K-shapes fue ejecutado obteniendo los mismos resultados que el método previamente implementado. 
+  
+```{r clust2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:clust2)"}
+knitr::include_graphics("images/imagescap3/clust2.png")
+```
+(ref:clust2) Dendrograma resultante a partir del análisis de clúster generando tres grupos.
+  
+  El dendrograma resultante permite visualizar una primera división que discrimina dos grandes grupos, el formado por los sitios con uso de suelo de área verde y agrícola, y el grupo formado por los usos de suelo urbano e industriales, dentro de los cuales se incluye el sitio clasificado como área verde de La Reserva. Continuando con el análisis podemos ver que los últimos sitios en desagruparse son los que se encuentran vinculados a características de uso de suelo urbano, el parentesco existente entre ellos es tan fuerte que permanecen unidos hasta el final de la división, luego de estos es que ocurre la separación de los sitios agrícola y área verde, demostrando un gran parentesco entre ellos, y finalmente ocurre la división entre los sitios con uso de suelo industrial, los cuales guaran un estrecho parentesco con los sitios de uso de suelo urbano dada a la cercanía que puede visualizarse en el diagrama. De esta forma los 3 grupos formados quedan caracterizados por los usos de suelo agrícola y área verde, urbano e industrial. 
+  
+  La variable de agrupamiento derivada permite describir de mejor manera el uso de suelo de los distintos sitios y será de gran importancia a la hora de generar un modelo predictivo para la concentración horaria de material particulado. A continuación, se desagregará la tabla promedio construida para el Área Metropolitana de Córdoba, en los distintos usos de suelo derivados a partir del análisis de clústeres, de forma de visualizar si las caracterizaras previamente observadas de forma general varían en función del uso de suelo. 
+
+```{r calendarAAV, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:calendarAAV)"}
+knitr::include_graphics("images/imagescap3/calendarAAV.png")
+```
+(ref:calendarAAV) Diagrama de concentración de material particulado promedio diario para los sitios cuyo uso de suelo quedo agrupado como Agrícola / Área Verde, a lo largo del año (Calendar Plot).
+
+  Puede apreciarse que las concentraciones registradas a lo largo del año son menores que las visualizadas para el promedio del Área Metropolitana de Córdoba, lo cual puede encontrarse estrechamente vinculado a la baja cantidad de fuentes de emisión característica de estos sitios, ademas del efecto de la densa vegetación en la capa límite atmosférica. De igual forma que para el promedio general de concentraciones diarias (Figura), las concentraciones mas nocivas fueron registradas durante los meses de julio y agosto (Figura). Además, pueden observarse reiteradas concentraciones elevadas durante algunos fines de semana, especialmente durante el mes de enero, lo cual se encuentra vinculado a que estos sitios suelen ser empleados con finalidades de recreación.
+  
+```{r calendarurb, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:calendarurb)"}
+knitr::include_graphics("images/imagescap3/calendarurb.png")
+```
+(ref:calendarurb) Diagrama de concentración de material particulado promedio diario para los sitios cuyo uso de suelo quedo agrupado como Urbano, a lo largo del año (Calendar Plot).
+  
+ La visualización indica que de igual forma que para el promedio general (Figura) las concentraciones del contaminante en cuestión aumentan notablemente para los meses desde mayo a agosto, mientas que para el resto de los meses del año las concentraciones se ven atenuadas, este hecho fortalece la idea de que a pesar de que el uso del suelo determine el rango de la variación de la concentración del contaminante, la variabilidad del mismo tambien se encuentra estrechamente vinculada a la variación de las condiciones meteorológicas que ocurre a lo largo de los meses del año. 
+ 
+```{r calendarind, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:calendarind)"}
+knitr::include_graphics("images/imagescap3/calendarind.png")
+```
+(ref:calendarind) Diagrama de concentración de material particulado promedio diario para los sitios cuyo uso de suelo quedo agrupado como Industrial, a lo largo del año (Calendar Plot).
+
+  Como puede apreciarse en este uso de suelo, a pesar de que las concentraciones promedio diarias son mayores que para el resto de los usos de suelo, también puede destacarse que estas aumentan notablemente desde mayo a agosto, mientas que el resto del año las estas se ven atenuadas (Figura).
+  
+  A partir de los resultados obtenidos queda determinado que la variación de las condiciones meteorológicas a lo largo de los meses del año influye notablemente en la concentración de material particulado. Las condiciones meteorológicas características entre los meses de mayo a agosto favorecen condiciones adversas de calidad de aire, independientemente del uso de suelo. Por otra parte, el resto del año las concentraciones del contaminante en cuestión se ven atenuadas tanto por la variación de las condiciones meteorológicas como también por el cambio de conducta en el patrón de comportamiento de la población, como por ejemplo con el pasaje del invierno a la primavera. 
+
+Table: Cantidad de veces en el año que la concentración promedio diaria de PM~2.5~ supera las normativas en cada uso de suelo.\label{tab:concsup}
+Uso de suelo; Cantidad de veces que supera los límites propuestos por la Organización Mundial de la Salud; Cantidad de veces que supera la resolución 105/17 de la Provincia de Córdoba.
+
+| Uso de suelo | OMS | CBA |
+|:--------:|:--------:|:--------:|
+| Industrial | 47 | 9 |
+| Urbano | 28 | 4 |
+| Agrícola/Área Verde | 7 | 0 |
+
+#### Analisis por uso de suelo en el tiempo:
+  
+```{r pmhoruso, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmhoruso)"}
+knitr::include_graphics("images/imagescap3/pmhoruso.png")
+```
+(ref:pmhoruso) Perfil de concentración promedio horario de PM~2.5~ a lo largo de los días, discriminado por uso de suelo.
+
+  La figura muestra el patrón de variabilidad de la concentración promedio horaria de material particulado ~2.5~ a lo largo de las horas del día, discriminado en los usos de suelo resultantes del análisis de clúster realizado. El patrón que podía observarse en las distintas escalas temporales se encuentra notablemente presente en los sitios con uso de suelo urbano e industrial y en menor medida en el uso de suelo agrícola / área verde, en donde las características, fuentes de emisión, actividades desarrolladas y ubicación geográfica generan que el perfil de variabilidad con las horas del día se vea atenuado en comparacion con los otros usos del suelo.
+
+```{r pmdiausolinea, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmdiausolinea)"}
+knitr::include_graphics("images/imagescap3/pmdiausolinea.png")
+```
+(ref:pmdiausolinea) Perfil de concentración promedio diario de PM~2.5~ a lo largo de la semana, discriminado por uso de suelo.
+
+```{r pmdiahorusolinea, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmdiahorusolinea)"}
+knitr::include_graphics("images/imagescap3/pmdiahorusolinea.png")
+```
+(ref:pmdiahorusolinea) Perfil de concentración promedio horario de PM~2.5~ en el dia a lo largo de la semana, discriminado por uso de suelo.
+
+  A partir de la figura, puede apreciarse que el patrón de variabilidad de la concentración de material particulado ~2.5~ a lo la largo de los días de la semana es muy similar para los usos de suelo urbano e industrial y varia sustancialmente para los sitios agrícola / área verde. La dinámica de movilidad de la población es un factor determinante para este contamínate, siendo el tráfico de vehículos motorizados una de las fuentes que mayor influencia genera en la variabilidad del material particulado. Para el caso de los usos de suelo urbano e industrial, la densidad de personas y vehículos que frecuentan estos sitios durante los días laborables es notablemente superior a la que lo hace los fines de semana, generando mayores concentraciones durante los días laborables y una disminución los fines de semana. De esta forma puede verse que los días laborables la concentración aumenta hasta alcanzar un pico los días miércoles o jueves, y una concentración mínima los fines de semana generalmente los días domingo o lunes. Distinto es lo que sucede en los sitios cuyo uso de suelo es agrícola y área verde, el patrón no puede observarse con claridad dado a que en estos las principales fuentes de emisión no se vinculan directamente con el trafico de vehículos, donde la concentración maxima se alcanza los días miércoles o sábados y llega a su mínimo los días domingo o lunes.
+  
+```{r pmmesuso, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmmesuso)"}
+knitr::include_graphics("images/imagescap3/pmmesuso.png")
+```
+(ref:pmmesuso) Perfil de concentración promedio mensual de PM~2.5~ a lo largo del año discriminado por uso de suelo.
+
+  En la figura, puede destacarse la presencia de un ciclo mensual en la concentración del PM~2.5~ para los distintos usos de suelo a lo largo del año. Las concentraciones máximas se hacen presentes durante los meses de julio y agosto, mientras que las concentraciones mínimas se observan durante los meses de marzo, abril y noviembre. A pesar de que los ciclos varian en magnitud en los distintos usos de suelo, estos se encuentran presentes en todos ellos.
+
+```{r pmestaciondiauso, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmestaciondiauso)"}
+knitr::include_graphics("images/imagescap3/pmestaciondiauso.png")
+```
+(ref:pmestaciondiauso) Perfil de concentración promedio diario de PM~2.5~ a lo largo de la semana en las distintas estaciones del año discriminado por uso de suelo.
+
+```{r pmestacionhorauso, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmestacionhorauso)"}
+knitr::include_graphics("images/imagescap3/pmestacionhorauso.png")
+```
+(ref:pmestacionhorauso) Perfil de concentración promedio horario de PM~2.5~ a lo largo del día en las distintas estaciones del año discriminado por uso de suelo..
+
+## Caracterizacion de la serie promedio de PM~2.5~:
+
+```{r pmserie, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmserie)"}
+knitr::include_graphics("images/imagescap3/pmserie.png")
+```
+(ref:pmserie) Gráfico de la serie promedio horario de PM~2.5~.
+
+```{r pmacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmacf)"}
+knitr::include_graphics("images/imagescap3/pmacf.png")
+```
+(ref:pmacf) Gráfico de la función de autocorrelación simple de la serie de material particulado.
+
+```{r pmpacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmpacf)"}
+knitr::include_graphics("images/imagescap3/pmpacf.png")
+```
+(ref:pmpacf) Gráfico de la función de autocorrelación simple de la serie de material particulado.
+
+  Estos gráficos permiten observar la ciclicidad descrita en el análisis exploratorio de los datos para las distintas escalas temporales. Es necesario quitar este patrón cíclico para no introducir relaciones espurias en el análisis comparativo con otras series.
+
+  A partir de la figura puede deducirse que los picos que se observan en los lags múltiplos de 24 demuestran la dependencia que existe en la concentración de PM~2.5~ horario a lo largo de los días de la semana separados ese lag horario de distancia. De esta forma la concentración de material particulado a una hora determinada un día de la semana y las concentraciones 24 horas después y antes se encuentran correlacionadas, y esta correlación decrece a medida que nos alejamos en el tiempo, es decir que la correlación entre concentraciones separadas por 24 horas es mayor que entre concentraciones separadas por 48 horas. Además, puede apreciarse que los coeficientes, a pesar de ir decreciendo en magnitud, al alcanzar el lag 168 sufren un incremento que demuestra la dependencia entre las semanas, dado a que una nueva semana se inicia al cabo de 168 horas, y de igual forma para los meses ocurre esto en el lag 720, demostrando la dependencia cuando se inicia un nuevo mes.
+
+#### Ajuste de un modelo teórico.
+
+  El modelo teórico seleccionado es un seasonal autoregressive integrated moving average (SARIMA) de orden no estacional 3,1,4 y de orden estacional 3,1,3. Además de los anteriores términos, se decidió incluir tres términos de regresión para describir los ciclos diario, semanal y mensual a partir variables por medio de la serie de Fourier de orden 6,1,1. 
+
+```{r pmacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmacf2)"}
+knitr::include_graphics("images/imagescap3/pmacf2.png")
+```
+(ref:pmacf2) Gráfico de la función de autocorrelación simple de los residuos luego del ajuste del modelo.
+
+```{r pmpacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmpacf2)"}
+knitr::include_graphics("images/imagescap3/pmpacf2.png")
+```
+(ref:pmpacf2) Gráfico de la función de autocorrelación parcial de los residuos luego del ajuste del modelo.
+
+  A partir de los resultados obtenidos luego del ajuste del modelo teorico, se aprecia que logró reducirse la parte cíclica que se encontraba presente en la serie.
+  
+#### Exploración de los residuos del modelo ajustado para verificar la eliminación de las tendencias, ciclos y patrones. 
+
+```{r resdia, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:resdia)"}
+knitr::include_graphics("images/imagescap3/resdia.png")
+```
+(ref:resdia) Perfil horario para los residuos en las distintas semanas de cada mes.
+
+```{r ressem, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:ressem)"}
+knitr::include_graphics("images/imagescap3/ressem.png")
+```
+(ref:ressem) Residuos horarios por semana.
+
+El modelo teórico ajustado logra eliminar los ciclos característicos existentes en la variable respuesta, lo que justifica que el modelo teórico elegido es adecuado.
+
+## Conclusión

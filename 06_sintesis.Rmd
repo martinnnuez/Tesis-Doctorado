@@ -1,0 +1,27 @@
+# Comentarios finales {#cap:sint}
+
+## Principales conclusiones
+
+  Los sensores de bajo costo presentaron una alta consistencia en sus mediciones, obteniendo registros similares independientemente del sensor utilizado. La consistencia existente entre los datos es un indicador de la fiabilidad de los sensores y sugiere que los datos recopilados por cada uno de ellos, en cada uno de los distintos usos de suelo son comparables entre si. 
+  
+  Los sensores de bajo costo lograron representar la misma tendencia que las mediciones otorgadas por una estación de referencia, de esta manera se determinó que las mediciones obtenidas por los sensores en los distintos usos de suelo fueron representativas de lo que estaba sucediendo con la concentración del contaminante en la atmósfera en un momento determinado.
+
+  La concentración de PM~2.5~ observada para la provincia de Córdoba fue menor a la informada en otras ciudades del mundo, como: Riohacha (Colombia), Río de Janeiro y Porto Alegre (Brasil) y Estambul (Turquía). A pesar de esto, los estándares de calidad de aire establecidos por las normativas consideradas (Tabla \@ref(tab:guiapm)) fueron superados en múltiples ocasiones tanto en la escala anual como de promedio de 24 horas. Una vez discriminados los datos en función del uso de suelo representativo del sitio de muestreo se demostró una notable coincidencia entre la cantidad de veces que se superan estos límites y las características de cada uno de los clústeres encontrados (agrícola/área verde, urbano e industrial). 
+
+  Los patrones espaciales y temporales descriptos poseen un gran potencial para explicar la variabilidad total de la concentración de material particulado fino, además las variación de las condiciones meteorológicas a lo largo de las distintas escalas temporales demostró de la misma forma tener una gran capacidad para explicar la variación de la variable en cuestión independientemente del uso de suelo que se este considerando. 
+
+  Las variables satelitales y meteorológicas demostraron una notable capacidad para explicar la variabilidad espacio temporal del material particulado fino. De esta forma se garantiza que su inclusión en el modelado predictivo lograra captar la variabilidad de la variable respuesta y obtener buenas estimaciones de la concentración de material particulado fino. 
+
+  Los resultados obtenidos indican que los modelos predictivos desarrollados lograron captar las interrelaciones existentes desenmascaradas en el capítulo [4](#cap:var) entre la concentración del material particulado fino y las variables satelitales.
+  
+  El correcto desempeño del mejor algoritmo predictivo ajustado para cada uno de los usos de suelo, sugieren que estos poseen gran potencial para cumplir su objetivo de alertar a la población ante condiciones adversas de calidad de aire.  
+  
+  Las características propias de la variabilidad de cada una de las series temporales en los distintos usos de suelo y de aprendizaje de cada uno de los modelos predictivos evaluados, fueron determinantes en el tipo de algoritmo que demostró mayor exactitud para cada uno de los usos de suelo. De esta forma, en usos de suelo con series de baja frecuencia de picos con respecto a su media,los algoritmos de aprendizaje automático del tipo de arboles aleatorios se desempeñaron mejor que los algoritmos de aprendizaje profundo. Mientras que estos permitieron obtener modelos de mayor exactitud predictiva en usos de suelo donde la serie de material particulado fino se visualiza como una de alta frecuencia de variaciones respecto de su media. 
+  
+## Trabajos futuros
+
+  En primera instancia se propone como futuro lineamiento de continuación de esta tesis el desarrollo de una caracterización completa de la concentración de PM~2.5~ contemplando su composición química inorgánica, análisis morfométrico, distribución de tamaño y de fases cristalinas. 
+  
+  En segundo lugar, se promueve hacer hincapié en la comparación del desempeño del modelo predictivo desarrollado con algoritmos predictivos que implementen otro tipo de dato, como por ejemplo imágenes satelitales.
+  
+  Finalmente, se propone la implementación del modelo predictivo en producción, este inciso persigue el objetivo de poner en funcionamiento el modelo desarrollado, permitiendo la consulta de datos por medio de la población, paleando la inaccesibilidad a datos de contaminación atmosférica. 

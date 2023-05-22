@@ -1,0 +1,536 @@
+#	Modelado predictivo {#cap:pred}
+
+## Introducción
+  
+  El monitoreo de la calidad del aire es una práctica que provee información valiosa sobre las emisiones atmosféricas, permitiendo así el estudio y modelado predictivo de contaminantes en distintas partes del mundo. De esta forma, materializando uno de los tantos aportes de la ciencia a la salud pública fomentando un desarrollo sostenible y sustentable.
+  
+  Los modelos predictivos son herramientas que buscan reproducir los procesos observados en la naturaleza con la mayor fidelidad posible. En el caso de los modelos de emisiones atmosféricas, estos no solo tienen aplicaciones científicas, sino que también son útiles en la gestión de la calidad del aire. La utilidad de mayor relevancia recae en el control y predicción en tiempo real de la contaminación atmosférica en una ciudad o región particular. La aplicación de un modelo predictivo es una tarea compleja que exige la integración sistemática de una gran cantidad de información generada por diferentes fuentes de datos. 
+
+  La predicción efectiva de un fenómeno de contaminación atmosférica es una poderosa herramienta de análisis, con un amplio espectro de aplicación que va desde la evaluación de estrategias de control de emisiones, el análisis de impacto en la calidad del aire, el apoyo en la toma de decisiones de carácter ambiental, hasta la generación de información científica valiosa para comprender mejor la dinámica de la atmósfera y la contaminación en una región. A pesar de esto, su objetivo primordial se encuentra relacionado con la alerta temprana de la población ante eventos nocivos para la salud.
+
+  El avance de la tecnología ha posibilitado la recopilación de información relacionada a numerosos fenómenos atmosféricos a lo largo del tiempo. El uso más común de los datos en forma de series temporales recae en su análisis para la predicción y el pronóstico futuro. Este análisis promueve la extracción de información representativa tanto respecto a sus orígenes y relaciones subyacentes como sobre la posibilidad de extrapolar y predecir su comportamiento futuro. La elección de un método de predicción apropiado depende del fenómeno o situación a predecir. 
+  
+  Son múltiples las diferentes aplicaciones de series temporales que pueden citarse en diversas áreas del conocimiento, área que determina el tipo de variable utilizada, por ejemplo: variables económicas (índice de precios al consumidor, demanda eléctrica, serie de exportaciones o importaciones), variables físicas (clima [@brunet2005first], velocidad del viento en una planta de energía eólica, temperatura en un proceso, caudal de un río [@ilarri2006processing], concentración de un contaminante en la atmósfera), variables químicas (determinación de la cantidad de azúcares en soluciones [@araujo2005modelo]) o variables sociales (número de nacimientos, matrimonios, defunciones o votos a un partido político, operaciones militares[@chu2005instantaneous]), entre otras.
+
+  En esta tesis, dado al creciente número de estudios científicos que relacionan la contaminación del aire con enfermedades respiratorias y cardiovasculares, cáncer, trastornos del sistema nervioso, así como enfermedades transmitidas por el aire e inducidas por el calor, la aplicación recae en la predicción de la concentración de la calidad del aire, específicamente la concentración de material particulado fino (PM~2.5~) [@sacks2011particulate; @zhao2020fine]. Mientras más se estudia el fenómeno, más estrecho es el vínculo que se informa entre la calidad del aire y el sistema meteorológico-climático [@elminir2005dependence; @pearce2011quantifying; @sfetsos2010new]. De allí, los numerosos intentos de predecir la distribución de partículas nocivas para la salud y el medio ambiente, a partir de información satelital y meteorológica. 
+
+  El desarrollo de esta herramienta en el área de la contaminación atmosférica tiene como principales objetivos: 
+  
+* Realizar notificaciones a favor de la salud pública. 
+* Planificación y gestión de políticas ambientales. 
+* Planificar programas para tomar el control en episodios críticos. 
+* Predecir cambios en las concentraciones ambientales.
+* Detectar cambios en los patrones de emisión.
+
+## Materiales y métodos
+
+### Enfoque de trabajo
+  
+  Como se menciono en el capítulo [4](#cap:var), la presente sección se haya enmarcada dentro de un enfoque de trabajo basado en el aprendizaje automático. Dentro de este enfoque el procedimiento llevado a cabo a la hora de analizar los datos involucró distintas metodologías que es relevante mencionar de forma previa a la lectura del capítulo. El objetivo principal de este capítulo es el estudio y desarrollo de modelos predictivos de la concentración de PM~2.5~. 
+
+  En primera instancia cabe destacar que se compararon múltiples algoritmos de aprendizaje automático y profundo, con el objetivo de determinar cual de estos era el que mejor desempeño predictivo alcanzaba. La metodología de modelado abarco el desarrollo de un modelo predictivo que considera un desfasaje de 5 días, para permitir alertar a la población ante condiciones adversas de calidad de aire con suficiente antelación. A su vez, el modelado discriminó, o bien condicionó en función del uso de suelo, permitiendo ajustar distintos modelos predictivos para cada uno de los usos involucrados.  
+  
+  Además, se compararon múltiples alternativas de bases de datos a implementar como sustento del modelado predictivo. Las alternativas de bases de datos evaluadas fueron: una base de datos completa, que contenía todas las variables predictoras descargadas y, una base de datos reducida, la cual se originó a través de la reducción de dimensionalidad por medio de técnicas de selección de características. Las variables incluidas en cada una de las bases de datos completa y reducidas para cada uno de los usos de suelo se encuentran mencionadas en el [Anexo](#cap:anx).
+
+  Finalmente los algoritmos de aprendizaje automático evaluados fueron optimizados a través de la búsqueda de hiperparámetros e interpretados a través de la implementan del método de valores de las explicaciones aditivas de Shapley (SHAP).
+
+### Base de datos
+
+  La base de datos implementada en la presente sección es la misma que se implemento en el capítulo [4](#cap:var). Esta se obtuvo a partir de la combinación los datos recopilados durante el muestreo analizados en el capítulo [3](#cap:expl) y los datos satelitales y meteorológicos analizados en el capítulo [4](#cap:var). 
+  
+  Además de estas variables, se incluyeron transformaciones que describen la estructura de variabilidad presente en los datos. Las variables temporales (estación, mes, día y hora) fueron codificadas de manera cíclica a través de la inclusión de sus senos y cosenos, además de incluir la variable original. Es importante destacar que todas las variables numéricas se escalaron siguiendo una distribución normal estándar, lo que permitió unificar los rangos de variabilidad y garantizar un mejor ajuste de los algoritmos predictivos. De esta forma, se evitaron los problemas de escala y se facilitó la comparación entre las mismas.
+
+### Protocolo estadístico
+
+#### Métodos de inteligencia artificial comparados
+
+  La **regresión lineal múltiple** (*Multiple linear regression*) es una técnica estadística que se utiliza para modelar una variable dependiente como combinación lineal de múltiples variables independientes. Este tipo de análisis es aplicable tanto a datos de sección transversal como a series temporales [@aldas2017analisis]. El supuesto subyacente en el modelo es que existe una relación lineal entre la variable dependiente y las variables independientes. El aprendizaje de la interrelación entre las variables se logra mediante el ajuste de los coeficientes de regresión, estimados a partir de las observaciones. Los algoritmos de aprendizaje buscan determinar el hiperplano que mejor ajuste a los datos, lo cual implica encontrar coeficientes que minimicen la diferencia entre los valores observados y predichos por el modelo.
+
+  En esta investigación se emplearon diversos algoritmos de ajuste para la regresión lineal múltiple. El primero fue el método de mínimos cuadrados ordinarios, el cual deriva en un modelo lineal cuyos coeficientes resultantes minimizan la suma de los residuos cuadrados entre los valores observados y los valores predichos. Este es el método más clásico empleado para el ajuste de modelos de regresión lineal múltiple y proporciona estimaciones insesgadas y eficientes de los coeficientes.
+  
+  Otro algoritmo implementado fue la regresión de Ridge, la cual agrega un término de penalización al tamaño de los coeficientes estimados [@saunders1998ridge], lo cual significa que la función que se busca minimizar se encuentra además penalizada por un parámetro de complejidad que regula la cantidad de contracción de los parámetros. Este algoritmo es útil en los casos en que existe colinealidad entre las variables predictoras y proporcionando un modelo más robusto que el de mínimos cuadrados ordinarios.
+
+  También se evaluó la alternativa de regresión de Lasso, que incluye un término de penalización distinto en la función a minimizar, que busca reducir la cantidad de variables que integran el modelo final al mínimo, reduciendo así la cantidad de variables involucradas en la predicción [@tibshirani1996regression, @santosa1986linear]. Este algoritmo es útil cuando se desea seleccionar un subconjunto de variables predictoras, proporcionando un modelo de mayor interpretabilidad.
+  
+  Además, se empleó el algoritmo de descenso por el gradiente estocástico, que es una alternativa simple y efectiva para ajustar modelos de regresión lineal múltiple [@bottou2007tradeoffs], particularmente útil cuando el conjunto de datos es de grandes dimensiones y complejidad, ya que permite un procesamiento eficiente y escalable.
+
+  Finalmente, se implementó el algoritmo de red elástica, que combina las regularizaciones y penalizaciones introducidas por los métodos de regresión Ridge y Lasso [@zou2005regularization], que permite estimar un modelo que cuente con las ventajas de ambos métodos, la estabilidad de Ridge y la capacidad de selección de características de Lasso.
+
+  Las **máquinas de vectores de soporte** (*support vector machine (SVM)*) es otro algoritmo de aprendizaje supervisado que puede ser empleado tanto para la clasificación como para la regresión. A diferencia de los modelos de regresión lineal, cuyo objetivo es ajustar un hiperplano en el espacio de las variables predictoras, las SVM buscan encontrar un hiperplano en un espacio de características de mayor dimensión. En el caso de la regresión, el objetivo del SVM es ajustar un hiperplano a partir de las muestras de entrenamiento, construyendo márgenes alrededor que garanticen un ajuste de mayor flexibilidad. El algoritmo original de SVM fue propuesto en 1995 [@cortes1995support], y desde entonces ha sido ampliamente utilizado en la práctica debido a su capacidad para manejar eficazmente grandes conjuntos de datos y por su rendimiento en la resolución de problemas de clasificación y regresión. Su popularidad radica en la introducción del concepto de núcleo (*kernel*), el cual permite mapear los datos a un espacio de características de mayor dimensión donde estos pueden ser representados de forma lineal, incluso cuando en el espacio original de los datos no hay relaciones lineales. 
+
+  El algoritmo de **k vecinos más cercanos** (*K Nearest Neighbours (KNN)*) es un método de aprendizaje perezoso basado en instancias. Es capaz de aprender funciones objetivo complejas sin hacer suposiciones sobre la distribución de los datos, lo que lo hace útil en problemas de regresión no lineal [@fix1985discriminatory]. En estos casos, s u funcionamiento se encuentra basado en el calculo de las distancias entre la consulta realizada y los datos de entrenamiento. De forma selecciona los K ejemplos de mayor similitud a la consulta y, a través de una operación de promediación, estima la respuesta. En lugar de generar una función que describa la relación entre las variables de entrada y salida, KNN guarda en memoria las muestras de entrenamiento y busca en esta base la respuesta más cercana para cada consulta de entrada. Este enfoque lo hace especialmente útil para problemas de regresión donde la estructura subyacente del problema es compleja y no se conoce a priori.
+
+  En los últimos años, el interés en los métodos de aprendizaje ensamblados como los **bosques aleatorios** (*random forest*) ha aumentado drásticamente. Estos métodos combinan los resultados de múltiples modelos independientes para mejorar el rendimiento predictivo. Uno de los más reconocidos es el de empaquetado (*bagging* o *bootstrap aggregating*), propuesto por Breiman [@breiman1996bagging], que crea múltiples conjuntos de datos de entrenamiento mediante el re muestreo con reemplazo, al entrenar modelos en cada una de las particiones generadas se crea independencia entre los resultados obtenidos. Al combinar los resultados de los múltiples modelos estimados, aumenta la estabilidad y precisión del algoritmo, reduciendo la varianza y evitando el sobreajuste.
+  
+  Posteriormente, Breiman (2001) propuso el modelo de bosques aleatorios, que añade una capa de aleatoriedad en las variables de entrada a cada uno de los empaquetados, proporcionando mayor robustez contra el sobreajuste. Al ajustar el modelo, se considera un número limitado de variables predictoras elegidas aleatoriamente. Esta aleatoriedad hace que cada uno de los subconjuntos de datos considere distintos subconjuntos de variables predictoras garantizando mayor independencia entre los modelos estimados. Esta característica favorece los bosques aleatorios frente a otros algoritmos de inteligencia artificial, como las redes neuronales, que no cuentan con un algoritmo de aleatorización [@breiman2001random].
+
+  En resumen, el algoritmo de bosques aleatorios combina los resultados de múltiples árboles de regresión independientes, cada uno generado sobre distintos subconjuntos de datos creados y agrega sus resultados a través de un promedio para obtener la predicción final. Este proceso de promediación reduce la varianza del método y mitiga la influencia de datos atípicos.
+
+  Dentro de las técnicas de *boosting*, una de las más utilizadas es la de las máquinas de aumento de gradiente (*gradient boosting machines (GBM)*), propuesta por Friedman (2001). Su principio de funcionamiento esta basado en el agregado secuencial de nuevos modelos de árbol al conjunto (*enseamble*), permitiendo reducir el sesgo de los estimadores previamente ajustados, representado por medio de una función de error. Cada nuevo árbol se entrena con respecto al error del conjunto hasta esa iteración del modelo [@friedman2001greedy].
+
+  En los problemas de regresión, la función de error objetivo a optimizar es el clásico error cuadrático medio o su raíz. Sin embargo, uno de los mayores desafíos en el modelado por aprendizaje automático es la capacidad de generalizar, ya que los modelos pueden sesgarse durante el aprendizaje, dando como resultado modelos inadecuado que sobre ajustan. Para mitigar los efectos del sobreajuste, Friedman propuso la técnica de contracción, con el objetivo de controlar la complejidad del modelo [@friedman2001greedy]. Este enfoque de regularización actúa penalizando los coeficientes de regresión reduciendo el impacto de las variables con coeficientes inestables. En el contexto del GBM, la contracción penaliza la importancia de los árboles individuales en cada paso consecutivo. La función objetivo final del modelo consta de dos términos: una función de pérdida de entrenamiento representada por error cuadrático clásico y la regularización que mide la complejidad del modelo.
+
+  En resumen, el GBM es una técnica de aprendizaje automático que ha demostrado ser efectiva en la creación de modelos predictivos precisos, gracias a su capacidad de reducir el sesgo de los estimadores previamente ajustados y controlar la complejidad del modelo para evitar el sobreajuste. La técnica de contracción es fundamental en la regularización de este modelo y garantiza una mejor generalización de los resultados.
+
+  Las **redes neuronales artificiales** (*artificial neural networks (ANN)*) son algoritmos que permiten modelar procesos no lineales de manera eficiente, a partir de la información de entrada recolectada a través de un vector denominado capa de entrada. Una vez ingresada la información se propaga y fluye capa a capa, estableciendo las relaciones entre la capa de entrada y la capa final denominada de salida. El aprendizaje de las interrelaciones entre las variables predictoras se desarrolla a través del ajuste de parámetros característicos de este tipo de modelo denominados pesos sinápticos. Las capas intermedias u ocultas consisten en múltiples unidades denominadas neuronas que se encuentran interconectadas con las neuronas de las capas anterior y posterior. El número de capas ocultas y el número de neuronas en cada una de ellas definen la topología de la red. Cada neurona genera una respuesta excitatoria a las señales recibidas por medio de la función de activación, existen múltiples de estas funciones y cada una es recomendada para un problema y objetivo en particular [@bishop1995neural; @hayakin1999learn]. 
+
+  El aprendizaje de la red se basa en capturar las relaciones entre la capa de entrada y de salida a partir de la optimización de una métrica de error. En los problemas de regresión la más implementada es la raíz del error cuadrático medio (*RMSE*), la cual se calcula comparando las salidas predichas por la red y los valores observados. A partir de la perdida registrada, se genera una actualización de los pesos sinápticos mediante el algoritmo de retropropagación (*backpropagation*) [@rumelhart1986learning]. Una de las mayores dificultades de este tipo de enfoque es encontrar la topología de red que mejor ajuste a los datos. Este proceso normalmente se aborda a partir del ajuste iterativo de múltiples arquitecturas. Generalmente, se parte de una red simple de una capa oculta y pocas neuronas, y se procede aumentando la complejidad de la red (incrementando secuencialmente el número de neuronas, así como el número de capas) hasta obtener un modelo satisfactorio que optimice los resultados.
+
+  Las **redes neuronales recurrentes** (*recurrent neural network (RNN)*), a diferencia de las tradicionales, incluyen bucles o conexiones entre unidades que permiten que la información persista en los sucesivos pasos de la red. La capacidad de incorporar información sobre el contexto pasado en sus sucesivas salidas las hace especialmente prometedores para tareas en que la información pasada es relevante para el problema, como lo es el análisis de series temporales. Las *RNN* pueden ser consideradas como múltiples copias de la misma red neuronal actuando conjuntamente, cada una de las cuales transfiere información a su sucesora y forma una arquitectura en cadena capaz de preservar la información de la secuencia. Las *RNN* son eficientes implementando información pasada en un intervalo de tiempo corto para realizar una tarea de predicción. Sin embargo, la información relevante no siempre es cercana en el pasado y, a medida que aumenta el intervalo de tiempo, las *RNN* no logran conectar la información para realizar las predicciones, de esta forma disminuyen su capacidad predictiva cuando la información importante se encuentra contenida en mayores desfasajes de tiempo. 
+  
+  Para solventar esta falencia, en 1997 fueron introducidas las **redes de memoria a corto plazo** (*Long short-term memory (LSTM)*) por Hochreiter y Schmidhuber (1997) y mejoradas en el 2000 por Gers, Schmidhuber y Cummins (2000). Estas son una variación de las *RNN* capaz de aprender dependencias de largo plazo, gracias a la inclusión de unidades especiales llamadas bloques de memoria en su arquitectura. Además, de otras unidades multiplicativas llamadas puertas que controlan el flujo de información de una unidad *LSTM* a otra. Otra variante de este tipo de red son las **redes recurrentes con compuerta** (*Gated recurrent unit (GRU)*), introducidas por Cho y su equipo en 2014, las cuales mantienen las características propias de las *LSTM* con una estructura más simple, reduciendo la cantidad de parámetros a ajustar, permitiendo una ejecución de mayor rapidez y eficiencia [@hochreiter1997long; @gers2000learning; @cho2014properties].  
+
+#### Selección de variables 
+
+  Fueron analizadas dos alternativas respecto de la cantidad de variables predictoras a incluir en la base de datos para desarrollar los algoritmos predictivos (base larga y base corta). Para la reducción de la cantidad de variables se implementó una combinación de múltiples algoritmos de selección de características, estos fueron:  
+
+  El algoritmo de *featurewiz*, el cual surge de la combinación de dos algoritmos de selección de características. En primer lugar, emplea el algoritmo de SULOV (*Searching for Uncorrelated List of Variables*), que permite reducir la base de datos a un conjunto de variables no correlacionadas, reteniendo aquellas que más se vinculan con la variable respuesta. En segundo lugar, implementa un método de modelado de aprendizaje automático basado en la estimación por el método de ensamblado *ensamble* de la familia de los métodos de impulsar *boosting*, el cual es entrenado de forma recursiva seleccionando las variables que poseen mayor capacidad predictiva. De esta forma, el algoritmo logra encontrar el mejor conjunto de características, que puede ser empleado para entrenar un modelo de aprendizaje automático robusto.
+
+  El algoritmo de *Boruta*, basado en el método de aprendizaje automático de bosques aleatorios, cuyo objetivo es captar las variables más importantes para explicar la variable respuesta a partir de las características de la base de datos. Su algoritmo de búsqueda se basa en el ajuste de este modelo de aprendizaje automático en la base original y en una base de datos creada a partir de la mezcla aleatoria de las realizaciones de las variables. A partir de la comparación del desempeño de los distintos algoritmos ajustados y la importancia otorgada a cada una de las variables involucradas, determina cuáles son las variables de mayor relevancia en la base de datos. 
+  
+  Finalmente, se implementó un algoritmo alternativo a *Boruta*, cuya variación reside en su paso inicial, el cual busca una reducción de las variables en función del coeficiente de correlación de Pearson. Este algoritmo busca eliminar las variables en la base de datos que se encuentren fuertemente correlacionadas, priorizando conservar aquellas de mayor correlación con la variable respuesta. Posteriormente, implementa el algoritmo de eliminación recursiva basado en bosques aleatorios implementado por *Boruta* para determinar cuáles son las variables más importantes en la base de datos.
+
+  Para crear la base de datos reducida final, se optó por combinar los resultados obtenidos por los tres métodos de reducción de dimensionalidad. El procedimiento acatado fue otorgar un punto a cada una de las variables seleccionadas por cada uno de los métodos. Para el set de datos corto se filtraron todas las variables predictoras cuya sumatoria de puntos era igual a tres, es decir que fueron seleccionadas de forma independiente por todos los algoritmos de reducción, mientras que para el set de datos largo se consideraron todas las variables presentes en la base de datos. 
+
+  Las variables incluidas en cada una de las bases de datos completa y reducidas para cada uno de los usos de suelo se encuentran mencionadas en el [Anexo](#cap:anx).
+
+#### Metodología de modelado
+
+  Se evaluaron diversas formas de condicionar el modelado predictivo, con el objetivo de aumentar el desempeño en la obtención de predicciones, algunas de estas fueron: estación del año (combinando 4 modelos predictivos), día de la semana (combinando 7 modelos predictivos), mes del año (combinando 12 modelos predictivos), hora del día (combinando 24 modelos predictivos), uso de suelo (combinando 3 modelos predictivos), entre otras variantes. Se determinó que la mayor capacidad predictiva fue alcanzada por la estimación condicionada por el uso de suelo derivado del análisis de conglomerados. Finalmente, el desarrollo del algoritmo predictivo fue llevado a cabo condicionado por esta variable, de forma que se entrenaron tres algoritmos predictivos, uno para cada uno de los usos de suelo presente en la base de datos.
+  
+  Además, se optó por llevar a cabo el entrenamiento de los algoritmos predictivos con un desfasaje de la variable respuesta respecto a las predictoras de 120 horas, es decir, 5 días, con el objetivo de obtener un modelo predictivo que permita disponer de predicciones de concentración de contaminantes atmosféricos con 5 días de anticipación para poder prevenir y alertar a la población acerca de la calidad de aire esperada. 
+
+#### Metodología de entrenamiento
+
+  La metodología de partición de datos implementada fue una validación cruzada en la cual cada uno de los subconjuntos de datos necesarios para llevar a cabo el entrenamiento fue obtenido a partir de un muestreo aleatorio estratificado por meses, días y horas. Esta estratificación buscó maximizar la representatividad de las distintas condiciones temporales existentes en los distintos subconjuntos de datos para el ajuste del modelo predictivo. Las respectivas proporciones de los datos para cada uno de los subconjuntos (entrenamiento, validación y testeo), fue de 70%, 15% y 15%, respectivamente. Cabe destacar que en los datos de entrenamiento se mantuvo el orden cronológico de las muestras luego de la extracción de las que formarían parte de los subconjuntos de validación y de testeo.
+  
+#### Optimización modelo predictivo
+
+  Una vez determinado el algoritmo predictivo que mejor ajustó a los datos en cada uno de los usos de suelo, se procedió a optimizarlo a través de un ajuste iterativo, variando los valores de los hiperparámetros hasta mejorar el desempeño predictivo obtenido. Además, para el caso de las redes neuronales se profundizó en el estudio de arquitecturas alternativas para llevar a cabo el modelado. 
+  
+#### Interpretación de resultados
+
+  Las contribuciones de cada una de las variables a las predicciones se cuantificaron con el método de los valores de las explicaciones aditivas de Shapley (SHAP) [@lubo2020machine]. Los valores SHAP son una medida de atribución a las variables que permite interpretar modelos complejos de aprendizaje automático. Cada SHAP es la contribución de cada variable independiente a una predicción individual específica, en el caso del PM~2.5~, en unidades de $\frac{\mu g}{m^3}$. En concreto, el SHAP para un predictor y una observación dada es la diferencia existente en los resultados de predicción entre un modelo que se ajusta incluyendo y excluyendo a dicho predictor. Para cada observación, la suma de todos los valores SHAP, más el término de sesgo (que es la concentración media global de PM~2.5~ en los datos de entrenamiento), es igual a la predicción del modelo predictivo. La matriz resultante de los valores SHAP puede resumirse para comprender cómo contribuye cada predictor a las predicciones resultantes. El SHAP absoluto medio de todas las observaciones resume la contribución global de cada variable predictora, y es posible una interpretación local del modelo mediante la visualización a través de un gráfico de dispersión que compare los valores de dicha variable y la contribución SHAP que generan dichos valores.
+
+#### Evaluación del modelo predictivo
+
+  Para comparar el desempeño de distintos algoritmos predictivos es importante contar con métricas que reflejen la virtud de los mismos. Las más empleadas en problemas de regresión son:
+
+  Error Cuadrático Medio (*Mean squared error (MSE)*): es un estimador que mide el promedio de los errores al cuadrado, es decir, la diferencia entre el valor real medido y su estimación o predicción por el modelo predictivo. Es una función de riesgo, correspondiente al valor esperado de la pérdida del error al cuadrado o pérdida cuadrática. Mientras menor es su valor, más exactos serán los pronósticos del modelo predictivo [@lehmann2006theory]. 
+
+\begin{equation*} 
+\sum_{i=1}^{N}(y_i-\hat{y_i})^2
+\end{equation*} 
+
+  Raíz del Error Cuadrático Medio (*Root mean squared error (RMSE)*): es la métrica más empleada para problemas de regresión que, expresa las diferencias entre los valores predichos por un modelo y los valores observados. Representa la raíz cuadrada del segundo momento de la muestra de las diferencias entre los valores previstos y los valores observados o la media cuadrática de estas diferencias. Estas desviaciones se denominan residuos cuando los cálculos se realizan sobre la muestra de datos que se utilizó para la estimación y se denominan errores (o errores de predicción) cuando se calculan fuera de la muestra [@hyndman2006effect]. Esta es siempre no negativa, y un valor de 0 (poco común en la práctica) indicaría un ajuste perfecto a los datos. Generalmente, mientras menor RMSE mejor ajuste o mayor exactitud en las predicciones. Esta métrica es sensible a valores atípicos y pone mayor peso en los grandes errores, ya que su coeficiente elevado al cuadrado influirá notablemente en el resultado [@pontius2008components; @willmott2006use].
+
+\begin{equation*} 
+(\sqrt{\frac{1}{n}\sum\nolimits_{n=1}^N}(y_i-\hat{y_i})^2)
+\end{equation*} 
+
+  Además, para comparar la capacidad predictiva de los modelos ajustados se implementaron dos líneas de base contra las cuales comparar. Estas refieren a los algoritmos de línea de base (*base line*) que predicen la concentración en la hora siguiente y anterior a la estimación deseada. Cabe destacar que la implementación de los mismos es irreal, ya que no se dispone de estos datos en tiempo real para el área metropolitana de la provincia de Córdoba, a pesar de esto representa un algoritmo de extrema exigencia a superar. Un desempeño superior o similar al de este algoritmo refleja una elevada capacidad predictiva. 
+  
+## Resultados y discusión 
+
+### Modelado urbano
+
+#### Comparación modelos predictivos 
+
+Table: Comparación de algoritmos predictivos de aprendizaje automático en diversas bases de datos para el uso de suelo urbano. Los valores de *RMSE* se encuentran en las mismas unidades que la variable respuesta, es decir [$\frac{\mu g}{m^3}$]. Las métricas informadas expresan el desempeño en el set de datos de testeo. \label{tab:modurb}
+
+| Modelo  | Set de datos | *RMSE* | *MSE* |
+|------------------------------|:--------------:|:-------:|:-------:|
+| Redes neuronales recurrentes | Largo | 3.441 | 11.89 |
+| Redes neuronales recurrentes | Corto | 3.533 | 12.53 |
+| K vecinos más cercanos | Largo | 3.552 | 12.64 |
+| K vecinos más cercanos | Corto | 3.602 | 12.99 |
+| Predicción hora anterior | Base | 3.634 | 13.29 |
+| Predicción hora siguiente | Base | 3.718 | 13.88 |
+| Bosques Aleatorios | Largo | 4.101 | 16.84 |
+| Bosques Aleatorios | Corto | 4.317 | 18.65 |
+| Regresión de Soporte Vectorial | Corto | 5.692 | 32.48 |
+| Regresión de Soporte Vectorial | Largo | 5.772 | 33.41 |
+| GBM ligero | Largo | 7.123 | 50.8 |
+| GBM ligero | Corto | 7.283 | 53.09 |
+| Regresión lineal | Largo | 8.029 | 64.51 |
+| Regresión Ridge | Largo | 8.029 | 64.52 |
+| Regresión SGD | Largo | 8.03 | 64.54 |
+| Regresión SGD | Corto | 8.26 | 68.29 |
+| Regresión lineal | Corto | 8.304 | 69.01 |
+| Regresión Ridge | Corto | 8.304 | 69.01 |
+| Regresión Lasso | Largo | 9.011 | 81.28 |
+| Regresión Lasso | Corto | 9.023 | 81.51 |
+| Regresión de red elástica | Largo | 9.853 | 97.2 |
+| Regresión de red elástica | Corto | 9.853 | 97.2 |
+
+  Los resultados observados en la tabla \@ref(tab:modurb) muestran que el algoritmo predictivo de mayor desempeño para el uso de suelo urbano fueron las redes neuronales recurrentes en sus versiones con base de datos completa y reducida. El gran desempeño predictivo demuestra como las características propias de aprendizaje del algoritmo logran captar las fuentes de variabilidad y realizar estimaciones acertadas de la variable respuesta. 
+ 
+  Además, puede notarse que el único algoritmo predictivo que también logra superar los modelos de base propuestos es el modelo de K vecinos más cercanos. Sin embargo, este algoritmo no garantiza el aprendizaje de la estructura de variabilidad presente en los datos, ya que su proceso de predicción consiste en encontrar las K observaciones más similares en la base de datos de entrenamiento y calcular su media para obtener la predicción final. Este algoritmo de modelado puede ser una forma novedosa y no convencional de calcular predicciones condicionadas por el parentesco entre los datos, a diferencia de los otros métodos que buscan calcular parámetros y pesos que les permitan inferir como son las interrelaciones entre las variables. 
+
+  Para evitar caer en interpretaciones sesgadas respecto de la relación de vinculación que guardan las variables, se optó por seleccionar el modelo predictivo desarrollado sobre la base de datos reducida. Esto es así, ya que el modelo sobre la base de datos completa, al contar con un número superior de variables predictoras, aumenta drásticamente el espacio de posibles soluciones que pueden encontrarse, pudiendo existir soluciones en las cuales se atribuya importancia a variables de forma equivocada. Cabe destacar que la base de datos reducida cuenta con las variables más importantes seleccionadas a partir de la combinación de múltiples algoritmos de selección de características. De esta forma al modelar sobre la misma, el espacio de posibles soluciones ya se encuentra reducido a uno en el cual todas las posibles involucran las variables de mayor importancia en la base de datos. Además, puede apreciarse que la diferencia en la precisión promedio de los algoritmos predictivos entre ambas bases de datos es baja, 0.112 $\frac{\mu g}{m^3}$. Tomando en consideración que la base de datos reducida involucra un 60% menos variables, se asume que se introduce un menor porcentaje de ruido al modelado. Por este motivo, además de encontrar soluciones de mayor relevancia, permite reducir la complejidad y el tiempo de ejecución en el entrenamiento del modelo predictivo. Otra ventaja de la base de datos reducida es que facilita notablemente la implementación del modelo en producción, ya que al involucrar un menor número de variables, es menor la descarga y procesamiento necesario para generar predicciones, además de simplificar la actualización (re entrenamiento) del mismo. 
+ 
+  De esta forma, se seleccionó el algoritmo predictivo desarrollado sobre la base de datos reducida, cuyas predicciones difieren en promedio de los valores reales medidos de concentración de PM~2.5~ en 3.533 $\frac{\mu g}{m^3}$.
+ 
+#### Optimización del modelo predictivo
+
+  Las redes neuronales recurrentes entrenadas en esta sección, se conforman por un modelo apilado. Cada una de las capas del modelo apilado consta de una capa recurrente, junto con una capa de dilución (*dropout*). Además, se evaluaron distintas metodologías de recurrencia implementando diferentes variantes de apilamiento para mejorar el rendimiento del modelo.
+  
+Table: Ajuste de diversas arquitecturas para el modelado predictivo en la base de datos seleccionada para el uso de suelo urbano. Los valores de RMSE se encuentran en las mismas unidades que la variable respuesta es decir [$\frac{\mu g}{m^3}$]. Las métricas informadas expresan el desempeño en el set de datos de testeo. \label{tab:arqurb}
+Referencia: Metodología de recurrencia; Cantidad de capas apiladas; *RMSE* y *MSE*. 
+
+| Recurrencia | Capas | *RMSE* | *MSE* |
+|--------|:-------:|:-------:|-------:|
+| GRU | 3 | 3.491 | 12.23 |
+| LSTM | 5 | 3.507 | 12.34 |
+| GRU | 5 | 3.558 | 12.69 |
+| LSTM | 4 | 3.568 | 12.75 |
+| GRU | 4 | 3.61 | 13.09 |
+| GRU | 2 | 3.633 | 13.26 |
+| LSTM | 3 | 3.64 | 13.58 |
+| LSTM | 2 | 3.772 | 14.29 |
+| LSTM | 1 | 4.005 | 16.1 |
+| GRU | 1 | 4.015 | 16.18 |
+| RNN | 3 | 4.258 | 18.18 |
+| RNN | 4 | 4.409 | 19.46 |
+| RNN | 2 | 4.451 | 19.85 |
+| RNN | 5 | 4.614 | 21.32 |
+| RNN | 1 | 5.212 | 27.25 |
+
+  La tabla \@ref(tab:arqurb) presenta el proceso de exploración de metodologías alternativas dentro de las redes neuronales recurrentes. A partir de los resultados puede notarse que el mejor desempeño predictivo fue alcanzado por el modelo que involucra redes con compuerta (*GRU*). El modelo final resultante fue un modelo apilado de tres capas sucesivas, cada una de las cuales combina una capa de red neuronal con compuerta junto con una de dilución (*dropout*).
+
+  Posteriormente, se llevaron a cabo experimentos para determinar los valores óptimos de los hiperparámetros del modelo. En la búsqueda se analizaron distintas combinaciones para el número de neuronas en las distintas capas y el porcentaje de neuronas apagadas en la capa de dilución.
+  
+  Finalmente, el modelo óptimo quedó conformado en su primer aglomerado del apilamiento por un total de 200 neuronas en la capa con compuerta, seguido por una capa de dilución con un 30% de neuronas apagadas. Los dos aglomerados subsiguientes que dan estructura a esta red se encuentran conformados por un total de 100 neuronas en cada una de sus capas con compuerta y una capa de dilución con un 30% de porcentaje de neuronas apagadas. Previo a la capa de salida, se encuentra la estructura clásica de capa densa totalmente conectada que permite la combinación de los coeficientes aprendidos por la red para dar como resultado la predicción final.
+
+  En términos de rendimiento, las predicciones del modelo óptimo difieren en promedio de los valores reales medidos de concentración de PM~2.5~ en 3.491 $\frac{\mu g}{m^3}$. Esto sugiere que el modelo es capaz de realizar predicciones precisas y puede ser utilizado en futuros estudios y aplicaciones en el monitoreo de la calidad del aire.
+  
+#### Entrenamiento del algoritmo predictivo resultante:
+
+```{r aprendmodurb, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:aprendmodurb)"}
+knitr::include_graphics("images/imagescap5/aprendmodurb.png")
+```
+(ref:aprendmodurb) Procedimiento de aprendizaje del modelo final en la base de datos de entrenamiento y validación.
+
+  La figura \@ref(fig:aprendmodurb) ilustra el procedimiento de aprendizaje del modelo predictivo tanto en la base de datos de entrenamiento como en la de validación. En esta puede observarse cómo se da la reducción del error a lo largo del proceso de aprendizaje, indicando la mejoría en su capacidad de generalización. Además, puede apreciarse que el algoritmo finaliza su aprendizaje en el ciclo 283 gracias al mecanismo de frenado temprano (early stopping), demostrando la obtención de un modelo robusto al evitar el sobreajuste (overfitting).
+
+#### Interpretación modelo predictivo:
+
+#### Variables más importantes
+
+  
+  Exploración de las variables de mayor importancia dada su contribución a las predicciones.
+
+```{r varimpurb, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:varimpurb)"}
+knitr::include_graphics("images/imagescap5/varimpurb.png")
+```
+(ref:varimpurb) Importancia relativa de las variables en las redes neuronales recurrentes para el uso de suelo urbano.
+
+  A partir de la figura \@ref(fig:varimpurb) puede apreciarse las cinco variables de mayor importancia relativa para el modelo predictivo en el uso de suelo urbano. Dos de las mismas se encuentran vinculadas a la escala temporal, destacando la notable importancia y dependencia de la variable respuesta respecto a sus patrones de variación temporal explorados en el capítulo [3](#cap:expl). Las tres restantes son variables satelitales vinculadas a la variabilidad estudiada en el capítulo [4](#cap:var). Además, podemos notar que las cinco variables de mayor importancia relativa reúnen menos del 25% de la misma. 
+  
+  De esta forma, a la hora de predecir la concentración de PM~2.5~ en entornos urbanos, es crucial considerar la hora del día, la radiación solar, la rugosidad de la superficie terrestre, el día de la semana y presión atmosférica. 
+  
+#### Gráfico de dependencia SHAP
+  
+  
+  Análisis de los aportes de las variables satelitales más importantes a las predicciones para el uso de suelo urbano.
+  
+#### Radiación solar
+  
+  
+  
+```{r shapurbrad, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapurbrad)"}
+knitr::include_graphics("images/imagescap5/shapurbrad.png")
+```
+(ref:shapurbrad) Gráfico de la variable radiación solar contra su valor shap coloreado por el valor de PM~2.5~ para el uso de suelo urbano.
+
+  La figura \@ref(fig:shapurbrad) muestra que valores de baja magnitud de radiación solar estan asociados a incrementos en las predicciones de la variable respuesta, mientras que valores de elevada estan asociados con menor concentración de PM~2.5~ predichas. De esta forma se aprecia una relación del tipo inversa similar a la identificada en el capítulo [4](#cap:var). Además, puede notarse como los valores de mayor concentración de PM~2.5~ se hallan localizados en las zonas de menor radiación solar, momento en el cual se favorecen mayores concentraciones de dicho contaminante, demostrando la elevada capacidad predictiva de la variable.
+
+#### Rugosidad de la superficie terrestre
+
+  
+  
+```{r shapurbrug, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapurbrug)"}
+knitr::include_graphics("images/imagescap5/shapurbrug.png")
+```
+(ref:shapurbrug) Gráfico de la variable rugosidad de la superficie terrestre contra su valor shap coloreado por el valor de PM~2.5~ para el uso de suelo urbano.
+
+  
+  La figura \@ref(fig:shapurbrug) muestra que valores de baja magnitud de la rugosidad de la superficie terrestre se asocian con disminuciones en las predicciones de la variable respuesta, mientras que valores de elevada magnitud de la variable resultan en incrementos de las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo directa similar a la reportada en el capítulo [4](#cap:var).
+
+#### Presión atmosférica ajustada al nivel del mar
+  
+  
+    
+```{r shapurbpresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapurbpresmar)"}
+knitr::include_graphics("images/imagescap5/shapurbpresmar.png")
+```
+(ref:shapurbpresmar) Gráfico de la variable presión atmosférica ajustada al nivel del mar contra su valor shap coloreado por el valor de PM~2.5~ para el uso de suelo urbano.
+
+  
+  La figura \@ref(fig:shapurbpresmar) muestra que valores de baja magnitud de la presión atmosférica ajustada al nivel del mar favorecen incrementos en las predicciones de la variable respuesta, mientras que valores de elevada magnitud de la variable resultan en disminuciones de las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo inversa similar a la reportada en el capítulo [4](#cap:var).
+
+### Modelado industrial
+
+#### Comparación modelos predictivos 
+ 
+Table: Comparación de algoritmos predictivos de aprendizaje automático en diversas bases de datos para el uso de suelo industrial. Los valores de RMSE se encuentran en las mismas unidades que la variable respuesta, es decir [$\frac{\mu g}{m^3}$]. Las métricas informadas expresan el desempeño en el set de datos de testeo. \label{tab:modind}
+ 
+| Modelo | Set de datos | *RMSE* | *MSE* |
+|------------------------------|:--------------:|:-------:|:-------:|
+| Redes neuronales recurrentes | Corto | 6.171 | 38.15 |
+| Redes neuronales recurrentes | Largo | 6.193 | 38.42 |
+| K vecinos más cercanos | Largo | 6.248 | 39.11 |
+| K vecinos más cercanos | Corto | 6.263 | 39.34 |
+| Predicción hora siguiente | Base | 6.452 | 41.69 |
+| Predicción hora anterior | Base | 6.497 | 42.4 |
+| Bosques Aleatorios | Largo | 6.523 | 42.459 |
+| Bosques Aleatorios | Corto | 6.547 | 42.93 |
+| Regresión de Soporte Vectorial | Largo | 7.876 | 62.13 |
+| Regresión de Soporte Vectorial | Corto | 8.023 | 64.47 |
+| GBM ligero | Largo | 9.344 | 87.38 |
+| GBM ligero  | Corto | 9.533 | 90.95 |
+| Regresión lineal  | Largo | 10.1 | 102.2 |
+| Regresión Ridge  | Largo | 10.1 | 102.2 |
+| Regresión SGD  | Largo | 10.11 | 102.3 |
+| Regresión SGD | Corto | 10.24 | 104.8 |
+| Regresión Ridge  | Corto | 10.33 | 106.7 |
+| Regresión lineal | Corto | 10.33 | 106.7 |
+| Regresión Lasso  | Largo | 10.92 | 119.4 |
+| Regresión Lasso  | Corto | 10.93 | 119.6 |
+| Regresión de red elástica | Largo | 11.82 | 139.8 |
+| Regresión de red elástica | Corto | 11.82 | 139.8 |
+
+  En la tabla \@ref(tab:modind) se presentan los resultados obtenidos en el modelado predictivo de los datos provenientes del uso de suelo industrial, puede apreciarse que estos son similares a los obtenidos para el uso de suelo urbano (Tabla \@ref(tab:modurb)). En primer lugar, puede apreciarse que el mejor desempeño predictivo es alcanzado por las redes neuronales recurrentes, sugiriendo que este algoritmo es robusto y efectivo en la predicción de la concentración de material particulado fino. La principal diferencia radica en que el mejor desempeño en este caso es alcanzado sobre la base de datos reducida.
+  
+  Además, para este uso de suelo, puede notarse que el único algoritmo predictivo que también logra superar los modelos de base propuestos es el modelo de K vecinos más cercanos. Este a partir de la estimación de la media entre K observaciones logra una elevada capacidad predictiva, a pesar de esto no garantiza captar las interrelaciones existentes entre las variables. 
+ 
+  Cabe destacar que los mejores resultados predictivos fueron obtenidos al emplear la base de datos reducida, proporcionando evidencia acerca de las ventajas de este tipo de base para el modelado predictivo. De esta forma, esta será la base de datos empleada para llevar a cabo el modelado y posteriormente analizar la relación de vinculación entre las variables.
+
+  En cuanto a las predicciones del algoritmo seleccionado, se observa que difieren en promedio de los valores reales medidos de concentración de PM~2.5~ en 6.171 $\frac{\mu g}{m^3}$. Este resultado indica que el modelo seleccionado puede proporcionar estimaciones precisas de la concentración de PM~2.5~ en el uso de suelo industrial.
+
+#### Optimización del modelo predictivo
+
+Table: Ajuste de diversas arquitecturas para el modelado predictivo en la base de datos seleccionada para el uso de suelo industrial. Los valores de RMSE se encuentran en las mismas unidades que la variable respuesta, es decir [$\frac{\mu g}{m^3}$]. Las métricas informadas expresan el desempeño en el set de datos de testeo. \label{tab:arqind}
+Referencia: Metodología de recurrencia; Cantidad de capas apiladas; *RMSE* y *MSE*.
+
+| Recurrencia | Capas | *RMSE* | *MSE* |
+|--------|:-------:|:-------:|-------:|
+| GRU | 2 | 5.964 | 35.64 |
+| GRU | 3 | 5.988 | 35.92 |
+| LSTM | 2 | 6.074 | 36.91 |
+| LSTM | 5 | 6.082 | 37.02 |
+| GRU | 5 | 6.091 | 37.18 |
+| LSTM | 3 | 6.11 | 37.4 |
+| LSTM | 4 | 6.132 | 37.67 |
+| GRU | 4 | 6.16 | 38.01 |
+| LSTM | 1 | 6.191 | 38.38 |
+| GRU | 1 | 6.471 | 41.91 |
+| RNN | 2 | 6.598 | 43.63 |
+| RNN | 3 | 6.628 | 44.02 |
+| RNN | 4 | 6.857 | 47.15 |
+| RNN | 5 | 6.927 | 48.07 |
+| RNN | 1 | 7.683 | 59.09 |
+
+  La tabla \@ref(tab:arqind) presenta el proceso de exploración de metodologías alternativas dentro de las redes neuronales recurrentes. A partir de los resultados puede notarse que el mejor desempeño predictivo fue alcanzado por el modelo que involucra redes con compuerta (*GRU*). El modelo final resultante fue un modelo apilado de dos capas sucesivas, cada una de las cuales combina una capa de red neuronal con compuerta junto con una de dilución (*dropout*).
+  
+  Posteriormente, se llevaron a cabo experimentos para determinar los valores óptimos de los hiperparámetros del modelo. En la búsqueda se analizaron distintas combinaciones para el número de neuronas en las distintas capas y el porcentaje de neuronas apagadas en la capa de dilución.
+
+  Finalmente, el modelo óptimo quedo conformado en su primer aglomerado del apilamiento por un total de 200 neuronas en la capa con compuerta, seguido por una capa de dilución con un 30% de neuronas apagadas. La subsiguiente capa del aglomerado quedo conformada por un total de 100 neuronas en su capa con compuerta y un 30% de porcentaje de neuronas apagadas en su capa de dilución. Previo a la capa de salida, se encuentra la estructura clásica de capa densa totalmente conectada que permite la combinación de los coeficientes aprendidos por la red para dar como resultado la predicción final.
+
+  En términos de rendimiento, las predicciones del modelo óptimo difieren en promedio de los valores reales medidos de concentración de PM~2.5~ en 5.964 $\frac{\mu g}{m^3}$. 
+  
+#### Entrenamiento del algoritmo predictivo resultante:
+
+```{r aprendmodind, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:aprendmodind)"}
+knitr::include_graphics("images/imagescap5/aprendmodind.png")
+```
+(ref:aprendmodind) Procedimiento de aprendizaje del modelo final en la base de datos de entrenamiento y validación industrial.
+
+  La figura \@ref(fig:aprendmodind) ilustra el procedimiento de aprendizaje del modelo predictivo tanto en la base de datos de entrenamiento como en la de validación. En esta puede observarse cómo se da la reducción del error a lo largo del proceso de aprendizaje, indicando la mejoría en su capacidad de generalización. Además, puede apreciarse que el algoritmo finaliza su aprendizaje en el ciclo 207 gracias al mecanismo de frenado temprano (early stopping), demostrando la obtención de un modelo robusto al evitar el sobreajuste (overfitting).
+
+#### Interpretación modelo predictivo:
+
+#### Variables más importantes
+  
+  Exploración de las variables de mayor importancia dada su contribución a las predicciones.
+ 
+```{r varimpind, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:varimpind)"}
+knitr::include_graphics("images/imagescap5/varimpind.png")
+```
+(ref:varimpind) Importancia relativa de las variables en las redes neuronales recurrentes para el uso de suelo industrial.
+
+  A partir de la figura \@ref(fig:varimpind) puede apreciarse las cinco variables de mayor importancia relativa para el modelo predictivo en el uso de suelo industrial. Una de las mismas se encuentra vinculada a la escala temporal, destacando la notable importancia y dependencia de la variable respuesta respecto a sus patrones de variación temporal explorados en el capítulo [3](#cap:expl). Las restantes son variables satelitales vinculadas a la variabilidad estudiada en el capítulo [4](#cap:var). Además, podemos notar que las cinco variables de mayor importancia relativa reúnen menos del 25% de la misma. 
+  
+  De esta forma, a la hora de predecir la concentración de PM~2.5~ en entornos industriales, es crucial considerar la velocidad del viento, la disipación en la capa límite atmosférica, el flujo de ozono, la estación del año y la humedad relativa.
+
+#### Gráfico de dependencia SHAP
+  
+  
+  Análisis de los aportes de las variables satelitales más importantes a las predicciones para el uso de suelo industrial.
+
+#### Velocidad del viento
+
+  
+  
+```{r shapindvvient, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapindvvient)"}
+knitr::include_graphics("images/imagescap5/shapindvvient.png")
+```
+(ref:shapindvvient) Gráfico de la variable velocidad del viento contra su valor shap coloreado por el valor de PM~2.5~ para el uso de suelo industrial.
+
+  
+  La figura \@ref(fig:shapindvvient) muestra que valores de baja magnitud de velocidad del viento resultan en incrementos de las predicciones de la variable respuesta, mientras que valores de elevada magnitud de la variable promueven disminuciones en las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo inversa similar a la encontrada en el capítulo [4](#cap:var). Además, se puede apreciar como los valores de mayores concentraciones de PM~2.5~ se localizan en zonas de reducida velocidad del viento, demostrando la gran capacidad predictiva de la variable.  
+
+#### Disipación en la capa límite atmosférica
+
+  
+
+```{r shapinddisip, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapinddisip)"}
+knitr::include_graphics("images/imagescap5/shapinddisip.png")
+```
+(ref:shapinddisip) Gráfico de la variable disipación en la capa límite atmosférica contra su valor shap coloreado por el valor de PM~2.5~ para el uso de suelo industrial.
+
+  
+  La figura \@ref(fig:shapinddisip) permite apreciar que el mayor porcentaje de los datos se encuentra concentrado en valores de baja magnitud de disipación en la capa límite atmosférica. No logra apreciarse una clara tendencia en cuanto al aporte de la variable predictora en el modelo predictivo dado a que en todo el rango de variación los aportes son tanto de incremento como de decremento de la concentración. Dada la inconsistencia existente en el rango de variación de los aportes, se concluye que para este modelo predictivo la importancia que adquiere la variable se encuentra vinculada al actuar conjunto con otras variables.
+
+#### Integración vertical flujo ozono norte
+
+  
+
+```{r shapindoznor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapindoznor)"}
+knitr::include_graphics("images/imagescap5/shapindoznor.png")
+```
+(ref:shapindoznor) Gráfico de la variable integración vertical flujo ozono norte contra su valor shap coloreado por el valor de PM~2.5~ para el uso de suelo industrial.
+
+  
+  La figura \@ref(fig:shapurbrug) muestra que valores de baja magnitud de la integración vertical flujo ozono norte promueven disminuciones en las predicciones de la variable respuesta, mientras que valores elevada magnitud de la variable resultan en incrementos de las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo directa similar a la reportada en el capítulo [4](#cap:var).
+
+#### Humedad relativa
+
+
+  
+```{r shapindhum, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapindhum)"}
+knitr::include_graphics("images/imagescap5/shapindhum.png")
+```
+(ref:shapindhum) Gráfico de la variable humedad relativa contra su valor shap coloreado por el valor de PM~2.5~ para el uso de suelo industrial.
+
+  
+  La figura \@ref(fig:shapindhum) muestra que valores menores al 90% de humedad relativa favorecen incrementos de las concentraciones de material particulado fino, mientras que humedades relativas mayores tienden a favorecer decrementos de la concentraciones. Además, puede apreciarse una mayor densidad de valores de elevada concentración de PM~2.5~ entre el 80% y 90% de humedad relativa. De esta forma se concluye que para este modelo predictivo valores por encima del 90% de humedad relativa favorecen la remoción de material particulado, mientras que valores por debajo de este límite favorecen aportes a la concentración de dicho contaminante. Esta figura permite concluir que la relación de vinculación que prevalece en el modelo es la inversa, la cual fue la que menor magnitud reporto en el capítulo [4](#cap:var).
+
+### Modelado agrícola/ área verde
+
+#### Comparación modelos predictivos 
+
+Table: Comparación de algoritmos predictivos de aprendizaje automático en diversas bases de datos para el uso de suelo agrícola/ área verde. Los valores de RMSE se encuentran en las mismas unidades que la variable respuesta, es decir [$\frac{\mu g}{m^3}$]. Las métricas informadas expresan el desempeño en el set de datos de testeo. \label{tab:modaa} 
+
+| Modelo | Set de datos | *RMSE* | *MSE* |
+|------------------------------|:-------------:|:-------:|:-------:|
+| Bosques Aleatorios | Corto | 2.596 | 6.786 |
+| Bosques Aleatorios | Largo | 2.611 | 6.872 |
+| K vecinos más cercanos | Corto | 2.651 | 7.082 |
+| Predicción hora anterior | Base | 2.744 | 7.566 |
+| K vecinos más cercanos | Largo | 2.747 | 7.633 |
+| Redes neuronales recurrentes | Corto | 2.785 | 7.81 |
+| Predicción hora siguiente | Base | 2.805 | 7.97 |
+| Redes neuronales recurrentes | Largo | 2.837 | 8.109 |
+| Regresión de Soporte Vectorial | Corto | 3.654 | 13.39 |
+| Regresión de Soporte Vectorial | Largo | 3.825 | 14.68 |
+| GBM ligero | Largo | 4.509 | 20.36 |
+| GBM ligero | Corto | 4.606 | 21.24 |
+| Regresión SGD | Largo | 5.182 | 26.88 |
+| Regresión SGD | Corto | 5.258 | 27.67 |
+| Regresión lineal | Largo | 5.275 | 27.84 |
+| Regresión Ridge | Largo | 5.282 | 27.92 |
+| Regresión lineal | Corto | 5.381 | 28.98 |
+| Regresión Ridge | Corto | 5.381 | 28.98 |
+| Regresión Lasso | Largo | 5.809 | 33.76 |
+| Regresión Lasso | Corto | 5.809 | 33.77 |
+| Regresión de red elástica | Largo | 6.185 | 38.27 |
+| Regresión de red elástica | Corto | 6.185 | 38.27 |
+
+  En la tabla \@ref(tab:modaa) se presentan los resultados obtenidos en el modelado predictivo de los datos provenientes del uso de suelo agrícola y área verde, puede apreciarse que el algoritmo predictivo que alcanza el mejor desempeño predictivo fueron los bosques aleatorios en sus dos versiones de base de datos, siendo el de menor error el desarrollado sobre la base de datos reducida. La principal diferencia con respecto a los resultados obtenidos para los otros usos de suelo (Tabla \@ref(tab:modurb) y tabla \@ref(tab:modind)) es que las redes neuronales recurrentes no logran superar la línea de base propuesta, lo cual podría encontrarse vinculado a las características propias de la serie de tiempo en estos entornos. 
+  
+  Cabe destacar que los mejores resultados predictivos fueron obtenidos al emplear la base de datos reducida, proporcionando evidencia acerca de las ventajas de este tipo de base para el modelado predictivo. De esta forma, esta será la base de datos empleada para llevar a cabo el modelado y posteriormente analizar la relación de vinculación entre las variables.
+
+  En cuanto a las predicciones del algoritmo seleccionado, se observa que difieren en promedio de los valores reales medidos de concentración de PM~2.5~ en 2.596 $\frac{\mu g}{m^3}$. Este resultado indica que el modelo seleccionado puede proporcionar estimaciones precisas de la concentración de PM~2.5~ en el uso de suelo agrícola y área verde.
+  
+#### Optimización de los bosques aleatorios
+  
+  Posteriormente se llevó a cabo la optimización de los hiperparámetros a través del ajuste iterativo de múltiples algoritmos de bosques aleatorios con distintos valores hiperparámetros. A partir de este procedimiento se alcanzó el modelo óptimo en cuanto a su capacidad predictiva, el mismo se encontró conformado por un total de 200 árboles individuales en el bosque, además para lograr la separación en un nuevo nodo fue necesario contar con más de dos muestras en cada uno de ellos.
+  
+  Finalmente, las predicciones del algoritmo que demostró mayor capacidad predictiva difieren, en promedio, de los valores reales medidos de concentración de PM~2.5~ en 2.324 $\frac{\mu g}{m^3}$.
+  
+#### Interpretación modelo predictivo:
+
+#### Variables más importantes
+
+
+  Exploración de las variables de mayor importancia dada su contribución a las predicciones.
+ 
+```{r varimpaa, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:varimpaa)"}
+knitr::include_graphics("images/imagescap5/varimpaa.png")
+```
+(ref:varimpaa) Importancia relativa de las variables en las redes neuronales recurrentes para el uso de suelo agrícola/ área verde.
+  
+  A partir de la figura \@ref(fig:varimpaa) puede apreciarse las cinco variables de mayor importancia relativa para el modelo predictivo en el uso de suelo agrícola y área verde. Dos de las mismas se encuentran vinculadas a la escala temporal, destacando la notable importancia y dependencia de la variable respuesta respecto a sus patrones de variación temporales explorados en el capítulo [3](#cap:expl). Las restantes son variables satelitales vinculadas a la variabilidad estudiada en el capítulo [4](#cap:var). Además, podemos notar que las cinco variables de mayor importancia relativa reúnen más del 40% de la misma. De esta forma puede apreciarse como en este uso de suelos se necesita menor cantidad de variables para reunir un mismo porcentaje de importancia relativa, demostrando mayor capacidad para explicar la concentración de PM~2.5~ con menor información.
+  
+  De esta forma, a la hora de predecir la concentración de PM~2.5~ en entornos industriales, es crucial considerar la estación del año, temperatura de rocío, escorrentía, temperatura y el mes del año. 
+
+#### Gráfico de dependencia SHAP
+  
+  
+  Análisis de los aportes de las variables satelitales más importantes a las predicciones para el uso de suelo agrícola / área verde.
+  
+#### Temperatura del punto de rocío
+
+  
+  
+```{r shapaaroc, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapaaroc)"}
+knitr::include_graphics("images/imagescap5/shapaaroc.png")
+```
+(ref:shapaaroc) Gráfico de la variable temperatura del punto de rocío contra su valor shap coloreado por el valor de PM~2.5~ para el uso de suelo agrícola / área verde.
+  
+  
+  La figura \@ref(fig:shapaaroc) muestra que valores de baja magnitud de la temperatura del punto de rocío se asocian con altas concentraciones de PM~2.5~, mientras que valores elevada magnitud lo hacen con bajas concentraciones de PM~2.5~ De esta forma se identifica una relación del tipo inversa similar a la reportada en el capítulo [4](#cap:var).
+
+  
+#### Tasa media de escorrentía subterránea
+
+  
+```{r shapaaesc, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(shapaaesc)"}
+knitr::include_graphics("images/imagescap5/shapaaesc.png")
+```
+(ref:shapaaesc) Gráfico de la variable tasa media de escorrentía subterránea contra su valor shap coloreado por el valor de PM~2.5~ para el uso de suelo agrícola / área verde.
+
+  
+  La figura \@ref(fig:shapaaesc) muestra que valores de baja magnitud de la tasa media de escorrentía subterránea (menores a 5.07e-07) favorecen bajas concentraciones de PM~2.5~, mientras que valores superiores de la variable promueven un aumento en la concentración de PM~2.5~ predicha. Para valores superiores a 1.0e-06, la relación entre las variables permanece sin variaciones importantes respecto del aporte a la concentración. De esta forma se identifica una relación del tipo directa similar a la reportada en el capítulo [4](#cap:var).
+
+#### Integración vertical de temperatura
+
+  
+```{r shapaaintvert, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapaaintvert)"}
+knitr::include_graphics("images/imagescap5/shapaaintvert.png")
+```
+(ref:shapaaintvert) Gráfico de la variable integración vertical de temperatura contra su valor shap coloreado por el valor de PM~2.5~ para el uso de suelo agrícola / área verde.
+
+  
+  La figura \@ref(fig:shapaaintvert) muestra que valores de baja magnitud de la integración vertical de temperatura se asocia con bajas predicciones de PM~2.5~, mientras que valores de elevada magnitud de la variable resultan en incrementos de las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo directa similar a la reportada en el capítulo [4](#cap:var). 
+  
+### Variación en el paradigma de modelado
+
+  El cambio en el tipo de paradigma predictivo, podría encontrarse vinculado a las características propias de cada una de las series temporales en cada uno de los usos de suelo, descritas en el capítulo [3](#cap:expl), las cuales favorecen el desempeño de distintos algoritmos predictivos. En el caso de la serie de tiempo para el uso de suelo agrícola y área verde demostró ser una cuyas realizaciones varían en un entorno reducido respecto de su media, es decir, con una baja dispersión respecto de la misma y estable en función de la baja frecuencia de fluctuación entre valores de elevada y baja magnitud. Esta característica permite que la variable respuesta pueda ser explicada por un menor número de variables predictoras (Figura \@ref(fig:varimpaa)). Motivo por el cual más del 40% de la importancia relativa es acumulada por las cinco variables más importantes para el modelo predictivo. En un set de datos que alberga un total de 70 variables, es destacable que prácticamente en el 7% de las mismas se concentre la información necesaria para describir la variable respuesta. Esta concentración de la información se sustenta en que al ser una serie de gran estabilidad se requiere menor información para describir sus fluctuaciones, ya que pueden ser explicadas la mayor parte del tiempo por las mismas variables predictoras.
+  
+  Esta concentración de información en un número reducido de variables es un aspecto favorecedor para el algoritmo de bosques aleatorios, el cual es eficiente detectando y empleando la información de las variables más importantes. Una vez detectadas son retenidas en múltiples árboles individuales del desierto, generando una influencia de mayor peso en las predicciones. El gran porcentaje de información contenido en una reducida cantidad de variables genera que este algoritmo logre internalizar de forma efectiva las interrelaciones entre las distintas variables, resultando en un modelo predictivo de elevada exactitud. 
+
+  Por otra parte, las series provenientes de entornos urbanos e industriales demostró ser series con una notable dispersión de las realizaciones con respecto a su media, esto quiere decir que sus datos se encuentran menos concentrados respecto a la misma. Además, se trata de series inestables dado a sus continuas fluctuaciones entre valores de elevada y baja magnitud (saltos entre picos y baches de concentración). Esta característica de inestabilidad y fluctuaciones, generan que sea necesario involucrar un mayor número de variables predictoras para lograr explicar la variable respuesta. Por este motivo, a diferencia de la serie temporal agrícola y área verde, en estos casos se requiere un número de variables superior para reunir el mismo porcentaje de importancia relativa. En las redes neuronales ajustadas no se identificaron variables predictoras de gran relevancia, sino que todas ellas aportan de forma homogénea a las predicciones, y es el algoritmo predictivo el encargado de internalizar las ponderaciones de las mismas en las distintas condiciones presentes en la base de datos. Puede notarse además que las primeras cinco variables más importantes reúnen menos del 25% de la importancia relativa en ambos modelos predictivos.
+
+  Esta característica de serie temporal genera que su modelado predictivo sea más apto a través de redes neuronales recurrentes, cuyo algoritmo posee una gran cantidad de parámetros que reflejan el aporte de cada una de las variables a la predicción bajo las distintas situaciones posibles presentes en la base de datos. De esta forma, al calcularse una gran cantidad de parámetros podemos ver reflejado en cada predicción la influencia de todas las variables presentes en la base de datos, siendo el algoritmo predictivo el encargado de ponderar las influencias en cada caso particular. Al ser una base de datos en donde la importancia relativa atribuida a las distintas predictoras es similar, contar con un algoritmo predictivo que tiene en cuenta la influencia conjunta de todas ellas resulta en un elevado desempeño predictivo, de esta forma en cada predicción puede verse reflejada la influencia de cada una de las variables predictoras.
+
+  El resultado del proceso de modelado predictivo de la concentración de PM~2.5~ para entornos del área metropolitana de la provincia de Córdoba bajo distinto uso de suelo, fue un modelo conjunto cuyas predicciones difieren en promedio de los valores reales medidos de concentración de PM~2.5~ en 3.926 $\frac{\mu g}{m^3}$.
+  
+## Conclusión
+
+  Los resultados obtenidos indican que los modelos predictivos desarrollados lograron captar las relaciones existentes desenmascaradas en el capítulo [4](#cap:var) entre la concentración del PM~2.5~ y las variables satelitales.
+  
+  El correcto desempeño del mejor algoritmo predictivo ajustado para cada uno de los usos de suelo, sugieren que estos poseen gran potencial para cumplir su objetivo de alertar a la población ante condiciones adversas de calidad de aire.  
+  
+  Las características propias de la variabilidad de cada una de las series temporales en los distintos usos de suelo y de aprendizaje de cada uno de los modelos predictivos evaluados, fueron determinantes en el tipo de algoritmo que demostró mayor exactitud para cada uno de los usos de suelo. De esta forma, en usos de suelo con series de baja frecuencia de picos con respecto a su media,los algoritmos de aprendizaje automático del tipo de arboles aleatorios se desempeñaron mejor que los algoritmos de aprendizaje profundo. Mientras que estos permitieron obtener modelos de mayor exactitud predictiva en usos de suelo donde la serie de PM~2.5~ se visualiza como una de alta frecuencia de variaciones respecto de su media. 

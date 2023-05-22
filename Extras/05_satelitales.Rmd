@@ -1,0 +1,596 @@
+#	Influencia variables satelitales {#cap:sat}
+
+## Resumen
+
+## Introducción
+
+  Variabilidad pm con variables satelitales.
+
+## Objetivos
+
+### Objetivo general
+  
+  Estimar la contribución relativa de productos satelitales, tales como AOD (del inglés Aerosol Optical Depth) para predecir la concentración de material particulado en el Área Metropolitana de Córdoba. 
+  
+### Objetivos específicos
+
+## Metodología
+
+### Procedimiento de análisis. 
+
+  1. Análisis descriptivo de las series de las variables satelitales, variabilidad individual y conjunta respecto de la variable respuesta.
+  
+  2. Análisis de estacionalidad de las series de las variables satelitales, y en caso de no serlo transformarlas.
+  
+  3. Caracterización de la serie temporal de las variables satelitales: análisis de correlación simple y parcial de la serie y ajuste de un modelo teórico por medio de la Metodología de Box-Jenkins.
+  
+  4. Análisis de correlación cruzada de las series de variables satelitales respecto de la serie de material particulado, implementando la metodología de pre-whitening. 
+  
+### Análisis estadístico.
+  
+## Resultados y discusión 
+
+### Analisis exploratorio variables satelitales:
+
+#### Profundidad óptica de los aerosoles (AOD).
+
+```{r aodmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:aodmes)"}
+knitr::include_graphics("images/imagescap5/aodmes.png")
+```
+(ref:aodmes) Perfil de variación promedio mensual de la profundidad óptica de los aerosoles a lo largo del año.
+
+  A partir de la figura podemos apreciar el ciclo de variación anual de los promedios mensuales de la profundidad óptica de aerosoles, se puede apreciar que los menores valores se registran durante el otoño e invierno, mientras que los mayores se registran durante la primavera y verano.
+
+```{r aoddia, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:aoddia)"}
+knitr::include_graphics("images/imagescap5/aoddia.png")
+```
+(ref:aoddia) Perfil de variación promedio diario de la profundidad óptica de los aerosoles a lo largo de la semana.
+
+  Se observa que la variación a lo largo de la semana muestra menores valores los días martes y mayores los días miércoles, mientras que los fines de semana tiende a aumentar, lo cual no estaria explicando en parte la variabilidad de la concentracion de material particulado como previamente se vio en la figura...
+
+```{r pmaodmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmaodmes)"}
+knitr::include_graphics("images/imagescap5/pmaodmes.png")
+```
+(ref:pmaodmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la profundidad óptica de los aerosoles a lo largo del año.
+  
+  El ciclo de los promedios mensuales a lo largo del año nos muestra una relación inversamente proporcional entre la profundidad óptica de aerosoles y el PM~2.5~, lo cual no se condice con lo que debería suceder y se procederá a analizar en otra escala con el objetivo de determinar la relación existente entre ellas. 
+
+```{r pmaoddia, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmaoddia)"}
+knitr::include_graphics("images/imagescap5/pmaoddia.png")
+```
+(ref:pmaoddia) Perfil de variación conjunto de los promedios diarios del PM~2.5~ y la profundidad óptica de los aerosoles a lo largo de la semana. 
+
+  Se observa el ciclo que describe el promedio diario de la profundidad óptica de aerosoles y el PM~2.5~ a largo de la semana, se puede apreciar que el único valor coincidente y que se relaciona con la concentración de material particulado es el pico descripto por ambas variables los días miércoles, en el resto de los casos no se logra apreciar una tendencia que caracteriza la relacion. 
+  
+  Ve como que relacion no es inversa y que los dias en que hay aumentos de PM el material particulado tambien va en aumento, me podria ayudar a discutir esto.
+
+```{r pmaodestdia, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmaodestdia)"}
+knitr::include_graphics("images/imagescap5/pmaodestdia.png")
+```
+(ref:pmaodestdia) Perfil de variación conjunto de los promedios diarios del PM~2.5~ y la profundidad óptica de los aerosoles a lo largo de la semana en las distintas estaciones del año.
+
+  A partir del gráfico se puede apreciar los ciclos de los promedios diarios a lo largo de la semana en las distintas estaciones para la profundidad óptica de aerosoles y para el PM~2.5~, se puede ver que en el otoño parece existir una notable coincidencia entre ambas variables excepto para los días lunes, en el invierno la coincidencia también es alta durante la semana pero los fines de semana no parece ser significativa, por otra parte para la primavera parece existir una relación pero que se ve afectada durante algunos días de la semana, y finalmente en el verano se puede apreciar una notable vinculación entre ambas variables que se ve afectada por la discrepancia existente los dias lunes. 
+
+Table: PM~2.5~ promedio horario en los días en que el AOD es mayor y menor a la media.\label{tab:}
+
+| AOD | PM~2.5~ |
+|-------------|:-------:|
+| Alta | 13.39 |
+| Baja | 11.03 |
+
+  Podemos ver que las horas del día en que el AOD es inferior que su media la concentración de material particulado registrada es baja, mientras que los días en que es superior a su media las concentraciones de PM~2.5~ son superiores. 
+
+Table: Test de Kruskal-Wallies para el PM~2.5~ promedio horario en los días en que el AOD es mayor y menor a la media.\label{tab:KW}
+
+| Test | Chi-squared | df	| p-valor |
+|------------------------------|:------:|:-----:|:-------:|
+| Kruskal-Wallis rank sum test | 243.03	| 1 |	0.74 |
+
+  La estimación de la transferencia de entropía de Shannon resultante indica que no hay un flujo de información significativo de la variable en análisis al PM~2.5~. Esto puede deberse a que la relación entre las variables puede estar caracterizada por una notable complejidad que es incapaz de ser captada por esta metodología en la escala temporal diaria. 
+  
+#### Altura de la capa limite atmosférica (PBL).
+
+```{r pblmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pblmes)"}
+knitr::include_graphics("images/imagescap5/pblmes.png")
+```
+(ref:pblmes) Perfil de variación promedio mensual de la altura de la capa limite atmosférica a lo largo del año.
+
+  La variación de la altura de los promedios mensuales de la altura de la capa limite atmosférica a lo largo del año, muestran sus menores valores durante el otoño e invierno, mientras que los mayores valores son registrados durante la primavera y el verano. 
+
+```{r pblhor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pblhor)"}
+knitr::include_graphics("images/imagescap5/pblhor.png")
+```
+(ref:pblhor) Perfil de variación promedio horario de la altura de la capa limite atmosférica a lo largo de las horas del día.
+
+  Se aprecia el ciclo que describe el PBL a lo largo de las horas del día, podemos ver que la mayor altura registrada ocurre al anochecer a las 20 horas y que gradualmente decrece hasta alcanzar el mínimo a las 11 horas. De esta forma, pareciese existir una relación entre la variación de la concentración de material particulado a lo largo de las horas del día y la variación de la altura de la capa de mezcla, además esta podría ser una del tipo inversamente proporcional. 
+
+```{r pblesthor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pblesthor)"}
+knitr::include_graphics("images/imagescap5/pblesthor.png")
+```
+(ref:pblesthor) Perfil de variación promedio horario de la altura de la capa limite atmosférica a lo largo de las horas del día en las distintas estaciones del año.
+
+  El ciclo horario descripto por esta variable permanece constante a lo largo de las distintas estaciones describiendo mayores valores a lo largo de la primavera y el verano, y menores valores durante el otoño e invierno. 
+
+```{r pmpblmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmpblmes)"}
+knitr::include_graphics("images/imagescap5/pmpblmes.png")
+```
+(ref:pmpblmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la altura de la capa limite atmosférica a lo largo del año.
+
+  A partir de la figura, se ve la relación que describe la variación horaria de la altura de la capa limite atmosférica y la concentración de PM2.5 a lo largo del día, de manera resumida puede apreciarse que a medida que la altura de la capa limite disminuye las concentraciones aumentan y que a medida que la altura aumenta las concentraciones bajan. Lo cual se encuentra vinculado a que cuando esta aumenta, también lo hace el volumen de aire en la cual los contaminantes se dispersan, mientras que cuando esta disminuye, de igual forma lo hace el volumen de aire en el cual se dispersan los contaminantes que son emitidos a nivel superficial.  
+
+```{r pmpblhor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmpblhor)"}
+knitr::include_graphics("images/imagescap5/pmpblhor.png")
+```
+(ref:pmpblhor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la altura de la capa limite atmosférica a lo largo del día.
+
+  Se puede apreciar que el ciclo horario de esta variable consta de una gradual y lenta reducción de la altura hasta llegar a un mínimo a las 11 horas, momento en el cual comienza un gran aumento hasta alcanzar su pico a las 20 horas, el cual además es el punto de inflexión a partir del cual comienza su disminución hacia menores valores. De esta forma hasta las 11 horas se favorecerían altas concentraciones, luego su rápido aumento genera que las concentraciones disminuyan hasta las 20 horas, momento en el cual comenzarían a aumentar nuevamente como consecuencia de la disminución de esta altura. Este ciclo conjunto con la variación de material particulado se condice con la dinámica de variación horaria del contaminante en cuestión, aunque esta variable no puede describir por si sola las variaciones, dado a que el contaminante también depende de sus emisiones, y donde cobra importancia su principal fuente, el tráfico de vehículos.
+
+```{r pmpblesthor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmpblesthor)"}
+knitr::include_graphics("images/imagescap5/pmpblesthor.png")
+```
+(ref:pmpblesthor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la altura de la capa limite atmosférica a lo largo del dia en las distintas estaciones del año.
+
+ A partir de los ciclos de variacion conjunta horaria de ambas variables podemos apreciar que para la primavera y el verano, cuando se registran los mayores valores de altura de la capa limite atmosferica, la concentracion de material particulado se ve notablemente reducida, mientras que para el otoño e invierno, cunado se registran los menores valores de la variable, las concentraciones aumentan. En cuanto a la variabilidad horaria a lo largo de las estaciones se sostiene la hipotesis de una relacion inversamente proporcional entre ambas variables. 
+
+Table: PM~2.5~ promedio horario en los días en que el PBL es mayor y menor a la media.\label{tab:}
+
+| PBL | PM~2.5~ |
+|-------------|:-------:|
+| Alta | 9.91 |
+| Baja | 13.39 |
+
+  Podemos ver que en las horas del día en que el PBL es bajo la concentración media de material particulado horaria registrada es notablemente inferior a la registrada en las horas en que el PBL es alto.
+
+Table: Test de Kruskal-Wallies para el PM~2.5~ promedio horario en los días en que el PBL es mayor y menor a la media.\label{tab:KW}
+
+| Test | Chi-squared | df	| p-valor |
+|------------------------------|:------:|:-----:|:-------:|
+| Kruskal-Wallis rank sum test | 318.17	| 1 |	0 |
+
+  La estimación de la transferencia de entropía de Shannon resultante indica que hay un flujo de información significativo de la variable en análisis al PM~2.5~ en la escala temporal diaria. 
+  
+```{r pblhoruso, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pblhoruso)"}
+knitr::include_graphics("images/imagescap5/pblhoruso.png")
+```
+(ref:pblhoruso)
+
+  A partir del gráfico se puede apreciar que la variación de altura de la capa limite a lo largo de las horas del día en los distintos usos de suelo es prácticamente similar, la única salvedad es que durante la mañana la altura es inferior en los sitios industriales y mayor en el agrícola / área verde, mientras que esta relación se invierte al atardecer donde la altura de la capa limite atmosférica es mayor en el uso de suelo urbano respecto a los demás sitios. En este caso durante la madrugada y la mañana se favorecerían mayores concentraciones en los sitios de uso de suelo agrícola /  área verde, mientras que al atardecer y la noche se favorecerían menores concentraciones en los sitios de uso de suelo urbano. Cabe destacar que la variación en la variable es muy baja como para generar variaciones respecto a la concentración de contaminantes y se asume que la variabilidad de la misma es independiente del uso de suelo.  
+
+#### Tráfico (Google Traffic).
+
+```{r trafdia, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:trafdia)"}
+knitr::include_graphics("images/imagescap5/trafdia.png")
+```
+(ref:trafdia) Perfil de variación promedio diario del tráfico a lo largo de la semana.
+
+  La variacion de los promedios diarios del trafico a lo largo de la semana indica que este registra sus mayores valores en el transcruso de la misma y los menores durante los fines de semana. 
+
+```{r trafhor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:trafhor)"}
+knitr::include_graphics("images/imagescap5/trafhor.png")
+```
+(ref:trafhor) Perfil de variación promedio horario del tráfico a lo largo del día.
+  
+  Se aprecia el ciclo que describe el tráfico a lo largo de las horas del día, podemos ver existen dos momentos en el día en que el tráfico es notablemente superior al resto del día, estos ocurren a las 12 horas y a las 20 horas. Durante el resto del día el tráfico de automóviles se reduce, hasta que decrece a sus valores mínimos entre las 24 y 5 horas.
+
+```{r pmtrafdia, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmtrafdia)"}
+knitr::include_graphics("images/imagescap5/pmtrafdia.png")
+```
+(ref:pmtrafdia) Perfil de variación conjunto de los promedios diarios del PM~2.5~ y el tráfico a lo largo de la semana.
+
+  El perfil de variacion conjunto de los promedios diarios del trafico con la concentracion de material particulado permite apreciar una gran coincidencia entre los valores, los picos de material particulado podrian ser explicados por los dias de mayor trafico, mientras que el decrecimineto de las concentraciones durante los fines de semana se caracteriza por menores traficos registrados. De esta forma podria suponerse que la relacion que vincula ambas variables es inversamente proporcional. 
+
+```{r pmtrafhor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmtrafhor)"}
+knitr::include_graphics("images/imagescap5/pmtrafhor.png")
+```
+(ref:pmtrafhor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y el tráfico a lo largo del día. 
+
+  A partir de este gráfico podemos ver que de manera individual el transito no determina la concentración de material particulado, sin embargo, hay horas del día en donde los valores que toman ambas variables se encuentran sumamente vinculados. Esto es así, por ejemplo, en el pico entre las 8,9 de la mañana, el cual ocurre de forma simultánea en con un aumento del tráfico. Por otra parte, entre las 12 y 18 horas el tráfico se reduce describiendo una disminución constante, la cual se encuentra vinculado a una reducción del material particulado en la misma franja horaria. Finalmente, desde las 18 hasta las 20 horas podemos ver un aumento en ambas variables, que termina des coordinándose dado a que el tráfico disminuye hacia el anochecer y la concentración de material particulado aumenta, lo cual podria verse relacionado al efecto sinergico con otras variables. 
+  Los periodos en los que ocurre una desvinculación de la tendencia de ambas variables dejan en evidencia que la concentración de material particulado no se encuentra determinada únicamente por esta variable y que la dinámica de variación del material particulado se encuentra enmarcada en un proceso mucho más complejo, donde es necesario involucrar otras variables para lograr describir el fenómeno de manera completa, en este caso podemos apreciar una desvinculación entre las 20 y 23 horas y a la mañana cuando el trafico es bajo pero las concentraciones registradas son altas. 
+
+```{r pmtrafdiahor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmtrafdiahor)"}
+knitr::include_graphics("images/imagescap5/pmtrafdiahor.png")
+```
+(ref:pmtrafdiahor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y el tráfico en el día a lo largo de la semana.
+
+Table: PM~2.5~ promedio horario en los días en que el tráfico es mayor y menor a la media.\label{tab:}
+
+| Trafico | PM~2.5~ |
+|-------------|:-------:|
+| Alta | 10.49 |
+| Baja | 13.39 |
+
+  Podemos ver que en las horas del día en que el tráfico es bajo la concentración media de material particulado horaria registrada es inferior a la registrada en las horas en que el tráfico es alto.
+
+Table: Test de Kruskal-Wallies para el PM~2.5~ promedio horario en los días en que el tráfico es mayor y menor a la media.\label{tab:KW}
+
+| Test | Chi-squared | df	| p-valor |
+|------------------------------|:------:|:-----:|:-------:|
+| Kruskal-Wallis rank sum test | 250.55	| 1 |	0 |
+
+  A un nivel de significancia del 5% podemos establecer que la muestra reúne evidencias suficientes para rechazar la hipótesis nula, con lo cual se concluye que las muestras provienen de poblaciones con distribución distinta, o bien que sus medias son significativamente diferentes.
+
+```{r pmpbltrafhor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmpbltrafhor)"}
+knitr::include_graphics("images/imagescap5/pmpbltrafhor.png")
+```
+(ref:pmpbltrafhor) Perfil de variación conjunto de los promedios horarios del PM~2.5~, el tráfico y la altura de la capa limite atmosférica a lo largo del día.
+
+  A partir del análisis exploratorio realizado previamente podemos notar que ambas variables influyen en la dinámica de variación a lo largo del día de la concentración de material particulado en distinta medida, la variación de la capa limite atmosférica parece ser más determinante que la variación del tráfico para la variable respuesta. La relación descripta anteriormente para ambas variables permitiría hallar valores alto de concentración durante las horas del día en que la altura de la capa limite atmosférica es baja o bien sufre rápido decrecimiento y cuando el tráfico de vehículos es alto o bien sufre un aumento. Podemos ver que le pico de material particulado entre las 8 y 9 horas se caracteriza por una altura de capa limite atmosférica baja y un aumento en el tráfico. Por otra parte, el bache de concentración entre las 11 y 19 horas se encuentra determinado principalmente por el gran aumento de la altura de la capa limite atmosférica. Finalmente, el pico de las 22 horas se encuentra vinculado a la reducción de la altura de la capa limite atmosférica y al alto tráfico, que ocurre desde las 19 horas en adelante. 
+
+```{r trafhoruso, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:trafhoruso)"}
+knitr::include_graphics("images/imagescap5/trafhoruso.png")
+```
+(ref:trafhoruso) Perfil de variación promedio horario del tráfico a lo largo del día discriminado por uso de suelo. 
+
+  La figura permite observar que el trafico difiere en funcion del uso de suelo a lo largo de las horas del dia, los picos maximos de trafico se alcanzan en los sitios con uso de suelo urbano, el uso de suelo cuyo trafico es mayor en promedio y sostenidamente es en el industrial, y el menor trafico es registrado en el uso de suelo agricola/area verde, podria suponerse que este sea un factor relevante en determinar las concentraciones en los distintos usos de suelo. 
+
+#### Temperatura de la superficie terrestre (LST).
+
+```{r lstmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:lstmes)"}
+knitr::include_graphics("images/imagescap5/lstmes.png")
+```
+(ref:lstmes) Perfil de variación promedio mensual de la temperatura de la superficie terrestre a lo largo del año.
+
+  Puede apreciarse el patrón de variación de la temperatura de la superficie terreste  a lo largo de los meses del año, los menores valores registrados ocurren durante  el otoño e invierno, mientras que los mayores valores se registran durante la primavera y el verano. 
+  
+```{r lsthor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:lsthor)"}
+knitr::include_graphics("images/imagescap5/lsthor.png")
+```
+(ref:lsthor) Perfil de variación promedio horario de la temperatura de la superficie terrestre a lo largo de las horas del día.
+
+  El grafico muestra como la temperatura de la superficie terrestre aumenta durante las horas de sol, mientras que al anochecer este disminuye notablemente. 
+
+```{r lstesthor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:lstesthor)"}
+knitr::include_graphics("images/imagescap5/lstesthor.png")
+```
+(ref:lstesthor) Perfil de variación promedio horario de la temperatura de la superficie terrestre a lo largo de las horas del día en las distintas estaciones del año.
+  
+  Puede apreciarse que el ciclo que describe la temperatura de la superficie terrestre a lo largo de las horas del dia en las distintas estaciones permanece constante a lo largo de las mismas, a pesar de esto mayores valores de la variable son registrados durante la primavera y el verano, en comparacion con los registrados durante el otoño e invierno. 
+
+```{r pmlstmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmlstmes)"}
+knitr::include_graphics("images/imagescap5/pmlstmes.png")
+```
+(ref:pmlstmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la temperatura de la superficie terrestre a lo largo del año.
+
+  Se puede apreciar la relacion conjunta mensual a lo largo del año para las variables, la cual permite confirmar que a menores temperaturas de la superficie terreste las concentraciones son mayores, mientras que cuando la temperatura de la superficie terreste aumenta las concentraciones disminuyen, describiendo una relacion inversamente proporcional. 
+
+```{r pmlsthor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmlsthor)"}
+knitr::include_graphics("images/imagescap5/pmlsthor.png")
+```
+(ref:pmlsthor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la temperatura de la superficie terrestre a lo largo del día.
+
+  A lo largo de las horas del dia se puede observar como cuando la temperatura de la superficie terrestre aumenta las concentraciones disminuyen, mientras que cuando la temperatura decae, las concentraciones tambien lo hacen. 
+
+```{r pmlstesthor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmlstesthor)"}
+knitr::include_graphics("images/imagescap5/pmlstesthor.png")
+```
+(ref:pmlstesthor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la temperatura de la superficie terrestre a lo largo del día en las distintas estaciones del año.
+
+  Se puede apreciar como en las estaciones en que la temperatura de la superficie terreste registra menores valores las cocentraciones de material particulado aumentan notablemente, respecto a las estaciones en que las temperaturas son superiores. 
+
+Table: PM~2.5~ promedio horario en los días en que el LST es mayor y menor a la media.\label{tab:}
+
+| LST | PM~2.5~ |
+|-------------|:-------:|
+| Alta |	10.60 |
+| Baja | 13.34 |
+
+  Podemos ver que en las horas del día en que la velocidad del viento es baja la concentración media de material particulado horaria registrada es superior a la registrada en las horas en que la velocidad del viento es alta.
+
+Table: Test de Kruskal-Wallies para el PM~2.5~ promedio horario en los días en que el LST es mayor y menor a la media.\label{tab:KW}
+
+| Test | Chi-squared | df	| p-valor |
+|------------------------------|:------:|:-----:|:-------:|
+| Kruskal-Wallis rank sum test | 223.13	| 1 |	0 |
+
+  A un nivel de significancia del 5% podemos establecer que la muestra reúne evidencias suficientes para rechazar la hipótesis nula, con lo cual se concluye que las muestras provienen de poblaciones con distribución distinta, o bien que sus medias son significativamente diferentes.
+
+#### Índice de Vegetación de Diferencia Normalizada (NDVI)
+
+```{r ndvimes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:ndvimes)"}
+knitr::include_graphics("images/imagescap5/ndvimes.png")
+```
+(ref:ndvimes) Perfil de variación promedio mensual del índice de vegetación de diferencia normalizada a lo largo del año.
+
+  A partir de la figura se puede registrar que los mayores valores de promedios mensuales de NDVI a lo largo del año ocurren durante el verano, diminuyendo el resto del año, hasta alcanzar su minimo en agosto y retomando la tendencia creciente a partir del incio de la primavera. 
+
+```{r pmndvimes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pmndvimes)"}
+knitr::include_graphics("images/imagescap5/pmndvimes.png")
+```
+(ref:pmndvimes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y del índice de vegetación de diferencia normalizada a lo largo del año.
+
+  La figura permite analizar la realcion mensual existente entre la variable respuesta y el NDVI en sus promedios mensuales a lo largo del año, se puede apreciar que cuando la vegetacion es alta, las concentraciones tienden a disminuir, mientras que cuando la vegetacion se reduce las concentracioens aumentan, esto podria estar vinculado a las condiciones meteorologicas de las distintas estaciones del año que favorecen el crecimiento de la vegetacion y mas que a la densidad de vegetacion en la ciudad. 
+  
+Table: PM~2.5~ promedio horario en los días en que el NDVI es mayor y menor a la media.\label{tab:}
+
+| NDVI | PM~2.5~ |
+|-------------|:-------:|
+| Alta | 11.53 |
+| Baja | 12.72 |
+
+  Podemos ver que en las horas del día en que la velocidad del viento es baja la concentración media de material particulado horaria registrada es superior a la registrada en las horas en que la velocidad del viento es alta.
+
+Table: Test de Kruskal-Wallies para el PM~2.5~ promedio horario en los días en que el NDVI es mayor y menor a la media.\label{tab:KW}
+
+| Test | Chi-squared | df	| p-valor |
+|------------------------------|:------:|:-----:|:-------:|
+| Kruskal-Wallis rank sum test | 21.26	| 1 |	0 |
+
+  A un nivel de significancia del 5% podemos establecer que la muestra reúne evidencias suficientes para rechazar la hipótesis nula, con lo cual se concluye que las muestras provienen de poblaciones con distribución distinta, o bien que sus medias son significativamente diferentes.
+
+### Analisis variables satelitales como series temporales:
+
+### Profundidad óptica de los aerosoles (AOD).
+  Incluyo analisis diario de esta variable como consecuencia que la frecuencia de los datos registrados es diaria. 
+```{r aodserie, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:aodserie)"}
+knitr::include_graphics("images/imagescap5/aodserie.png")
+```
+(ref:aodserie) Gráfico de la serie horaria de profundidad óptica de los aerosoles.
+
+```{r aodacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:aodacf)"}
+knitr::include_graphics("images/imagescap5/aodacf1_diario.png")
+```
+(ref:aodacf) Gráfico de la función de autocorrelación simple de la serie.
+
+```{r aodpacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:aodpacf)"}
+knitr::include_graphics("images/imagescap5/aodpacf1_diario.png")
+```
+(ref:aodpacf) Gráfico de la función de autocorrelación simple de la serie.
+
+  Un modelo teórico es ajustado, de esta forma se logra filtrar la estructura de la serie de la variable en cuestión, asi se quitan las tendencias, ciclos y patrones, luego la variable respuesta es filtrada por este modelo teórico y de esta forma se evitar que el calculo de la correlación cruzada se vea afectado por estos factores. 
+
+```{r aodacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:aodacf2)"}
+knitr::include_graphics("images/imagescap5/aodacf2_diario.png")
+```
+(ref:aodacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+```{r aodpacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:aodpacf2)"}
+knitr::include_graphics("images/imagescap5/aodpacf2_diario.png")
+```
+(ref:aodpacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+  Se puede apreciar que luego del ajuste del modelo teórico las tendencias ciclos y patrones existentes previamente en la serie se han reducido notablemente, esto nos permitirá calcular la correlación cruzada sin la influencia de estos efectos espuria. 
+
+```{r aodccfantes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:aodccfantes)"}
+knitr::include_graphics("images/imagescap5/aodccfantes_diario.png")
+```
+(ref:aodccfantes) Gráfico de la correlación cruzada entre las series previo a ser filtradas por el modelo teórico.
+
+  Previo al filtrado de las series por el modelo teórico ajustado, se puede apreciar que la correlación cruzada permite identificar como correlacionados significativamente con el PM~2.5~ en el tiempo presente a numerosos valores en tiempos pasados de la profundiad optica de aerosoles, esta correlación es negativa indicando una relacion inversamente proporcional. 
+
+```{r aodccf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:aodccf)"}
+knitr::include_graphics("images/imagescap5/aodccf_diario.png")
+```
+(ref:aodccf) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico.
+
+  A partir de la figura (), se puede apreciar que las correlaciones significativas que perduran luego del procedimiento de filtrado de las series son los pasados en los tiempos t-0, t-1, t-2 y t-3, cuyos coeficientes son positivos. A partir de este procedimiento se determino que los pasados en tiempos t-0, t-1, t-2 y t-3 de la profundidad óptica de aerosoles tienen capacidad para predecir el material particulado en el presente, describiendo una relación directamente proporcional.   
+
+Table: Transferencia de entropía por medio del incide de Shannon, de la variable analizada al PM~2.5~.\label{tab:aodSE}
+Transferencia de entropía; Transferencia de entropía efectiva; Error estándar; Valor p.
+
+| Transferencia | Transferencia efectiva | Error estándar	| p-valor |
+|:--------:|:--------:|:--------:|:--------:|
+| 0.00955 | 0.00871 | 0.00033 | 0 |
+			
+  La estimación de la transferencia de entropía de Shannon resultante indica que hay un flujo de información significativo de la variable en análisis al PM~2.5~.
+  
+  La estimación de la transferencia de entropía de Shannon resultante indica que no hay un flujo de información significativo de la variable en análisis al PM~2.5~. Esto puede deberse a que la relación entre las variables puede estar caracterizada por una notable complejidad que es incapaz de ser captada por esta metodología. 
+  
+### Altura de la capa limite atmosferica (PBL)
+
+```{r pblserie, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pblserie)"}
+knitr::include_graphics("images/imagescap5/pblserie.png")
+```
+(ref:pblserie) Gráfico de la serie horaria de altura de la capa limite atmosferica .
+
+```{r pblacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pblacf)"}
+knitr::include_graphics("images/imagescap5/pblacf1.png")
+```
+(ref:pblacf) Gráfico de la función de autocorrelación simple de la serie.
+
+```{r pblpacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pblpacf)"}
+knitr::include_graphics("images/imagescap5/pblpacf1.png")
+```
+(ref:pblpacf) Gráfico de la función de autocorrelación simple de la serie.
+
+  Un modelo teórico es ajustado, de esta forma se logra filtrar la estructura de la serie de la variable en cuestión, asi se quitan las tendencias, ciclos y patrones, luego la variable respuesta es filtrada por este modelo teórico y de esta forma se evitar que el calculo de la correlación cruzada se vea afectado por estos factores. 
+
+```{r pblacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pblacf2)"}
+knitr::include_graphics("images/imagescap5/pblacf2.png")
+```
+(ref:pblacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+```{r pblpacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pblpacf2)"}
+knitr::include_graphics("images/imagescap5/pblpacf2.png")
+```
+(ref:pblpacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+  Se puede apreciar que luego del ajuste del modelo teórico las tendencias ciclos y patrones existentes previamente en la serie se han reducido notablemente, esto nos permitirá calcular la correlación cruzada sin la influencia de estos efectos espuria. 
+
+```{r pblccfantes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pblccfantes)"}
+knitr::include_graphics("images/imagescap5/pblccfantes.png")
+```
+(ref:pblccfantes) Gráfico de la correlación cruzada entre las series previo a ser filtradas por el modelo teórico.
+
+  Previo al filtrado de las series por el modelo teórico ajustado, se puede apreciar que la correlación cruzada permite identificar como correlacionados significativamente con el PM~2.5~ en el tiempo en el presente a numerosos valores en tiempos pasados de la altura de la capa limite atmosférica, esta correlación es positiva en tiempos pasados cercanos y negativa en tiempos pasados mas alejados.
+
+```{r pblccf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:pblccf)"}
+knitr::include_graphics("images/imagescap5/pblccf.png")
+```
+(ref:pblccf) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico.
+
+  A partir de la figura (), se puede apreciar que la correlacion significativa que perdura luego del procedimiento de filtrado de las series el pasado en el tiempo t-24, cuyo coeficiente es negativo. A partir de este procedimiento se determino que el pasado en tiempo t-24 de la altura de la capa limite atmosferica tiene capacidad para predecir el material particulado en el presente, describiendo una relación inversamente proporcional. 
+
+Table: Transferencia de entropía por medio del incide de Shannon, de la variable analizada al PM~2.5~.\label{tab:pblSE}
+Transferencia de entropía; Transferencia de entropía efectiva; Error estándar; Valor p.
+
+| Transferencia | Transferencia efectiva | Error estándar	| p-valor |
+|:--------:|:--------:|:--------:|:--------:|
+| 0.00109 | 0.00025 | 0.00032 | 0.18667 |
+
+  La estimación de la transferencia de entropía de Shannon resultante indica que no hay un flujo de información significativo de la variable en análisis al PM~2.5~. Esto puede deberse a que la relación entre las variables puede estar caracterizada por una notable complejidad que es incapaz de ser captada por esta metodología. 
+  
+### Temperatura de la superficie terrestre (LST)
+
+```{r lstserie, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:lstserie)"}
+knitr::include_graphics("images/imagescap5/lstserie.png")
+```
+(ref:lstserie) Gráfico de la serie horaria de temperatura de la superficie terrestre.
+
+```{r lstacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:lstacf)"}
+knitr::include_graphics("images/imagescap5/lstacf1.png")
+```
+(ref:lstacf) Gráfico de la función de autocorrelación simple de la serie.
+
+```{r lstpacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:lstpacf)"}
+knitr::include_graphics("images/imagescap5/lstpacf1.png")
+```
+(ref:lstpacf) Gráfico de la función de autocorrelación simple de la serie.
+
+  Un modelo teórico es ajustado, de esta forma se logra filtrar la estructura de la serie de la variable en cuestión, asi se quitan las tendencias, ciclos y patrones, luego la variable respuesta es filtrada por este modelo teórico y de esta forma se evitar que el calculo de la correlación cruzada se vea afectado por estos factores. 
+
+```{r lstacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:lstacf2)"}
+knitr::include_graphics("images/imagescap5/lstacf2.png")
+```
+(ref:lstacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+```{r lstpacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:lstpacf2)"}
+knitr::include_graphics("images/imagescap5/lstpacf2.png")
+```
+(ref:lstpacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+  Se puede apreciar que luego del ajuste del modelo teórico las tendencias ciclos y patrones existentes previamente en la serie se han reducido notablemente, esto nos permitirá calcular la correlación cruzada sin la influencia de estos efectos espuria. 
+
+```{r lstccfantes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:lstccfantes)"}
+knitr::include_graphics("images/imagescap5/lstccfantes.png")
+```
+(ref:lstccfantes) Gráfico de la correlación cruzada entre las series previo a ser filtradas por el modelo teórico.
+
+ Previo al filtrado de las series por el modelo teórico ajustado, se puede apreciar que la correlación cruzada permite identificar como correlacionados significativamente con el PM~2.5~ en el tiempo en el presente a numerosos valores en tiempos pasados de la temperatura de la superficie terrestre, esta correlación es negativa, indicando una relacion inversametne proporcional. 
+
+```{r lstccf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:lstccf)"}
+knitr::include_graphics("images/imagescap5/lstccf.png")
+```
+(ref:lstccf) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico.
+
+  A partir de la figura (), se puede apreciar que la correlacion significativa que perdura luego del procedimiento de filtrado de las series es en el tiempo t, cuyo coeficiente es positivo. A partir de este procedimiento se determino el presente de la temperatura de la superficie terrestre tiene capacidad para predecir el material particulado en el presente, describiendo una relación directamente proporcional. 
+  
+Table: Transferencia de entropía por medio del incide de Shannon, de la variable analizada al PM~2.5~.\label{tab:lstSE}
+Transferencia de entropía; Transferencia de entropía efectiva; Error estándar; Valor p.
+
+| Transferencia | Transferencia efectiva | Error estándar	| p-valor |
+|:--------:|:--------:|:--------:|:--------:|
+| 0.01141 | 0 | 0.00585 | 0.56333 |
+		
+  La estimación de la transferencia de entropía de Shannon resultante indica que no hay un flujo de información significativo de la variable en análisis al PM~2.5~. Esto puede deberse a que la relación entre las variables puede estar caracterizada por una notable complejidad que es incapaz de ser captada por esta metodología. 
+
+### Índice de Vegetación de Diferencia Normalizada (NDVI)
+
+  Analisis diario de la variable como consecuencia de la frecuencia de toma de datos de la misma. 
+
+```{r ndviserie, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:ndviserie)"}
+knitr::include_graphics("images/imagescap5/ndviserie.png")
+```
+(ref:ndviserie) Gráfico de la serie horaria del índice de vegetación de diferencia normalizada.
+
+```{r ndviacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:ndviacf)"}
+knitr::include_graphics("images/imagescap5/ndviacf1_diario.png")
+```
+(ref:ndviacf) Gráfico de la función de autocorrelación simple de la serie.
+
+```{r ndvipacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:ndvipacf)"}
+knitr::include_graphics("images/imagescap5/ndvipacf1_diario.png")
+```
+(ref:ndvipacf) Gráfico de la función de autocorrelación simple de la serie.
+
+  Un modelo teórico es ajustado, de esta forma se logra filtrar la estructura de la serie de la variable en cuestión, asi se quitan las tendencias, ciclos y patrones, luego la variable respuesta es filtrada por este modelo teórico y de esta forma se evitar que el calculo de la correlación cruzada se vea afectado por estos factores. 
+
+```{r ndviacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:ndviacf2)"}
+knitr::include_graphics("images/imagescap5/ndviacf2_diario.png")
+```
+(ref:ndviacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+```{r ndvipacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:ndvipacf2)"}
+knitr::include_graphics("images/imagescap5/ndvipacf2_diario.png")
+```
+(ref:ndvipacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+  Se puede apreciar que luego del ajuste del modelo teórico las tendencias ciclos y patrones existentes previamente en la serie se han reducido notablemente, esto nos permitirá calcular la correlación cruzada sin la influencia de estos efectos espuria. 
+
+```{r ndviccfantes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:ndviccfantes)"}
+knitr::include_graphics("images/imagescap5/ndviccfantes_diario.png")
+```
+(ref:ndviccfantes) Gráfico de la correlación cruzada entre las series previo a ser filtradas por el modelo teórico.
+
+ Previo al filtrado de las series por el modelo teórico ajustado, se puede apreciar que la correlación cruzada permite identificar como correlacionados significativamente con el PM~2.5~ en el tiempo presente a numerosos valores en tiempos pasados del índice de vegetación de diferencia normalizada, esta correlación es negativa, indicando una relación inversamente proporcional. 
+
+```{r ndviccf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:ndviccf)"}
+knitr::include_graphics("images/imagescap5/ndviccf_diario.png")
+```
+(ref:ndviccf) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico.
+
+  A partir de la figura (), se puede apreciar que no hay correlaciones significativas que perduren luego del procedimiento de filtrado de las series es en el tiempo, indicando que la variable de analisis no tiene capacidad para predecir el material particulado en el presente.
+  
+Table: Transferencia de entropía por medio del incide de Shannon, de la variable analizada al PM~2.5~.\label{tab:ndviSE}
+Transferencia de entropía; Transferencia de entropía efectiva; Error estándar; Valor p.
+
+| Transferencia | Transferencia efectiva | Error estándar	| p-valor |
+|:--------:|:--------:|:--------:|:--------:|
+| 0.0021 | 0.00128 | 0.00035 | 0.00333 |
+
+  La estimación de la transferencia de entropía de Shannon resultante indica que no hay un flujo de información significativo de la variable en análisis al PM~2.5~. Esto puede deberse a que la relación entre las variables puede estar caracterizada por una notable complejidad que es incapaz de ser captada por esta metodología. 
+
+### Trafico (Google Traffic)
+
+```{r trafserie, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:trafserie)"}
+knitr::include_graphics("images/imagescap5/trafserie.png")
+```
+(ref:trafserie) Gráfico de la serie horaria de trafico.
+
+```{r trafacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:trafacf)"}
+knitr::include_graphics("images/imagescap5/trafacf1.png")
+```
+(ref:trafacf) Gráfico de la función de autocorrelación simple de la serie.
+
+```{r trafpacf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:trafpacf)"}
+knitr::include_graphics("images/imagescap5/trafpacf1.png")
+```
+(ref:trafpacf) Gráfico de la función de autocorrelación simple de la serie.
+
+  Un modelo teórico es ajustado, de esta forma se logra filtrar la estructura de la serie de la variable en cuestión, asi se quitan las tendencias, ciclos y patrones, luego la variable respuesta es filtrada por este modelo teórico y de esta forma se evitar que el calculo de la correlación cruzada se vea afectado por estos factores. 
+
+```{r trafacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:trafacf2)"}
+knitr::include_graphics("images/imagescap5/trafacf2.png")
+```
+(ref:trafacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+```{r trafpacf2, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:trafpacf2)"}
+knitr::include_graphics("images/imagescap5/trafpacf2.png")
+```
+(ref:trafpacf2) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+  Se puede apreciar que luego del ajuste del modelo teórico las tendencias ciclos y patrones existentes previamente en la serie se han reducido notablemente, esto nos permitirá calcular la correlación cruzada sin la influencia de estos efectos espuria. 
+
+```{r trafccfantes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:trafccfantes)"}
+knitr::include_graphics("images/imagescap5/trafccfantes.png")
+```
+(ref:trafccfantes) Gráfico de la correlación cruzada entre las series previo a ser filtradas por el modelo teórico.
+
+ Previo al filtrado de las series por el modelo teórico ajustado, se puede apreciar que la correlación cruzada permite identificar como correlacionados significativamente con el PM~2.5~ en el tiempo presente a numerosos valores en tiempos pasados del trafico, esta correlación es positiva en los pasados cercanos e invierte su signo en los pasados lejanos.
+
+```{r trafccf, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:trafccf)"}
+knitr::include_graphics("images/imagescap5/trafccf.png")
+```
+(ref:trafccf) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico.
+
+  A partir de la figura (), se puede apreciar que las correlaciones significativas que perduran luego del procedimiento de filtrado de las series son en los tiempos t-17, t-16, t-15, t-10, t-9, t-1 y t, con coeficientes positivos. A partir de este procedimiento se determino que los pasados en los tiempos t-17, t-16, t-15, t-10, t-9, t-1 y t del trafico tiene capacidad para predecir el material particulado en el presente, describiendo una relación directamente proporcional. 
+  
+Table: Transferencia de entropía por medio del incide de Shannon, de la variable analizada al PM~2.5~.\label{tab:trafSE}
+Transferencia de entropía; Transferencia de entropía efectiva; Error estándar; Valor p.
+
+| Transferencia | Transferencia efectiva | Error estándar	| p-valor |
+|:--------:|:--------:|:--------:|:--------:|
+| 0.00196 | 0.00116 | 0.00036 | 0.01 |
+
+  La estimación de la transferencia de entropía de Shannon resultante indica que no hay un flujo de información significativo de la variable en análisis al PM~2.5~. Esto puede deberse a que la relación entre las variables puede estar caracterizada por una notable complejidad que es incapaz de ser captada por esta metodología. 
+
+## Conclusión

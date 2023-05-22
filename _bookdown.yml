@@ -1,0 +1,23 @@
+new_session: yes
+delete_merged_file: yes
+
+output_dir: "docs"
+
+rmd_files:
+  [
+    "index.Rmd",
+    "01_intro_gral.Rmd",
+    "02_low_cost.Rmd",
+    "03_exploratorio.Rmd",
+    "04_vars.Rmd",
+    "05_predictivo.Rmd",
+    "06_sintesis.Rmd",
+    "07_anexo.Rmd",
+    "bibliografia.Rmd"
+      ]
+
+download: [["RodriguezNuñezMartin.pdf", "PDF"]]
+
+language:
+  ui:
+    chapter_name: "Capítulo "
