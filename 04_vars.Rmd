@@ -20,23 +20,9 @@
 
 ## Materiales y métodos
 
-<!-- ### Enfoque de trabajo -->
-
-<!--   Los capítulos [4](#cap:var) y [5](#cap:pred), se hayan enmarcados dentro de un enfoque de trabajo basado en el aprendizaje automático. -->
-
-<!--   Uno de los principales desafíos en el modelado predictivo a través de técnicas de aprendizaje automático es la selección de características o variables predictoras que alimentaran al modelo [@li2019influence; @rumao2019exploration; @cai2018feature].  -->
-
-<!--   Es factible que las variables relevantes para el desarrollo de un modelo predictivo de elevada exactitud puedan no solo ser las recomendadas por la literatura y bibliografía. De esta forma pueden existir otras variables cuya inclusión conjunta con las sustentadas por bibliografía, desencadenen un comportamiento sinérgico que potencie la exactitud de los modelos predictivos desarrollados. De esta forma, uno de los abordajes utilizados en el modelado predictivo a partir de técnicas de aprendizaje automático es la selección de características a partir de grandes bases de datos, con el objetivo de discernir su orden de relevancia a la hora de desarrollar el modelo predictivo.  -->
-
-<!--   En esta tesis la variable predictora a modelar es la concentración de PM~2.5~ a partir de variables meteorológicas y satelitales. Para abordar el problema enmarcado en determinar la potencialidad de estas variables para modelar la respuesta y su influencia relativa en la misma, fue que se creó una amplia base de datos, la cual involucró no solo aquellas variables regresoras respaldadas por la bibliografía, sino que también numerosas que no se hallan explícitamente mencionadas.  -->
-
-<!--   En este contexto, las técnicas de selección de características son una herramienta útil para reducir la complejidad y seleccionar las variables de mayor relevancia para desarrollar un modelo predictivo [@khalid2014survey; @venkatesh2019review]. Es importante destacar que, en algunos casos, las variables seleccionadas pueden no tener un respaldo explícito en la literatura existente, sin embargo, esto no significa que estas sean irrelevantes o que el modelo sea incorrecto. En muchos casos, estas pueden estar relacionadas de manera compleja e indirecta con el fenómeno que se está modelando. De esta forma su inclusión al modelo conjuntamente con las variables sustentadas por bibliografía permite aumentar la exactitud de las predicciones otorgadas. Gracias a la implementación de técnicas de aprendizaje automático, es que muchas de estas vinculaciones pueden ser desenmascaradas y estudiadas, permitiendo derivar una interpretación teórica de su influencia [@suparwito2021student; @lima2016use]. -->
-
-<!--   De esta forma los modelos predictivos desarrollados en el capítulo [5](#cap:pred) no solo incluyen las variables destacadas como relevantes según la bibliografía, sino que también incorporan otras variables satelitales que permiten aumentar la exactitud de las predicciones obtenidas. Además, en el presente capítulo las variables analizadas no solo son aquellas cuya relación con la concentración de PM~2.5~ se encuentra sustentada por biografía,  si no que también se encuentran involucradas aquellas que han sido identificadas a través del procedimiento de selección de características y modelado predictivo como las de mayor relevancia a la hora de modelar dicho fenómeno. -->
-
 ### Base de datos
 
-  La base de datos para el desarrollo de esta sección surge de la combinación de los datos recopilados durante el muestreo de PM~2.5~ con distintas bases de datos satelitales y meteorológicas. Entre estas se destaca la base de datos de ERA5 que surge del reanálisis realizado por el Centro Europeo de Previsión Meteorológica a Plazo Medio (ECMWF) para el clima global [@hersbach2020era5; @bell2021era5]. Este método de estimación combina modelos predictivos con observaciones a lo largo de todo el mundo, dando por resultado un conjunto de datos completo a escala global, cuyo principio de funcionamiento se basa en la asimilación de datos. Esta base de datos cuenta con estimaciones horarias para un gran número de variables atmosféricas, oceánicas y terrestres, con una resolución espacial de 0.25 grados. Además, se destaca la inclusión de otras variables provenientes de las mediciones del sensor MODIS a bordo de los satélites Terra y Aqua de la Administración Nacional de Aeronáutica y el Espacio (NASA) [@savtchenko2004terra; @lyapustin2019maiac; @lyapustin2018modis; @hulley2014thermal], datos obtenidos a partir del análisis retrospectivo de la era moderna para investigación y aplicaciones, versión 2 (MERRA-2) [@bosilovich2015merra] y la base de datos de Google Traffic [@wu2007google]. Una descripción completa de cada una de las variables involucradas se encuentra en el [Anexo](#cap:anx).
+  La base de datos para el desarrollo de esta sección surge de la combinación de los datos recopilados durante el muestreo de PM~2.5~ (ver capítulo [2](#cap:expl) para más detalles) con distintas bases de datos satelitales. Entre estas se destaca la base de datos de ERA5 que surge del reanálisis realizado por el Centro Europeo de Previsión Meteorológica a Plazo Medio (ECMWF) para el clima global [@hersbach2020era5; @bell2021era5]. Este método de estimación combina modelos predictivos con observaciones a lo largo de todo el mundo, dando por resultado un conjunto de datos completo a escala global, cuyo principio de funcionamiento se basa en la asimilación de datos. La base de datos cuenta con estimaciones horarias para 172 variables atmosféricas, oceánicas y terrestres, con una resolución espacial de 0.25 grados, descargadas desde la plataforma ERA5. Además, se incluyeron otras covariables, citadas en la literatura como relevantes para el PM~2.5~, provenientes de las mediciones del sensor MODIS a bordo de los satélites Terra y Aqua de la Administración Nacional de Aeronáutica y el Espacio (NASA) [@savtchenko2004terra; @lyapustin2019maiac; @lyapustin2018modis; @hulley2014thermal], datos obtenidos a partir del análisis retrospectivo de la era moderna para investigación y aplicaciones, versión 2 (MERRA-2) [@bosilovich2015merra] y la base de datos de Google Traffic [@wu2007google]. Una descripción completa de cada una de las variables involucradas se encuentra en el [Anexo](#cap:anx).
   
 Table: Fuentes de datos de variables satelitales. \label{tab:satdata}
 Referencia: Fuente de datos, dependencia, resolución espacial, resolución temporal y número total de variables descargadas.
@@ -50,8 +36,6 @@ Referencia: Fuente de datos, dependencia, resolución espacial, resolución temp
 | MERRA-2 (SODA) | NASA | 0.625°×0.5° | horaria | 9 |
 | VIIRS (VNP14A1) | NASA | 0.1°×0.1° | diaria | 1 |
 | MODIS (MOD11A1/MYD11A1) | NASA | 0.1°×0.1° | horaria | 1 |
-  
-  <!-- Las variables provenientes de la fuente ERA5 hacen referencia a un conjunto de variables climáticas atmosféricas, terrestres y oceánicas cuya información específica puede consultarse en [https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels?tab=overview](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels?tab=overview). Las fuentes de datos de MODIS-MAIAC (MCD19A2) [https://lpdaac.usgs.gov/products/mcd19a2v006/](https://lpdaac.usgs.gov/products/mcd19a2v006/) y MERRA-2 (M2IMNXGAS) [https://developers.google.com/earth-engine/datasets/catalog/NASA_GSFC_MERRA_aer_2](https://developers.google.com/earth-engine/datasets/catalog/NASA_GSFC_MERRA_aer_2), proveen información acerca de la variable profundidad óptica de aerosoles (AOD). La fuente de datos de MERRA-2 (M2T1NXFLX) [https://developers.google.com/earth-engine/datasets/catalog/NASA_GSFC_MERRA_flx_2](https://developers.google.com/earth-engine/datasets/catalog/NASA_GSFC_MERRA_flx_2), brinda información acerca de la variable capa límite atmosférica (PBLH). La fuente de datos de MERRA-2 (SODA) [https://www.soda-pro.com/web-services/meteo-data/merra](https://www.soda-pro.com/web-services/meteo-data/merra), brinda información acerca de múltiples variables meteorológicas. Por otra parte, la fuente de VIIRS (VNP14A1) [https://lpdaac.usgs.gov/products/vnp14a1v001/](https://lpdaac.usgs.gov/products/vnp14a1v001/), contiene información acerca de incendios y otras anomalías térmicas. Y finalmente, la fuente de MODIS (MOD11A1/MYD11A1) [https://lpdaac.usgs.gov/products/mod11a1v006/](https://lpdaac.usgs.gov/products/mod11a1v006/), provee información de la variable temperatura de la superficie terrestre (LST). -->
   
   A continuación se procede a brindar información respecto de las variables analizadas en la presente sección, estas no solo involucran las de mayor importancia según los sustentos bibliográficos, si no que también las de mayor relevancia en función de las retenidas por el enfoque de aprendizaje automático implementado, estas son:
 
@@ -269,12 +253,6 @@ knitr::include_graphics("images/imagescap4/rainmes.png")
   La figura \@ref(fig:rainmes) presenta el perfil de variación promedio mensual de la precipitación a lo largo del año. Puede observarse que durante la primavera y el verano, las precipitaciones aumentan notablemente en comparación con el otoño e invierno. Además, los mayores valores de precipitación se registraron en los meses de noviembre y febrero, mientras que los meses de mayo a octubre presentaron las menores precipitaciones.
   
   Puede notarse que en los meses en que las precipitaciones son altas, la concentración promedio mensual de PM~2.5~ se ve reducida, mientras que en los meses en que las precipitaciones son bajas, las concentraciones de PM~2.5~ presentan valores más elevados. De esta forma puede interpretarse que la relación que vincula ambas variables es del tipo inversa. Este hallazgo sugiere que la lluvia juega un papel fundamental en la reducción de los niveles de PM~2.5~ en la atmósfera.
-
-<!-- ```{r rainhor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:rainhor)"} -->
-<!-- knitr::include_graphics("images/imagescap4/rainhor.png") -->
-<!-- ``` -->
-<!-- (ref:rainhor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la preciptación a lo largo del día. -->
-
 
 Table: PM~2.5~ promedio horario en los días en las horas del día en que ocurren precipitaciones, tomando valores por encima y por debajo de su media condicionada por cada estación del año.\label{tab:rain}
 
@@ -610,13 +588,6 @@ knitr::include_graphics("images/imagescap4/rugmes.png")
 
   La figura \@ref(fig:rugmes) presenta el patrón de variación conjunto que describen los promedios mensuales de la rugosidad de la superficie terrestre y la concentración de PM~2.5~ a lo largo del año. A partir de esta puede notarse que los mayores valores de la variable se registran durante la primavera, específicamente en el mes de septiembre, mientras que el mínimo se da durante el verano, en el mes de marzo. Estos resultados sugieren que existe una relación de vinculación directa entre ambas variables, donde aumentos en la magnitud de la concentración del contaminante están favorecidos por mayores valores de rugosidad de la superficie terrestre.
 
-<!-- ```{r rughor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:rughor)"} -->
-<!-- knitr::include_graphics("images/imagescap4/rughor.png") -->
-<!-- ``` -->
-<!-- (ref:rughor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la rugosidad de la superficie terrestre a lo largo del día. -->
-
-<!--   La figura \@ref(fig:rughor) muestra el perfil de variación de la rugosidad de la superficie terrestre promedio horaria a lo largo del día, como es de esperar esta parece permanecer constante a lo largo de las distintas horas del día, no permitiendo visualizar una clara relación de variación conjunta. -->
-
 Table: PM~2.5~ promedio horario en los días en que la rugosidad de la superficie terrestre toma valores por encima y por debajo de su media condicionada por cada estación del año.\label{tab:rug}
 
 | Rugosidad | PM~2.5~ |
@@ -697,13 +668,6 @@ knitr::include_graphics("images/imagescap4/escmes.png")
 (ref:escmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la tasa media de escorrentía subterránea a lo largo del año.
 
   En la figura \@ref(fig:escmes) puede apreciarse el patrón de variación conjunto que describen los promedios mensuales de la tasa media de escorrentía subterránea y la concentración de PM~2.5~ a lo largo del año. Puede notarse que los valores de menor magnitud registrados para esta tasa ocurren en el verano durante los meses de diciembre, enero y febrero, mientras que los de mayor magnitud se registraron en el invierno durante el mes de junio. Puede notarse que la relación de vinculación entre ambas variables es del tipo directa, demostrando que bajas concentraciones se ven favorecidas por disminuciones de los valores que toma la variable, mientras que elevadas concentraciones se ven favorecidas por aumentos de la tasa media de escorrentía subterránea.
-
-<!-- ```{r eschor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:eschor)"} -->
-<!-- knitr::include_graphics("images/imagescap4/eschor.png") -->
-<!-- ``` -->
-<!-- (ref:eschor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la tasa media de escorrentía subterránea a lo largo del día. -->
-
-<!--   A partir de la figura \@ref(fig:eschor), puede apreciarse el patrón de variación de la tasa media de escorrentía subterránea promedio a lo largo de las horas del día puede notarse que esta escala temporal no demuestra la existencia de una clara tendencia de vinculación entre ambas variables. -->
 
 Table: PM~2.5~ promedio horario en los días en que la tasa media de escorrentía subterránea toma valores por encima y por debajo de su media condicionada por cada estación del año.\label{tab:esc}
 
@@ -921,4 +885,4 @@ knitr::include_graphics("images/imagescap4/mccfdisip.png")
 
 ## Conclusión
 
-  Los resultados del estudio indican que las variables satelitales y meteorológicas permitieron explicar la variabilidad espacio temporal del PM fino, por lo que su inclusión en el modelado predictivo logrará captar la variabilidad y obtener estimaciones más exactas de la concentración de PM fino. 
+  Los resultados del estudio indican que las variables satelitales y meteorológicas permitieron explicar la variabilidad espacio temporal del PM~2.5~, por lo que su inclusión en el modelado predictivo logrará captar la variabilidad y obtener estimaciones más exactas de la concentración de PM~2.5~. 
