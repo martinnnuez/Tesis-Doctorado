@@ -181,12 +181,12 @@ Table: Correlación lineal de Pearson entre las series de tiempo registradas por
 |:----------:|:------:|
 | Referencia | 0.93 | 
 
-  La tabla \@ref(tab:corr) muestra un coeficiente de correlación elevado entre las mediciones de la estación de referencia y los datos provenientes del sensor de bajo costo. Los resultados obtenidos permiten establecer que, a pesar de la subestimación del sensor de bajo costo, existe una gran similitud entre los datos registrados por ambos sistemas de medición.
+  La tabla \@ref(tab:corr) muestra un coeficiente de correlación elevado entre las mediciones de la estación de referencia y los datos provenientes del sensor de bajo costo. Los resultados obtenidos permiten establecer que, a pesar de la subestimación del sensor de bajo costo, existe una notable similitud entre los datos registrados por ambos sistemas de medición.
  
   Esto significa que, aunque los valores registrados por el sensor de bajo costo puedan ser ligeramente menores que los obtenidos por la estación de referencia, ambas fuentes de datos presentan patrones similares de variación de la concentración de material particulado. Por lo tanto, el uso de sensores de bajo costo podría ser una alternativa viable y económica para la medición de la concentración de PM en el aire, especialmente en áreas donde no se dispone de sistemas de medición de referencia o donde se requiera un mayor número de sensores distribuidos en la ciudad.
 
 ## Conclusión
 
-  Se puede concluir que los sensores de bajo costo presentaron una alta consistencia en sus mediciones, con registros similares independientemente del sensor utilizado. Esta consistencia entre los datos es un indicador de la fiabilidad de los sensores y sugiere que estos dispositivos pueden ser utilizados para monitorear la concentración de PM~2.5~ en el aire.
+  Los sensores de bajo costo presentaron consistencia en sus mediciones, demostrando registros similares independientemente del sensor utilizado. Esta consistencia entre los datos es un indicador de la fiabilidad de los sensores y sugiere que estos dispositivos pueden ser empleados para monitorear la concentración de PM~2.5~ en el aire.
   
-  Además, se puede afirmar que los datos registrados por los sensores de bajo costo son también consistentes con los datos de una estación de referencia, indicando que estos dispositivos proporcionan mediciones representativas de la concentración de material particulado. Por lo tanto, son una alternativa viable y económica para la medición de la calidad del aire en áreas urbanas y rurales.
+  Se puede afirmar que los datos registrados por los sensores de bajo costo son también consistentes con los datos recopilados por una estación de referencia, indicando que estos dispositivos proporcionan mediciones representativas de la concentración de material particulado. Por lo tanto, son una alternativa viable y económica para la medición de la calidad del aire en áreas urbanas y rurales.
