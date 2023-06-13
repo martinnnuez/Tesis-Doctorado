@@ -64,7 +64,7 @@ Table: Normativas y estándares de valores guía contra los cuales comparar la c
 
 ### Preprocesamiento de datos
 
-  Previo al análisis del patrón o tendencia a largo plazo de la serie de PM~2.5~ y la construcción de una base de datos a escala temporal horaria se llevó a cabo un proceso de depuración de datos. En este trabajo se busca comprender la variabilidad macro o promedio y no la debida a causas especiales en la micro escala. Por este motivo, se optó por implementar un estricto protocolo de depuración de datos puntuales aberrantes, excluyendo los eventos puntuales atípicos que no representan la variabilidad promedio de la concentración de PM~2.5~. La fundamentación del enfoque de preprocesamiento implementado se halla sustentado en los objetivos específicos de la tesis, donde se refleja la búsqueda de la relación existente entre la variabilidad promedio de la concentración de PM~2.5~ a través del año con distintas variables satelitales. Las influencias atípicas de la micro escala no aportan a describir el patrón general o promedio de los datos, a menos que esta influencia se repitan de forma reiterada, entonces dejarían de ser atípicas y formarían parte del patrón general o promedio. Por otra parte, el objetivo final que se persigue es el modelado predictivo de la concentración de PM~2.5~ ante condiciones normales o típicas y no para eventos raros. El preprocesamiento de los datos fue dividido en dos etapas, una primera en la que se examinaron valores atípicos globales y otra en la que el estudio se centró en el análisis de datos aberrantes en distintas escalas temporales.
+  Previo al análisis del patrón promedio de la serie de concentración de PM~2.5~ y la construcción de una base de datos a escala temporal horaria se llevó a cabo un proceso de depuración de datos. Este trabajo busca comprender la variabilidad macro o promedio de la serie de concentración de PM~2.5~ y no la debida a causas atípicas de la micro escala. Por este motivo, se optó por implementar un estricto protocolo de depuración de datos puntuales aberrantes, excluyendo aquellos eventos puntuales atípicos que no representan la variabilidad promedio de la concentración de PM~2.5~. La fundamentación del enfoque de preprocesamiento implementado se halla sustentado en los objetivos específicos de la tesis, donde se refleja la búsqueda de la relación existente entre la variabilidad promedio de la concentración de PM~2.5~ a lo largo del año con distintas variables satelitales. Las influencias atípicas de la micro escala no aportan a describir el patrón general o promedio de los datos, a menos que estas se repitan de forma reiterada, entonces dejarían de ser atípicas y formarían parte del patrón general o promedio. Por otra parte, el objetivo final que se persigue es el modelado predictivo de la concentración de PM~2.5~ ante condiciones normales o típicas y no para eventos raros. El preprocesamiento de los datos fue dividido en dos etapas, una primera en la que se examinaron valores atípicos globales y otra en la que el estudio se centró en el análisis de datos aberrantes en distintas escalas temporales.
   
   Una vez obtenidos los datos de PM~2.5~ espaciados por un intervalo de tiempo de 10 segundos, se procedió a filtrar aquellos valores que se alejaban en más de 5 desvíos estándares de la media, y que cuyo patrón de incremento de la concentración era en forma de un salto repentino, es decir que el crecimiento de la concentración no fue paulatino y continuo en el tiempo. Siendo la media de toda la base de datos de 14.39 $\frac{\mu g}{m^3}$ y la desviación estándar de 102.77 $\frac{\mu g}{m^3}$, se procedió a eliminar aquellos valores que superaban el valor de 528.26 $\frac{\mu g}{m^3}$ describiendo un salto repentino de concentración. De esta forma se logró eliminar aquellos valores atípicos cuya concentración se veía fuertemente influenciado por eventos particulares, propios de la microescala que no representaban la concentración para el sitio en un momento determinado. Posteriormente, se procedió a calcular las medias horarias para los distintos sitios.
 
@@ -99,7 +99,7 @@ Table: Normativas y estándares de valores guía contra los cuales comparar la c
   En primer lugar, se determinó cuál era la distribución que mejor ajustaba a la variable respuesta. Los resultados evidenciaron que la distribución Gamma logro minimizar los criterios de AIC y BIC. Una vez establecida la distribución se procedió a ajustar un Modelo Lineal Generalizado Mixto, con el objetivo de determinar cuáles variables temporales explicaban mayor porcentaje de varianza.
 
 Table: Variabilidad explicada por las componentes temporales presentes en la base de datos.\label{tab:comptemp}
-Componente temporal; varianza estimada; desviación estándar estimada; porcentaje de varianza explicado relativo al total.
+Referencias: Componente temporal; varianza estimada; desviación estándar estimada; porcentaje de varianza explicado relativo al total.
 
 | Componente |Varianza |Desviación estándar|Porcentaje de varianza|
 |------------|:--------------:|:--------------:|:--------------:|
@@ -212,7 +212,7 @@ Los valores se encuentran en $\frac{\mu g}{m^3}$.
 #### Descripción de la concentración promedio por sitio de muestreo
 
 Table: Concentración promedio anual de PM~2.5~ en cada uno de los sitios de muestreo.\label{tab:concanual}
-Sitio de muestreo; concentración promedio anual de PM~~2.5~~; desviación estándar estimada. 
+Referencias: Sitio de muestreo; concentración promedio anual de PM~2.5~; desviación estándar estimada. 
 
 | Sitio | Concentración | Desviación estándar | 
 |--------|:--------:|:--------:|
@@ -239,7 +239,7 @@ knitr::include_graphics("images/imagescap3/calendarcba.png")
   En la figura \@ref(fig:calendarcba), pueden identificarse meses en los que las condiciones atmosféricas favorecen condiciones adversas de calidad de aire, ya sea que favorecen el aumento de la concentración del contaminante o bien impiden su dispersión. Estos son los meses de mayo, junio, julio y agosto, durante los cuales se describen concentraciones sostenidas y elevadas de PM~2.5~ respecto al resto del año. Por otra parte, puede notarse la numerosa cantidad de veces en el año en que la concentración media diaria de PM~2.5~ se encuentra por encima de las normativas internacionales empleadas como guía para el área metropolitana de la provincia de Córdoba (Tabla \@ref(tab:guiapm)). Este hallazgo indica que existe una preocupación potencialmente significativa en relación con la calidad del aire en la provincia.
 
 Table: Concentración promedio estacional de PM~2.5~ en cada sitio de muestreo.\label{tab:concestsit}
-Sitio de muestreo; concentración promedio estacional de PM~~2.5~~; desviación estándar. 
+Referencias: Sitio de muestreo; concentración promedio estacional de PM~2.5~; desviación estándar. 
 
 | Sitio | Invierno | Otoño | Primavera | Verano | 
 |--------|:--------:|:--------:|:--------:|:--------:|
