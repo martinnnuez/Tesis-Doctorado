@@ -4,11 +4,11 @@
 
   La teledetección o sensado remoto es una técnica que permite adquirir información mediante instrumentos que no están en contacto físico con los objetos investigados. Los sensores remotos miden la radiación electromagnética que es reflejada o emitida por estos. Generalmente, se ubican a bordo de aviones o satélites que orbitan la Tierra [@chuvieco2010plan]. Dado que la superficie terrestre se encuentra en continuo cambio, como consecuencia de la evolución de los ecosistemas, la acción del hombre y su interacción, la observación sistemática de la superficie permite comprender y pronosticar la dinámica de los sistemas. El conocimiento de esta dinámica posibilita la predicción de escenarios futuros, convirtiendo a la teledetección en una herramienta fundamental [@huot2022next; @rocchini2015potential; @watmough2019socioecologically; @asaly2022using; @paul2020mapping].
 
-  A partir de la información relevada por satélites se generan múltiples productos. Muchos logran estimaciones horarias de un gran número de variables climáticas atmosféricas, terrestres y oceánica, que cubren la totalidad de la superficie terrestre. De esta forma, a partir de estos podemos disponer de información acerca del estado del sistema tierra atmósfera con una elevada resolución tanto espacial como temporal. Generalmente, estas estimaciones se generan por medio de la técnica de reanálisis, la cual combina datos de modelos teóricos, observaciones in situ y leyes físicas. Este principio, denominado asimilación de datos, se encuentra basado en el método utilizado por los centros de predicción meteorológica numérica, en donde cada un lapso de tiempo determinado se combina una previsión pasada con nuevas observaciones para producir una estimación actualizada del estado de la atmósfera [@bell2021era5; @hersbach2020era5; @wu2020regional].
+  A partir de la información relevada se logran estimaciones horarias de un gran número de variables climáticas, atmosféricas, terrestres y oceánica, que llegan a cubrir la totalidad de la superficie terrestre. De esta forma, a partir de los productos satelitales podemos contar con información acerca del estado del sistema tierra-atmósfera con alta resolución tanto espacial como temporal. Estas estimaciones se generan por medio de la técnica de reanálisis, la cual combina datos de modelos teóricos, con observaciones *in situ* y leyes físicas. Este principio, denominado asimilación de datos, se encuentra basado en el método utilizado por los centros de predicción meteorológica numérica, en donde cada un lapso de tiempo determinado se combina una previsión anterior con nuevas observaciones disponibles para producir una nueva estimación del estado de la atmósfera [@bell2021era5; @hersbach2020era5; @wu2020regional]
 
-  La fluctuación de las condiciones meteorológicas que determinan el estado de la atmósfera en un momento determinado generan una notable influencia en la variación de la concentración de material particulado fino (PM~2.5~) [@tiwari2017assessment; @he2017influences]. Numerosos estudios han evidenciado estas asociaciones, su porcentaje mayoritario demuestra una vinculación inversa con el material particulado, las variables que responden a este patrón son: la velocidad del viento [@cichowicz2020effect; @usman2022exploring; @xiaoyang2019particulate], la precipitación [@usman2022exploring; @xiaoyang2019particulate], la temperatura [@nogarotto2020review; @xiaoyang2019particulate], el punto de rocío [@zhao2022analysis] y la altura de la capa límite atmosférica (PBLH) [@li2020correlation; @wang2019relationship]. Por otra parte, existen variables que responden a una relación directa como la reportada para la profundidad óptica de aerosoles (AOD) [@soni2018particulate; @gupta2021spatio] y el tráfico de vehículos [@pant2013estimation; @weerakkody2018quantification]. Tanto para la presión atmosférica, como para la humedad relativa, existen resultados que vinculan las variables de forma directa [@li2015particulate; @nogarotto2020review] como inversa [@tian2014characteristics; @chen2016spatial]. Es pertinente destacar la existencia de estudios cuyas conclusiones reflejan que la concentración de material particulado (PM) depende más de la meteorología que de factores antropogénicos [@hooyberghs2005neural]. Además, esta relación de vinculación está sujeta a características propias del sitio de estudio, como por ejemplo las fuentes de emisión y el tamaño de las partículas [@khan2010characterization; @tai2010correlations; @dimitriou2015dependence], así como la topografía del sitio en cuestión [@alvarado2010modeling; @vinoj2022role].
+  La fluctuación de las condiciones meteorológicas que determinan el estado de la atmósfera en un momento determinado generan una notable influencia en la variación de la concentración de material particulado fino (PM~2.5~) [@tiwari2017assessment; @he2017influences]. Numerosos estudios han evidenciado estas asociaciones, en su mayoría encontrando un vínculo inverso con respecto al material particulado (PM), las variables citadas en la literatura como explicativas de este patrón son: la velocidad del viento [@cichowicz2020effect; @usman2022exploring; @xiaoyang2019particulate], la precipitación [@usman2022exploring; @xiaoyang2019particulate], la temperatura [@nogarotto2020review; @xiaoyang2019particulate], el punto de rocío [@zhao2022analysis] y la altura de la capa límite atmosférica (PBLH) [@li2020correlation; @wang2019relationship]. Por otra parte, existen variables que responden a una relación directa como la profundidad óptica de aerosoles (AOD) [@soni2018particulate; @gupta2021spatio] y el tráfico de vehículos [@pant2013estimation; @weerakkody2018quantification]. Tanto para la presión atmosférica, como para la humedad relativa, existen resultados que vinculan las variables tanto de forma directa [@li2015particulate; @nogarotto2020review] como inversa [@tian2014characteristics; @chen2016spatial]. Es pertinente destacar la existencia de estudios cuyas conclusiones reflejan que la concentración de PM depende más de la meteorología que de factores antropogénicos [@hooyberghs2005neural]. Esta relación de vinculación está sujeta a otras características propias del sitio, como por ejemplo las fuentes de emisión, el tamaño de las partículas [@khan2010characterization; @tai2010correlations; @dimitriou2015dependence] y la topografía [@alvarado2010modeling; @vinoj2022role].
   
-  Enmarcado dentro del Servicio de Cambio Climático Copernicus (Copernicus Climate Change Service - C3S) de la Agencia Espacial Europea (ESA), el Centro Europeo para Previsiones Meteorológicas a Medio Plazo (European Centre for Medium-Range Weather Forecasts - ECMWF) está produciendo grandes conjuntos de datos climáticos a escala global. Para ello se combinan modelos climáticos y datos observacionales de todo el mundo. Este producto es la quinta generación de Reanálisis Europeo (European ReAnalysis - ERA5), sucesor de ERA-Interim [@munoz2021era5]. Estos productos, ponen a disposición información para todo el mundo a escala temporal diaria y mensual desde el año 1979. Así, cada vez es más factible mapear y modelar las variaciones o cambios espaciotemporales de las condiciones meteorológicas imperantes antes, durante y después de eventos de interes. El avance de la tecnología ha permitido un desarrollo notable en la capacidad computacional disponible, sumado a la disponibilidad de datos climáticos masivos en diversas plataformas de Internet, es posible obtener información climática variada para un sitio georreferenciado sobre un territorio de interés. Actualmente, se cuenta con variadas herramientas informáticas para la obtención de productos satelitales almacenados en la nube.
+  Enmarcado dentro del Servicio de Cambio Climático Copernicus (Copernicus Climate Change Service - C3S) de la Agencia Espacial Europea (ESA), el Centro Europeo para Previsiones Meteorológicas a Medio Plazo (European Centre for Medium-Range Weather Forecasts - ECMWF) genera grandes conjuntos de datos climáticos a escala global. Para ello se combinan modelos climáticos y datos observacionales de todo el mundo. Este producto es la quinta generación de Reanálisis Europeo (European ReAnalysis - ERA5), sucesor de ERA-Interim [@munoz2021era5]. Estos productos, ponen a disposición información para todo el mundo a escala temporal horaria, diaria y mensual desde el año 1979. Así, cada vez es más factible mapear y modelar las variaciones o cambios espacio-temporales de las condiciones meteorológicas imperantes antes, durante y después de eventos de interés. El avance de la tecnología ha permitido un desarrollo notable en la capacidad computacional disponible, sumado a la disponibilidad de datos meteorológicos masivos en diversas plataformas de Internet, es posible obtener información meteorológica variada para un sitio georreferenciado sobre un territorio de interés. Actualmente, se cuenta con variadas herramientas informáticas para la obtención de productos satelitales almacenados en la nube. Tales productos pueden ser usados como covariables con potencialidad predictiva de la concentración de PM. Sin embargo, aun cuando existen modelos predictivos mecanicista basados en la estimación de efectos para variables reportadas en la literatura, el desarrollo de modelos de base empírica sustentados en la abundancia de información hoy disponible es más incipiente.
   
   La búsqueda de factores que logren explicar la variabilidad de la serie temporal de concentración de PM~2.5~ podría realizarse tanto para la comprensión de la dinámica de variación del contaminante como para su modelado predictivo. El estudio de los patrones en la serie temporal del contaminante es fundamental para construir modelos mecanicísticos que intenten explicar y relacionar esta variabilidad con la de otros factores del medio. Sin embargo, en otros estudios de base computacional, el análisis de los datos del contaminante se relaciona con la variabilidad de múltiples factores, como por ejemplo meteorológicos, no para comprender el impacto de cada uno de éstos sino para usar su covariabilidad con la finalidad de predecir nuevos valores de PM~2.5~ en contextos similares al del aprendizaje. Por lo tanto, para predecir valores futuros de una serie puede implementarse un marco teórico basado en información contenida en la misma y/u otro que se nutra además de la variabilidad de factores relacionados a la serie. En la actualidad esto último puede realizarse desde un enfoque computacional basado en el aprendizaje automático de relaciones entre distintas series de datos a partir de un conjunto de datos de entrenamiento. En particular los métodos de aprendizaje automático permiten obtener predicciones de valores futuros en función del comportamiento de un conjunto grande de potenciales predictoras y de la covariabilidad entre ellas. Los capítulos [4](#cap:var) y [5](#cap:pred), se hayan enmarcados dentro de un enfoque de trabajo basado en el aprendizaje automático, algunos métodos como la regresión lineal múltiple demandan un mayor control del investigador sobre las variables predictoras, mientras que otros como los algoritmos basados en árboles y de aprendizaje profundo (redes neuronales) habilitan el trabajo con múltiples series de datos cuya variabilidad podría tener potencial capacidad predictiva de la variabilidad de PM~2.5~ con un menor nivel de control por parte de quien modela. Un desafío en el modelado predictivo a través de técnicas de aprendizaje automático es la selección de características o variables predictoras que alimentaran al modelo [@li2019influence; @rumao2019exploration; @cai2018feature]. Es factible que las variables relevantes para el desarrollo de un modelo predictivo de elevada exactitud puedan no solo ser las recomendadas en la literatura para la construcción de modelos mecanicistas explicativos de la dinámica observada en la serie del contaminante, ya que el objetivo dentro del enfoque de aprendizaje automático esta centrado en potenciar la exactitud de las predicciones y no en la explicación de las relaciones subyacentes.
   
@@ -20,16 +20,23 @@
 
 ## Materiales y métodos
 
+### Resumen gráfico del protocolo analítico
+
+```{r serie, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:serie)"}
+knitr::include_graphics("images/GA/serie.png")
+```
+(ref:serie) Resumen gráfico del protocolo analítico desarrollado en el capítulo 4.
+
 ### Base de datos
 
-  La base de datos para el desarrollo de esta sección surge de la combinación de los datos recopilados durante el muestreo de PM~2.5~ (ver capítulo [2](#cap:expl) para más detalles) con distintas bases de datos satelitales. Entre estas se destaca la base de datos de ERA5 que surge del reanálisis realizado por el Centro Europeo de Previsión Meteorológica a Plazo Medio (ECMWF) para el clima global [@hersbach2020era5; @bell2021era5]. Este método de estimación combina modelos predictivos con observaciones a lo largo de todo el mundo, dando por resultado un conjunto de datos completo a escala global, cuyo principio de funcionamiento se basa en la asimilación de datos. La base de datos cuenta con estimaciones horarias para 172 variables atmosféricas, oceánicas y terrestres, con una resolución espacial de 0.25 grados, descargadas desde la plataforma ERA5. Además, se incluyeron otras covariables, citadas en la literatura como relevantes para el PM~2.5~, provenientes de las mediciones del sensor MODIS a bordo de los satélites Terra y Aqua de la Administración Nacional de Aeronáutica y el Espacio (NASA) [@savtchenko2004terra; @lyapustin2019maiac; @lyapustin2018modis; @hulley2014thermal], datos obtenidos a partir del análisis retrospectivo de la era moderna para investigación y aplicaciones, versión 2 (MERRA-2) [@bosilovich2015merra] y la base de datos de Google Traffic [@wu2007google]. Una descripción completa de cada una de las variables involucradas se encuentra en el [Anexo](#cap:anx).
+  La base de datos para el desarrollo de esta sección surge de la combinación de los datos recopilados durante el muestreo de PM~2.5~ (ver capítulo [2](#cap:expl) para más detalles) con distintas bases de datos satelitales. Entre estas se destaca la base de datos de ERA5 que surge del reanálisis realizado por el Centro Europeo de Previsión Meteorológica a Plazo Medio (ECMWF) para el clima global [@hersbach2020era5; @bell2021era5]. Este método de estimación combina modelos predictivos con observaciones a lo largo de todo el mundo, dando por resultado un conjunto de datos completo a escala global, cuyo principio de funcionamiento se basa en la asimilación de datos. La base de datos cuenta con estimaciones horarias para 164 variables atmosféricas, oceánicas y terrestres, con una resolución espacial de 0.25 grados, descargadas desde la plataforma ERA5. Además, se incluyeron otras covariables, citadas en la literatura como relevantes para el PM~2.5~, provenientes de las mediciones del sensor MODIS a bordo de los satélites Terra y Aqua de la Administración Nacional de Aeronáutica y el Espacio (NASA) [@savtchenko2004terra; @lyapustin2019maiac; @lyapustin2018modis; @hulley2014thermal], datos obtenidos a partir del análisis retrospectivo de la era moderna para investigación y aplicaciones, versión 2 (MERRA-2) [@bosilovich2015merra] y la base de datos de Google Traffic [@wu2007google]. Una descripción completa de cada una de las variables involucradas se encuentra en el Anexo 3.
   
 Table: Fuentes de datos de variables satelitales. \label{tab:satdata}
 Referencia: Fuente de datos, dependencia, resolución espacial, resolución temporal y número total de variables descargadas.
 
 | Fuente | Dependencia | Espacial | Temporal | Variables |
 |----------|:--------:|:--------:|:--------:|:--------:|:--------:| 
-| ERA5 (ECMWF reanálisis) | ECMWF | 0.25°x0.25° | horaria | 172 |
+| ERA5 (ECMWF reanálisis) | ECMWF | 0.25°x0.25° | horaria | 164 |
 | MODIS-MAIAC (MCD19A2) | NASA | 0.1°×0.1° | horaria | 1 |
 | MERRA-2 (M2T1NXFLX) | NASA  | 0.625°×0.5° | horaria | 1 |
 | MERRA-2 (M2IMNXGAS) | NASA  | 0.625°×0.5° | horaria | 1 |
@@ -77,7 +84,7 @@ Referencia: Fuente de datos, dependencia, resolución espacial, resolución temp
   
 #### Análisis de series temporales
   
-  En primer lugar, se llevó a cabo un análisis descriptivo de la variabilidad conjunta de las series de las variables satelitales respecto de la variable respuesta, en distintas escalas temporales de relevancia. Posteriormente, se chequeó la estacionalidad de las variables a través de las pruebas de Dickey-Fuller Aumentada (ADF) [@dickey1979distribution] y de Kwiatkowski–Phillips–Schmidt–Shin (KPSS) [@kwiatkowski1992testing]. Una serie de tiempo es estacionaria cuando la media, varianza y covarianza no varían a lo largo del tiempo, ni siguen una tendencia a largo plazo, en otras palabras una serie que es estacionaria es estable a lo largo del tiempo. Sin embargo tanto las series de concentración de PM~2.5~ como las de variables satelitales presentan tendencias estacionales y heterogeneidades de varianzas a lo largo del tiempo. Por este motivo, las series bajo estudio (PM~2.5~ y variables satelitales) debieron ser transformadas para lograr su estacionariedad. La estabilización de la varianza se llevo a cabo por medio de la transformación de Box-Cox, la cual sugirió transformaciones logarítmicas y en la escala de la raíz cuadrada en función de la variable analizada [@thompson2016stabilizing; @guerrero2004variance]. Por otra parte, la estabilización de la media dentro de cada día, en todos los casos se realizó por medio de la diferenciación de la serie considerando un paso (*lag*) de 1 hora. La diferenciación, es una operación matemática que consiste en generar una nueva serie de tiempo a partir de la serie original, a través de la diferencia (resta) entre los valores de la serie original espaciados en un intervalo de tiempo *k* conocido como *lag*. La diferenciación es una técnica utilizada habitualmente para eliminar la tendencia en una serie temporal [@box2015time]. 
+  En primer lugar, se llevó a cabo un análisis descriptivo de la variabilidad conjunta de las series de las variables satelitales respecto de la concentración de PM~2.5~, en distintas escalas temporales de relevancia. Posteriormente, se chequeó la estacionalidad de las variables a través de las pruebas de Dickey-Fuller Aumentada (ADF) [@dickey1979distribution] y de Kwiatkowski–Phillips–Schmidt–Shin (KPSS) [@kwiatkowski1992testing]. Una serie de tiempo es estacionaria cuando la media, varianza y covarianza no varían a lo largo del tiempo, ni siguen una tendencia a largo plazo, en otras palabras una serie que es estacionaria es estable a lo largo del tiempo. Sin embargo tanto las series de concentración de PM~2.5~ como las de variables satelitales presentan tendencias estacionales y heterogeneidades de varianzas a lo largo del tiempo. Por este motivo, las series bajo estudio (PM~2.5~ y variables satelitales) debieron ser transformadas para lograr su estacionariedad. La estabilización de la varianza se llevo a cabo por medio de la transformación de Box-Cox, la cual sugirió transformaciones logarítmicas y en la escala de la raíz cuadrada en función de la variable analizada [@thompson2016stabilizing; @guerrero2004variance]. Por otra parte, la estabilización de la media dentro de cada día, en todos los casos se realizó por medio de la diferenciación de la serie considerando un paso (*lag*) de 1 hora. La diferenciación, es una operación matemática que consiste en generar una nueva serie de tiempo a partir de la serie original, a través de la diferencia (resta) entre los valores de la serie original espaciados en un intervalo de tiempo *k* conocido como *lag*. La diferenciación es una técnica utilizada habitualmente para eliminar la tendencia en una serie temporal [@box2015time]. 
   
   Posteriormente, se procedió a ajustar un modelo teórico a cada una de las series temporales de las variables satelitales. La estimación de un modelo teórico consiste en ajustar un modelo matemático a los datos observados de una serie temporal con el fin de identificar las características de la misma. Seguidamente, para cada serie de variable satelital, se obtuvieron los residuos (diferencia entre valores observados y predichos por el modelo ajustado). Luego se obtuvieron los residuos de la serie de concentración de PM~2.5~ respecto del modelo teórico ajustado para cada una de las series de variables predictoras. El proceso completo se denomina pre blanqueamiento [@fuenzalida1990prewhitening; @razavi2018prewhitening] y busca reducir la presencia de información sistemática que no es relevante para la predicción. Finalmente, se analizó la correlación cruzada entre cada una de las series filtradas de PM~2.5~ y la respectiva variable satelital. El procedimiento ejecutado permite independizarnos de la estructura de autocorrelación presente en las series temporales, cuya interpretación podría conducir a la determinación de relaciones espuria entre las variables [@razavi2018prewhitening]. Una relación se considera espuria o aleatoria cuando las variables aparentan tener una conexión numérica, forzada por el azar o factores externos y no por una verdadera relación de vinculación entre las variables. La correlación cruzada entre series temporales indica la relación lineal entre las series a lo largo del tiempo. Este análisis es comúnmente implementado en los casos en se quiere determinar si una serie de tiempo puede predecir otra. En otras palabras, la correlación cruzada mide la covariabilidad entre dos series y cómo se relacionan cuando están distanciadas en un determinado paso (*lag*) de tiempo. A partir de estos resultados se busca reflejar la potencial correlación de las series de variables satelitales con la variable concentración de PM~2.5~ [@probst2012using]. El ajuste de los modelos teóricos con los cuales se filtró la serie de concentración de PM~2.5~ fue realizado a través de modelos de media móvil integrada autorregresiva estacional o conocido por sus siglas en inglés como SARIMA (*Seasonal Autoregressive Integrated Moving Average*) [@box2015time; @del2017evaluation].
 
@@ -89,7 +96,7 @@ Referencia: Fuente de datos, dependencia, resolución espacial, resolución temp
   
   Una vez identificados estos retardos, se procedió a ajustar un modelo de función de transferencia dinámica lineal para estimar la dirección de las relaciones entre las variables en cuestión [@box1994time; @bisgaard2006quality1]. Además, los resultados obtenidos fueron corroborados a partir de la estimación de la misma relación funcional en diferencias. Si la relación se mantiene con la misma direccionalidad tanto en la estimación de la función de transferencia dinámica lineal con y sin diferenciación, entonces puede concluirse que esta ocurre en la realidad y que no se debe a efectos espurios [@bisgaard2006quality2].
 
-  A partir del procedimiento implementado se ha logrado librar de todo tipo de efecto de autocorrelación existente en las variables. Evitando conclusiones erróneas dadas por relaciones espurias propias de la estructura de autocorrelación existente inherente a los datos de series de tiempo. Los resultados completos del proceso desarrollado pueden encontrarse en el anexo [Anexo](#cap:anx).
+  A partir del procedimiento implementado se ha logrado librar de todo tipo de efecto de autocorrelación existente en las variables. Evitando conclusiones erróneas dadas por relaciones espurias propias de la estructura de autocorrelación existente inherente a los datos de series de tiempo. Los resultados completos del proceso desarrollado pueden encontrarse en el Anexo 2.
 
   El símbolo virgulilla (~) colocado posterior al nombre de una variable (serie temporal), indica que esta ha sido previamente normalizada (centrada y estandarizada). 
 
@@ -97,7 +104,7 @@ Referencia: Fuente de datos, dependencia, resolución espacial, resolución temp
 
   En esta sección se reportan los resultados obtenidos a partir del análisis descriptivo de la variabilidad conjunta de las variables meteorológicas y satelitales más relevantes en la base de datos en relación con la concentración de PM~2.5~. Para ello, se utilizó un enfoque comparativo en el que se contrastaron los valores de cada variable con respecto a su media.
   
-### Temperatura
+#### Temperatura
 
 ```{r tempmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:tempmes)"}
 knitr::include_graphics("images/imagescap4/tempmes.png")
@@ -145,7 +152,7 @@ knitr::include_graphics("images/imagescap4/mccftemp.png")
   
   Luego de la estimación de la relación funcional se determinó que tres de los cuatro coeficientes significativos demostraron una relación inversa entre las variables, la cual permanece constante en la relación funcional diferenciada (t, t-12 y t-24). Por otra parte, el coeficiente restante indicó una relación directa (t-1). Puede establecerse de esta forma que ambas variables se relacionan en una u otra dirección en función del desfasaje temporal analizado, sin embargo, puede notarse que prevalece una relación del tipo inversa dado que la mayoría de los desfasajes se corresponden con esta. Además, la relación de mayor capacidad predictiva responde a una relación inversa y se da al no considerar desfasaje entre la temperatura y la variable respuesta. 
 
-### Humedad relativa
+#### Humedad relativa
 
 ```{r hummes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:hummes)"}
 knitr::include_graphics("images/imagescap4/hummes.png")
@@ -193,7 +200,7 @@ knitr::include_graphics("images/imagescap4/mccfhum.png")
 
   Puede establecerse de esta forma que ambas variables se relacionan en una u otra dirección en función del desfasaje temporal considerado. Por otra parte, la relación de mayor capacidad predictiva es la obtenida en el desfasaje de 24 horas de la humedad relativa con respecto a la variable respuesta, demostrando una mayor contribución de la relación directa para predecir la variable respuesta en el presente.
 
-### Temperatura del punto de rocío
+#### Temperatura del punto de rocío
 
 ```{r rocmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:rocmes)"}
 knitr::include_graphics("images/imagescap4/rocmes.png")
@@ -241,7 +248,7 @@ knitr::include_graphics("images/imagescap4/mccfroc.png")
 
   En conclusión, puede afirmarse que la temperatura del punto de rocío y la concentración de PM~2.5~ se relacionan de forma inversamente proporcional, y que el desfasaje de mayor capacidad predictiva para estimar la concentración de PM~2.5~ en el presente es de 14 horas con respecto a la temperatura del punto de rocío.
 
-### Precipitación
+#### Precipitación
   
   Es importante destacar que el análisis de la precipitación en la escala temporal horaria no es significativo debido a su frecuencia de ocurrencia, lo que resulta en un gran número de datos nulos que pueden interferir con las interpretaciones. Por lo tanto, se decidió no incluir el análisis exploratorio en esta escala temporal para evitar posibles conclusiones erróneas.
 
@@ -280,7 +287,7 @@ knitr::include_graphics("images/imagescap4/mccfrain.png")
   
   Luego de la estimación de la relación funcional se determinó que el coeficiente demostró una relación inversa. Puede establecerse de esta forma que ambas variables se relacionan de forma inversa y que la relación de mayor capacidad predictiva se da en un desfasaje de 1 hora de la precipitación con respecto a la variable respuesta. 
 
-### Velocidad del viento
+#### Velocidad del viento
 
 ```{r vvientmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:vvientmes)"}
 knitr::include_graphics("images/imagescap4/vvientmes.png")
@@ -322,7 +329,7 @@ knitr::include_graphics("images/imagescap4/mccfvient.png")
   
   Luego de la estimación de la relación funcional se determinó que tres de los cuatro coeficientes demostraron estar influenciados por una relación espuria o aleatoria (t-5, t-7 y t-8), lo que significa que estas relaciones no son significativas en términos estadísticos. En contraste, el coeficiente para el tiempo t-24 muestra una relación inversa significativa. Por lo tanto, puede establecerse que ambas variables se relacionan de forma inversa y que la relación que mayor capacidad predictiva se da en un desfasaje de 24 horas de la velocidad del viento con respecto a la variable respuesta.
  
-### Presión atmosférica
+#### Presión atmosférica
 
 ```{r presmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:presmes)"}
 knitr::include_graphics("images/imagescap4/presmes.png")
@@ -364,7 +371,7 @@ knitr::include_graphics("images/imagescap4/mccfpres.png")
   
   Luego de la estimación de la relación funcional se determinó que cada uno de los coeficientes demostró una relación de vinculación distinta, la cual se mantuvo constante en la estimación en diferencias. Específicamente, se encontró que el desfasaje temporal de 1 hora demostró una relación inversa, mientras que el de 10 horas una relación directa. Esto sugiere que la relación entre ambas variables varía en función del desfasaje temporal considerado. A pesar de esto, la relación de mayor capacidad predictiva se da en un desfasaje temporal de 10 horas y responde a una relación directa. 
   
-### Radiación solar
+#### Radiación solar
 
 ```{r radmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:radmes)"}
 knitr::include_graphics("images/imagescap4/radmes.png")
@@ -412,7 +419,7 @@ knitr::include_graphics("images/imagescap4/mccfrad.png")
   
   En consecuencia, puede afirmarse que ambas variables se relacionan en una u otra dirección en función del desfasaje temporal considerado. Además, la relación de mayor capacidad predictiva se da en un desfasaje de 23 horas de la radiación solar con respecto a la variable respuesta, siguiendo una relación del tipo inversa.
 
-### Profundidad óptica de los aerosoles (AOD)
+#### Profundidad óptica de los aerosoles (AOD)
 
 ```{r aodmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:aodmes)"}
 knitr::include_graphics("images/imagescap4/aodmes.png")
@@ -454,7 +461,7 @@ knitr::include_graphics("images/imagescap4/mccfaod.png")
   
   Luego de la estimación de la relación funcional se determinó que dos de los tres coeficientes se vieron influenciados por una relación espuria o aleatoria (t-7 y t-8), demostrando que no existe una relación real entre estas variables en esos desfasajes. Sin embargo, el coeficiente restante mostró una relación de vinculación directa. Puede establecerse de esta forma que ambas variables se relacionan de forma directa y que la relación de mayor capacidad predictiva se da sin considerar desfasaje entre el AOD y la variable respuesta.
 
-### Altura de la capa límite atmosférica (PBLH)
+#### Altura de la capa límite atmosférica (PBLH)
 
 ```{r PBLHmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:PBLHmes)"}
 knitr::include_graphics("images/imagescap4/pblmes.png")
@@ -496,7 +503,7 @@ knitr::include_graphics("images/imagescap4/mccfpbl.png")
   
   Tras la estimación de la relación funcional, se encontró que todos los coeficientes presentaron una relación de vinculación inversa. Por lo tanto, puede afirmarse que ambas variables se relacionan de forma inversa y que la relación de mayor capacidad predictiva se produce sin considerar el desfasaje temporal entre el PBLH y la variable respuesta.
   
-### Tráfico (Google Traffic)
+#### Tráfico (Google Traffic)
   
   Es relevante señalar que el análisis del tráfico a escala mensual no resulta significativo debido a que los datos disponibles representan promedios horarios a lo largo del año, manteniéndose constantes en los distintos meses. Por esta razón, se optó por no incluir el análisis exploratorio en esta escala temporal, con el fin de evitar posibles conclusiones erróneas que pudieran surgir de una interpretación equivocada de los datos.
   
@@ -535,7 +542,7 @@ knitr::include_graphics("images/imagescap4/mccftraf.png")
   
   Luego de la estimación de la relación funcional se determinó que el coeficiente demostró una relación directa. Puede establecerse de esta forma que ambas variables se relacionan de forma directa y que la relación de mayor capacidad predictiva se da en un desfasaje de 8 horas del tráfico con respecto a la variable respuesta.
 
-### Temperatura de la superficie terrestre (LST).
+#### Temperatura de la superficie terrestre (LST).
 
 ```{r lstmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:lstmes)"}
 knitr::include_graphics("images/imagescap4/lstmes.png")
@@ -577,7 +584,7 @@ knitr::include_graphics("images/imagescap4/mccflst.png")
   
   Luego de la estimación de la relación funcional se determinó que el coeficiente demostró una relación inversa. Puede establecerse de esta forma que ambas variables se relacionan de forma inversa y que la relación de mayor capacidad predictiva se da en un desfasaje de 5 horas de la LST con respecto a la variable respuesta.
 
-### Rugosidad de la superficie terrestre
+#### Rugosidad de la superficie terrestre
   
   Es importante señalar que la rugosidad de la superficie terrestre es una variable que, en la escala temporal horaria, no presenta una variación significativa debido a que su cálculo implica la consideración de fenómenos cuyos rangos de variación y ocurrencia superan esta escala temporal. En consecuencia, durante el transcurso de las horas del día, su valor tiende a permanecer constante y solo varía en escalas temporales de mayor magnitud, como al cabo de múltiples horas, el día o los meses del año. Por esta razón, se ha decidido excluir el análisis exploratorio en la escala temporal horaria.
 
@@ -614,7 +621,7 @@ knitr::include_graphics("images/imagescap4/mccfrug.png")
   
   Luego de la estimación de la relación funcional se determinó que cuatro de los coeficientes demostraron una relación directa (t-0, t-12, t-13 y t-14), mientras que los tres restantes se vieron influenciados por una relación espuria o aleatoria (t-1, t-9 y t-23). Puede establecerse de esta forma que ambas variables se relacionan de forma directa y que la relación de mayor capacidad predictiva se da sin considerar desfasaje entre la rugosidad de la superficie terrestre y variable respuesta.
 
-### Integración vertical del flujo de ozono proveniente del norte
+#### Integración vertical del flujo de ozono proveniente del norte
 
 ```{r oznormes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:oznormes)"}
 knitr::include_graphics("images/imagescap4/oznormes.png")
@@ -658,7 +665,7 @@ knitr::include_graphics("images/imagescap4/mccfoznor.png")
   
   Luego de la estimación de la relación funcional se determinó que uno de los coeficientes demostró una espuria o aleatoria (t-18), mientras que el restante una relación directa (t-19). Puede establecerse de esta forma que ambas variables se relacionan de forma directa y que la relación de mayor capacidad predictiva se da en un desfasaje de 19 horas de la integración del flujo de ozono proveniente del norte con respecto a la variable respuesta. Es importante destacar que esta relación es consistente con la observación de un patrón de variación conjunto similar entre ambas variables, pero desfasado en algunas horas, tal como se puede apreciar en la figura \@ref(fig:oznorhor).
 
-### Tasa media de escorrentía subterránea
+#### Tasa media de escorrentía subterránea
   
   Es importante mencionar que el análisis de la tasa media de escorrentía subterránea en la escala temporal horaria no proporciona información relevante dado a su estrecha relación con la precipitación. Cuando no ocurren precipitaciones, la tasa de escorrentía subterránea se mantiene constante a lo largo de las horas del día y, por lo tanto, sus valores no tienen una interpretación significativa. Como resultado, se decidió excluir el análisis exploratorio en esta escala temporal.
 
@@ -695,7 +702,7 @@ knitr::include_graphics("images/imagescap4/mccfesc.png")
   
   Luego de la estimación de la relación funcional se determinó que uno de los coeficientes demostró una relación espuria o aleatoria (t-8), mientras que el restante reveló una relación de vinculación directa (t-15). Puede establecerse de esta forma que ambas variables se relacionan de forma directa y que la relación de mayor capacidad predictiva se da en un desfasaje de 15 horas de la tasa media de escorrentía subterránea con respecto a la variable respuesta.
 
-### Integración vertical de temperatura
+#### Integración vertical de temperatura
 
 ```{r intvertmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:intvertmes)"}
 knitr::include_graphics("images/imagescap4/intvertmes.png")
@@ -737,7 +744,7 @@ knitr::include_graphics("images/imagescap4/mccfintvert.png")
   
   Luego de la estimación de la relación funcional se determinó que dos de los cinco coeficientes significativos se vieron influenciados por efectos espurias o aleatorios (t y t-21), demostrando que estas relaciones no son significativas en términos estadísticos. En contraste, de los tres restantes dos demostraron una relación directa (t-16 y t-18) y solo uno una relación inversa (t-15). Además, el coeficiente de mayor capacidad predictiva (desfasaje de 16 horas) demostró una relación del tipo directa. Puede establecerse de esta forma que ambas variables se vinculan en una u otra dirección en función del desfasaje temporal analizado, a pesar de esto predomina una relación directa entre ambas variables.
 
-### Presión atmosférica ajustada al nivel del mar
+#### Presión atmosférica ajustada al nivel del mar
 
 ```{r presmarmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:presmarmes)"}
 knitr::include_graphics("images/imagescap4/presmarmes.png")
@@ -779,7 +786,7 @@ knitr::include_graphics("images/imagescap4/mccfpresmar.png")
   
   Luego de la estimación de la relación funcional se determinó que uno de los tres coeficientes significativos demostró una relación del tipo aleatoria (t-9), mientras que los dos restantes exhibieron una relación de vinculación tanto inversa (t) como directa (t-19). Sin embargo, el coeficiente de mayor capacidad predictiva (sin desfasaje) demostró una relación del tipo inversa. Puede establecerse de esta forma que ambas variables se relacionan en una u otra dirección en función del desfasaje temporal analizado.
   
-### Disipación en la capa límite atmosférica
+#### Disipación en la capa límite atmosférica
 
 ```{r disipmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:disipmes)"}
 knitr::include_graphics("images/imagescap4/disipmes.png")
@@ -885,6 +892,4 @@ knitr::include_graphics("images/imagescap4/mccfdisip.png")
 
 ## Conclusión
 
-  Los resultados del estudio indican que las variables satelitales y meteorológicas tiene potencialidad para explicar la variabilidad espacio temporal de la concentración de PM~2.5~.  
-  
-  La inclusión de variables meteorológicas y satelitales como variables independientes en la base de datos para desarrollar el modelo predictivo para la concentración de PM~2.5~ permitirá obtener resultados de elevada exactitud. 
+  Los resultados del estudio confirman que las variables satelitales y meteorológicas guardan una estrecha relación con la variación temporal de la concentración de PM~2.5~ en el Área Metropolitana de Córdoba. Estas variables poseen potencialidad para explicar la variabilidad espacio temporal de la concentración de PM~2.5~ en el área de estudio. La inclusión de variables meteorológicas y satelitales como variables independientes en la base de datos para desarrollar el modelo predictivo para la concentración de PM~2.5~ permitirá obtener predicciones exactas. 
