@@ -12,7 +12,7 @@
 
   Los resultados obtenidos indican que los modelos predictivos desarrollados demuestran potencial para alertar a la población ante condiciones adversas de calidad de aire con cinco días de anticipación. Además, las características propias de la variabilidad de cada una de las series temporales en los distintos usos de suelo y de aprendizaje de cada uno de los modelos predictivos ajustados, fueron determinantes en el tipo de algoritmo que demostró mayor exactitud para cada uno de los usos de suelo. En el uso de suelo agrícola y área verde (menor variabilidad) el algoritmo de bosques aleatorios fue el que determino mayor capacidad predictiva. Mientras que en el uso de suelo urbano e industrial (mayor variabilidad) los de aprendizaje profundo permitieron ajustar modelos de mayor capacidad predictiva. 
   
-## Futuras lineas de investigación
+# Futuras lineas de investigación {-}
 
   Se propone como futuro lineamiento de continuación de esta tesis el estudio de la variabilidad conjunta de la concentración de PM~2.5~ con respecto a cada una de las variables satelitales con el objetivo de identificar cuáles son las que más covarían con la concentración de este contaminante. Sería interesante considerar también las correlaciones entre las potenciales variables explicativas para caracterizar el sistema de correlaciones y dependencias, como se hace en un análisis de sendero o modelo de ecuaciones estructurales. 
   

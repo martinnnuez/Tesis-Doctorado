@@ -1,6 +1,6 @@
 ---
 author: 'Rodriguez Nuñez Martin'
-date: 'Febrero 2023'
+date: 'Julio 2023'
 institution: 'Universidad Nacional de Córdoba'
 division: 'Facultad de Ciencias Exactas, Fisicas y Naturales'
 advisor: 'Hebe Alejandra Carreras'
