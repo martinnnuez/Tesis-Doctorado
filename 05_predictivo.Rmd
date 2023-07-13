@@ -14,7 +14,7 @@
 
   En esta tesis, dado al creciente número de estudios científicos que relacionan la contaminación del aire con enfermedades respiratorias y cardiovasculares, cáncer, trastornos del sistema nervioso, así como enfermedades transmitidas por el aire e inducidas por el calor, la aplicación recae en la predicción de la concentración de la calidad del aire, específicamente la concentración de material particulado fino [@sacks2011particulate; @zhao2020fine]. Mientras más se estudia el fenómeno, más estrecho es el vínculo que se informa entre la calidad del aire y el sistema meteorológico-climático [@elminir2005dependence; @pearce2011quantifying; @sfetsos2010new]. De allí, los numerosos intentos de predecir la distribución de partículas nocivas para la salud y el medio ambiente, a partir de información satelital y meteorológica. 
 
-  El avance de la tecnología ha permitido un desarrollo notable en la capacidad computacional disponible, sumado a la disponibilidad de datos meteorológicos masivos en diversas plataformas de Internet, es posible obtener información meteorológica variada para un sitio georreferenciado sobre un territorio de interés. Actualmente, se cuenta con variadas herramientas informáticas para la obtención de productos satelitales almacenados en la nube. Tales productos pueden ser usados como covariables con potencialidad predictiva de la concentración de PM. Sin embargo, aun cuando existen modelos predictivos mecanicista basados en la estimación de efectos para variables reportadas en la literatura, el desarrollo de modelos de base empírica sustentados en la abundancia de información hoy disponible es más incipiente. En esta tesis se compararon distintos enfoques de modelado predictivo basados en el aprendizaje automático y aprendizaje profundo implementando como datos de entrada variables meteorológicas, ambientales y temporales, obtenidas principalmente de satélites. El objetivo de este trabajo es ajustar un modelo predictivo capaz de ser empleado como sistema de alerta ante condiciones adversas de concentración de PM~2.5~.
+  El avance de la tecnología ha permitido un desarrollo notable en la capacidad computacional disponible, sumado a la disponibilidad de datos meteorológicos masivos en diversas plataformas de Internet, es posible obtener información meteorológica variada para un sitio georreferenciado sobre un territorio de interés. Actualmente, se cuenta con variadas herramientas informáticas para la obtención de productos satelitales almacenados en la nube. Tales productos pueden ser usados como covariables con potencialidad predictiva de la concentración de PM. Sin embargo, aun cuando existen modelos predictivos mecanicista basados en la estimación de efectos para variables reportadas en la literatura, el desarrollo de modelos de base empírica sustentados en la abundancia de información hoy disponible es más incipiente. En esta tesis se compararon distintos enfoques de modelado predictivo basados en el aprendizaje automático y aprendizaje profundo implementando como datos de entrada variables meteorológicas, ambientales y temporales, obtenidas principalmente de satélites. El objetivo de este trabajo es ajustar un modelo predictivo capaz de ser empleado como sistema de alerta ante condiciones adversas de concentración de PM~2.5~ con un horizonte de predicción de cinco días de anticipación. 
 
 ## Materiales y métodos
 
@@ -24,6 +24,8 @@
 knitr::include_graphics("images/GA/mod.png")
 ```
 (ref:mod) Resumen gráfico del protocolo analítico desarrollado en el capítulo 5.
+
+  La figura \@ref(fig:mod) ilustra el protocolo analítico desarrollado en el capítulo 5, proporcionando una visión ordenada y resumida de los procedimientos desarrollados para lograr su objetivo. Principalmente se hace referencia al procedimiento de ajuste y selección del mejor modelo de predicción que puede desarrollarse, implementando como datos de entrada variables meteorológicas, ambientales y temporales, obtenidas principalmente de satélites, para predecir la concentración de PM~2.5~ con un horizonte de predicción de cinco días de anticipación. Es importante destacar la variada naturaleza de los datos de entrada, entre los cuales se destacan variables relacionadas al uso del suelo y otras que describen el estado de la superficie terrestre, además de variable climáticas que describen el estado de la atmósfera en un momento determinado y variables temporales que se vinculan a las fluctuaciones y ciclos descriptos por la variable dependiente.  
 
 ### Enfoque de trabajo
   
@@ -168,7 +170,7 @@ RMSE = \sqrt{\frac{1}{n}\sum\nolimits_{i=1}^N(y_i-\hat{y_i})^2}
   
 ## Resultados
 
-### Modelado urbano
+### Modelado de PM~2.5~ en entornos urbanos
 
 #### Comparación de algoritmos para el uso de suelo **urbano** 
 
@@ -298,7 +300,7 @@ knitr::include_graphics("images/imagescap5/shapurbpresmar.png")
 
   La figura \@ref(fig:shapurbpresmar) muestra que valores de baja magnitud de la presión atmosférica ajustada al nivel del mar favorecen incrementos en las predicciones de la variable respuesta, mientras que valores de elevada magnitud de la variable resultan en disminuciones de las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo inversa similar a la reportada en el capítulo [4](#cap:var).
 
-### Modelado industrial
+###  Modelado de PM~2.5~ en entornos industriales
 
 #### Comparación de algoritmos para el uso de suelo **industrial** 
 
@@ -435,7 +437,7 @@ knitr::include_graphics("images/imagescap5/shapindhum.png")
   
   La figura \@ref(fig:shapindhum) muestra que valores menores al 90% de humedad relativa favorecen incrementos de las concentraciones de material particulado fino, mientras que humedades relativas mayores tienden a favorecer decrementos de la concentraciones. Además, puede apreciarse una mayor densidad de valores de elevada concentración de PM~2.5~ entre el 80% y 90% de humedad relativa. De esta forma se concluye que para este modelo predictivo valores por encima del 90% de humedad relativa favorecen la remoción de material particulado, mientras que valores por debajo de este límite favorecen aportes a la concentración de dicho contaminante. Esta figura permite concluir que la relación de vinculación que prevalece en el modelo es la inversa, la cual fue la que menor magnitud reporto en el capítulo [4](#cap:var).
 
-### Modelado agrícola/ área verde
+###  Modelado de PM~2.5~ en entornos agrícola y área verde
 
 #### Comparación de algoritmos para el uso de suelo **agrícola/ área verde** 
 

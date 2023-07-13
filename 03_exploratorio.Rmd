@@ -8,7 +8,7 @@
 
   Está comprobado que el PM muestra importantes variaciones estacionales, dado a su fuerte dependencia de las condiciones ambientales. Su concentración varía considerablemente en el espacio y el tiempo en los distintos entornos [@kumar2011dynamics; @hofman2016ultrafine; @peters2014cyclist; @van2013methodology]. En entornos urbanos la variación espacial se encuentra principalmente asociada a la intensidad del tráfico, la topología y la distancia a las fuentes de emisión. Mientras que la variación temporal está asociada al momento en el año, condiciones meteorológicas, dinámica del tráfico y fluctuaciones ambientales [@apparicio2016cyclists; @van2015mobile]. Generalmente, su concentración es mayor durante períodos de bajas temperaturas, estos resultados fueron hallados en ciudades de Austria [@gomivsvcek2004spatial], Grecia [@chaloulakou2003measurements], entre otras partes del mundo. Similar es lo que ocurre en Córdoba, donde la mayor concentración de partículas se produce en la época invernal dado las frecuentes inversiones térmicas que favorecen la concentración y permanencia de contaminantes en las capas inferiores de la atmósfera, particularmente durante la noche y primeras horas de la mañana [@stein1996street; @olcese1997effects; @amarillo2021exploratory; @mateos2019influence].
   
-  Los datos que sustentan el análisis espacio temporal desarrollado en la presente tesis son series temporales condicionadas a una localización específica. Una serie temporal se define como una secuencia de valores observados a lo largo del tiempo, por lo tanto, ordenados cronológicamente, en los cuales se destaca una estructura de dependencia entre observaciones [@chatfield2000time], su condicionante de georreferenciación deriva del aspecto espacial. Si conociendo los valores pasados de la serie, no es posible predecir con total certeza el próximo valor de la variable, decimos que la serie es no determinista o aleatoria [@scotto1998introduction; @hamilton2020time]. Los objetivos del análisis de series de tiempo son diversos, pudiendo destacarse la predicción, la clasificación y la simulación de nuevos datos [@chatfield1994time; @pena2005analisis]. El objetivo que se persigue en este capítulo es el de determinar cómo es la variación, tanto espacial como temporal, de la concentración de PM~2.5~ en distintas zonas del área metropolitana de la provincia de Córdoba. De esta forma, en el presente capítulo se describen las series disponibles y se identifican sus patrones de variación, con el fin de contemplar características propias de las series al momento de desarrollar el modelado predictivo (capítulo [5](#cap:pred)).   
+  Los datos que sustentan el análisis espacio temporal desarrollado en la presente tesis son series temporales condicionadas a una localización específica. Una serie temporal se define como una secuencia de valores observados a lo largo del tiempo, por lo tanto, ordenados cronológicamente, en los cuales se destaca una estructura de dependencia entre observaciones [@chatfield2000time], su condicionante de georreferenciación deriva del aspecto espacial. Si conociendo los valores pasados de la serie, no es posible predecir con total certeza el próximo valor de la variable, decimos que la serie es no determinista o aleatoria [@scotto1998introduction; @hamilton2020time]. Los objetivos del análisis de series de tiempo son diversos, pudiendo destacarse la predicción, la clasificación y la simulación de nuevos datos [@chatfield1994time; @pena2005analisis]. El objetivo es describir la variabilidad tanto espacial como temporal, de la concentración de PM~2.5~ en distintas zonas del área metropolitana de la provincia de Córdoba. De esta forma, en el presente capítulo se describen las series disponibles y se identifican sus patrones de variación, con el fin de contemplar características propias de las series al momento de desarrollar el modelado predictivo (capítulo [5](#cap:pred)).   
   
 ## Materiales y métodos
 
@@ -18,6 +18,8 @@
 knitr::include_graphics("images/GA/expl.png")
 ```
 (ref:expl) Resumen gráfico del protocolo analítico desarrollado en el capítulo 3.
+
+  La figura \@ref(fig:expl) ilustra el protocolo analítico desarrollado en el capítulo 3, proporcionando una visión ordenada de las distintas actividades llevadas a cabo para lograr su objetivo. En primer lugar, se hace referencia al procedimiento de muestreo simultaneo en el tiempo en los sitios con distinto uso de suelo seleccionados dentro del área metropolitana de la ciudad de Córdoba, Argentina. Luego se hace mención el análisis exploratorio de los datos, el cual consto principalmente de dos etapas iniciales, una vinculada con la variabilidad temporal en primera instancia y otra relacionada a la espacial. Posteriormente se ilustra el procedimiento de agrupación de los sitios en función del patrón de emisión de PM~2.5~ a lo largo del periodo de muestreo. Finalmente, y a partir del agrupamiento realizado en función de la similitud entre los sitios es que se concluye con un análisis que vincula características espaciales y temporales.
 
 ### Área de estudio
 
@@ -83,7 +85,7 @@ Table: Normativas y estándares de valores guía contra los cuales comparar la c
   
 ### Protocolo estadístico
 
-#### Formación de clusteres entre series temporales
+#### Formación de clusteres de series temporales
 
   El objetivo que persigue la formación de clústeres o creación de aglomerados a partir de las series temporales de concentración de PM~2.5~, es generar un agrupamiento en función del patrón de emisión a lo largo de las horas del día en el periodo de muestreo. De esta forma, los conglomerados además de permitir describir y encontrar similitudes entre los sitios, facilitaran el modelado predictivo de esta variable.
 
@@ -206,8 +208,8 @@ Los valores se encuentran en $\frac{\mu g}{m^3}$.
 |--------------------|:-------------:|
 | Media | 10.65 |
 | Desviación estándar | 10.67 |
-| Máximo | 150 |
-| Mínimo | 0 |
+| Máximo | 150.28 |
+| Mínimo | 0.53 |
 | Muestras | 69587 |
 
   La concentración promedio de PM~2.5~ para todo el período de muestreo fue de 10.65 $\frac{\mu g}{m^3}$ considerando todos los sitios de muestreo, con un rango de valores desde 0 a 150 $\frac{\mu g}{m^3}$ (Tabla \@ref(tab:concgral)). Estos datos indican que la concentración de PM~2.5~ supera el límite anual de PM~2.5~ establecido por la OMS. Sin embargo, se encuentra por debajo del límite propuesto por la Agencia de Protección Ambiental de los Estados Unidos (EPA) (Tabla \@ref(tab:guiapm)). 

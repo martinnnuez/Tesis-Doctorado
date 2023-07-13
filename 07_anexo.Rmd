@@ -1,4 +1,4 @@
-# Anexo 1: Bases de datos meteorológicos y satelitales {-}
+# Anexo 1: Bases de datos satelitales {-}
 
 ### Base de datos original
 
