@@ -1,6 +1,6 @@
 # Introducción General {#cap:ig}
 
-## El problema 
+## Problema de investigación
 
   El crecimiento desmedido de la población y la ambición de la sociedad por mejorar su calidad de vida, han resultado en un creciente deterioro ambiental. La atmósfera no es ajena a este deterioro que acaba empeorando la calidad del aire, impactando de forma directa en la calidad de vida de las personas. Se considera contaminante atmosférico a cualquier sustancia emitida al aire desde una fuente biogénica, geogénica o antropogénica, que es ajena a la composición natural del aire, o que se presenta en concentraciones superiores a las naturales, y que puede poner en riesgo a los seres vivos en un corto o largo plazo [@seinfeld1998air; @fuzzi2015particulate].
   

@@ -11,11 +11,11 @@ degree: 'Doctor en Ciencias de la Ingenieria'
 knit: "bookdown::render_book"
 site: bookdown::bookdown_site
 output: 
-  thesisdown::thesis_pdf: default
+  # thesisdown::thesis_pdf: default
   # thesisdown::thesis_gitbook: default
   # thesisdown::thesis_word: default
   # bookdown::pdf_document2: default
-  # bookdown::word_document2: default
+  bookdown::word_document2: default
   # thesisdown::thesis_epub: default
 
 #### Important!
@@ -35,7 +35,7 @@ dedication: |
 bibliography: bib/thesis.bib
 # bibliography: ./bib/thesis.bib
 # Download your specific bibliography database file and refer to it in the line above.
-csl: csl/apa-no-ampersand.csl
+csl: csl/apa7.csl
 lot: false
 lof: false
 ---
