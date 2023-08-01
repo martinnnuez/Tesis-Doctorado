@@ -276,56 +276,107 @@ Table: Coeficientes estimados de la relación funcional.\label{tab:coefvient}
 | t-7 | 0.1317611 | -0.03429  |
 | t-8 | 0.1445327 | -0.006416 |
 | t-24 | -0.1998146 | -0.3433 |
-      
+  
 #### Presión atmosférica
 
-```{r serpres, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:serpres)"}
-knitr::include_graphics("images/anexo/serpres.png")
-```
-(ref:serpres) Gráfico de la serie horaria promedio de presión atmosférica.
+<!-- #### Presión atmosférica -->
 
-```{r faspres, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:faspres)"}
-knitr::include_graphics("images/anexo/faspres.png")
-```
-(ref:faspres) Gráfico de la función de autocorrelación simple de la serie.
+<!-- ```{r serpres, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:serpres)"} -->
+<!-- knitr::include_graphics("images/anexo/serpres.png") -->
+<!-- ``` -->
+<!-- (ref:serpres) Gráfico de la serie horaria promedio de presión atmosférica. -->
 
-```{r fappres, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:fappres)"}
-knitr::include_graphics("images/anexo/fappres.png")
-```
-(ref:fappres) Gráfico de la función de autocorrelación parcial de la serie.
+<!-- ```{r faspres, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:faspres)"} -->
+<!-- knitr::include_graphics("images/anexo/faspres.png") -->
+<!-- ``` -->
+<!-- (ref:faspres) Gráfico de la función de autocorrelación simple de la serie. -->
 
-```{r ccfpres, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:ccfpres)"}
-knitr::include_graphics("images/anexo/ccfpres.png")
-```
-(ref:ccfpres) Gráfico de la correlación cruzada entre las series previo al filtrado por el modelo teórico ajustado.
+<!-- ```{r fappres, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:fappres)"} -->
+<!-- knitr::include_graphics("images/anexo/fappres.png") -->
+<!-- ``` -->
+<!-- (ref:fappres) Gráfico de la función de autocorrelación parcial de la serie. -->
 
-Table: Modelo teórico ajustado.\label{tab:modpres}
+<!-- ```{r ccfpres, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:ccfpres)"} -->
+<!-- knitr::include_graphics("images/anexo/ccfpres.png") -->
+<!-- ``` -->
+<!-- (ref:ccfpres) Gráfico de la correlación cruzada entre las series previo al filtrado por el modelo teórico ajustado. -->
+
+<!-- Table: Modelo teórico ajustado.\label{tab:modpres} -->
+
+<!-- | Modelo | AIC | AICc	| BIC | -->
+<!-- |------------------------------|:-------:|:-------:|:-------:| -->
+<!-- | ARIMA(6,3,6)(6,2,6)[24] | 131088.9 | 131088.9 | 131132.3 | -->
+
+<!-- ```{r mfaspres, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:mfaspres)"} -->
+<!-- knitr::include_graphics("images/anexo/mfaspres.png") -->
+<!-- ``` -->
+<!-- (ref:mfaspres) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado. -->
+
+<!-- ```{r mfappres, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:mfappres)"} -->
+<!-- knitr::include_graphics("images/anexo/mfappres.png") -->
+<!-- ``` -->
+<!-- (ref:mfappres) Gráfico de la función de autocorrelación parcial de la serie filtrada por el modelo teórico ajustado. -->
+
+<!-- ```{r mccfpres, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:mccfpres)"} -->
+<!-- knitr::include_graphics("images/anexo/mccfpres.png") -->
+<!-- ``` -->
+<!-- (ref:mccfpres) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico ajustado. -->
+
+<!-- Table: Coeficientes estimados de la relación funcional.\label{tab:coefpres} -->
+
+<!-- | Desfasaje | Con diferenciación | Sin diferenciación | -->
+<!-- |----------|:-------:|:-------:| -->
+<!-- | t-1 | -2.577e-03 | -3.582e-03 | -->
+<!-- | t-10 | 3.933e-04 | 5.467e-03 | -->
+
+```{r serpresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:serpresmar)"}
+knitr::include_graphics("images/anexo/serpresmar.png")
+```
+(ref:serpresmar) Gráfico de la serie horaria promedio de presión atmosférica al nivel del mar.
+
+```{r faspresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:faspresmar)"}
+knitr::include_graphics("images/anexo/faspresmar.png")
+```
+(ref:faspresmar) Gráfico de la función de autocorrelación simple de la serie.
+
+```{r fappresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:fappresmar)"}
+knitr::include_graphics("images/anexo/fappresmar.png")
+```
+(ref:fappresmar) Gráfico de la función de autocorrelación parcial de la serie.
+
+```{r ccfpresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:ccfpresmar)"}
+knitr::include_graphics("images/anexo/ccfpresmar.png")
+```
+(ref:ccfpresmar) Gráfico de la correlación cruzada entre las series previo al filtrado por el modelo teórico ajustado.
+
+```{r mfaspresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:mfaspresmar)"}
+knitr::include_graphics("images/anexo/mfaspresmar.png")
+```
+(ref:mfaspresmar) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+
+Table: Modelo teórico ajustado.\label{tab:modpresmar}
 
 | Modelo | AIC | AICc	| BIC |
 |------------------------------|:-------:|:-------:|:-------:|
-| ARIMA(6,3,6)(6,2,6)[24] | 131088.9 | 131088.9 | 131132.3 |
+| ARIMA(4,1,2)(2,1,2)[24] | 104424.1 | 104424.1 | 104474.7 |
 
-```{r mfaspres, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:mfaspres)"}
-knitr::include_graphics("images/anexo/mfaspres.png")
+```{r mfappresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:mfappresmar)"}
+knitr::include_graphics("images/anexo/mfappresmar.png")
 ```
-(ref:mfaspres) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+(ref:mfappresmar) Gráfico de la función de autocorrelación parcial de la serie filtrada por el modelo teórico ajustado.
 
-```{r mfappres, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:mfappres)"}
-knitr::include_graphics("images/anexo/mfappres.png")
+```{r mccfpresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:mccfpresmar)"}
+knitr::include_graphics("images/anexo/mccfpresmar.png")
 ```
-(ref:mfappres) Gráfico de la función de autocorrelación parcial de la serie filtrada por el modelo teórico ajustado.
+(ref:mccfpresmar) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico ajustado.
 
-```{r mccfpres, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:mccfpres)"}
-knitr::include_graphics("images/anexo/mccfpres.png")
-```
-(ref:mccfpres) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico ajustado.
-
-Table: Coeficientes estimados de la relación funcional.\label{tab:coefpres}
+Table: Coeficientes estimados de la relación funcional.\label{tab:coefpresmar}
 
 | Desfasaje | Con diferenciación | Sin diferenciación |
 |----------|:-------:|:-------:|
-| t-1 | -2.577e-03 | -3.582e-03 | 
-| t-10 | 3.933e-04 | 5.467e-03 | 
+| t | -0.003024 | -3.434e-03 |
+| t-9 | 0.002529 | -7.623e-04 |
+| t-19 | 0.008081 | 6.478e-03 |
 
 #### Radiación solar
 
@@ -785,56 +836,56 @@ Table: Coeficientes estimados de la relación funcional.\label{tab:coefinttemp}
 | t-18 | 3.007e-05 | 6.352e-05 |
 | t-21 | 1.269e-05 | -6.070e-05 |
 
-#### Presión atmosferica al nivel del mar
+<!-- #### Presión atmosferica al nivel del mar -->
 
-```{r serpresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:serpresmar)"}
-knitr::include_graphics("images/anexo/serpresmar.png")
-```
-(ref:serpresmar) Gráfico de la serie horaria promedio de presión atmosférica al nivel del mar.
+<!-- ```{r serpresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:serpresmar)"} -->
+<!-- knitr::include_graphics("images/anexo/serpresmar.png") -->
+<!-- ``` -->
+<!-- (ref:serpresmar) Gráfico de la serie horaria promedio de presión atmosférica al nivel del mar. -->
 
-```{r faspresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:faspresmar)"}
-knitr::include_graphics("images/anexo/faspresmar.png")
-```
-(ref:faspresmar) Gráfico de la función de autocorrelación simple de la serie.
+<!-- ```{r faspresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:faspresmar)"} -->
+<!-- knitr::include_graphics("images/anexo/faspresmar.png") -->
+<!-- ``` -->
+<!-- (ref:faspresmar) Gráfico de la función de autocorrelación simple de la serie. -->
 
-```{r fappresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:fappresmar)"}
-knitr::include_graphics("images/anexo/fappresmar.png")
-```
-(ref:fappresmar) Gráfico de la función de autocorrelación parcial de la serie.
+<!-- ```{r fappresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:fappresmar)"} -->
+<!-- knitr::include_graphics("images/anexo/fappresmar.png") -->
+<!-- ``` -->
+<!-- (ref:fappresmar) Gráfico de la función de autocorrelación parcial de la serie. -->
 
-```{r ccfpresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:ccfpresmar)"}
-knitr::include_graphics("images/anexo/ccfpresmar.png")
-```
-(ref:ccfpresmar) Gráfico de la correlación cruzada entre las series previo al filtrado por el modelo teórico ajustado.
+<!-- ```{r ccfpresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:ccfpresmar)"} -->
+<!-- knitr::include_graphics("images/anexo/ccfpresmar.png") -->
+<!-- ``` -->
+<!-- (ref:ccfpresmar) Gráfico de la correlación cruzada entre las series previo al filtrado por el modelo teórico ajustado. -->
 
-```{r mfaspresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:mfaspresmar)"}
-knitr::include_graphics("images/anexo/mfaspresmar.png")
-```
-(ref:mfaspresmar) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado.
+<!-- ```{r mfaspresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:mfaspresmar)"} -->
+<!-- knitr::include_graphics("images/anexo/mfaspresmar.png") -->
+<!-- ``` -->
+<!-- (ref:mfaspresmar) Gráfico de la función de autocorrelación simple de la serie filtrada por el modelo teórico ajustado. -->
 
-Table: Modelo teórico ajustado.\label{tab:modpresmar}
+<!-- Table: Modelo teórico ajustado.\label{tab:modpresmar} -->
 
-| Modelo | AIC | AICc	| BIC |
-|------------------------------|:-------:|:-------:|:-------:|
-| ARIMA(4,1,2)(2,1,2)[24] | 104424.1 | 104424.1 | 104474.7 |
+<!-- | Modelo | AIC | AICc	| BIC | -->
+<!-- |------------------------------|:-------:|:-------:|:-------:| -->
+<!-- | ARIMA(4,1,2)(2,1,2)[24] | 104424.1 | 104424.1 | 104474.7 | -->
 
-```{r mfappresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:mfappresmar)"}
-knitr::include_graphics("images/anexo/mfappresmar.png")
-```
-(ref:mfappresmar) Gráfico de la función de autocorrelación parcial de la serie filtrada por el modelo teórico ajustado.
+<!-- ```{r mfappresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:mfappresmar)"} -->
+<!-- knitr::include_graphics("images/anexo/mfappresmar.png") -->
+<!-- ``` -->
+<!-- (ref:mfappresmar) Gráfico de la función de autocorrelación parcial de la serie filtrada por el modelo teórico ajustado. -->
 
-```{r mccfpresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:mccfpresmar)"}
-knitr::include_graphics("images/anexo/mccfpresmar.png")
-```
-(ref:mccfpresmar) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico ajustado.
+<!-- ```{r mccfpresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:mccfpresmar)"} -->
+<!-- knitr::include_graphics("images/anexo/mccfpresmar.png") -->
+<!-- ``` -->
+<!-- (ref:mccfpresmar) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico ajustado. -->
 
-Table: Coeficientes estimados de la relación funcional.\label{tab:coefpresmar}
+<!-- Table: Coeficientes estimados de la relación funcional.\label{tab:coefpresmar} -->
 
-| Desfasaje | Con diferenciación | Sin diferenciación |
-|----------|:-------:|:-------:| 
-| t | -0.003024 | -3.434e-03 | 
-| t-9 | 0.002529 | -7.623e-04 | 
-| t-19 | 0.008081 | 6.478e-03 | 
+<!-- | Desfasaje | Con diferenciación | Sin diferenciación | -->
+<!-- |----------|:-------:|:-------:| -->
+<!-- | t | -0.003024 | -3.434e-03 | -->
+<!-- | t-9 | 0.002529 | -7.623e-04 | -->
+<!-- | t-19 | 0.008081 | 6.478e-03 | -->
 
 #### Disipación en la capa límite atmosférica
 

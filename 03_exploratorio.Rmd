@@ -14,14 +14,14 @@
   
 ## Materiales y métodos
 
-### Resumen gráfico del protocolo analítico
+### Resumen gráfico del protocolo analítico de caracterización de la variación espacio temporal de la concentración de PM~2.5~
 
 ```{r expl, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:expl)"}
 knitr::include_graphics("images/GA/expl.png")
 ```
 (ref:expl) Resumen gráfico del protocolo analítico desarrollado en el capítulo 3.
 
-  La figura \@ref(fig:expl) ilustra el protocolo analítico desarrollado en el capítulo 3, proporcionando una visión ordenada de las distintas actividades llevadas a cabo para lograr su objetivo. En primer lugar, se hace referencia al procedimiento de muestreo simultaneo en el tiempo en los sitios con distinto uso de suelo seleccionados dentro del área metropolitana de la ciudad de Córdoba, Argentina. Posteriormente se hace mención al análisis exploratorio de datos, el cual consto principalmente de dos etapas iniciales, una vinculada con la variabilidad temporal en primera instancia y otra relacionada a la espacial. Además se destaca el procedimiento de agrupación de los sitios en función del patrón de emisión de PM~2.5~ a lo largo del periodo de muestreo. Finalmente, y a partir del agrupamiento realizado en función de la similitud entre los sitios es que se concluye con el análisis en que se vinculan características espaciales y temporales.
+  La figura \@ref(fig:expl) ilustra el protocolo analítico desarrollado en este capítulo con la finalidad de caracterizar la variación espacio temporal de la concentración de PM~2.5~ en zonas del Área Metropolitana de Córdoba, Argentina. En primer lugar, se desarrolló un muestreo simultáneo en el tiempo en los sitios con distinto uso de suelo seleccionados dentro del área de interés. Posteriormente, se llevó a cabo un análisis exploratorio de datos, el cual constó de dos etapas, una vinculada a la variabilidad temporal y otra a la espacial. Además, se desarrolló un estudio de la similitud existente en el patrón de emisión de PM~2.5~ a lo largo del periodo de muestreo entre los distintos sitios, el cual terminó en la conformación de grupos homogéneos de los sitios en estudio. Finalmente, y a partir del agrupamiento realizado, se concluyó con un análisis que vinculó tanto la variabilidad espacial, como la temporal.
 
 ### Área de estudio
 

@@ -20,14 +20,14 @@
 
 ## Materiales y métodos
 
-### Resumen gráfico del protocolo analítico
+### Resumen gráfico del protocolo analítico de desarrollo y validación de sensores de monitoreo basados en tecnologías de bajo costo
 
 ```{r sens, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:sens)"}
 knitr::include_graphics("images/GA/sens.png")
 ```
 (ref:sens) Resumen gráfico del protocolo analítico desarrollado en el capítulo 2.
 
-  La figura \@ref(fig:sens) presenta el protocolo analítico desarrollado en el capítulo 2, ofreciendo una visión ordenada de las distintas actividades llevadas a cabo para alcanzar el objetivo propuesto. En primer lugar, se destaca la intensa investigación de tecnologías disponibles en el mercado referidas a sensores de bajo costo. A continuación, se ilustra el procedimiento de desarrollo de un sistema de monitoreo basado en sensores de bajo costo, específicamente diseñado para la medición de concentración de PM~2.5~. Posteriormente se hace referencia a la evaluación de la calidad del dato recopilado, la cual se abordo en dos etapas: la primera se centra en determinar el consenso de las mediciones obtenidas por los distintos sensores, mientras que la segunda se enfoca en comparar las mediciones con respecto a las de una estación de referencia, evaluando su fiabilidad y precisión en relación con una fuente de datos establecida y confiable.
+  La figura \@ref(fig:sens) presenta el protocolo analítico desarrollado en este capítulo con la finalidad de desarrollar y validar sensores de monitoreo basados en tecnologías de bajo costo que posibiliten recopilar datos de concentración horaria de PM~2.5~ a lo largo del tiempo. En primer lugar, se realizó una investigación de las tecnologías de bajo costo disponibles en el mercado referidas a medición de la concentración de PM. Posteriormente a la adquisición de los respectivos recursos materiales, se desarrolló el código que daría sustento a la interacción de los distintos sensores de bajo costo que formaron el sistema, para su seguido ensamblado. Una vez que los diez sistemas de monitoreo se encontraron en funcionamiento, se evaluó la calidad del dato recopilado, lo cual se abordó en dos etapas: la primera se centró en determinar el consenso de las mediciones obtenidas por los distintos sensores, mientras que la segunda se enfocó en comparar las mediciones con respecto a las de una estación de referencia, evaluando su fiabilidad y precisión en relación con una fuente de datos establecida y confiable.
 
 ### Desarrollo del sistema de monitoreo basado en sensores de bajo costo
 

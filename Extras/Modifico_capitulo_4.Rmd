@@ -1,0 +1,277 @@
+  
+# Variables nuevas descripcion: 
+
+  Rugosidad de la superficie terrestre es la altura equivalente en metros de la rugosidad aerodinámica de la superficie terrestre. Es una medida de la resistencia que ejerce la superficie al flujo de aire, particularmente este parámetro se utiliza para determinar la transferencia de momento del aire a la superficie. Una mayor rugosidad de la superficie genera una reducción de la velocidad del viento cerca de la superficie. Esta variable se deriva de la cobertura, tipo de vegetación y presencia de nieve en la superficie terrestre y se expresa en metros ($m$). 
+  
+  Disipación en la capa límite atmosférica, indica la conversión acumulada de la energía cinética de flujo medio en calor en toda la columna atmosférica, por unidad de superficie, como consecuencia de los efectos de la tensión asociada a remolinos turbulentos cerca de la superficie y al arrastre de forma orográfica turbulenta. Los remolinos turbulentos cerca de la superficie están relacionados con la rugosidad superficial, mientras que el arrastre de forma orográfica turbulenta es la tensión debida a los valles, colinas y montañas en escalas horizontales inferiores a 5 km. Se espera que incrementos de la disipación en la capa limite atmosférica promueva reducciones de la concentración de partículas finas, como consecuencia de la influencia en la disipación de las mismas, por otra parte, reducciones de la disipación no favorecería el fenómeno de dispersión resultando en mayores concentraciones de PM~2.5~. Las unidades en las que se mide este parámetro son julios por metro cuadrado ($\frac{J}{m^2}$). 
+  
+  Integración vertical de flujo de ozono norte es la tasa horizontal de flujo de ozono en dirección norte, por metro a través del flujo, para una columna de aire que se extiende desde la superficie hasta la parte superior de la atmósfera. Los valores positivos denotan un flujo de sur a norte. Las unidades en las que se mide este parámetro son kilogramos por metro por segundo ($\frac{Kg}{m.s}$).
+  
+  Tasa media de escorrentía subterránea, es la parte del agua procedente de las precipitaciones, del deshielo o de las napas, que escurre por debajo de la superficie terrestre. El agua que no se almacena escurre, esto puede ser por la superficie (escorrentía superficial) o por debajo del suelo (escorrentía subsuperficial), la suma de ambas se denomina escorrentía. Este parámetro refiere a la tasa que tendría la escorrentía si se repartiera uniformemente por la cuadrícula de resolución espacial. La escorrentía es una medida de la disponibilidad de agua en el suelo y puede utilizarse, por ejemplo, como indicador de sequía o inundación. Se espera que la influencia de la variable en la concentración de PM~2.5~, sea a través del proceso físico de refrigeración de la atmósfera, influyendo en los niveles de la capa límite atmosférica. Las unidades en las que se mide este parámetro son kilogramos por metro cuadrado por segundo ($\frac{Kg}{m^2.s}$). 
+  
+  Integración vertical de temperatura es la integral vertical de la temperatura para una columna de aire ponderada por su masa, que se extiende desde la superficie de la Tierra hasta la parte superior de la atmósfera. Este parámetro puede utilizarse para estudiar el balance energético atmosférico. Se espera que esta variable se vincule con la concentración de PM~2.5~, por medio de la relación existente entre la variación de la temperatura lo largo del espesor de la atmósfera y las estratificaciones que en esta se generan, resultando en aumentos o disminuciones de la concentración PM~2.5~, en función de la altura a la cual ocurre la estratificación. Este fenómeno se encuentra vinculado también con la variación de la altura de la capa límite atmosférica. Las unidades en las que se mide este parámetro son en kilogramos por Kelvin por metro cuadrado ($\frac{Kg.K}{m^2}$).
+
+# Parte de discusion en resultados:
+
+Temperatura: 
+  Es importante destacar que esta relación inversa puede ser explicada por los procesos físicos que ocurren en la atmósfera. En general, la temperatura juega un papel importante en la dispersión y transporte de contaminantes en la atmósfera: a altas temperaturas, la atmósfera se vuelve más estable, reduciendo su capacidad para dispersar contaminantes mientras que, a bajas temperaturas, la atmósfera se vuelve más inestable, permitiendo una mayor dispersión de los contaminantes.
+  Puede establecerse de esta forma que ambas variables se relacionan en una u otra dirección en función del desfasaje temporal analizado, sin embargo, puede notarse que prevalece una relación del tipo inversa dado que la mayoría de los desfasajes se corresponden con esta. Además, la relación de mayor capacidad predictiva responde a una relación inversa y se da al no considerar desfasaje entre la temperatura y la variable respuesta.
+
+Humedad relativa: 
+  La relación entre la humedad relativa y la concentración de PM~2.5~ exhibe un ciclo de variación horario a lo largo del día similar, sin considerar ningún desfase temporal entre las variables. A pesar de lo que se observa, estos resultados no coinciden con la relación inversa que suele identificarse para el caso de la humedad relativa [@nogarotto2020review ;@liu2020varying; @he2019exploring; @chen2016spatial]. Sin embargo, al considerar un desfase de 5 horas (Figura \@ref(fig:mccfhum)), se aprecia una relación inversa entre las mismas. Por ejemplo, en la figura \@ref(fig:humhor), las curvas que representan el patrón de relación entre ambas variables describen una relación directa, mientras que al considerar un desfase de 5 horas, la relación entre ellas se vuelve inversa. Este resultado sugiere que la relación entre la humedad relativa y la concentración de PM~2.5~ es sensible al desfase temporal entre ambas variables.
+  Puede establecerse de esta forma que ambas variables se relacionan en una u otra dirección en función del desfasaje temporal considerado. Por otra parte, la relación de mayor capacidad predictiva es la obtenida en el desfasaje de 24 horas de la humedad relativa con respecto a la variable respuesta, demostrando una mayor contribución de la relación directa para predecir la variable respuesta en el presente.
+
+Temperatura del punto de rocio: 
+  En conclusión, puede afirmarse que la temperatura del punto de rocío y la concentración de PM~2.5~ se relacionan de forma inversamente proporcional, y que el desfasaje de mayor capacidad predictiva para estimar la concentración de PM~2.5~ en el presente es de 14 horas con respecto a la temperatura del punto de rocío.
+
+Precipitación:
+  Puede notarse que en los meses en que las precipitaciones son altas, la concentración promedio mensual de PM~2.5~ se ve reducida, mientras que en los meses en que las precipitaciones son bajas, las concentraciones de PM~2.5~ presentan valores más elevados. De esta forma puede interpretarse que la relación que vincula ambas variables es del tipo inversa. Este hallazgo sugiere que la lluvia juega un papel fundamental en la reducción de los niveles de PM~2.5~ en la atmósfera.
+  Puede establecerse de esta forma que ambas variables se relacionan de forma inversa y que la relación de mayor capacidad predictiva se da en un desfasaje de 1 hora de la precipitación con respecto a la variable respuesta. 
+  
+Velocidad del viento: 
+  Por lo tanto, puede establecerse que ambas variables se relacionan de forma inversa y que la relación que mayor capacidad predictiva se da en un desfasaje de 24 horas de la velocidad del viento con respecto a la variable respuesta.
+  
+Presión atmósferica: 
+  Puede establecerse de esta forma que ambas variables se relacionan en una u otra dirección en función del desfasaje temporal analizado.
+  
+Radiación solar: 
+
+  
+AOD:
+  Puede establecerse de esta forma que ambas variables se relacionan de forma directa y que la relación de mayor capacidad predictiva se da sin considerar desfasaje entre el AOD y la variable respuesta.
+
+
+PBLH:
+  Por lo tanto, puede afirmarse que ambas variables se relacionan de forma inversa y que la relación de mayor capacidad predictiva se produce sin considerar el desfasaje temporal entre el PBLH y la variable respuesta.
+
+Google traffic:
+  Puede establecerse de esta forma que ambas variables se relacionan de forma directa y que la relación de mayor capacidad predictiva se da en un desfasaje de 8 horas del tráfico con respecto a la variable respuesta.
+
+LST:
+  Puede establecerse de esta forma que ambas variables se relacionan de forma inversa y que la relación de mayor capacidad predictiva se da en un desfasaje de 5 horas de la LST con respecto a la variable respuesta.
+
+# Resultados analisis variable saco: 
+
+#### Rugosidad de la superficie terrestre
+  
+  Es importante señalar que la rugosidad de la superficie terrestre es una variable que, en la escala temporal horaria, no presenta una variación significativa debido a que su cálculo implica la consideración de fenómenos cuyos rangos de variación y ocurrencia superan esta escala temporal. En consecuencia, durante el transcurso de las horas del día, su valor tiende a permanecer constante y solo varía en escalas temporales de mayor magnitud, como al cabo de múltiples horas, el día o los meses del año. Por esta razón, se ha decidido excluir el análisis exploratorio en la escala temporal horaria.
+
+```{r rugmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:rugmes)"}
+knitr::include_graphics("images/imagescap4/rugmes.png")
+```
+(ref:rugmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la rugosidad de la superficie terrestre a lo largo del año.
+
+  La figura \@ref(fig:rugmes) presenta el patrón de variación conjunto que describen los promedios mensuales de la rugosidad de la superficie terrestre y la concentración de PM~2.5~ a lo largo del año. A partir de esta puede notarse que los mayores valores de la variable se registran durante la primavera, específicamente en el mes de septiembre, mientras que el mínimo se da durante el verano, en el mes de marzo. Estos resultados sugieren que existe una relación de vinculación directa entre ambas variables, donde aumentos en la magnitud de la concentración del contaminante están favorecidos por mayores valores de rugosidad de la superficie terrestre.
+
+Table: PM~2.5~ promedio horario en los días en que la rugosidad de la superficie terrestre toma valores por encima y por debajo de su media condicionada por cada estación del año.\label{tab:rug}
+
+| Rugosidad | PM~2.5~ |
+|-------------|:-------:|
+| Alta |	10.65 |
+| Baja | 10.71 |
+
+  Puede notarse que los valores de concentración de PM~2.5~ promedio horarios parecen no variar significativamente en función de la rugosidad de la superficie terrestre en las horas del día en que la variable es superior e inferior respecto de su media, lo cual sugiere que otras variables pueden estar afectando más significativamente la concentración de PM~2.5~ en esta escala temporal (Tabla \@ref(tab:rug)). 
+  
+Table: Test de Kruskal-Wallis para el PM~2.5~ promedio horario en los días en que la rugosidad de la superficie terrestre toma valores por encima y por debajo de su media condicionada por cada estación del año.\label{tab:rugKW}
+
+| Test | Chi-squared | df	| p-valor |
+|------------------------------|:------:|:-----:|:-------:|
+| Kruskal-Wallis rank sum test | 6.88	| 1 |	0.1 |
+
+  A un nivel de significancia del 1% podemos establecer que la muestra no reúne evidencias suficientes para rechazar la hipótesis nula, con lo cual se concluye que las muestras provienen de la misma población o bien que las medias son similares (Tabla \@ref(tab:rugKW)).
+
+```{r mccfrug, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:mccfrug)"}
+knitr::include_graphics("images/imagescap4/mccfrug.png")
+```
+(ref:mccfrug) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico.
+
+  A partir de la figura \@ref(fig:mccfrug), puede apreciarse que las únicas correlaciones significativas que perdura luego del procedimiento de filtrado de las series son los pasados en los tiempos t-0, t-1, t-9, t-12, t-13, t-14 y t-23, destacándose como los desfasajes temporales de mayor capacidad predictiva para estimar el PM~2.5~ en el presente.
+  
+  Luego de la estimación de la relación funcional se determinó que cuatro de los coeficientes demostraron una relación directa (t-0, t-12, t-13 y t-14), mientras que los tres restantes se vieron influenciados por una relación espuria o aleatoria (t-1, t-9 y t-23). Puede establecerse de esta forma que ambas variables se relacionan de forma directa y que la relación de mayor capacidad predictiva se da sin considerar desfasaje entre la rugosidad de la superficie terrestre y variable respuesta.
+
+#### Integración vertical del flujo de ozono proveniente del norte
+
+```{r oznormes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:oznormes)"}
+knitr::include_graphics("images/imagescap4/oznormes.png")
+```
+(ref:oznormes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la integración vertical del flujo de ozono proveniente del norte a lo largo del año.
+
+  La figura \@ref(fig:oznormes) presenta el patrón de variación conjunto que describen los promedios mensuales de la integración vertical del flujo de ozono norte y la concentración de PM~2.5~ a lo largo del año. A partir de esta puede notarse que los valores de menor magnitud registrados para la variable ocurren durante la primavera en los meses de septiembre y octubre, mientras que los de mayor magnitud fueron registrados durante el invierno, específicamente en los meses de mayo y junio. Esto sugiere que la relación de vinculación entre las variables es del tipo directa, evidenciando que bajas concentraciones se ven favorecidas por disminuciones de los valores que toma la variable, mientras que elevadas concentraciones se ven impulsadas por aumentos de la misma.
+  
+  Esta relación entre ambas variables sugiere que podrían existir factores comunes que influyen en su variabilidad. Además, dado que el flujo de ozono norte se encuentra principalmente en la troposfera inferior y la concentración de PM~2.5~ está influenciada por emisiones antropogénicas y procesos atmosféricos, es posible que la relación entre ambas variables refleje la interacción entre la química y la dinámica atmosférica.
+
+```{r oznorhor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:oznorhor)"}
+knitr::include_graphics("images/imagescap4/oznorhor.png")
+```
+(ref:oznorhor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y  a lo largo del día.
+
+  A partir de la imagen \@ref(fig:oznorhor), puede apreciarse el patrón de variación de la integración vertical del flujo de ozono proveniente del norte promedio a lo largo de las horas del día. En este, puede notarse que los valores más elevados se registran durante la madrugada, específicamente entre las 0 y las 2 horas, experimentando un descenso gradual a lo largo del día hasta alcanzar su mínimo a las 17 horas. De esta forma, puede apreciarse que la relación de variación conjunta entre ambas variables es del tipo directa. Asimismo, se puede apreciar un patrón de variación conjunto similar entre ambas variables, aunque con cierto desfase en algunas horas.
+
+Table: PM~2.5~ promedio horario en los días en que la integración vertical del flujo de ozono proveniente del norte toma valores por encima y por debajo de su media condicionada por cada estación del año.\label{tab:oznor}
+
+| Ozono | PM~2.5~ |
+|-------------|:-------:|
+| Alto |	11.25 |
+| Bajo | 10.06 |
+
+  Puede notarse una relación directa entre la integración vertical del flujo de ozono proveniente del norte y la concentración de PM~2.5~. En las horas del día en que la variable del flujo de ozono es baja con respecto a su media, también lo es la concentración media horaria de PM~2.5~ registrada. Por otro lado, cuando la variable de ozono presenta valores altos en comparación con su media, también ocurre lo mismo con la concentración de PM~2.5~ (Tabla \@ref(tab:oznor)).
+
+Table: Test de Kruskal-Wallis para el PM~2.5~ promedio horario en los días en que la integración vertical del flujo de ozono proveniente del norte toma valores por encima y por debajo de su media condicionada por cada estación del año.\label{tab:oznorKW}
+
+| Test | Chi-squared | df	| p-valor |
+|------------------------------|:------:|:-----:|:-------:|
+| Kruskal-Wallis rank sum test | 50.39	| 1 |	0 |
+
+  A un nivel de significancia del 1% podemos establecer que la muestra reúne evidencias suficientes para rechazar la hipótesis nula, con lo cual se concluye que las muestras provienen de poblaciones con distribución distinta, o bien que sus medias son significativamente diferentes (Tabla \@ref(tab:oznorKW)).
+
+```{r mccfoznor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:mccfoznor)"}
+knitr::include_graphics("images/imagescap4/mccfoznor.png")
+```
+(ref:mccfoznor) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico.
+
+  A partir de la figura \@ref(fig:mccfoznor), puede apreciarse que las únicas correlaciones significativas que perduran luego del procedimiento de filtrado de las series es el pasado en los tiempos t-18 y t-19, destacándose como los desfasajes temporales de mayor capacidad predictiva para estimar el PM~2.5~ en el presente.
+  
+  Luego de la estimación de la relación funcional se determinó que uno de los coeficientes demostró una espuria o aleatoria (t-18), mientras que el restante una relación directa (t-19). Puede establecerse de esta forma que ambas variables se relacionan de forma directa y que la relación de mayor capacidad predictiva se da en un desfasaje de 19 horas de la integración del flujo de ozono proveniente del norte con respecto a la variable respuesta. Es importante destacar que esta relación es consistente con la observación de un patrón de variación conjunto similar entre ambas variables, pero desfasado en algunas horas, tal como se puede apreciar en la figura \@ref(fig:oznorhor).
+
+#### Tasa media de escorrentía subterránea
+  
+  Es importante mencionar que el análisis de la tasa media de escorrentía subterránea en la escala temporal horaria no proporciona información relevante dado a su estrecha relación con la precipitación. Cuando no ocurren precipitaciones, la tasa de escorrentía subterránea se mantiene constante a lo largo de las horas del día y, por lo tanto, sus valores no tienen una interpretación significativa. Como resultado, se decidió excluir el análisis exploratorio en esta escala temporal.
+
+```{r escmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:escmes)"}
+knitr::include_graphics("images/imagescap4/escmes.png")
+```
+(ref:escmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la tasa media de escorrentía subterránea a lo largo del año.
+
+  En la figura \@ref(fig:escmes) puede apreciarse el patrón de variación conjunto que describen los promedios mensuales de la tasa media de escorrentía subterránea y la concentración de PM~2.5~ a lo largo del año. Puede notarse que los valores de menor magnitud registrados para esta tasa ocurren en el verano durante los meses de diciembre, enero y febrero, mientras que los de mayor magnitud se registraron en el invierno durante el mes de junio. Puede notarse que la relación de vinculación entre ambas variables es del tipo directa, demostrando que bajas concentraciones se ven favorecidas por disminuciones de los valores que toma la variable, mientras que elevadas concentraciones se ven favorecidas por aumentos de la tasa media de escorrentía subterránea.
+
+Table: PM~2.5~ promedio horario en los días en que la tasa media de escorrentía subterránea toma valores por encima y por debajo de su media condicionada por cada estación del año.\label{tab:esc}
+
+|  | PM~2.5~ |
+|-------------|:-------:|
+| Alta |	11.65 |
+| Baja | 9.80 |
+
+  Puede notarse que en las horas del día en que la tasa media de escorrentía subterránea es baja con respecto a su media, también lo es la concentración media de PM~2.5~ horaria registrada, mientras que las horas del día en que la tasa media de escorrentía subterránea es alta también lo es la concentración del contaminante (Tabla \@ref(tab:esc)). 
+
+Table: Test de Kruskal-Wallis para el PM~2.5~ promedio horario en los días en que la tasa media de escorrentía subterránea toma valores por encima y por debajo de su media condicionada por cada estación del año.\label{tab:escKW}
+
+| Test | Chi-squared | df	| p-valor |
+|------------------------------|:------:|:-----:|:-------:|
+| Kruskal-Wallis rank sum test | 116.98	| 1 |	0 |
+
+  A un nivel de significancia del 1% podemos establecer que la muestra reúne evidencias suficientes para rechazar la hipótesis nula, con lo cual se concluye que las muestras provienen de poblaciones con distribución distinta, o bien que sus medias son significativamente diferentes (Tabla \@ref(tab:escKW)).
+
+```{r mccfesc, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:mccfesc)"}
+knitr::include_graphics("images/imagescap4/mccfesc.png")
+```
+(ref:mccfesc) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico.
+
+  A partir de la figura \@ref(fig:mccfesc), puede apreciarse que las únicas correlaciones significativas que perduran luego del procedimiento de filtrado de las series es el pasado en los tiempos t-8 y t-15, destacándose como los desfasajes temporales de mayor capacidad predictiva para estimar el PM~2.5~ en el presente.
+  
+  Luego de la estimación de la relación funcional se determinó que uno de los coeficientes demostró una relación espuria o aleatoria (t-8), mientras que el restante reveló una relación de vinculación directa (t-15). Puede establecerse de esta forma que ambas variables se relacionan de forma directa y que la relación de mayor capacidad predictiva se da en un desfasaje de 15 horas de la tasa media de escorrentía subterránea con respecto a la variable respuesta.
+
+#### Integración vertical de temperatura
+
+```{r intvertmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:intvertmes)"}
+knitr::include_graphics("images/imagescap4/intvertmes.png")
+```
+(ref:intvertmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la integración vertical de temperatura a lo largo del año.
+
+  En la figura \@ref(fig:intvertmes) puede visualizarse el patrón de variación conjunto que describen los promedios mensuales de la integración vertical de temperatura y la concentración de PM~2.5~ a lo largo del año. Puede notarse que los valores de menor magnitud de la variable fueron registrados durante el invierno, específicamente en el mes de junio, mientras que los mayores durante el verano en los meses de diciembre y enero. Estos hallazgos sugieren una relación de vinculación entre las variables del tipo inversa, lo que implica que aumentos en la magnitud de la variable se asocian con disminuciones en las concentraciones de PM~2.5~, mientras que disminuciones en la variable se vinculan con aumentos en las concentraciones del contaminante.
+
+```{r intverthor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:intverthor)"}
+knitr::include_graphics("images/imagescap4/intverthor.png")
+```
+(ref:intverthor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la integración vertical de temperatura a lo largo del día.
+
+  A partir de la figura \@ref(fig:intverthor) puede apreciarse el patrón de variación conjunto de la integración vertical de temperatura y la concentración de PM~2.5~ promedio a lo largo de las horas del día. Puede notarse que la temperatura presenta un perfil de variación opuesto al de la concentración de PM~2.5~, evidenciando una relación de vinculación inversa. De esta forma, valores de baja magnitud de la variable se condicen con aumentos de la concentración del contaminante, mientras que valores de mayor magnitud de la variable ocurren en simultaneidad con disminuciones de la concentración de PM~2.5~.
+
+Table: PM~2.5~ promedio horario en los días en que la integración vertical de temperatura toma valores por encima y por debajo de su media condicionada por cada estación del año.\label{tab:intvert}
+
+|  | PM~2.5~ |
+|-------------|:-------:|
+| Alta |	11.24 |
+| Baja | 10.08 |
+
+  Puede notarse que en las horas del día en que la integración vertical de temperatura es baja con respecto a su media, la concentración media de PM~2.5~ horaria registrada también lo es y que las horas en que la integración vertical de temperatura toma valores por encima de su media, la concentración del contaminante registrada es superior (Tabla \@ref(tab:intvert)).
+
+Table: Test de Kruskal-Wallis para el PM~2.5~ promedio horario en los días en que la integración vertical de temperatura toma valores por encima y por debajo de su media condicionada por cada estación del año.\label{tab:intvertKW}
+
+| Test | Chi-squared | df	| p-valor |
+|------------------------------|:------:|:-----:|:-------:|
+| Kruskal-Wallis rank sum test | 65.44	| 1 |	0 |
+
+  A un nivel de significancia del 1% podemos establecer que la muestra reúne evidencias suficientes para rechazar la hipótesis nula, con lo cual se concluye que las muestras provienen de poblaciones con distribución distinta, o bien que sus medias son significativamente diferentes (Tabla \@ref(tab:intvertKW)).
+
+```{r mccfintvert, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:mccfintvert)"}
+knitr::include_graphics("images/imagescap4/mccfintvert.png")
+```
+(ref:mccfintvert) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico.
+
+  A partir de la figura \@ref(fig:mccfintvert), puede apreciarse que las únicas correlaciones significativas que perdura luego del procedimiento de filtrado de las series se dan en los tiempos t, t-15, t-16, t-18 y t-21, destacándose como los desfasajes temporales de mayor capacidad predictiva para estimar el PM~2.5~ en el presente. 
+  
+  Luego de la estimación de la relación funcional se determinó que dos de los cinco coeficientes significativos se vieron influenciados por efectos espurias o aleatorios (t y t-21), demostrando que estas relaciones no son significativas en términos estadísticos. En contraste, de los tres restantes dos demostraron una relación directa (t-16 y t-18) y solo uno una relación inversa (t-15). Además, el coeficiente de mayor capacidad predictiva (desfasaje de 16 horas) demostró una relación del tipo directa. Puede establecerse de esta forma que ambas variables se vinculan en una u otra dirección en función del desfasaje temporal analizado, a pesar de esto predomina una relación directa entre ambas variables.
+  
+#### Disipación en la capa límite atmosférica
+
+```{r disipmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:disipmes)"}
+knitr::include_graphics("images/imagescap4/disipmes.png")
+```
+(ref:disipmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la disipación en la capa límite atmosférica a lo largo del año.
+
+  A partir de la figura \@ref(fig:disipmes) puede visualizarse el patrón de variación conjunto que describen los promedios mensuales de la disipación en la capa límite atmosférica y la concentración de PM~2.5~ a lo largo del año. Puede notarse que los valores de menor magnitud de disipación registrados ocurren durante el verano en los meses de enero y diciembre, mientras que los de mayor magnitud ocurren durante la primavera en los meses de septiembre y octubre. A pesar de que no logra apreciarse una clara relación entre las variables en esta escala temporal, la tendencia parece ser del tipo directa. 
+
+```{r disiphor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:disiphor)"}
+knitr::include_graphics("images/imagescap4/disiphor.png")
+```
+(ref:disiphor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la disipación en la capa límite atmosférica a lo largo del día.
+  
+  La figura \@ref(fig:disiphor) presenta el patrón de variación conjunto que describen los promedios horarios de la disipación en la capa límite atmosférica y la concentración de PM~2.5~ a lo largo del día. Puede notarse que ambas variables muestran un perfil de variación inverso, evidenciando una relación inversa, en la cual valores de baja magnitud de la variable se condicen con elevadas concentraciones del contaminante, mientras que elevados valores de la variable ocurren en simultaneidad con reducidas concentraciones.
+
+Table: PM~2.5~ promedio horario en los días en que la disipación en la capa límite atmosférica toma valores por encima y por debajo de su media condicionada por cada estación del año.\label{tab:disip}
+
+|  | PM~2.5~ |
+|-------------|:-------:|
+| Alta |	8.58 |
+| Baja | 11.71 |
+
+  Puede notarse que en las horas del día en que la disipación en la capa límite atmosférica es baja con respecto a su media, la concentración media de PM~2.5~ horaria registrada es superior a la registrada en las horas en que la disipación en la capa límite atmosférica es alta (Tabla \@ref(tab:disip)).
+
+Table: Test de Kruskal-Wallis para el PM~2.5~ promedio horario en los días en que la disipación en la capa límite atmosférica toma valores por encima y por debajo de su media condicionada por cada estación del año.\label{tab:disipKW}
+
+| Test | Chi-squared | df	| p-valor |
+|------------------------------|:------:|:-----:|:-------:|
+| Kruskal-Wallis rank sum test | 431.43	| 1 |	0 |
+
+  A un nivel de significancia del 1% podemos establecer que la muestra reúne evidencias suficientes para rechazar la hipótesis nula, con lo cual se concluye que las muestras provienen de poblaciones con distribución distinta, o bien que sus medias son significativamente diferentes (Tabla \@ref(tab:disipKW)).
+
+```{r mccfdisip, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:mccfdisip)"}
+knitr::include_graphics("images/imagescap4/mccfdisip.png")
+```
+(ref:mccfdisip) Gráfico de la correlación cruzada entre las series filtradas por el modelo teórico.
+    
+  A partir de la figura \@ref(fig:mccfdisip), puede apreciarse que las únicas correlaciones significativas que perduran luego del procedimiento de filtrado de las series son los pasados en los tiempos t, t-5, t-7, t-20 y t-22, destacándose como los desfasajes temporales de mayor capacidad predictiva para estimar el PM~2.5~ en el presente.
+
+  Luego de la estimación de la relación funcional se determinó que dos de los cinco coeficientes demostraron estar influenciados por una relación espuria o aleatoria (t-5 y t-7), mientras que los tres restantes exhibieron una relación inversa (t, t-20 y t-22). Puede establecerse de esta forma que ambas variables se vinculan de forma inversa y que la relación que mayor capacidad predictiva se da en un desfasaje de 20 horas de la disipación en la capa límite atmosférica con respecto a la variable respuesta.
+  
+# Discusiones
+
+  La relación directa entre la rugosidad de la superficie terrestre y la concentración de PM~2.5~ podría encontrarse sustentada en que la presencia de objetos y estructuras en superficie, tales como edificios, árboles y otros obstáculos que obstaculizan el flujo de aire y dificultan así la dispersión de los contaminantes. Por lo tanto, aumentos en la rugosidad de la superficie resultan en mayores concentraciones de PM~2.5~. En contraste, superficies terrestres con baja rugosidad permiten un flujo libre de las corrientes de aire, lo que favorece la dispersión de los contaminantes.
+
+  El coeficiente detectado significativo de mayor importancia no se vincula a ningún desfasaje temporal y representa una relación directa, sugiriendo que la influencia de la rugosidad en la dispersión de los contaminantes atmosféricos ocurre de forma instantánea. A su vez el coeficiente en un desfasaje de 14 horas demostró también ser significativo siguiendo la misma relación, lo cual parece carecer de sentido físico, pero sostiene la relación directa previamente encontrada.
+
+  Estudios previos han demostrado una correlación positiva entre la concentración de ozono troposférico y la concentración de material particulado, lo cual también ha sido constatado en este trabajo [@qu2022lidar; @kalashnikov2022increasing]. Tal y como señala Kalashnikov, esta relación podría deberse a incendios forestales o bien a eventos meteorológicos particulares que contribuyen al incremento de la concentración simultánea de ambos contaminantes (Kalashnikov et al., 2022). Durante los incendios forestales, se liberan grandes cantidades de gases y partículas al ambiente. Entre estos gases, se encuentran los compuestos orgánicos volátiles (COV), que reaccionan con los óxidos de nitrógeno (NOx) para producir ozono. Además, el ozono puede interactuar con las partículas en la atmósfera para formar compuestos químicos más complejos, como los llamados nitratos orgánicos, que pueden contribuir al aumento de la concentración de partículas y ozono en zonas alejadas de los incendios forestales. El ozono troposférico es un oxidante fotoquímico que puede reaccionar con los precursores del material particulado, tales como los compuestos orgánicos volátiles y los óxidos de nitrógeno, para formar partículas secundarias. De esta forma, el aumento de la concentración de ozono podría contribuir al aumento de la concentración de PM~2.5~ [@qu2022lidar].
+
+  El coeficiente detectado significativo es en un desfasaje temporal de 19 horas sosteniendo un vínculo directo. Este coeficiente refleja que los factores que relacionan la concentración de ozono y PM~2.5~, como lo son las múltiples reacciones químicas en cadena, requieren grandes intervalos temporales para materializar su ocurrencia y aporte a la concentración.
+  
+  Los hallazgos de este estudio sugieren una relación directa entre la tasa media de escorrentía subterránea y la concentración de PM~2.5~. Esta relación podría encontrarse vinculada al hecho de que un aumento en la tasa de escorrentía indica una mayor disponibilidad de agua en la superficie terrestre. La presencia de agua puede tener un efecto refrigerante, reduciendo la LST y dificultando la generación de corrientes verticales de dispersión de contaminantes. Por otro lado, una tasa de escorrentía baja podría indicar una situación de sequía lo que facilita la generación de corrientes ascendentes de masas de aire, generando un aumento en la dispersión de los contaminantes.
+  
+  El coeficiente significativo hallado ocurre en un desfasaje de 15 horas, demostrando un vínculo directo, sugiere que la influencia del agua contenida en la superficie y el efecto refrigerante de esta requiere de un gran desfasaje temporal para surgir efecto en la concentración de PM~2.5~. Esto puede deberse a que, durante las precipitaciones, la radiación solar incidente es baja, por lo que al cabo de 15 horas posteriormente a la ocurrencia de las precipitaciones, la radiación vuelve a incidir en la superficie de manera significativa desencadenando efectos de refrigeración de la atmósfera que disminuyen la concentración del PM~2.5~.
+  
+  La integración vertical de la temperatura es un parámetro importante que permite entender el balance energético en la atmósfera. Los resultados de este estudio demostraron una relación directa con la concentración de PM~2.5~. Aumentos de la integración vertical de la temperatura podrían favorecer la formación de inversiones térmicas, atrapando los contaminantes cerca de la superficie terrestre y, por lo tanto, favoreciendo el aumento de la concentración de PM~2.5~.
+  
+  Los coeficientes significativos detectados ocurren en los desfasajes temporales de 16 y 18 horas, reflejando una relación directa. De esta forma, sugieren que la influencia de esta variable requiere un desfasaje temporal prolongado para incidir en la concentración de PM~2.5~. Esto podría deberse a la complejidad que vincula la relación entre la variable en cuestión y la altura del PBLH. Por otra parte, el coeficiente detectado para el desfasaje temporal de 15 horas refleja un vínculo inverso que contradice los resultados propuestos y aún podría encontrarse influenciado por efectos espuria.
+  
+  Una variable importante que resume muchos de los efectos anteriormente mencionados es la disipación en la capa límite atmosférica, donde se produce la interacción entre la superficie terrestre y la atmósfera. Esta refiere a la capacidad de esta capa para disipar la energía mecánica de las corrientes de aire, lo cual afecta la dispersión de contaminantes en la atmósfera. Aumentos en la disipación expresarían condiciones favorables para la ocurrencia de la dispersión de contaminantes, como por ejemplo el aumento de remolinos turbulentos cerca de la superficie, lo que reduce la concentración de partículas. Por el contrario, valores bajos de disipación en la capa límite atmosférica demostrarían condiciones favorables para la concentración de contaminantes y, en consecuencia, el aumento de la concentración de PM fino. Esta variable está influenciada por diversos factores como la rugosidad de la superficie, la velocidad del viento y la estabilidad atmosférica, por lo que su interacción puede estar sujeta también a la fluctuación de otras variables.
+
+  Los coeficientes encontrados para la disipación reflejan múltiples desfasajes temporales que la relacionan a través de un vínculo inverso con la concentración de PM~2.5~. Por una parte, el coeficiente que no involucra desfasaje sugiere que algunos de los procesos que involucra la disipación en la capa limite atmosférica influencian de forma inmediata la concentración y dispersión de contaminantes en la atmósfera. Mientras que, desfasajes restantes (20 y 22 horas) demuestran que la variable también incluye procesos que efectivizan su influencia al cabo de grandes intervalos de tiempo.
