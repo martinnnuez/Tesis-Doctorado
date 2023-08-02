@@ -2,19 +2,19 @@
 
 ## Introducción
 
-  La calidad del aire es un recurso esencial para garantizar la salud pública, el equilibrio ecosistémico y climático, sin embargo se ve amenazada por el continuo desarrollo urbano, la industrialización, la activa alteración de la superficie terrestre y el cambio climático. En este contexto, el monitoreo de la calidad del aire emerge como una valiosa práctica que proporciona información acerca de las emisiones atmosféricas, permitiendo evaluar la calidad del aire y desarrollar estrategias efectivas de mitigación y control. El desarrollo de modelos predictivos se ha consolidado como una herramienta fundamental dentro de los sistemas de gestión de calidad del aire, permitiendo obtener predicciones con el objetivo de alertar a la población ante condiciones adversas de calidad de aire.
+  Preservar la calidad del aire no solo es fundamental para garantizar la salud pública, si no que también lo es para asegurar el equilibrio ecosistémico y climático, sin embargo se ve continuamente amenazada por el desarrollo urbano, la industrialización, la activa alteración de la superficie terrestre y el cambio climático. En este contexto, el monitoreo de la calidad del aire emerge como una valiosa práctica que permite proporcionar información acerca de las emisiones atmosféricas, posibilitando la evaluación de los niveles de contaminación y la definición de estrategias efectivas de mitigación. El desarrollo de modelos predictivos se ha consolidado como una herramienta fundamental dentro de los sistemas de gestión de calidad del aire, permitiendo obtener predicciones con el objetivo de alertar a la población ante condiciones adversas a la salud.
   
-  Los modelos predictivos son herramientas matemáticas que buscan reproducir procesos observados en la naturaleza con la mayor fidelidad posible. En el caso de los modelos de emisiones atmosféricas, estos no solo tienen aplicaciones científicas, sino que también son útiles en la gestión de la calidad del aire. La utilidad de mayor relevancia recae en el control y predicción en tiempo real y futuro de la contaminación atmosférica en una ciudad o región particular. La aplicación de un modelo predictivo es una tarea compleja que exige la integración sistemática de una gran cantidad de información generada por diferentes fuentes de datos. 
+  Los modelos predictivos son herramientas matemáticas que buscan reproducir procesos observados en la naturaleza con la mayor fidelidad posible. En el caso de los modelos de emisiones atmosféricas, estos no solo tienen aplicaciones científicas, sino que también son útiles en la gestión de la calidad del aire. La utilidad de mayor relevancia recae en el control y predicción, en tiempo real y futuro, de la contaminación atmosférica en una ciudad o región en particular. La aplicación efectiva de un modelo predictivo es una tarea compleja que exige la integración sistemática de un gran volumen de información generada a partir de diferentes fuentes de datos. 
 
-  La predicción efectiva de un fenómeno de contaminación atmosférica es una poderosa herramienta de análisis, con un amplio espectro de aplicación que va desde la evaluación de estrategias de control de emisiones, el análisis de impacto en la calidad del aire, el apoyo en la toma de decisiones de carácter ambiental, hasta la generación de información científica valiosa para comprender mejor la dinámica de la atmósfera y la contaminación en una región. A pesar de esto, su objetivo primordial se encuentra relacionado con la alerta temprana de la población ante eventos nocivos para la salud.
+  La predicción efectiva de un fenómeno de contaminación atmosférica es una poderosa herramienta de análisis, con un amplio espectro de aplicación, que abarca desde la evaluación de estrategias de control de emisiones, el análisis de impacto en la calidad del aire, el apoyo en la toma de decisiones de carácter ambiental, hasta la generación de información científica valiosa para comprender mejor la dinámica de la atmósfera y la contaminación en una región. A pesar de esto, su objetivo primordial se encuentra relacionado con la alerta temprana en pos de preservar la salud pública.
 
-  El avance de la tecnología ha posibilitado la recopilación de información relacionada a numerosos fenómenos atmosféricos a lo largo del tiempo. El uso más común de los datos en forma de series temporales recae en su análisis para la predicción y el pronóstico futuro. Este análisis promueve la extracción de información representativa tanto respecto a sus orígenes y relaciones subyacentes como sobre la posibilidad de extrapolar y predecir su comportamiento futuro. La elección de un método de predicción apropiado depende del fenómeno o situación a predecir. 
+  El avance de la tecnología ha posibilitado la recopilación de información relacionada a numerosos fenómenos atmosféricos a lo largo del tiempo. El uso más común de los datos en forma de series de tiempo recae en el estudio de la estructura temporal con el objetivo de desenmascarar sus patrones de variabilidad garantizando la capacidad de obtener predicciones futuras acertadas de la variable analizada. Este análisis promueve la extracción de información representativa tanto respecto a sus orígenes y relaciones subyacentes como sobre la posibilidad de extrapolar y predecir su comportamiento futuro. La elección de un método de predicción apropiado depende del fenómeno o situación a predecir. 
   
-  Son múltiples las diferentes aplicaciones de series temporales que pueden citarse en las diversas áreas del conocimiento, área que determina el tipo de variable utilizada, por ejemplo: variables económicas (índice de precios al consumidor, demanda eléctrica, serie de exportaciones o importaciones), variables físicas (clima [@brunet2005first], velocidad del viento en una planta de energía eólica, temperatura en un proceso, caudal de un río [@ilarri2006processing], concentración de un contaminante en la atmósfera), variables químicas (determinación de la cantidad de azúcares en soluciones [@araujo2005modelo]) o variables sociales (número de nacimientos, matrimonios, defunciones o votos a un partido político, operaciones militares[@chu2005instantaneous]), entre otras.
+  Son múltiples las diferentes aplicaciones de series temporales que pueden citarse en las diversas áreas del conocimiento, área que determina el tipo de variable utilizada, por ejemplo: variables económicas (índice de precios al consumidor, demanda eléctrica, serie de exportaciones o importaciones), variables físicas (clima [@brunet2005first], velocidad del viento en una planta de energía eólica, temperatura en un proceso, caudal de un río [@ilarri2006processing], concentración de un contaminante en la atmósfera), variables químicas (determinación de la cantidad de azúcares en soluciones [@araujo2005modelo]) o variables sociales (número de nacimientos, matrimonios, defunciones o votos a un partido político, operaciones militares [@chu2005instantaneous]), entre otras.
 
-  En esta tesis, dado al creciente número de estudios científicos que relacionan la contaminación del aire con enfermedades respiratorias y cardiovasculares, cáncer, trastornos del sistema nervioso, así como enfermedades transmitidas por el aire e inducidas por el calor, la aplicación recae en la predicción de la concentración de la calidad del aire, específicamente la concentración de PM~2.5~ [@sacks2011particulate; @zhao2020fine]. Mientras más se estudia el fenómeno, más estrecho es el vínculo que se informa entre la calidad del aire y el sistema meteorológico-climático [@elminir2005dependence; @pearce2011quantifying; @sfetsos2010new]. De allí, los numerosos intentos de predecir la distribución de partículas, a partir de información satelital y meteorológica. 
+  En esta tesis, dado al creciente número de estudios científicos que relacionan la contaminación del aire con enfermedades respiratorias y cardiovasculares, cáncer, trastornos del sistema nervioso, así como enfermedades transmitidas por el aire e inducidas por el calor, la aplicación recae en la predicción de la concentración de la calidad del aire, específicamente de la concentración de PM~2.5~ [@sacks2011particulate; @zhao2020fine]. Mientras más se estudia el fenómeno, más estrecho es el vínculo que se informa entre la calidad del aire y el sistema meteorológico-climático [@elminir2005dependence; @pearce2011quantifying; @sfetsos2010new]. De allí, los numerosos intentos de predecir la distribución de partículas, a partir de información satelital meteorológica y climática. 
 
-  El avance de la tecnología ha permitido un desarrollo notable en la capacidad computacional disponible, lo cual sumado a la disponibilidad de datos meteorológicos masivos en diversas plataformas de Internet, posibilitan el entrenamiento de modelos predictivos de calidad de aire en un sitio especifico. Actualmente, se cuenta con variadas herramientas informáticas para la obtención de productos satelitales almacenados en la nube. Tales productos pueden ser empleados como covariables con potencialidad predictiva de la concentración de PM. Sin embargo, aun cuando existen modelos predictivos mecanicistas basados en la estimación de efectos para variables reportadas en la literatura, el desarrollo de modelos de base empírica sustentados en la abundancia de información hoy disponible es más incipiente. El paso final en el desarrollo del sistema de alerta ante condiciones adversas de calidad de aire de bajo costo, recae en el desarrollo y selección del algoritmo de mayor desempeño predictivo de concentración de PM~2.5~. Para lograr tal objetivo en este capítulo se compararon distintos enfoques de modelado predictivo basados en el aprendizaje automático y aprendizaje profundo implementando como datos de entrada variables meteorológicas, ambientales y temporales, obtenidas principalmente de satélites, para cada uno de los usos de suelo evaluados. De esta forma se desarrollo un sistema de alerta ante condiciones adversas de concentración de PM~2.5~ con un horizonte de predicción de cinco días de anticipación. 
+  El avance de la tecnología ha permitido un desarrollo notable en la capacidad computacional disponible, lo cual sumado a la disponibilidad de datos meteorológicos masivos en diversas plataformas de Internet, posibilitan el entrenamiento de modelos predictivos de calidad de aire en un sitio especifico. Actualmente, se cuenta con variadas herramientas informáticas para la obtención de productos satelitales almacenados en la nube. Tales productos pueden ser empleados como covariables con potencialidad predictiva de la concentración de PM. Sin embargo, aun cuando existen modelos predictivos mecanicistas basados en la estimación de efectos para variables reportadas en la literatura, el desarrollo de modelos de base empírica sustentados en la abundancia de información hoy disponible es más incipiente. El paso final en el desarrollo del sistema de alerta ante condiciones adversas de calidad de aire de bajo costo, recae en el desarrollo y selección del algoritmo de mayor desempeño predictivo para la concentración de PM~2.5~. Para lograr tal objetivo en este capítulo se compararon distintos enfoques de modelado predictivo basados en el aprendizaje automático y aprendizaje profundo implementando como datos de entrada variables meteorológicas, ambientales y temporales, obtenidas principalmente de satélites, para cada uno de los usos de suelo evaluados. De esta forma se desarrollo un sistema de alerta ante condiciones adversas de concentración de PM~2.5~ con un horizonte de predicción de cinco días de anticipación. 
 
 ## Materiales y métodos
 
@@ -150,6 +150,8 @@ knitr::include_graphics("images/imagescap5/shapalgo.png")
 ```
 (ref:shapalgo) Diagrama de funcionamiento del algoritmo de valores SHAP.
 
+  Además, para aquellas variables que no fueron abordadas en el capítulo [4](#cap:var) dado a que no son habitualmente citadas en sustentos bibliográficos para describir la variación de la concentración de PM~2.5~, se incluyó un análisis exploratorio equivalente al desarrollado en dicho capítulo. En primer lugar, a pesar de existir una descripción detallada de cada una de las variables en el Anexo 3, se incluyó la definición de la variable en cuestión, proseguida de su análisis exploratorio. La inclusión de este análisis tiene por objetivo garantizar una interpretación e inferencia adecuada acerca de la manera en que se manifiesta la variabilidad conjunta desenmascarada entre la variable y la concentración de PM~2.5~.
+
 #### Evaluación del modelo predictivo
 
   Para comparar el desempeño predictivo de los distintos algoritmos ajustados tanto en el conjunto de datos de entrenamiento como en el de testeo, se implementó la métrica de rendimiento raíz del error cuadrático medio de predicción ($RMSE$), la cual se deriva  a partir del error cuadrático medio ($MSE$).
@@ -261,18 +263,12 @@ knitr::include_graphics("images/imagescap5/aprendmodurb.png")
   Exploración de las variables de mayor importancia dada su contribución a las predicciones.
 
 ```{r varimpurb, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:varimpurb)"}
-knitr::include_graphics("images/imagescap5/varimpurb.png")
+knitr::include_graphics("images/imagescap5/varimpurb_b.png")
 ```
 (ref:varimpurb) Importancia relativa de las variables en las redes neuronales recurrentes para el uso de suelo urbano.
 
-  A partir de la figura \@ref(fig:varimpurb) pueden apreciarse las cinco variables de mayor importancia relativa para el modelo predictivo en el uso de suelo urbano bajo la base de datos reducida. Dos de las variables se encuentran vinculadas a la escala temporal, destacando la dependencia de la variable respuesta respecto a sus patrones de variación temporal explorados en el capítulo [3](#cap:expl). Las variables restantes son satelitales vinculadas a la variabilidad estudiada en el capítulo [4](#cap:var). Los resultados muestran que las cinco variables de mayor importancia relativa reúnen menos del 25% de la misma. 
-  
-  A la hora de predecir la concentración de PM~2.5~ en entornos urbanos, es crucial considerar la hora del día, la radiación solar, la rugosidad de la superficie terrestre, el día de la semana y presión atmosférica. 
-  
-#### Gráfico de dependencia SHAP
-  
-  Análisis de los aportes de las variables satelitales más importantes a las predicciones para el uso de suelo urbano.
-  
+  A partir de la figura \@ref(fig:varimpurb) pueden apreciarse las cinco variables de mayor importancia relativa para el modelo predictivo en el uso de suelo urbano bajo la base de datos reducida. Dos de las variables se encuentran vinculadas a la escala temporal, destacando la dependencia de la variable respuesta respecto a sus patrones de variación temporal explorados en el capítulo [3](#cap:expl). Las variables restantes son satelitales vinculadas a la variabilidad estudiada en el capítulo [4](#cap:var). Los resultados muestran que las cinco variables de mayor importancia relativa reúnen menos del 25% de la misma. A la hora de predecir la concentración de PM~2.5~ en entornos urbanos, es crucial considerar la hora del día, la radiación solar, la rugosidad de la superficie terrestre, el día de la semana y presión atmosférica. 
+
 #### Radiación solar
   
 ```{r shapurbrad, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapurbrad)"}
@@ -284,6 +280,31 @@ knitr::include_graphics("images/imagescap5/shapurbrad.png")
 
 #### Rugosidad de la superficie terrestre
 
+  La rugosidad de la superficie terrestre es la altura equivalente en metros de la rugosidad aerodinámica de la superficie terrestre. Es una medida de la resistencia que ejerce la superficie al flujo de aire, particularmente este parámetro se utiliza para determinar la transferencia de momento del aire a la superficie. Una mayor rugosidad de la superficie genera una reducción de la velocidad del viento cerca de la superficie. Esta variable se deriva de la cobertura, tipo de vegetación y presencia de nieve en la superficie terrestre y se expresa en metros ($m$).
+
+```{r rugmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:rugmes)"}
+knitr::include_graphics("images/imagescap4/rugmes.png")
+```
+(ref:rugmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la rugosidad de la superficie terrestre a lo largo del año.
+
+  La figura \@ref(fig:rugmes) presenta el patrón de variación conjunto que describen los promedios mensuales de la rugosidad de la superficie terrestre y la concentración de PM~2.5~ a lo largo del año. A partir de esta puede notarse que los mayores valores de la variable se registran durante la primavera, específicamente en el mes de septiembre, mientras que el mínimo se da durante el verano, en el mes de marzo. Estos resultados sugieren que existe una relación de vinculación directa entre ambas variables, donde aumentos en la magnitud de la concentración del contaminante están favorecidos por mayores valores de rugosidad de la superficie terrestre.
+
+Table: Coeficientes estimados de la relación funcional.\label{tab:coefrou}
+
+| Desfasaje | Con diferenciación | Sin diferenciación |
+|----------|:-------:|:-------:| 
+| t | 9.317e+01 | 111.32 |
+| t-1 | -4.080e+01 | 92.03 |
+| t-9 | -1.868e+01 | 66.55 |
+| t-12 | 9.1090057  | 87.25 |
+| t-13 | 0.4461504  | 89.23 |
+| t-14 | 6.760e+00 | 91.01 |
+| t-23 | -1.032e+01 | 55.22 |
+
+  A partir de la figura \@ref(fig:mccfrug), puede apreciarse que las únicas correlaciones significativas que perdura luego del procedimiento de filtrado de las series son los pasados en los tiempos t-0, t-1, t-9, t-12, t-13, t-14 y t-23, destacándose como los desfasajes temporales de mayor capacidad predictiva para estimar el PM~2.5~ en el presente.
+  
+  Luego de la estimación de la relación funcional se determinó que cuatro de los coeficientes demostraron una relación directa (t-0, t-12, t-13 y t-14), mientras que los tres restantes se vieron influenciados por una relación espuria o aleatoria (t-1, t-9 y t-23). Puede establecerse de esta forma que ambas variables se relacionan de forma directa y que la relación de mayor capacidad predictiva se da sin considerar desfasaje entre la rugosidad de la superficie terrestre y variable respuesta.
+
 ```{r shapurbrug, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapurbrug)"}
 knitr::include_graphics("images/imagescap5/shapurbrug.png")
 ```
@@ -291,7 +312,7 @@ knitr::include_graphics("images/imagescap5/shapurbrug.png")
 
   La figura \@ref(fig:shapurbrug) muestra que valores de baja magnitud de la rugosidad de la superficie terrestre se asocian con disminuciones en las predicciones de la variable respuesta, mientras que valores de elevada magnitud de la variable resultan en incrementos de las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo directa similar a la reportada en el capítulo [4](#cap:var).
 
-#### Presión atmosférica ajustada al nivel del mar
+#### Presión atmosférica
   
 ```{r shapurbpresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapurbpresmar)"}
 knitr::include_graphics("images/imagescap5/shapurbpresmar.png")
@@ -397,10 +418,6 @@ knitr::include_graphics("images/imagescap5/varimpind.png")
   
   A la hora de predecir la concentración de PM~2.5~ en entornos industriales, es crucial considerar la velocidad del viento, la disipación en la capa límite atmosférica, el flujo de ozono, la estación del año y la humedad relativa.
 
-#### Gráfico de dependencia SHAP
-  
-  Análisis de los aportes de las variables satelitales más importantes a las predicciones para el uso de suelo industrial.
-
 #### Velocidad del viento
   
 ```{r shapindvvient, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapindvvient)"}
@@ -412,6 +429,36 @@ knitr::include_graphics("images/imagescap5/shapindvvient.png")
 
 #### Disipación en la capa límite atmosférica
 
+  La disipación en la capa límite atmosférica, indica la conversión acumulada de la energía cinética de flujo medio en calor en toda la columna atmosférica, por unidad de superficie, como consecuencia de los efectos de la tensión asociada a remolinos turbulentos cerca de la superficie y al arrastre de forma orográfica turbulenta. Los remolinos turbulentos cerca de la superficie están relacionados con la rugosidad superficial, mientras que el arrastre de forma orográfica turbulenta es la tensión debida a los valles, colinas y montañas en escalas horizontales inferiores a 5 km. Se espera que incrementos de la disipación en la capa limite atmosférica promueva reducciones de la concentración de partículas finas, como consecuencia de la influencia en la disipación de las mismas, por otra parte, reducciones de la disipación no favorecería el fenómeno de dispersión resultando en mayores concentraciones de PM~2.5~. Las unidades en las que se mide este parámetro son julios por metro cuadrado ($\frac{J}{m^2}$). 
+
+```{r disipmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:disipmes)"}
+knitr::include_graphics("images/imagescap4/disipmes.png")
+```
+(ref:disipmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la disipación en la capa límite atmosférica a lo largo del año.
+
+  A partir de la figura \@ref(fig:disipmes) puede visualizarse el patrón de variación conjunto que describen los promedios mensuales de la disipación en la capa límite atmosférica y la concentración de PM~2.5~ a lo largo del año. Puede notarse que los valores de menor magnitud de disipación registrados ocurren durante el verano en los meses de enero y diciembre, mientras que los de mayor magnitud ocurren durante la primavera en los meses de septiembre y octubre. A pesar de que no logra apreciarse una clara relación entre las variables en esta escala temporal, la tendencia parece ser del tipo directa. 
+
+```{r disiphor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:disiphor)"}
+knitr::include_graphics("images/imagescap4/disiphor.png")
+```
+(ref:disiphor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la disipación en la capa límite atmosférica a lo largo del día.
+  
+  La figura \@ref(fig:disiphor) presenta el patrón de variación conjunto que describen los promedios horarios de la disipación en la capa límite atmosférica y la concentración de PM~2.5~ a lo largo del día. Puede notarse que ambas variables muestran un perfil de variación inverso, evidenciando una relación inversa, en la cual valores de baja magnitud de la variable se condicen con elevadas concentraciones del contaminante, mientras que elevados valores de la variable ocurren en simultaneidad con reducidas concentraciones.
+
+Table: Coeficientes estimados de la relación funcional.\label{tab:coefdisip}
+
+| Desfasaje | Con diferenciación | Sin diferenciación |
+|----------|:-------:|:-------:| 
+| t | -7.918e-05 | -0.0001536 |
+| t-5 | 6.594e-05 | -0.000054 |
+| t-7 | 0.0000533 | -3.578e-05 |
+| t-20 | -8.173e-05 | -0.0001142 |
+| t-22 | -0.0001042 | -0.0001257 |
+
+  A partir de la figura \@ref(fig:mccfdisip), puede apreciarse que las únicas correlaciones significativas que perduran luego del procedimiento de filtrado de las series son los pasados en los tiempos t, t-5, t-7, t-20 y t-22, destacándose como los desfasajes temporales de mayor capacidad predictiva para estimar el PM~2.5~ en el presente.
+
+  Luego de la estimación de la relación funcional se determinó que dos de los cinco coeficientes demostraron estar influenciados por una relación espuria o aleatoria (t-5 y t-7), mientras que los tres restantes exhibieron una relación inversa (t, t-20 y t-22). Puede establecerse de esta forma que ambas variables se vinculan de forma inversa y que la relación que mayor capacidad predictiva se da en un desfasaje de 20 horas de la disipación en la capa límite atmosférica con respecto a la variable respuesta.
+
 ```{r shapinddisip, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapinddisip)"}
 knitr::include_graphics("images/imagescap5/shapinddisip.png")
 ```
@@ -420,6 +467,34 @@ knitr::include_graphics("images/imagescap5/shapinddisip.png")
   La figura \@ref(fig:shapinddisip) permite apreciar que el mayor porcentaje de los datos se encuentra concentrado en valores de baja magnitud de disipación en la capa límite atmosférica. No logra apreciarse una clara tendencia en cuanto al aporte de la variable predictora en el modelo predictivo dado a que en todo el rango de variación los aportes son tanto de incremento como de decremento de la concentración. Dada la inconsistencia existente en el rango de variación de los aportes, se concluye que para este modelo predictivo la importancia que adquiere la variable se encuentra vinculada al actuar conjunto con otras variables.
 
 #### Integración vertical flujo ozono norte
+
+  La integración vertical de flujo de ozono norte es la tasa horizontal de flujo de ozono en dirección norte, por metro a través del flujo, para una columna de aire que se extiende desde la superficie hasta la parte superior de la atmósfera. Los valores positivos denotan un flujo de sur a norte. Las unidades en las que se mide este parámetro son kilogramos por metro por segundo ($\frac{Kg}{m.s}$).
+
+```{r oznormes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:oznormes)"}
+knitr::include_graphics("images/imagescap4/oznormes.png")
+```
+(ref:oznormes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la integración vertical del flujo de ozono proveniente del norte a lo largo del año.
+
+  La figura \@ref(fig:oznormes) presenta el patrón de variación conjunto que describen los promedios mensuales de la integración vertical del flujo de ozono norte y la concentración de PM~2.5~ a lo largo del año. A partir de esta puede notarse que los valores de menor magnitud registrados para la variable ocurren durante la primavera en los meses de septiembre y octubre, mientras que los de mayor magnitud fueron registrados durante el invierno, específicamente en los meses de mayo y junio. Esto sugiere que la relación de vinculación entre las variables es del tipo directa, evidenciando que bajas concentraciones se ven favorecidas por disminuciones de los valores que toma la variable, mientras que elevadas concentraciones se ven impulsadas por aumentos de la misma.
+  
+  Esta relación entre ambas variables sugiere que podrían existir factores comunes que influyen en su variabilidad. Además, dado que el flujo de ozono norte se encuentra principalmente en la troposfera inferior y la concentración de PM~2.5~ está influenciada por emisiones antropogénicas y procesos atmosféricos, es posible que la relación entre ambas variables refleje la interacción entre la química y la dinámica atmosférica.
+
+```{r oznorhor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:oznorhor)"}
+knitr::include_graphics("images/imagescap4/oznorhor.png")
+```
+(ref:oznorhor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y  a lo largo del día.
+
+  A partir de la imagen \@ref(fig:oznorhor), puede apreciarse el patrón de variación de la integración vertical del flujo de ozono proveniente del norte promedio a lo largo de las horas del día. En este, puede notarse que los valores más elevados se registran durante la madrugada, específicamente entre las 0 y las 2 horas, experimentando un descenso gradual a lo largo del día hasta alcanzar su mínimo a las 17 horas. De esta forma, puede apreciarse que la relación de variación conjunta entre ambas variables es del tipo directa. Asimismo, se puede apreciar un patrón de variación conjunto similar entre ambas variables, aunque con cierto desfase en algunas horas.
+
+Table: Coeficientes estimados de la relación funcional.\label{tab:coefoznor}
+
+| Desfasaje | Con diferenciación | Sin diferenciación |
+|----------|:-------:|:-------:| 
+| t-18 | -3.189e+01 | 43.90 |
+| t-19 | 1.219e+02 | 52.00 |
+  A partir de la figura \@ref(fig:mccfoznor), puede apreciarse que las únicas correlaciones significativas que perduran luego del procedimiento de filtrado de las series es el pasado en los tiempos t-18 y t-19, destacándose como los desfasajes temporales de mayor capacidad predictiva para estimar el PM~2.5~ en el presente.
+  
+  Luego de la estimación de la relación funcional se determinó que uno de los coeficientes demostró una espuria o aleatoria (t-18), mientras que el restante una relación directa (t-19). Puede establecerse de esta forma que ambas variables se relacionan de forma directa y que la relación de mayor capacidad predictiva se da en un desfasaje de 19 horas de la integración del flujo de ozono proveniente del norte con respecto a la variable respuesta. Es importante destacar que esta relación es consistente con la observación de un patrón de variación conjunto similar entre ambas variables, pero desfasado en algunas horas, tal como se puede apreciar en la figura \@ref(fig:oznorhor).
 
 ```{r shapindoznor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapindoznor)"}
 knitr::include_graphics("images/imagescap5/shapindoznor.png")
@@ -497,10 +572,6 @@ knitr::include_graphics("images/imagescap5/varimpaa.png")
   A partir de la figura \@ref(fig:varimpaa) pueden apreciarse las cinco variables de mayor importancia relativa para el modelo predictivo en el uso de suelo agrícola y área verde bajo la base de datos reducida. Dos de las mismas se encuentran vinculadas a la escala temporal, destacando la dependencia de la variable respuesta respecto a sus patrones de variación temporales explorados en el capítulo [3](#cap:expl). Las restantes son variables satelitales vinculadas a la variabilidad estudiada en el capítulo [4](#cap:var). Los resultados muestran que las cinco variables de mayor importancia relativa reúnen más del 40% de la misma. De esta forma puede apreciarse como en este uso de suelo se necesita menor cantidad de variables para reunir un mismo porcentaje de importancia relativa, demostrando mayor capacidad para explicar la concentración de PM~2.5~ con menor información.
   
   A la hora de predecir la concentración de PM~2.5~ en entornos agrícolas y áreas verdes, es crucial considerar la estación del año, temperatura de rocío, escorrentía, temperatura y el mes del año. 
-
-#### Gráfico de dependencia SHAP
-
-  Análisis de los aportes de las variables satelitales más importantes a las predicciones para el uso de suelo agrícola / área verde.
   
 #### Temperatura del punto de rocío
   
@@ -512,7 +583,29 @@ knitr::include_graphics("images/imagescap5/shapaaroc.png")
   La figura \@ref(fig:shapaaroc) muestra que valores de baja magnitud de la temperatura del punto de rocío se asocian con altas concentraciones de PM~2.5~, mientras que valores elevada magnitud lo hacen con bajas concentraciones de PM~2.5~ De esta forma se identifica una relación del tipo inversa similar a la reportada en el capítulo [4](#cap:var).
   
 #### Tasa media de escorrentía subterránea
+
+  La tasa media de escorrentía subterránea, es la parte del agua procedente de las precipitaciones, del deshielo o de las napas, que escurre por debajo de la superficie terrestre. El agua que no se almacena escurre, esto puede ser por la superficie (escorrentía superficial) o por debajo del suelo (escorrentía subsuperficial), la suma de ambas se denomina escorrentía. Este parámetro refiere a la tasa que tendría la escorrentía si se repartiera uniformemente por la cuadrícula de resolución espacial. La escorrentía es una medida de la disponibilidad de agua en el suelo y puede utilizarse, por ejemplo, como indicador de sequía o inundación. Se espera que la influencia de la variable en la concentración de PM~2.5~, sea a través del proceso físico de refrigeración de la atmósfera, influyendo en los niveles de la capa límite atmosférica. Las unidades en las que se mide este parámetro son kilogramos por metro cuadrado por segundo ($\frac{Kg}{m^2.s}$). 
+    
+  Es importante mencionar que el análisis de la tasa media de escorrentía subterránea en la escala temporal horaria no proporciona información relevante dado a su estrecha relación con la precipitación. Cuando no ocurren precipitaciones, la tasa de escorrentía subterránea se mantiene constante a lo largo de las horas del día y, por lo tanto, sus valores no tienen una interpretación significativa. Como resultado, se decidió excluir el análisis exploratorio en esta escala temporal.
+
+```{r escmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:escmes)"}
+knitr::include_graphics("images/imagescap4/escmes.png")
+```
+(ref:escmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la tasa media de escorrentía subterránea a lo largo del año.
+
+  En la figura \@ref(fig:escmes) puede apreciarse el patrón de variación conjunto que describen los promedios mensuales de la tasa media de escorrentía subterránea y la concentración de PM~2.5~ a lo largo del año. Puede notarse que los valores de menor magnitud registrados para esta tasa ocurren en el verano durante los meses de diciembre, enero y febrero, mientras que los de mayor magnitud se registraron en el invierno durante el mes de junio. Puede notarse que la relación de vinculación entre ambas variables es del tipo directa, demostrando que bajas concentraciones se ven favorecidas por disminuciones de los valores que toma la variable, mientras que elevadas concentraciones se ven favorecidas por aumentos de la tasa media de escorrentía subterránea.
+
+Table: Coeficientes estimados de la relación funcional.\label{tab:coefesc}
+
+| Desfasaje | Con diferenciación | Sin diferenciación |
+|----------|:------------:|:------------:|
+| t-8 | -2.648e+05 | 5.770e+06 | 
+| t-15 | 5.326e+04 | 5.633e+06 | 
+
+  A partir de la figura \@ref(fig:mccfesc), puede apreciarse que las únicas correlaciones significativas que perduran luego del procedimiento de filtrado de las series es el pasado en los tiempos t-8 y t-15, destacándose como los desfasajes temporales de mayor capacidad predictiva para estimar el PM~2.5~ en el presente.
   
+  Luego de la estimación de la relación funcional se determinó que uno de los coeficientes demostró una relación espuria o aleatoria (t-8), mientras que el restante reveló una relación de vinculación directa (t-15). Puede establecerse de esta forma que ambas variables se relacionan de forma directa y que la relación de mayor capacidad predictiva se da en un desfasaje de 15 horas de la tasa media de escorrentía subterránea con respecto a la variable respuesta.
+
 ```{r shapaaesc, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(shapaaesc)"}
 knitr::include_graphics("images/imagescap5/shapaaesc.png")
 ```
@@ -521,6 +614,36 @@ knitr::include_graphics("images/imagescap5/shapaaesc.png")
   La figura \@ref(fig:shapaaesc) muestra que valores de baja magnitud de la tasa media de escorrentía subterránea (menores a 5.07e-07) favorecen bajas concentraciones de PM~2.5~, mientras que valores superiores de la variable promueven un aumento en la concentración de PM~2.5~ predicha. Para valores superiores a 1.0e-06, la relación entre las variables permanece sin variaciones importantes respecto del aporte a la concentración. De esta forma se identifica una relación del tipo directa similar a la reportada en el capítulo [4](#cap:var).
 
 #### Integración vertical de temperatura
+
+  La integración vertical de temperatura es la integral vertical de la temperatura para una columna de aire ponderada por su masa, que se extiende desde la superficie de la Tierra hasta la parte superior de la atmósfera. Este parámetro puede utilizarse para estudiar el balance energético atmosférico. Se espera que esta variable se vincule con la concentración de PM~2.5~, por medio de la relación existente entre la variación de la temperatura lo largo del espesor de la atmósfera y las estratificaciones que en esta se generan, resultando en aumentos o disminuciones de la concentración PM~2.5~, en función de la altura a la cual ocurre la estratificación. Este fenómeno se encuentra vinculado también con la variación de la altura de la capa límite atmosférica. Las unidades en las que se mide este parámetro son en kilogramos por Kelvin por metro cuadrado ($\frac{Kg.K}{m^2}$).
+  
+```{r intvertmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:intvertmes)"}
+knitr::include_graphics("images/imagescap4/intvertmes.png")
+```
+(ref:intvertmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la integración vertical de temperatura a lo largo del año.
+
+  En la figura \@ref(fig:intvertmes) puede visualizarse el patrón de variación conjunto que describen los promedios mensuales de la integración vertical de temperatura y la concentración de PM~2.5~ a lo largo del año. Puede notarse que los valores de menor magnitud de la variable fueron registrados durante el invierno, específicamente en el mes de junio, mientras que los mayores durante el verano en los meses de diciembre y enero. Estos hallazgos sugieren una relación de vinculación entre las variables del tipo inversa, lo que implica que aumentos en la magnitud de la variable se asocian con disminuciones en las concentraciones de PM~2.5~, mientras que disminuciones en la variable se vinculan con aumentos en las concentraciones del contaminante.
+
+```{r intverthor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:intverthor)"}
+knitr::include_graphics("images/imagescap4/intverthor.png")
+```
+(ref:intverthor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la integración vertical de temperatura a lo largo del día.
+
+  A partir de la figura \@ref(fig:intverthor) puede apreciarse el patrón de variación conjunto de la integración vertical de temperatura y la concentración de PM~2.5~ promedio a lo largo de las horas del día. Puede notarse que la temperatura presenta un perfil de variación opuesto al de la concentración de PM~2.5~, evidenciando una relación de vinculación inversa. De esta forma, valores de baja magnitud de la variable se condicen con aumentos de la concentración del contaminante, mientras que valores de mayor magnitud de la variable ocurren en simultaneidad con disminuciones de la concentración de PM~2.5~.
+
+Table: Coeficientes estimados de la relación funcional.\label{tab:coefinttemp}
+
+| Desfasaje | Con diferenciación | Sin diferenciación |
+|----------|:----------:|:-----------:|
+| t | 7.654e-05 | -3.442e-06 | 
+| t-15 | -1.411e-05 | -3.438e-05 | 
+| t-16 | 8.115e-06 | 2.149e-05 |
+| t-18 | 3.007e-05 | 6.352e-05 |
+| t-21 | 1.269e-05 | -6.070e-05 |
+
+  A partir de la figura \@ref(fig:mccfintvert), puede apreciarse que las únicas correlaciones significativas que perdura luego del procedimiento de filtrado de las series se dan en los tiempos t, t-15, t-16, t-18 y t-21, destacándose como los desfasajes temporales de mayor capacidad predictiva para estimar el PM~2.5~ en el presente. 
+  
+  Luego de la estimación de la relación funcional se determinó que dos de los cinco coeficientes significativos se vieron influenciados por efectos espurias o aleatorios (t y t-21), demostrando que estas relaciones no son significativas en términos estadísticos. En contraste, de los tres restantes dos demostraron una relación directa (t-16 y t-18) y solo uno una relación inversa (t-15). Además, el coeficiente de mayor capacidad predictiva (desfasaje de 16 horas) demostró una relación del tipo directa. Puede establecerse de esta forma que ambas variables se vinculan en una u otra dirección en función del desfasaje temporal analizado, a pesar de esto predomina una relación directa entre ambas variables.
   
 ```{r shapaaintvert, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapaaintvert)"}
 knitr::include_graphics("images/imagescap5/shapaaintvert.png")
@@ -528,7 +651,7 @@ knitr::include_graphics("images/imagescap5/shapaaintvert.png")
 (ref:shapaaintvert) Gráfico de la variable integración vertical de temperatura contra su valor shap coloreado por el valor de PM~2.5~ para el uso de suelo agrícola / área verde.
 
   La figura \@ref(fig:shapaaintvert) muestra que valores de baja magnitud de la integración vertical de temperatura se asocia con bajas predicciones de PM~2.5~, mientras que valores de elevada magnitud de la variable resultan en incrementos de las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo directa similar a la reportada en el capítulo [4](#cap:var). 
-  
+
 ## Discusión
   
   Es interesante destacar que tanto para el uso de suelo urbano como para el industrial el algoritmo predictivo de mejor ajuste demostraron ser las redes neuronales recurrentes. Resultados similares fueron hallados por Ayturan et. al., demostrando que las redes neuronales recurrentes, en especial las *GRU* destacan de entre múltiples algoritmos predictivos como las de mayor precisión para predecir la concentración de PM~2.5~ [@ayturan2020short]. Además otros estudios han demostrado la supremacía de las redes neuronales recurrentes para predecir la concentración de PM~2.5~ [@feng2019recurrent; @dhakal2021exploring; @casallas2021long]. En esta tesis el algoritmo de mayor capacidad predictiva para el uso de suelo urbano alcanzando una $RMSE$ de 3.491 $\frac{\mu g}{m^3}$ en el set de datos testeo. Por otra parte, para el uso de suelo industrial las redes neuronales recurrentes de mayor capacidad alcanzaron una $RMSE$ de 5.964 $\frac{\mu g}{m^3}$ en el set de datos testeo.
