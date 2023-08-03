@@ -9,8 +9,8 @@ rmd_files:
     "01_intro_gral.Rmd",
     "02_low_cost.Rmd",
     "03_exploratorio.Rmd",
-    "04_vars.Rmd",
-    "05_predictivo.Rmd",
+    "04_vars_b.Rmd",
+    "05_predictivo_b.Rmd",
     "06_sintesis.Rmd",
     "07_anexo.Rmd",
     "bibliografia.Rmd"

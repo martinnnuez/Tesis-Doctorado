@@ -14,11 +14,23 @@
 # Parte de discusion en resultados:
 
 Temperatura: 
+  
+  Esta tendencia queda claramente evidenciada durante los meses de invierno, cuando las temperaturas son más bajas y las concentraciones de PM~2.5~ alcanzan sus valores máximos. En cambio, durante los meses de primavera y verano, cuando las temperaturas son más elevadas, las concentraciones del contaminante disminuyen. Este patrón podría verse vinculado a que las altas temperaturas favorecen la dispersión del PM~2.5~ en la atmósfera, mientras que las bajas temperaturas, propias del invierno, podrían favorecer la acumulación del contaminante. Este hecho podría encontrarse vinculado a las frecuentes inversiones térmicas ocurrentes durante la época invernal que impiden la dispersión de contaminantes, así como también el aumento del uso de combustibles fósiles para calefacción, generando un aumento de la concentración de PM~2.5~.
+
   Es importante destacar que esta relación inversa puede ser explicada por los procesos físicos que ocurren en la atmósfera. En general, la temperatura juega un papel importante en la dispersión y transporte de contaminantes en la atmósfera: a altas temperaturas, la atmósfera se vuelve más estable, reduciendo su capacidad para dispersar contaminantes mientras que, a bajas temperaturas, la atmósfera se vuelve más inestable, permitiendo una mayor dispersión de los contaminantes.
+  
   Puede establecerse de esta forma que ambas variables se relacionan en una u otra dirección en función del desfasaje temporal analizado, sin embargo, puede notarse que prevalece una relación del tipo inversa dado que la mayoría de los desfasajes se corresponden con esta. Además, la relación de mayor capacidad predictiva responde a una relación inversa y se da al no considerar desfasaje entre la temperatura y la variable respuesta.
 
 Humedad relativa: 
+
+  La humedad relativa es un factor clave en la formación y dispersión de partículas, su variación puede generar grandes cambios en la concentración de PM~2.5~. Además, la presencia de meses en los que la relación de vinculación entre la humedad relativa y la concentración de PM~2.5~ cambia, como ocurre en octubre, indica que existen factores adicionales que pueden estar influyendo en la concentración de PM~2.5~ en la atmósfera. Estos factores podrían incluir variaciones en la fuente de emisión de los contaminantes, la presencia de eventos meteorológicos extremos o la interacción con otros contaminantes atmosféricos. Por lo tanto, es importante considerar una amplia gama de factores al analizar la relación entre la humedad relativa y la concentración de PM~2.5~ en la atmósfera.
+
   La relación entre la humedad relativa y la concentración de PM~2.5~ exhibe un ciclo de variación horario a lo largo del día similar, sin considerar ningún desfase temporal entre las variables. A pesar de lo que se observa, estos resultados no coinciden con la relación inversa que suele identificarse para el caso de la humedad relativa [@nogarotto2020review ;@liu2020varying; @he2019exploring; @chen2016spatial]. Sin embargo, al considerar un desfase de 5 horas (Figura \@ref(fig:mccfhum)), se aprecia una relación inversa entre las mismas. Por ejemplo, en la figura \@ref(fig:humhor), las curvas que representan el patrón de relación entre ambas variables describen una relación directa, mientras que al considerar un desfase de 5 horas, la relación entre ellas se vuelve inversa. Este resultado sugiere que la relación entre la humedad relativa y la concentración de PM~2.5~ es sensible al desfase temporal entre ambas variables.
+  
+  
+  
+  Existen estudios que han reportado una relación inversa entre la humedad relativa y la concentración de PM~2.5~, como la encontrada en nuestro trabajo [@nogarotto2020review ;@liu2020varying; @he2019exploring; @chen2016spatial].
+  
   Puede establecerse de esta forma que ambas variables se relacionan en una u otra dirección en función del desfasaje temporal considerado. Por otra parte, la relación de mayor capacidad predictiva es la obtenida en el desfasaje de 24 horas de la humedad relativa con respecto a la variable respuesta, demostrando una mayor contribución de la relación directa para predecir la variable respuesta en el presente.
 
 Temperatura del punto de rocio: 
@@ -29,6 +41,8 @@ Precipitación:
   Puede establecerse de esta forma que ambas variables se relacionan de forma inversa y que la relación de mayor capacidad predictiva se da en un desfasaje de 1 hora de la precipitación con respecto a la variable respuesta. 
   
 Velocidad del viento: 
+  A pesar de la tendencia inversa que puede observarse en esta escala temporal, no se observa una marcada relación entre las variables. Por este motivo, será necesario realizar un análisis más detallado para determinar la existencia y la naturaleza de esta relación en escalas de tiempo más finas.
+
   Por lo tanto, puede establecerse que ambas variables se relacionan de forma inversa y que la relación que mayor capacidad predictiva se da en un desfasaje de 24 horas de la velocidad del viento con respecto a la variable respuesta.
   
 Presión atmósferica: 
@@ -38,6 +52,9 @@ Radiación solar:
 
   
 AOD:
+  A partir de la figura \@ref(fig:aodmes) puede visualizarse el patrón de variación conjunto en los promedios mensuales de AOD y la concentración de PM~2.5~ a lo largo del año. Esta escala temporal muestra que durante los meses de baja AOD la concentración de PM~2.5~ aumenta, mientras que durante los meses en que el AOD es alto los niveles de PM~2.5~ son bajos. A pesar de esto, es importante destacar que la bibliografía menciona una correlación positiva entre ambas variables [@soni2018particulate; @gupta2021spatio]. Por este motivo es importante analizar en escalas temporales de menor granularidad con el objetivo de determinar la verdadera relación entre las variables.
+
+  
   Puede establecerse de esta forma que ambas variables se relacionan de forma directa y que la relación de mayor capacidad predictiva se da sin considerar desfasaje entre el AOD y la variable respuesta.
 
 
@@ -195,6 +212,9 @@ Table: Coeficientes estimados de la relación funcional.\label{tab:coefdisip}
 
   El coeficiente detectado significativo de mayor importancia no se vincula a ningún desfasaje temporal y representa una relación directa, sugiriendo que la influencia de la rugosidad en la dispersión de los contaminantes atmosféricos ocurre de forma instantánea. A su vez el coeficiente en un desfasaje de 14 horas demostró también ser significativo siguiendo la misma relación, lo cual parece carecer de sentido físico, pero sostiene la relación directa previamente encontrada.
 
+    
+  Esta relación entre ambas variables sugiere que podrían existir factores comunes que influyen en su variabilidad. Además, dado que el flujo de ozono norte se encuentra principalmente en la troposfera inferior y la concentración de PM~2.5~ está influenciada por emisiones antropogénicas y procesos atmosféricos, es posible que la relación entre ambas variables refleje la interacción entre la química y la dinámica atmosférica.
+  
   Estudios previos han demostrado una correlación positiva entre la concentración de ozono troposférico y la concentración de material particulado, lo cual también ha sido constatado en este trabajo [@qu2022lidar; @kalashnikov2022increasing]. Tal y como señala Kalashnikov, esta relación podría deberse a incendios forestales o bien a eventos meteorológicos particulares que contribuyen al incremento de la concentración simultánea de ambos contaminantes (Kalashnikov et al., 2022). Durante los incendios forestales, se liberan grandes cantidades de gases y partículas al ambiente. Entre estos gases, se encuentran los compuestos orgánicos volátiles (COV), que reaccionan con los óxidos de nitrógeno (NOx) para producir ozono. Además, el ozono puede interactuar con las partículas en la atmósfera para formar compuestos químicos más complejos, como los llamados nitratos orgánicos, que pueden contribuir al aumento de la concentración de partículas y ozono en zonas alejadas de los incendios forestales. El ozono troposférico es un oxidante fotoquímico que puede reaccionar con los precursores del material particulado, tales como los compuestos orgánicos volátiles y los óxidos de nitrógeno, para formar partículas secundarias. De esta forma, el aumento de la concentración de ozono podría contribuir al aumento de la concentración de PM~2.5~ [@qu2022lidar].
 
   El coeficiente detectado significativo es en un desfasaje temporal de 19 horas sosteniendo un vínculo directo. Este coeficiente refleja que los factores que relacionan la concentración de ozono y PM~2.5~, como lo son las múltiples reacciones químicas en cadena, requieren grandes intervalos temporales para materializar su ocurrencia y aporte a la concentración.
