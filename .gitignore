@@ -7,8 +7,8 @@
 *.rds
 *.toc
 *.tex
-*.out
 *.md
+*.out
 *.html
 *.json
 output*.txt
