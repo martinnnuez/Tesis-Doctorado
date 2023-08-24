@@ -1,4 +1,4 @@
-![Universidad Nacional de Córdoba](https://webs.uab.cat/incasi/wp-content/uploads/sites/308/2016/05/UNC.png) ![Facultad de Ciencias Exactas, Físicas y Naturales](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3ggWMV5Tb5imJp3a_IgIdVzaeAru_7qLSBCFKPubxfkt3OFsupXSuzUF9Wdh9qdr1SQ&usqp=CAU)
+![Universidad Nacional de Córdoba](/images/Facu.png)
 
 # DESARROLLO/EVALUACIÓN DE MODELO PREDICTIVO PARA ESTIMAR CONCENTRACIÓN DE AEROSOLES EN ATMOSFERAS DE ZONAS URBANAS
 
