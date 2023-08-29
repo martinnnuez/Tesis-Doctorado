@@ -1,0 +1,43 @@
+---
+title: "Tablas viejas"
+author: "Rodriguez Nuñez Martin"
+date: "2023-08-29"
+output: html_document
+---
+
+# Urbano
+
+Table: Métricas de ajuste de modelos predictivos aplicados en el contexto de aprendizaje automático en el set de datos de testeo para el uso de suelo urbano. Los valores de *RMSE* se encuentran en las mismas unidades que la concentración de PM~2.5~, es decir [$\frac{\mu g}{m^3}$]. \label{tab:modurb}
+Referencias: raíz del error cuadrático medio ($RMSE$) y error cuadrático medio ($MSE$).
+
+| Modelo  | Set de datos | *RMSE* | *MSE* |
+|------------------------------|:--------------:|:-------:|:-------:|
+| Redes neuronales recurrentes | Original | 3.441 | 11.840 |
+| Redes neuronales recurrentes | Reducido | 3.533 | 12.482 |
+| K vecinos más cercanos | Original | 3.552 | 12.617 |
+| K vecinos más cercanos | Reducido | 3.602 | 12.974 |
+| Bosques Aleatorios | Original | 4.101 | 16.818 |
+| Bosques Aleatorios | Reducido | 4.317 | 18.636 |
+| Regresión de Soporte Vectorial | Reducido | 5.692 | 32.399 |
+| Regresión de Soporte Vectorial | Original | 5.772 | 33.316 |
+| GBM ligero | Original | 7.123 | 50.737 |
+| GBM ligero | Reducido | 7.283 | 53.042 |
+| Regresión lineal | Original | 8.029 | 64.465 |
+| Regresión Ridge | Original | 8.029 | 64.465 |
+| Regresión SGD | Original | 8.03 | 64.481 |
+| Regresión SGD | Reducido | 8.26 | 68.228 |
+| Regresión lineal | Reducido | 8.304 | 68.956 |
+| Regresión Ridge | Reducido | 8.304 | 68.956 |
+| Regresión Lasso | Original | 9.011 | 81.198 |
+| Regresión Lasso | Reducido | 9.023 | 81.415 |
+| Regresión de red elástica | Original | 9.853 | 97.082 |
+| Regresión de red elástica | Reducido | 9.853 | 97.082 |
+|  |  |  |  |  |
+| *Modelo de referencia* | Base | 3.676 | 13.585 |
+
+
+
+| Modelo  | *RMSE* | 
+|  | Base de datos original | Base de datos reducida | 
+|------------------------------|:-----------:|:-------:|
+| Redes neuronales recurrentes | 3.441 | 4 | 
