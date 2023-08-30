@@ -12,32 +12,172 @@ Referencias: raíz del error cuadrático medio ($RMSE$) y error cuadrático medi
 
 | Modelo  | Set de datos | *RMSE* | *MSE* |
 |------------------------------|:--------------:|:-------:|:-------:|
-| Redes neuronales recurrentes | Original | 3.441 | 11.840 |
+  | Redes neuronales recurrentes | Original | 3.441 | 11.840 |
 | Redes neuronales recurrentes | Reducido | 3.533 | 12.482 |
-| K vecinos más cercanos | Original | 3.552 | 12.617 |
+  | K vecinos más cercanos | Original | 3.552 | 12.617 |
 | K vecinos más cercanos | Reducido | 3.602 | 12.974 |
-| Bosques Aleatorios | Original | 4.101 | 16.818 |
+  | Bosques Aleatorios | Original | 4.101 | 16.818 |
 | Bosques Aleatorios | Reducido | 4.317 | 18.636 |
-| Regresión de Soporte Vectorial | Reducido | 5.692 | 32.399 |
+  | Regresión de Soporte Vectorial | Reducido | 5.692 | 32.399 |
 | Regresión de Soporte Vectorial | Original | 5.772 | 33.316 |
-| GBM ligero | Original | 7.123 | 50.737 |
+  | GBM ligero | Original | 7.123 | 50.737 |
 | GBM ligero | Reducido | 7.283 | 53.042 |
-| Regresión lineal | Original | 8.029 | 64.465 |
-| Regresión Ridge | Original | 8.029 | 64.465 |
+  | Regresión lineal | Original | 8.029 | 64.465 |
+  | Regresión Ridge | Original | 8.029 | 64.465 |
 | Regresión SGD | Original | 8.03 | 64.481 |
 | Regresión SGD | Reducido | 8.26 | 68.228 |
 | Regresión lineal | Reducido | 8.304 | 68.956 |
 | Regresión Ridge | Reducido | 8.304 | 68.956 |
-| Regresión Lasso | Original | 9.011 | 81.198 |
+  | Regresión Lasso | Original | 9.011 | 81.198 |
 | Regresión Lasso | Reducido | 9.023 | 81.415 |
-| Regresión de red elástica | Original | 9.853 | 97.082 |
+  | Regresión de red elástica | Original | 9.853 | 97.082 |
 | Regresión de red elástica | Reducido | 9.853 | 97.082 |
 |  |  |  |  |  |
 | *Modelo de referencia* | Base | 3.676 | 13.585 |
 
 
+| Modelo  | *RMSE* BD Original | *RMSE* BD Reducida |
+|------------------------------|:-----------:|:-----------:|
+| **Redes neuronales recurrentes** | 3.441 | 3.533 |
+| Bosques Aleatorios | 4.101 | 4.317 |
+| K vecinos más cercanos | 3.552 | 3.602 |
+| Regresión de Soporte Vectorial | 5.772 | 5.692 |
+| GBM ligero | 7.123 | 7.283 |
+| Regresión lineal | 8.029 | 8.304 |
+| Regresión SGD | 8.030 | 8.260 |
+| Regresión Ridge | 8.029 | 8.304 |
+| Regresión Lasso | 9.011 | 9.023 |
+| Regresión de red elástica | 9.853 | 9.853 |
+|  |  |  |  |  |
+| *Modelo de referencia* | 3.676 | 3.676 |
 
-| Modelo  | *RMSE* | 
-|  | Base de datos original | Base de datos reducida | 
-|------------------------------|:-----------:|:-------:|
-| Redes neuronales recurrentes | 3.441 | 4 | 
+
+| Recurrencia | Capas | *RMSE* | *MSE* |
+|--------|:-------:|:-------:|-------:|
+| GRU | 3 | 3.491 | 12.187 |
+| LSTM | 5 | 3.507 | 12.299 |
+| GRU | 5 | 3.558 | 12.659 |
+| LSTM | 4 | 3.568 | 12.731 |
+| GRU | 4 | 3.61 | 13.032 |
+| GRU | 2 | 3.633 | 13.199 |
+| LSTM | 3 | 3.64 | 13.250 |
+| LSTM | 2 | 3.772 | 14.228 |
+| LSTM | 1 | 4.005 | 16.040 |
+| GRU | 1 | 4.015 | 16.120 |
+| RNN | 3 | 4.258 | 18.131 |
+| RNN | 4 | 4.409 | 19.439 |
+| RNN | 2 | 4.451 | 19.811 |
+| RNN | 5 | 4.614 | 21.289 |
+| RNN | 1 | 5.212 | 27.165 |
+
+# Industrial
+
+| Modelo | Set de datos | *RMSE* | *MSE* |
+|------------------------------|:--------------:|:-------:|:-------:|
+| Redes neuronales recurrentes | Reducido | 6.171 | 38.081 |
+| Redes neuronales recurrentes | Original | 6.193 | 38.353 |
+| K vecinos más cercanos | Original | 6.248 | 39.038 |
+| K vecinos más cercanos | Reducido | 6.263 | 39.225 |
+| Bosques Aleatorios | Original | 6.523 | 42.550 |
+| Bosques Aleatorios | Reducido | 6.547 | 42.863 |
+| Regresión de Soporte Vectorial | Original | 7.876 | 62.031 |
+| Regresión de Soporte Vectorial | Reducido | 8.023 | 64.369 |
+| GBM ligero | Original | 9.344 | 87.310 |
+| GBM ligero  | Reducido | 9.533 | 90.878 |
+| Regresión lineal  | Original | 10.100 | 102.010 |
+| Regresión Ridge  | Original | 10.100 | 102.010 |
+| Regresión SGD  | Original | 10.110 | 102.212 |
+| Regresión SGD | Reducido | 10.240 | 104.858 |
+| Regresión Ridge  | Reducido | 10.330 | 106.709 |
+| Regresión lineal | Reducido | 10.330 | 106.709 |
+| Regresión Lasso  | Original | 10.920 | 119.246 |
+| Regresión Lasso  | Reducido | 10.930 | 119.465 |
+| Regresión de red elástica | Original | 11.820 | 139.712 |
+| Regresión de red elástica | Reducido | 11.820 | 139.712 |
+|  |  |  |  |  |
+| *Modelo de referencia* | Base | 6.475 | 41.545 |
+
+| Modelo  | *RMSE* BD Original | *RMSE* BD Reducida |
+|------------------------------|:-----------:|:-----------:|
+| **GRU** | 6.101 | 5.964 |
+| LSTM | 6.193 | 6.171 |
+| RNN | 6.723 | 6.598 |
+| Bosques Aleatorios | 6.523 | 6.547 |
+| K vecinos más cercanos | 6.248 | 6.263 |
+| Regresión de Soporte Vectorial | 7.876 | 8.023 |
+| GBM ligero | 9.344 | 9.533 |
+| Regresión lineal | 10.100 | 10.330 |
+| Regresión SGD | 10.110 | 10.240 |
+| Regresión Ridge | 10.100 | 10.330 |
+| Regresión Lasso | 10.920 | 10.930 |
+| Regresión de red elástica | 11.820 | 11.820 |
+|  |  |  |  |  |
+| *Modelo de referencia* | 6.475 | 6.475 |
+
+
+Table: Métricas de ajuste de redes neuronales recurrentes con distintas arquitecturas en el contexto de aprendizaje automático en el set de datos de testeo para el uso de suelo industrial bajo la base de datos reducida. Los valores de *RMSE* se encuentran en las mismas unidades que la concentración de PM~2.5~, es decir [$\frac{\mu g}{m^3}$]. \label{tab:arqind}
+Referencia: metodología de recurrencia, cantidad de capas apiladas, *RMSE* y *MSE*. 
+
+| Recurrencia | Capas | *RMSE* | *MSE* |
+|--------|:-------:|:-------:|-------:|
+| GRU | 2 | 5.964 | 35.569 |
+| GRU | 3 | 5.988 | 35.856 |
+| LSTM | 2 | 6.074 | 36.893 |
+| LSTM | 5 | 6.082 | 36.991 |
+| GRU | 5 | 6.091 | 37.100 |
+| LSTM | 3 | 6.11 | 37.332 |
+| LSTM | 4 | 6.132 | 37.601 |
+| GRU | 4 | 6.16 | 37.946 |
+| LSTM | 1 | 6.191 | 38.328 |
+| GRU | 1 | 6.471 | 41.874 |
+| RNN | 2 | 6.598 | 43.534 |
+| RNN | 3 | 6.628 | 43.930 |
+| RNN | 4 | 6.857 | 47.018 |
+| RNN | 5 | 6.927 | 47.983 |
+| RNN | 1 | 7.683 | 59.028 |
+
+
+# Agrícola area verde
+
+| Modelo | Set de datos | *RMSE* | *MSE* |
+|------------------------------|:-------------:|:-------:|:-------:|
+| Bosques Aleatorios | Reducido | 2.596 | 6.739 |
+| Bosques Aleatorios | Original | 2.611 | 6.817 |
+| K vecinos más cercanos | Reducido | 2.651 | 7.028 |
+| K vecinos más cercanos | Original | 2.747 | 7.546 |
+| Redes neuronales recurrentes | Reducido | 2.785 | 7.756 |
+| Redes neuronales recurrentes | Original | 2.837 | 8.049 |
+| Regresión de Soporte Vectorial | Reducido | 3.654 | 13.352 |
+| Regresión de Soporte Vectorial | Original | 3.825 | 14.631 |
+| GBM ligero | Original | 4.509 | 20.331 |
+| GBM ligero | Reducido | 4.606 | 21.215 |
+| Regresión SGD | Original | 5.182 | 26.853 |
+| Regresión SGD | Reducido | 5.258 | 27.647 |
+| Regresión lineal | Original | 5.275 | 27.826 |
+| Regresión Ridge | Original | 5.282 | 27.900 |
+| Regresión lineal | Reducido | 5.381 | 28.955 |
+| Regresión Ridge | Reducido | 5.381 | 28.955 |
+| Regresión Lasso | Original | 5.809 | 33.744 |
+| Regresión Lasso | Reducido | 5.809 | 33.744 |
+| Regresión de red elástica | Original | 6.185 | 38.254 |
+| Regresión de red elástica | Reducido | 6.185 | 38.254 |
+|  |  |  |  |  |
+| *Modelo de referencia* | Base | 2.775 | 7.768 |
+
+| Modelo  | *RMSE* BD Original | *RMSE* BD Reducida |
+|------------------------------|:-----------:|:-----------:|
+| GRU | 2.837 | 2.785 |
+| LSTM | 2.912 | 2.863 |
+| RNN | 3.354 | 3.101 |
+| **Bosques Aleatorios** | 2.611 | 2.596 |
+| K vecinos más cercanos | 2.747 | 2.651 |
+| Regresión de Soporte Vectorial | 3.825 | 3.654 |
+| GBM ligero | 4.509 | 4.606 |
+| Regresión lineal | 5.275 | 5.381 |
+| Regresión SGD | 5.182 | 5.258 |
+| Regresión Ridge | 5.381 | 5.381 |
+| Regresión Lasso | 5.809 | 5.809 |
+| Regresión de red elástica | 6.185 | 6.185 |
+|  |  |  |  |  |
+| *Modelo de referencia* | 2.775 | 2.775 |
+

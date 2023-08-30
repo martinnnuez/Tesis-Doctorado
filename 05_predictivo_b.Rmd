@@ -48,7 +48,8 @@ knitr::include_graphics("images/GA/mod.png")
   También se evaluó la alternativa de regresión LASSO, que incluye un término de penalización distinto en la función a minimizar. El objetivo de este término es reducir la cantidad de variables que integran el modelo final al mínimo, lo que conlleva a una disminución fuerte en la cantidad de variables involucradas en la predicción [@tibshirani1996regression, @santosa1986linear]. Este algoritmo es especialmente útil cuando se desea seleccionar un subconjunto de variables predictoras, proporcionando un modelo de mayor interpretabilidad.
   
   Además, se implementó el algoritmo de red elástica, el cual fusiona las regularizaciones y penalizaciones introducidas por los métodos de regresión Ridge y LASSO [@zou2005regularization]. Este enfoque posibilita la estimación de un modelo que combina las ventajas de ambos métodos, ofreciendo la estabilidad característica de Ridge y la habilidad de selección de características de LASSO. 
-  También, se empleó el algoritmo de descenso por el gradiente estocástico, que es una alternativa comúnmente usada en el contexto del aprendizaje automático donde se busca ajustar iterativamente los parámetros del modelo de regresión lineal múltiple de manera eficiente. Este método implica calcular el error entre las predicciones del modelo y los valores reales, y luego ajustar los parámetros en la dirección opuesta del gradiente de la función de costo, permitiendo una adaptación precisa. Al ser de naturaleza "estocástica", en cada iteración se utiliza un subconjunto aleatorio de los datos disponibles para actualizar los parámetros, lo que agiliza la convergencia y se torna especialmente útil en situaciones donde los conjuntos de datos son de dimensiones considerables y presentan colinealidad [@bottou2007tradeoffs]. 
+  
+  También, se empleó el algoritmo de descenso por el gradiente estocástico, que es una alternativa comúnmente usada en el contexto del aprendizaje automático donde se busca ajustar iterativamente los parámetros del modelo de regresión lineal múltiple de manera eficiente (regresión SGD). Este método implica calcular el error entre las predicciones del modelo y los valores reales, y luego ajustar los parámetros en la dirección opuesta del gradiente de la función de costo, permitiendo una adaptación precisa. Al ser de naturaleza "estocástica", en cada iteración se utiliza un subconjunto aleatorio de los datos disponibles para actualizar los parámetros, lo que agiliza la convergencia y se torna especialmente útil en situaciones donde los conjuntos de datos son de dimensiones considerables y presentan colinealidad [@bottou2007tradeoffs]. 
 
 ##### Máquinas de vectores de soporte
 
@@ -130,7 +131,7 @@ RMSE = \sqrt{\frac{1}{n}\sum\nolimits_{i=1}^N(y_i-\hat{y_i})^2}
  
   La metodología implementada para llevar a cabo el ajuste y evaluación de los modelos predictivos, se basó en un enfoque iterativo que involucró la de división de datos, entrenamiento del modelo y evaluación por medio de las métricas de desempeño. La base de datos se dividió en subconjuntos de entrenamiento, validación y testeo a partir de un muestreo aleatorio estratificado por meses, días y horas. Esta estratificación buscó maximizar la representatividad de las distintas condiciones temporales existentes en los distintos subconjuntos de datos para el ajuste del modelo predictivo. Las proporciones correspondientes para cada uno de los subconjuntos (entrenamiento, validación y testeo), fue de 70%, 15% y 15%, respectivamente. Posteriormente, se procedió a ajustar cada uno de los algoritmos de modelado predictivo en los subconjuntos de entrenamiento y validación. Una vez que los modelos fueron entrenados, se realizaron predicciones tanto en la base de datos de entrenamiento como en la de testeo. A partir de estas predicciones, se llevó a cabo el cálculo de las métricas de desempeño en la base de datos de testeo. Este procedimiento de entrenamiento y evaluación se repitió de forma iterativa 10 veces, variando las semillas aleatorias que determinaron las particiones de los datos en cada iteración. Finalizadas las iteraciones, se calculó el promedio de las métricas de desempeño para las 10 corridas del procedimiento en los de testeo. Finalmente, se compararon los resultados promedio de las métricas de desempeño para determinar cuál de los algoritmos predictivos fue el que generó el ajuste de mayor capacidad predictiva.
 
-  Todos los algoritmos predictivos ajustados fueron optimizados durante el procedimiento iterativo de entrenamiento y evaluación a partir de las particiones de entrenamiento y validación. Esta optimización se llevo a cabo variando los valores de los hiperparámetros, hasta hasta encontrar las configuraciones que aseguraron el mayor rendimiento predictivo. Además, en el caso de las redes neuronales, se profundizó en el estudio de diferentes arquitecturas. 
+  Todos los algoritmos predictivos ajustados fueron optimizados durante el procedimiento iterativo de entrenamiento y evaluación a partir de las particiones de entrenamiento y validación. Esta optimización se llevo a cabo variando los valores de los hiperparámetros, hasta hasta encontrar las configuraciones que aseguraron el mayor rendimiento predictivo. Además, en el caso de las redes neuronales, se profundizó en el estudio de diferentes arquitecturas. Las redes neuronales recurrentes entrenadas en este capítulo, se encuentran conformadas por un modelo apilado (múltiples capas superpuestas). Cada una de las capas del modelo apilado consta de una capa recurrente y una de dilución (*dropout*). La capa recurrente permite comprender dependencias temporales y secuenciales, mientras que la capa de dilución contribuye a la regularización al prevenir el sobreajuste, al mismo tiempo que fomenta la generalización del modelo. Además, se evaluaron distintas metodologías de recurrencia implementando diferentes variantes de apilamiento para determinar si mejoraba el rendimiento del modelo.
   
   Además, cabe destacar que para abordar la comparación de la capacidad predictiva de los modelos ajustados se implemento una línea de base contra la cual contrastar los algoritmos ajustados. Esta refiere a un modelo de referencia (*base line*), que predice la concentración de PM~2.5~ para las horas sin dato (testeo) como la media de la concentración en la hora anterior y posterior. Es relevante resaltar que esta predicción no es posible en la práctica, ya que no se dispone de datos de concentración de PM~2.5~ en tiempo real. Un desempeño del modelo ajustado superior o similar al de este modelo de referencia indica una elevada capacidad predictiva.
   
@@ -144,83 +145,33 @@ RMSE = \sqrt{\frac{1}{n}\sum\nolimits_{i=1}^N(y_i-\hat{y_i})^2}
 
   En esta sección se desarrolló el modelado predictivo de la concentración de PM~2.5~ a partir de las base de datos original y reducida. La base de datos original involucró todas las variables independientes (193), mientras que la reducida contó con un total de 77 variables. Una descripción detallada de cada una de ellas puede hallarse en el Anexo 1.
 
-Table: Métricas de ajuste de modelos predictivos aplicados en el contexto de aprendizaje automático en el set de datos de testeo para el uso de suelo urbano. Los valores de *RMSE* se encuentran en las mismas unidades que la concentración de PM~2.5~, es decir [$\frac{\mu g}{m^3}$]. \label{tab:modurb}
-Referencias: raíz del error cuadrático medio ($RMSE$) y error cuadrático medio ($MSE$).
+Table: Métricas de ajuste de modelos predictivos aplicados en el contexto de aprendizaje automático en el set de datos de testeo para el uso de suelo urbano en ambas bases de datos evaluadas. Los valores de *RMSE* se encuentran en las mismas unidades que la concentración de PM~2.5~, es decir [$\frac{\mu g}{m^3}$]. \label{tab:modurb}
+Referencias: Modelo predictivo, raíz del error cuadrático medio en la base de datos original (*RMSE* BD Original) y raíz del error cuadrático medio en la base de datos reducida (*RMSE* BD Reducida).
 
-| Modelo  | Set de datos | *RMSE* | 
-|------------------------------|:--------------:|:-------:|
-| Redes neuronales recurrentes | Original | 3.441 |
-| Redes neuronales recurrentes | Reducido | 3.533 |
-| K vecinos más cercanos | Original | 3.552 |
-| K vecinos más cercanos | Reducido | 3.602 | 
-| Bosques Aleatorios | Original | 4.101 |
-| Bosques Aleatorios | Reducido | 4.317 |
-| Regresión de Soporte Vectorial | Reducido | 5.692 | 
-| Regresión de Soporte Vectorial | Original | 5.772 |
-| GBM ligero | Original | 7.123 |
-| GBM ligero | Reducido | 7.283 | 
-| Regresión lineal | Original | 8.029 |
-| Regresión Ridge | Original | 8.029 | 
-| Regresión SGD | Original | 8.03 |
-| Regresión SGD | Reducido | 8.26 | 
-| Regresión lineal | Reducido | 8.304 | 
-| Regresión Ridge | Reducido | 8.304 |
-| Regresión Lasso | Original | 9.011 |
-| Regresión Lasso | Reducido | 9.023 | 
-| Regresión de red elástica | Original | 9.853 | 
-| Regresión de red elástica | Reducido | 9.853 |
+| Modelo  | *RMSE* BD Original | *RMSE* BD Reducida |
+|------------------------------|:-----------:|:-----------:|
+| **GRU** | 3.441 | 3.461 |
+| LSTM | 3.503 | 3.507 |
+| RNN | 4.441 | 4.258 |
+| Bosques aleatorios | 4.101 | 4.317 |
+| KNN | 3.552 | 3.602 |
+| SVM | 5.772 | 5.692 |
+| GBM | 7.123 | 7.283 |
+| Regresión lineal | 8.029 | 8.304 |
+| Regresión SGD | 8.030 | 8.260 |
+| Regresión Ridge | 8.029 | 8.304 |
+| Regresión LASSO | 9.011 | 9.023 |
+| Regresión de red elástica | 9.853 | 9.853 |
 |  |  |  |  |  |
-| *Modelo de referencia* | Base | 3.676 | 
+| *Modelo de referencia* | 3.676 | 3.676 |
 
-  Los resultados observados en la tabla \@ref(tab:modurb) muestran que el algoritmo predictivo de mayor desempeño para el uso de suelo urbano fueron las redes neuronales recurrentes en sus versiones bajo la base de datos original y reducida. El gran desempeño predictivo demuestra como las características propias de aprendizaje del algoritmo logran captar las fuentes de variabilidad y realizar estimaciones acertadas de la variable respuesta. 
+  Los resultados observados en la tabla \@ref(tab:modurb) muestran que el algoritmo predictivo de mayor desempeño para el uso de suelo urbano fueron las redes neuronales recurrentes en sus versiones bajo la base de datos original y reducida. El gran desempeño predictivo demuestra como las características propias de aprendizaje del algoritmo logran captar las fuentes de variabilidad y realizar estimaciones acertadas de la variable respuesta. Específicamente el mejor desempeño predictivo fue alcanzado por el modelo que involucra redes con compuerta (*GRU*).
  
   Además, puede notarse que el único algoritmo predictivo que también logra superar el modelo de referencia propuesto es el modelo de k vecinos más cercanos. Sin embargo, este algoritmo no garantiza el aprendizaje de la estructura de variabilidad presente en los datos, ya que su proceso de predicción consiste en encontrar las k observaciones más similares en la base de datos de entrenamiento y calcular su media para obtener la predicción final. Este algoritmo de modelado puede ser una forma novedosa y no convencional de calcular predicciones condicionadas por el parentesco entre los datos, a diferencia de los demás métodos que buscan calcular parámetros y pesos que les permiten inferir acerca de las interrelaciones entre las variables. 
 
   Para evitar caer en interpretaciones sesgadas respecto a la relación de vinculación que guardan las variables, se optó por seleccionar el modelo predictivo desarrollado sobre la base de datos reducida. Esta elección se fundamenta en el hecho de que el modelo construido sobre la base de datos original, al contar con un número superior de variables predictoras, aumenta drásticamente el espacio de posibles soluciones que pueden encontrarse, pudiendo existir soluciones en las cuales se atribuya importancia a variables de forma equivocada. Cabe destacar que la base de datos reducida cuenta con las variables más importantes seleccionadas a partir de la combinación de múltiples algoritmos de selección de características. Al trabajar con esta base de datos, el espacio de posibles soluciones  se reduce considerablemente, asegurando que todas las soluciones posibles involucren las variables de mayor relevancia. Además, puede apreciarse que la diferencia en la precisión promedio entre los algoritmos predictivos en ambas bases de datos es baja, 0.112 $\frac{\mu g}{m^3}$. Tomando en consideración que la base de datos reducida involucra un 60% menos de variables, se asume que se introduce un menor porcentaje de ruido al modelado. Por este motivo, además de encontrar soluciones de mayor relevancia, permite reducir la complejidad y el tiempo de ejecución en el entrenamiento del modelo predictivo. Otra ventaja inherente a la base de datos reducida es su mayor viabilidad para la implementación en producción, ya que implica una menor carga y procesamiento para generar predicciones, además de simplificar las tareas de actualización y reentrenamiento del modelo.
   
-  De esta forma, se seleccionó el algoritmo predictivo ajustado sobre la base de datos reducida, cuyas predicciones difieren en promedio de los valores reales medidos de concentración de PM~2.5~ en 3.533 $\frac{\mu g}{m^3}$.
- 
-#### Optimización del modelo predictivo
-
-  Las redes neuronales recurrentes entrenadas en esta sección, se encuentran conformadas por un modelo apilado (múltiples capas superpuestas). Cada una de las capas del modelo apilado consta de una capa recurrente y una de dilución (*dropout*). Además, se evaluaron distintas metodologías de recurrencia implementando diferentes variantes de apilamiento para determinar si mejoraba el rendimiento del modelo.
-
-Table: Métricas de ajuste de redes neuronales recurrentes con distintas arquitecturas en el contexto de aprendizaje automático en el set de datos de testeo para el uso de suelo urbano bajo la base de datos reducida. Los valores de *RMSE* se encuentran en las mismas unidades que la concentración de PM~2.5~, es decir [$\frac{\mu g}{m^3}$]. \label{tab:arqurb}
-Referencia: metodología de recurrencia, cantidad de capas apiladas, *RMSE* y *MSE*. 
-
-| Recurrencia | Capas | *RMSE* | *MSE* |
-|--------|:-------:|:-------:|-------:|
-| GRU | 3 | 3.491 | 12.187 |
-| LSTM | 5 | 3.507 | 12.299 |
-| GRU | 5 | 3.558 | 12.659 |
-| LSTM | 4 | 3.568 | 12.731 |
-| GRU | 4 | 3.61 | 13.032 |
-| GRU | 2 | 3.633 | 13.199 |
-| LSTM | 3 | 3.64 | 13.250 |
-| LSTM | 2 | 3.772 | 14.228 |
-| LSTM | 1 | 4.005 | 16.040 |
-| GRU | 1 | 4.015 | 16.120 |
-| RNN | 3 | 4.258 | 18.131 |
-| RNN | 4 | 4.409 | 19.439 |
-| RNN | 2 | 4.451 | 19.811 |
-| RNN | 5 | 4.614 | 21.289 |
-| RNN | 1 | 5.212 | 27.165 |
-
-  La tabla \@ref(tab:arqurb) presenta el proceso de exploración de metodologías alternativas dentro de las redes neuronales recurrentes. Los resultados muestran que el mejor desempeño predictivo fue alcanzado por el modelo que involucra redes con compuerta (*GRU*). El modelo final resultante fue un modelo apilado compuesto por tres capas sucesivas, cada una de las cuales combina una capa de red neuronal con compuerta y una de dilución (*dropout*).
-
-  Posteriormente, se llevaron a cabo experimentos para determinar los valores óptimos de los hiperparámetros del modelo. En la búsqueda se analizaron distintas combinaciones para el número de neuronas en las distintas capas y el porcentaje de neuronas apagadas en cada capa de dilución.
-  
-  Finalmente, el modelo de mejor ajuste quedó conformado en su primer aglomerado del apilamiento por un total de 200 neuronas en la capa con compuerta, seguido por una capa de dilución con un 30% de neuronas apagadas. Los dos aglomerados subsiguientes que dan estructura a esta red se encuentran conformados por un total de 100 neuronas en cada una de sus capas con compuerta y una capa de dilución con un 30% de porcentaje de neuronas apagadas. Previo a la capa de salida, se encuentra la estructura clásica de capa densa totalmente conectada que permite la combinación de los coeficientes aprendidos por la red para dar como resultado la predicción final.
-
-  En términos de rendimiento, las predicciones del modelo de mejor ajuste difieren en promedio de los valores reales medidos de concentración de PM~2.5~ en 3.491 $\frac{\mu g}{m^3}$. Esto sugiere que el modelo es capaz de realizar predicciones precisas y puede ser utilizado en futuros estudios y aplicaciones en el monitoreo de la calidad del aire.
-  
-<!-- #### Entrenamiento del algoritmo predictivo resultante: -->
-
-<!-- ```{r aprendmodurb, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:aprendmodurb)"} -->
-<!-- knitr::include_graphics("images/imagescap5/aprendmodurb.png") -->
-<!-- ``` -->
-<!-- (ref:aprendmodurb) Procedimiento de aprendizaje del modelo final en la base de datos de entrenamiento y validación. -->
-
-<!--   La figura \@ref(fig:aprendmodurb) ilustra el procedimiento de aprendizaje del modelo predictivo de mejor ajuste tanto en la partición de entrenamiento como en la de validación. En esta puede observarse cómo se da la reducción del error a lo largo del proceso de aprendizaje, indicando una mejoría en su capacidad de generalización a medida que se avanza en el aprendizaje. Además, puede apreciarse que el algoritmo finaliza su aprendizaje en el ciclo 283 por medio del mecanismo de frenado temprano (*early stopping*), demostrando la obtención de un modelo robusto al evitar el sobreajuste (*overfitting*). -->
+  De esta forma, se seleccionó el algoritmo predictivo ajustado sobre la base de datos reducida, cuyas predicciones difieren en promedio de los valores reales medidos de concentración de PM~2.5~ en 3.461 $\frac{\mu g}{m^3}$. El modelo de mejor ajuste quedó conformado en su primer aglomerado del apilamiento por un total de 200 neuronas en la capa con compuerta, seguido por una capa de dilución con un 30% de neuronas apagadas. Los dos aglomerados subsiguientes que dan estructura a esta red se encuentran conformados por un total de 100 neuronas en cada una de sus capas con compuerta y una capa de dilución con un 30% de porcentaje de neuronas apagadas. Previo a la capa de salida, se encuentra la estructura clásica de capa densa totalmente conectada que permite la combinación de los coeficientes aprendidos por la red para dar como resultado la predicción final.
 
 #### Interpretación modelo predictivo:
 
@@ -295,81 +246,33 @@ knitr::include_graphics("images/imagescap5/shapurbpresmar_b.png")
 
   En esta sección se desarrolló el modelado predictivo de la concentración de PM~2.5~ a partir de las base de datos original y reducida. La base de datos reducida contó con un total de 53 variables. Una descripción detallada de cada una de ellas puede hallarse en el Anexo 1.
 
-Table: Métricas de ajuste de modelos predictivos aplicados en el contexto de aprendizaje automático en el set de datos de testeo para el uso de suelo industrial. Los valores de *RMSE* se encuentran en las mismas unidades que la concentración de PM~2.5~, es decir [$\frac{\mu g}{m^3}$]. \label{tab:modind}
-Referencias: raíz del error cuadrático medio ($RMSE$) y error cuadrático medio ($MSE$).
+Table: Métricas de ajuste de modelos predictivos aplicados en el contexto de aprendizaje automático en el set de datos de testeo para el uso de suelo industrial en ambas bases de datos evaluadas. Los valores de *RMSE* se encuentran en las mismas unidades que la concentración de PM~2.5~, es decir [$\frac{\mu g}{m^3}$]. \label{tab:modind}
+Referencias: Modelo, raíz del error cuadrático medio en la base de datos original (*RMSE* BD Original) y raíz del error cuadrático medio en la base de datos reducida (*RMSE* BD Reducida).
  
-| Modelo | Set de datos | *RMSE* | *MSE* |
-|------------------------------|:--------------:|:-------:|:-------:|
-| Redes neuronales recurrentes | Reducido | 6.171 | 38.081 |
-| Redes neuronales recurrentes | Original | 6.193 | 38.353 |
-| K vecinos más cercanos | Original | 6.248 | 39.038 |
-| K vecinos más cercanos | Reducido | 6.263 | 39.225 |
-| Bosques Aleatorios | Original | 6.523 | 42.550 |
-| Bosques Aleatorios | Reducido | 6.547 | 42.863 |
-| Regresión de Soporte Vectorial | Original | 7.876 | 62.031 |
-| Regresión de Soporte Vectorial | Reducido | 8.023 | 64.369 |
-| GBM ligero | Original | 9.344 | 87.310 |
-| GBM ligero  | Reducido | 9.533 | 90.878 |
-| Regresión lineal  | Original | 10.100 | 102.010 |
-| Regresión Ridge  | Original | 10.100 | 102.010 |
-| Regresión SGD  | Original | 10.110 | 102.212 |
-| Regresión SGD | Reducido | 10.240 | 104.858 |
-| Regresión Ridge  | Reducido | 10.330 | 106.709 |
-| Regresión lineal | Reducido | 10.330 | 106.709 |
-| Regresión Lasso  | Original | 10.920 | 119.246 |
-| Regresión Lasso  | Reducido | 10.930 | 119.465 |
-| Regresión de red elástica | Original | 11.820 | 139.712 |
-| Regresión de red elástica | Reducido | 11.820 | 139.712 |
+| Modelo  | *RMSE* BD Original | *RMSE* BD Reducida |
+|------------------------------|:-----------:|:-----------:|
+| **GRU** | 6.101 | 5.964 |
+| LSTM | 6.193 | 6.171 |
+| RNN | 6.723 | 6.598 |
+| Bosques aleatorios | 6.523 | 6.547 |
+| KNN | 6.248 | 6.263 |
+| SVM | 7.876 | 8.023 |
+| GBM | 9.344 | 9.533 |
+| Regresión lineal | 10.100 | 10.330 |
+| Regresión SGD | 10.110 | 10.240 |
+| Regresión Ridge | 10.100 | 10.330 |
+| Regresión LASSO | 10.920 | 10.930 |
+| Regresión de red elástica | 11.820 | 11.820 |
 |  |  |  |  |  |
-| *Modelo de referencia* | Base | 6.475 | 41.545 |
+| *Modelo de referencia* | 6.475 | 6.475 |
 
-  En la tabla \@ref(tab:modind) se presentan los resultados obtenidos en el modelado predictivo de los datos provenientes del uso de suelo industrial, puede apreciarse que estos son similares a los obtenidos para el uso de suelo urbano (Tabla \@ref(tab:modurb)). En primer lugar, puede apreciarse que el mejor desempeño predictivo es alcanzado por las redes neuronales recurrentes, sugiriendo que este algoritmo es robusto y efectivo en la predicción de la concentración de PM~2.5~. La distinción principal radica en que el óptimo desempeño se obtiene en este caso mediante el uso de la base de datos reducida.
+  En la tabla \@ref(tab:modind) se presentan los resultados obtenidos en el modelado predictivo de los datos provenientes del uso de suelo industrial, puede apreciarse que estos son similares a los obtenidos para el uso de suelo urbano (Tabla \@ref(tab:modurb)). En primer lugar, puede apreciarse que el mejor desempeño predictivo es alcanzado por las redes neuronales recurrentes, sugiriendo que este algoritmo es robusto y efectivo en la predicción de la concentración de PM~2.5~. La distinción principal radica en que el óptimo desempeño se obtiene en este caso mediante el uso de la base de datos reducida. Específicamente el mejor desempeño predictivo fue alcanzado por el modelo que involucra redes con compuerta (*GRU*).
   
   Además, para este uso de suelo, se percibe que el único algoritmo predictivo que supera al modelo de referencia propuesto es el modelo de K vecinos más cercanos. A través de la estimación de la media entre K observaciones, este modelo logra un alto poder predictivo, aunque no necesariamente captura las interacciones existentes entre las variables.
  
   Cabe destacar que los mejores resultados predictivos fueron obtenidos al emplear la base de datos reducida, proporcionando evidencia acerca de las ventajas de este tipo de base para el modelado predictivo. Por lo tanto, esta será la base de datos que se empleará para llevar a cabo el modelado y, posteriormente analizar la relación de vinculación entre las variables.
 
-  En cuanto a las predicciones del algoritmo seleccionado, se observa que difieren en promedio de los valores reales medidos de concentración de PM~2.5~ en 6.171 $\frac{\mu g}{m^3}$. Este resultado indica que el modelo seleccionado puede proporcionar estimaciones precisas de la concentración de PM~2.5~ en el uso de suelo industrial.
-
-#### Optimización del modelo predictivo
-
-Table: Métricas de ajuste de redes neuronales recurrentes con distintas arquitecturas en el contexto de aprendizaje automático en el set de datos de testeo para el uso de suelo industrial bajo la base de datos reducida. Los valores de *RMSE* se encuentran en las mismas unidades que la concentración de PM~2.5~, es decir [$\frac{\mu g}{m^3}$]. \label{tab:arqind}
-Referencia: metodología de recurrencia, cantidad de capas apiladas, *RMSE* y *MSE*. 
-
-| Recurrencia | Capas | *RMSE* | *MSE* |
-|--------|:-------:|:-------:|-------:|
-| GRU | 2 | 5.964 | 35.569 |
-| GRU | 3 | 5.988 | 35.856 |
-| LSTM | 2 | 6.074 | 36.893 |
-| LSTM | 5 | 6.082 | 36.991 |
-| GRU | 5 | 6.091 | 37.100 |
-| LSTM | 3 | 6.11 | 37.332 |
-| LSTM | 4 | 6.132 | 37.601 |
-| GRU | 4 | 6.16 | 37.946 |
-| LSTM | 1 | 6.191 | 38.328 |
-| GRU | 1 | 6.471 | 41.874 |
-| RNN | 2 | 6.598 | 43.534 |
-| RNN | 3 | 6.628 | 43.930 |
-| RNN | 4 | 6.857 | 47.018 |
-| RNN | 5 | 6.927 | 47.983 |
-| RNN | 1 | 7.683 | 59.028 |
-
-  Los resultados de la tabla \@ref(tab:arqind) muestran que el mejor desempeño predictivo fue alcanzado por el modelo que involucra redes con compuerta (*GRU*). El modelo final resultante fue un modelo apilado de dos capas sucesivas, cada una de las cuales combina una capa de red neuronal con compuerta y una de dilución (*dropout*).
-  
-  Posteriormente, se llevaron a cabo experimentos para determinar los valores óptimos de los hiperparámetros del modelo. En la búsqueda se analizaron distintas combinaciones para el número de neuronas en las distintas capas y el porcentaje de neuronas apagadas en cada capa de dilución.
-
-  Finalmente, el modelo de mejor ajuste quedo conformado en su primer aglomerado del apilamiento por un total de 200 neuronas en la capa con compuerta, seguido por una capa de dilución con un 30% de neuronas apagadas. La subsiguiente capa del aglomerado quedo conformada por un total de 100 neuronas en su capa con compuerta y un 30% de porcentaje de neuronas apagadas en su capa de dilución. Previo a la capa de salida, se encuentra la estructura clásica de capa densa totalmente conectada que permite la combinación de los coeficientes aprendidos por la red para dar como resultado la predicción final.
-
-  En términos de rendimiento, las predicciones del modelo mejor ajuste difieren en promedio de los valores reales medidos de concentración de PM~2.5~ en 5.964 $\frac{\mu g}{m^3}$. 
-  
-#### Entrenamiento del algoritmo predictivo resultante:
-
-```{r aprendmodind, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:aprendmodind)"}
-knitr::include_graphics("images/imagescap5/aprendmodind.png")
-```
-(ref:aprendmodind) Procedimiento de aprendizaje del modelo final en la base de datos de entrenamiento y validación industrial.
-
-  La figura \@ref(fig:aprendmodind) ilustra el procedimiento de aprendizaje del modelo predictivo tanto en la partición de entrenamiento como en la de validación. En esta puede observarse cómo se da la reducción del error a lo largo del proceso de aprendizaje, indicando una mejoría en su capacidad de generalización a medida que se avanza en el aprendizaje. Además, puede apreciarse que el algoritmo finaliza su aprendizaje en el ciclo 207 gracias al mecanismo de frenado temprano (*early stopping*), demostrando la obtención de un modelo robusto al evitar el sobreajuste (*overfitting*).
+  El modelo de mejor ajuste quedo conformado en su primer aglomerado del apilamiento por un total de 200 neuronas en la capa con compuerta, seguido por una capa de dilución con un 30% de neuronas apagadas. La subsiguiente capa del aglomerado quedo conformada por un total de 100 neuronas en su capa con compuerta y un 30% de porcentaje de neuronas apagadas en su capa de dilución. Previo a la capa de salida, se encuentra la estructura clásica de capa densa totalmente conectada que permite la combinación de los coeficientes aprendidos por la red para dar como resultado la predicción final. En términos de rendimiento, las predicciones del modelo mejor ajuste difieren en promedio de los valores reales medidos de concentración de PM~2.5~ en 5.964 $\frac{\mu g}{m^3}$. 
 
 #### Interpretación modelo predictivo:
 
@@ -487,43 +390,29 @@ knitr::include_graphics("images/imagescap5/shapindhum.png")
 
   En esta sección se desarrolló el modelado predictivo de la concentración de PM~2.5~ a partir de las base de datos original y reducida. La base de datos reducida contó con un total de 84 variables. Una descripción detallada de cada una de ellas puede hallarse en el Anexo 1. 
 
-Table: Métricas de ajuste de modelos predictivos aplicados en el contexto de aprendizaje automático en el set de datos de testeo para el uso de suelo industrial. Los valores de *RMSE* se encuentran en las mismas unidades que la concentración de PM~2.5~, es decir [$\frac{\mu g}{m^3}$]. \label{tab:modaa} 
-Referencias: raíz del error cuadrático medio ($RMSE$) y error cuadrático medio ($MSE$).
+Table: Métricas de ajuste de modelos predictivos aplicados en el contexto de aprendizaje automático en el set de datos de testeo para el uso de suelo agrícola y área verde en ambas bases de datos evaluadas. Los valores de *RMSE* se encuentran en las mismas unidades que la concentración de PM~2.5~, es decir [$\frac{\mu g}{m^3}$]. \label{tab:modaa} 
+Referencias: Modelo, raíz del error cuadrático medio en la base de datos original (*RMSE* BD Original) y raíz del error cuadrático medio en la base de datos reducida (*RMSE* BD Reducida).
         
-| Modelo | Set de datos | *RMSE* | *MSE* |
-|------------------------------|:-------------:|:-------:|:-------:|
-| Bosques Aleatorios | Reducido | 2.596 | 6.739 |
-| Bosques Aleatorios | Original | 2.611 | 6.817 |
-| K vecinos más cercanos | Reducido | 2.651 | 7.028 |
-| K vecinos más cercanos | Original | 2.747 | 7.546 |
-| Redes neuronales recurrentes | Reducido | 2.785 | 7.756 |
-| Redes neuronales recurrentes | Original | 2.837 | 8.049 |
-| Regresión de Soporte Vectorial | Reducido | 3.654 | 13.352 |
-| Regresión de Soporte Vectorial | Original | 3.825 | 14.631 |
-| GBM ligero | Original | 4.509 | 20.331 |
-| GBM ligero | Reducido | 4.606 | 21.215 |
-| Regresión SGD | Original | 5.182 | 26.853 |
-| Regresión SGD | Reducido | 5.258 | 27.647 |
-| Regresión lineal | Original | 5.275 | 27.826 |
-| Regresión Ridge | Original | 5.282 | 27.900 |
-| Regresión lineal | Reducido | 5.381 | 28.955 |
-| Regresión Ridge | Reducido | 5.381 | 28.955 |
-| Regresión Lasso | Original | 5.809 | 33.744 |
-| Regresión Lasso | Reducido | 5.809 | 33.744 |
-| Regresión de red elástica | Original | 6.185 | 38.254 |
-| Regresión de red elástica | Reducido | 6.185 | 38.254 |
+| Modelo  | *RMSE* BD Original | *RMSE* BD Reducida |
+|------------------------------|:-----------:|:-----------:|
+| GRU | 2.837 | 2.785 |
+| LSTM | 2.912 | 2.863 |
+| RNN | 3.354 | 3.101 |
+| **Bosques aleatorios** | 2.611 | 2.324 |
+| KNN | 2.747 | 2.651 |
+| SVM | 3.825 | 3.654 |
+| GBM | 4.509 | 4.606 |
+| Regresión lineal | 5.275 | 5.381 |
+| Regresión SGD | 5.182 | 5.258 |
+| Regresión Ridge | 5.381 | 5.381 |
+| Regresión LASSO | 5.809 | 5.809 |
+| Regresión de red elástica | 6.185 | 6.185 |
 |  |  |  |  |  |
-| *Modelo de referencia* | Base | 2.775 | 7.768 |
+| *Modelo de referencia* | 2.775 | 2.775 |
 
   En la tabla \@ref(tab:modaa) se presentan los resultados obtenidos en el modelado predictivo de los datos provenientes del uso de suelo agrícola y área verde. En este caso, se puede apreciar que el algoritmo de mayor desempeño predictivo fue el de bosques aleatorios en ambas versiones de la base de datos, destacando con el menor error el desarrollado sobre la base de datos reducida. La principal diferencia con respecto a los resultados obtenidos para los demás usos de suelo (Tabla \@ref(tab:modurb) y tabla \@ref(tab:modind)) es que las redes neuronales recurrentes no logran superar la línea de base propuesta. Esto podría encontrarse vinculado a las características propias de la serie de tiempo en estos entornos. 
 
-  En cuanto a las predicciones del algoritmo seleccionado, se observa que difieren en promedio de los valores reales medidos de concentración de PM~2.5~ en 2.596 $\frac{\mu g}{m^3}$. Este resultado indica que el modelo seleccionado puede proporcionar estimaciones precisas de la concentración de PM~2.5~ en el uso de suelo agrícola y área verde.
-  
-#### Optimización de los bosques aleatorios
-
-  Posteriormente, se llevó a cabo la optimización de los hiperparámetros a través del ajuste iterativo de múltiples algoritmos de bosques aleatorios, variando los valores de sus hiperparámetros. A través de este procedimiento, se alcanzó el modelo óptimo en términos de su capacidad predictiva. Este modelo se compuso por un total de 200 árboles individuales en el bosque, además para lograr la separación en un nuevo nodo fue necesario contar con más de dos muestras en cada uno de ellos.
-  
-  Finalmente, las predicciones del algoritmo que demostró mayor capacidad predictiva difieren en promedio de los valores reales medidos de concentración de PM~2.5~ en 2.324 $\frac{\mu g}{m^3}$.
+  El modelo óptimo en términos de su capacidad predictiva de bosques aleatorios se encontró compuesto por total de 200 árboles individuales en el bosque, además para lograr la separación en un nuevo nodo fue necesario contar con más de dos muestras en cada uno de ellos. Las predicciones del algoritmo que demostró mayor capacidad predictiva difieren en promedio de los valores reales medidos de concentración de PM~2.5~ en 2.324 $\frac{\mu g}{m^3}$.
   
 #### Interpretación modelo predictivo:
 
