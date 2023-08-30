@@ -23,7 +23,7 @@ knitr::include_graphics("images/GA/mod.png")
 
   La figura \@ref(fig:mod) ilustra el protocolo analítico desarrollado en este capítulo, cuyo objetivo central es la construcción de un modelo predictivo para la concentración de PM~2.5~ en el Área Metropolitana de Córdoba, Argentina. Este modelo se destaca por prever la concentración de PM~2.5~ con cinco días de anticipación y emplea como entrada variables meteorológicas satelitales y temporales relacionadas a la variabilidad periódica de este contamínate. Se compararon modelos alternativos basados en aprendizaje automático y profundo, llevando a cabo el ajuste de cada uno de ellos, evaluación y selección del modelo de mayor capacidad predictiva para distintos usos de suelo. Es importante destacar que la presente sección se haya enmarcada dentro de un enfoque computacional de inteligencia artificial. 
   
-  En primer lugar, se llevó a cabo una comparación exhaustiva de distintos algoritmos de aprendizaje automático (regresión lineal múltiple [@saunders1998ridge; @tibshirani1996regression; @zou2005regularization; @bottou2007tradeoffs], máquinas de vectores de soporte [@cortes1995support], k vecinos más cercanos [@fix1985discriminatory], bosques aleatorios [@breiman2001random] y máquina de aumento de gradiente [@friedman2001greedy]) y profundo (redes neuronales recurrentes [@bishop1995neural], redes de memoria a largo plazo [@hochreiter1997long] y red recurrente con compuerta [@cho2014properties]), con el propósito de identificar cuál de ellos demostraba el mejor rendimiento predictivo. La metodología de modelado abarcó el desarrollo de un modelo predictivo que considera un desfasaje temporal de 5 días. Además, se aplicó una estrategia de modelado que discriminó según el uso de suelo, permitiendo ajustar distintos modelos predictivos para cada uno de los usos considerados. También se evaluaron distintas alternativas de bases de datos como soporte para el modelo predictivo, una incluyó todas las variables predictoras y otra involucró selección de variables para trabajar con una base de datos reducida. Esta última se creó mediante técnicas de reducción de dimensionalidad y selección de características (featurewiz [@bakheet2023hybrid], Boruta [@kursa2010boruta] y Boruta alternativo [@jamei2023surface]). Las variables incluidas en cada una de las bases de datos se encuentran mencionadas en el Anexo 1 para cada uso de suelo. Los algoritmos de aprendizaje evaluados fueron optimizados por medio de la búsqueda de hiperparámetros e interpretados a través de la implementación del método de Shapley (valores SHAP) [@lubo2020machine]. El entrenamiento de los algoritmos predictivos se realizó con un desfasaje de la variable respuesta respecto a las predictoras de 120 horas, es decir, cinco días, dadas las características de las bases de datos satelitales incorporadas como variables regresoras explicadas en el capítulo [1](#cap:ig). La evaluación de los modelos se realizó mediante la comparación de la métrica RMSE obtenida a partir de una validación cruzada *K-fold* con un K igual a 10.
+  En primer lugar, se llevó a cabo una comparación exhaustiva de distintos algoritmos de aprendizaje automático (regresión lineal múltiple [@saunders1998ridge; @tibshirani1996regression; @zou2005regularization; @bottou2007tradeoffs], máquinas de vectores de soporte [@cortes1995support], k vecinos más cercanos [@fix1985discriminatory], bosques aleatorios [@breiman2001random] y máquina de aumento de gradiente [@friedman2001greedy]); y profundo (redes neuronales recurrentes [@bishop1995neural], redes de memoria a largo plazo [@hochreiter1997long] y redes recurrentes con compuerta [@cho2014properties]), con el propósito de identificar cuál de ellos demostraba el mejor rendimiento predictivo. La metodología de modelado abarcó el desarrollo de un modelo predictivo que considera un desfasaje temporal de 5 días. Además, se aplicó una estrategia de modelado que discriminó según el uso de suelo, permitiendo ajustar distintos modelos predictivos para cada uno de los usos considerados. También se evaluaron distintas alternativas de bases de datos como soporte para el modelo predictivo, una incluyó todas las variables predictoras y otra involucró selección de variables para trabajar con una base de datos reducida. Esta última se creó mediante técnicas de reducción de dimensionalidad y selección de características (featurewiz [@bakheet2023hybrid], Boruta [@kursa2010boruta] y Boruta alternativo [@jamei2023surface]). Las variables incluidas en cada una de las bases de datos se encuentran mencionadas en el Anexo 1 para cada uso de suelo. Los algoritmos de aprendizaje evaluados fueron optimizados por medio de la búsqueda de hiperparámetros e interpretados a través de la implementación del método de Shapley (valores SHAP) [@lubo2020machine]. El entrenamiento de los algoritmos predictivos se realizó con un desfasaje de la variable respuesta respecto a las predictoras de 120 horas, es decir, cinco días, dadas las características de las bases de datos satelitales incorporadas como variables regresoras explicadas en el capítulo [1](#cap:ig). La evaluación de los modelos se realizó mediante la comparación de la métrica RMSE obtenida a partir de una validación cruzada *K-fold* con un K igual a 10.
 
 ### Base de datos
 
@@ -31,7 +31,7 @@ knitr::include_graphics("images/GA/mod.png")
   
   Además de las variables mencionadas, se incorporaron variables temporales como la estación del año, el mes, el día del mes, el día de la semana y la hora de la lectura del contaminante. Éstas se incluyeron tanto en su forma categórica original como luego de ser codificadas de manera cíclica mediante la introducción de las componentes de seno y coseno correspondientes. Es importante destacar que todas las variables numéricas se estandarizaron, unificando los rangos de variabilidad.
 
-  Para aquellas variables que no fueron abordadas en el análisis del capítulo [4](#cap:var) dado a que no son habitualmente citadas en sustentos bibliográficos para describir la variación de la concentración de PM~2.5~, se incluyó un análisis exploratorio equivalente al desarrollado en dicho capítulo. En primer lugar, a pesar de existir una descripción detallada de cada una de las variables en el Anexo 3, se incluyó la definición de la variable en cuestión, proseguida de su análisis exploratorio. La inclusión de este análisis tiene por objetivo garantizar una interpretación e inferencia adecuada acerca de la manera en que se manifiesta la variabilidad conjunta desenmascarada entre la variable y la concentración de PM~2.5~.
+  Para lograr una comprensión integral de la relación de vinculación entre las variables que resultaron relevantes en el proceso de modelado predictivo y la concentración de PM~2.5~ se incluyó el análisis exploratorio realizado durante el capítulo [4](#cap:var) de forma resumida haciendo especial énfasis en la conexión de las variables. Por otra parte, para aquellas variables que no fueron abordadas en el análisis del capítulo [4](#cap:var) dado a que no son habitualmente citadas en sustentos bibliográficos para describir la variación de la concentración de PM~2.5~, se incluyó un análisis exploratorio equivalente al desarrollado en dicho capítulo. En primer lugar, a pesar de existir una descripción detallada de cada una de las variables en el Anexo 3, se incluyó la definición de la variable en cuestión, proseguida de su análisis exploratorio. La inclusión de este análisis tiene por objetivo garantizar una interpretación e inferencia adecuada acerca de la manera en que se manifiesta la variabilidad conjunta desenmascarada entre la variable y la concentración de PM~2.5~, permitiendo general independencia entre los capítulos de la presente tesis.
 
 ### Protocolo estadístico
 
@@ -131,7 +131,7 @@ RMSE = \sqrt{\frac{1}{n}\sum\nolimits_{i=1}^N(y_i-\hat{y_i})^2}
  
   La metodología implementada para llevar a cabo el ajuste y evaluación de los modelos predictivos, se basó en un enfoque iterativo que involucró la de división de datos, entrenamiento del modelo y evaluación por medio de las métricas de desempeño. La base de datos se dividió en subconjuntos de entrenamiento, validación y testeo a partir de un muestreo aleatorio estratificado por meses, días y horas. Esta estratificación buscó maximizar la representatividad de las distintas condiciones temporales existentes en los distintos subconjuntos de datos para el ajuste del modelo predictivo. Las proporciones correspondientes para cada uno de los subconjuntos (entrenamiento, validación y testeo), fue de 70%, 15% y 15%, respectivamente. Posteriormente, se procedió a ajustar cada uno de los algoritmos de modelado predictivo en los subconjuntos de entrenamiento y validación. Una vez que los modelos fueron entrenados, se realizaron predicciones tanto en la base de datos de entrenamiento como en la de testeo. A partir de estas predicciones, se llevó a cabo el cálculo de las métricas de desempeño en la base de datos de testeo. Este procedimiento de entrenamiento y evaluación se repitió de forma iterativa 10 veces, variando las semillas aleatorias que determinaron las particiones de los datos en cada iteración. Finalizadas las iteraciones, se calculó el promedio de las métricas de desempeño para las 10 corridas del procedimiento en los de testeo. Finalmente, se compararon los resultados promedio de las métricas de desempeño para determinar cuál de los algoritmos predictivos fue el que generó el ajuste de mayor capacidad predictiva.
 
-  Todos los algoritmos predictivos ajustados fueron optimizados durante el procedimiento iterativo de entrenamiento y evaluación a partir de las particiones de entrenamiento y validación. Esta optimización se llevo a cabo variando los valores de los hiperparámetros, hasta hasta encontrar las configuraciones que aseguraron el mayor rendimiento predictivo. Además, en el caso de las redes neuronales, se profundizó en el estudio de diferentes arquitecturas. Las redes neuronales recurrentes entrenadas en este capítulo, se encuentran conformadas por un modelo apilado (múltiples capas superpuestas). Cada una de las capas del modelo apilado consta de una capa recurrente y una de dilución (*dropout*). La capa recurrente permite comprender dependencias temporales y secuenciales, mientras que la capa de dilución contribuye a la regularización al prevenir el sobreajuste, al mismo tiempo que fomenta la generalización del modelo. Además, se evaluaron distintas metodologías de recurrencia implementando diferentes variantes de apilamiento para determinar si mejoraba el rendimiento del modelo.
+  Todos los algoritmos predictivos ajustados fueron optimizados durante el procedimiento iterativo de entrenamiento y evaluación a partir de las particiones de entrenamiento y validación. Esta optimización se llevo a cabo variando los valores de los hiperparámetros, hasta hasta encontrar las configuraciones que aseguraron el mayor rendimiento predictivo. Los resultados de los hiperparámetros que demostraron el mayor rendimiento predictivo en la base de datos seleccionada se encuentran reportados en el Anexo 4 para cada uno de los usos de suelo. Además, en el caso de las redes neuronales, se profundizó en el estudio de diferentes arquitecturas. Las redes neuronales recurrentes entrenadas en este capítulo, se encuentran conformadas por un modelo apilado (múltiples capas superpuestas). Cada una de las capas del modelo apilado consta de una capa recurrente y una de dilución (*dropout*). La capa recurrente permite comprender dependencias temporales y secuenciales, mientras que la capa de dilución contribuye a la regularización al prevenir el sobreajuste, al mismo tiempo que fomenta la generalización del modelo. Además, se evaluaron distintas metodologías de recurrencia implementando diferentes variantes de apilamiento para determinar si mejoraba el rendimiento del modelo.
   
   Además, cabe destacar que para abordar la comparación de la capacidad predictiva de los modelos ajustados se implemento una línea de base contra la cual contrastar los algoritmos ajustados. Esta refiere a un modelo de referencia (*base line*), que predice la concentración de PM~2.5~ para las horas sin dato (testeo) como la media de la concentración en la hora anterior y posterior. Es relevante resaltar que esta predicción no es posible en la práctica, ya que no se dispone de datos de concentración de PM~2.5~ en tiempo real. Un desempeño del modelo ajustado superior o similar al de este modelo de referencia indica una elevada capacidad predictiva.
   
@@ -143,7 +143,7 @@ RMSE = \sqrt{\frac{1}{n}\sum\nolimits_{i=1}^N(y_i-\hat{y_i})^2}
 
 #### Comparación de algoritmos para el uso de suelo **urbano** 
 
-  En esta sección se desarrolló el modelado predictivo de la concentración de PM~2.5~ a partir de las base de datos original y reducida. La base de datos original involucró todas las variables independientes (193), mientras que la reducida contó con un total de 77 variables. Una descripción detallada de cada una de ellas puede hallarse en el Anexo 1.
+  Esta sección desarrolla el modelado predictivo de la concentración de PM~2.5~ a partir de las base de datos original y reducida. La base de datos original involucró todas las variables independientes (193), mientras que la reducida contó con un total de 77 variables. Una descripción detallada de cada una de ellas puede hallarse en el Anexo 1.
 
 Table: Métricas de ajuste de modelos predictivos aplicados en el contexto de aprendizaje automático en el set de datos de testeo para el uso de suelo urbano en ambas bases de datos evaluadas. Los valores de *RMSE* se encuentran en las mismas unidades que la concentración de PM~2.5~, es decir [$\frac{\mu g}{m^3}$]. \label{tab:modurb}
 Referencias: Modelo predictivo, raíz del error cuadrático medio en la base de datos original (*RMSE* BD Original) y raíz del error cuadrático medio en la base de datos reducida (*RMSE* BD Reducida).
@@ -165,13 +165,13 @@ Referencias: Modelo predictivo, raíz del error cuadrático medio en la base de 
 |  |  |  |  |  |
 | *Modelo de referencia* | 3.676 | 3.676 |
 
-  Los resultados observados en la tabla \@ref(tab:modurb) muestran que el algoritmo predictivo de mayor desempeño para el uso de suelo urbano fueron las redes neuronales recurrentes en sus versiones bajo la base de datos original y reducida. El gran desempeño predictivo demuestra como las características propias de aprendizaje del algoritmo logran captar las fuentes de variabilidad y realizar estimaciones acertadas de la variable respuesta. Específicamente el mejor desempeño predictivo fue alcanzado por el modelo que involucra redes con compuerta (*GRU*).
+  Los resultados presentados en la tabla \@ref(tab:modurb) demuestran que el algoritmo predictivo de mayor desempeño predictivo para el uso de suelo urbano fueron las redes neuronales recurrentes en sus versiones bajo la base de datos original y reducida. El gran desempeño predictivo demuestra como las características propias de aprendizaje del algoritmo logran captar las fuentes de variabilidad y realizar estimaciones acertadas de la variable respuesta. De entre las distintas arquitecturas de redes neuronales recurrentes evaluadas, específicamente el modelo que se destaca por su sobresaliente capacidad predictiva es aquel que incorpora redes con compuerta (*GRU*).
  
-  Además, puede notarse que el único algoritmo predictivo que también logra superar el modelo de referencia propuesto es el modelo de k vecinos más cercanos. Sin embargo, este algoritmo no garantiza el aprendizaje de la estructura de variabilidad presente en los datos, ya que su proceso de predicción consiste en encontrar las k observaciones más similares en la base de datos de entrenamiento y calcular su media para obtener la predicción final. Este algoritmo de modelado puede ser una forma novedosa y no convencional de calcular predicciones condicionadas por el parentesco entre los datos, a diferencia de los demás métodos que buscan calcular parámetros y pesos que les permiten inferir acerca de las interrelaciones entre las variables. 
+  Además, es importante destacar que el único algoritmo predictivo que también es capaz de superar al modelo de referencia propuesto es el modelo de k vecinos más cercanos. Sin embargo, este algoritmo no garantiza el aprendizaje de la estructura de variabilidad presente en los datos, ya que su proceso de predicción  se basa en identificar las k observaciones más similares en la base de datos de entrenamiento a partir de la matriz de distancias, y calcular su media para obtener la predicción final. Este algoritmo de modelado puede ser una forma novedosa y no convencional de calcular predicciones condicionadas por el parentesco entre los datos, a diferencia de los demás métodos que buscan calcular parámetros y pesos que les permiten inferir acerca de las interrelaciones entre las variables. 
 
-  Para evitar caer en interpretaciones sesgadas respecto a la relación de vinculación que guardan las variables, se optó por seleccionar el modelo predictivo desarrollado sobre la base de datos reducida. Esta elección se fundamenta en el hecho de que el modelo construido sobre la base de datos original, al contar con un número superior de variables predictoras, aumenta drásticamente el espacio de posibles soluciones que pueden encontrarse, pudiendo existir soluciones en las cuales se atribuya importancia a variables de forma equivocada. Cabe destacar que la base de datos reducida cuenta con las variables más importantes seleccionadas a partir de la combinación de múltiples algoritmos de selección de características. Al trabajar con esta base de datos, el espacio de posibles soluciones  se reduce considerablemente, asegurando que todas las soluciones posibles involucren las variables de mayor relevancia. Además, puede apreciarse que la diferencia en la precisión promedio entre los algoritmos predictivos en ambas bases de datos es baja, 0.112 $\frac{\mu g}{m^3}$. Tomando en consideración que la base de datos reducida involucra un 60% menos de variables, se asume que se introduce un menor porcentaje de ruido al modelado. Por este motivo, además de encontrar soluciones de mayor relevancia, permite reducir la complejidad y el tiempo de ejecución en el entrenamiento del modelo predictivo. Otra ventaja inherente a la base de datos reducida es su mayor viabilidad para la implementación en producción, ya que implica una menor carga y procesamiento para generar predicciones, además de simplificar las tareas de actualización y reentrenamiento del modelo.
+  Para evitar caer en interpretaciones sesgadas respecto a la relación de vinculación que guardan las variables, se optó por seleccionar el modelo predictivo desarrollado sobre la base de datos reducida. Esta elección se fundamenta en el hecho de que el modelo construido sobre la base de datos original, al contar con un número superior de variables predictoras, aumenta drásticamente el espacio de posibles soluciones que pueden encontrarse, pudiendo existir soluciones en las cuales se atribuya importancia a variables de forma equivocada. Cabe destacar que la base de datos reducida cuenta con las variables más importantes seleccionadas a partir de la combinación de múltiples algoritmos de selección de características. Al trabajar con esta base de datos, el espacio de posibles soluciones se reduce considerablemente, asegurando que todas las soluciones posibles involucren las variables de mayor relevancia. Además, puede apreciarse que la diferencia en la precisión promedio entre los algoritmos predictivos en ambas bases de datos es de 0.020 $\frac{\mu g}{m^3}$. Tomando en consideración que la base de datos reducida involucra un 60% menos de variables, se asume que se introduce un menor porcentaje de ruido al modelado y que no disminuye drásticamente el desempeño predictivo. Por este motivo, además de encontrar soluciones de mayor relevancia, permite reducir la complejidad y el tiempo de ejecución en el entrenamiento del modelo predictivo. Otra ventaja inherente a la base de datos reducida es su mayor viabilidad para la implementación en producción, ya que implica una menor carga y procesamiento para generar predicciones, además de simplificar las tareas de actualización y reentrenamiento del modelo.
   
-  De esta forma, se seleccionó el algoritmo predictivo ajustado sobre la base de datos reducida, cuyas predicciones difieren en promedio de los valores reales medidos de concentración de PM~2.5~ en 3.461 $\frac{\mu g}{m^3}$. El modelo de mejor ajuste quedó conformado en su primer aglomerado del apilamiento por un total de 200 neuronas en la capa con compuerta, seguido por una capa de dilución con un 30% de neuronas apagadas. Los dos aglomerados subsiguientes que dan estructura a esta red se encuentran conformados por un total de 100 neuronas en cada una de sus capas con compuerta y una capa de dilución con un 30% de porcentaje de neuronas apagadas. Previo a la capa de salida, se encuentra la estructura clásica de capa densa totalmente conectada que permite la combinación de los coeficientes aprendidos por la red para dar como resultado la predicción final.
+  El modelo de mejor ajuste quedó conformado en su primer aglomerado del apilamiento por un total de 200 neuronas en la capa con compuerta, seguido por una capa de dilución con un 30% de neuronas apagadas. Los dos aglomerados subsiguientes que dan estructura a esta red se encuentran conformados por un total de 100 neuronas en cada una de sus capas con compuerta y una capa de dilución con un 30% de porcentaje de neuronas apagadas. Previo a la capa de salida, se encuentra la estructura clásica de capa densa totalmente conectada que permite la combinación de los coeficientes aprendidos por la red para dar como resultado la predicción final. El algoritmo de mayor desempeño permitió obtener predicciones que difieren en promedio de los valores reales medidos de concentración de PM~2.5~ en 3.461 $\frac{\mu g}{m^3}$.
 
 #### Interpretación modelo predictivo:
 
@@ -184,20 +184,43 @@ knitr::include_graphics("images/imagescap5/varimpurb_b.png")
 ```
 (ref:varimpurb) Importancia relativa de las variables en las redes neuronales recurrentes para el uso de suelo urbano.
 
-  A partir de la figura \@ref(fig:varimpurb) pueden apreciarse las cinco variables de mayor importancia relativa para el modelo predictivo en el uso de suelo urbano bajo la base de datos reducida. Dos de las variables se encuentran vinculadas a la escala temporal, destacando la dependencia de la variable respuesta respecto a sus patrones de variación temporal explorados en el capítulo [3](#cap:expl). Las variables restantes son satelitales vinculadas a la variabilidad estudiada en el capítulo [4](#cap:var). Los resultados muestran que las cinco variables de mayor importancia relativa reúnen menos del 25% de la misma. A la hora de predecir la concentración de PM~2.5~ en entornos urbanos, es crucial considerar la hora del día, la radiación solar, la rugosidad de la superficie terrestre, el día de la semana y presión atmosférica. 
+  A partir de la figura \@ref(fig:varimpurb) pueden apreciarse las cinco variables de mayor importancia relativa para el modelo predictivo en el uso de suelo urbano bajo la base de datos reducida. Dos de las variables se encuentran vinculadas a la escala temporal, lo que destaca la influencia de los patrones de variación temporal en la variable objetivo, como se exploró en el capítulo [3](#cap:expl). Las variables restantes son de naturaleza satelital y están vinculadas a la variabilidad analizada en el capítulo [4](#cap:var). Los resultados muestran que las cinco variables de mayor importancia relativa abarcan menos del 25% de la importancia total. A la hora de predecir la concentración de PM~2.5~ en entornos urbanos, es crucial considerar la hora del día, la radiación solar, la rugosidad de la superficie terrestre, el día de la semana y la presión atmosférica. 
 
 #### Radiación solar
   
+  La radiación solar directa sin nubosidad sobre la superficie terrestre, es la cantidad de radiación directa del sol (onda corta) que llega a la superficie terrestre, suponiendo condiciones de cielo despejado (sin nubes). Esta radiación solar puede ser dispersada en distintas direcciones por partículas presentes en la atmósfera, la parte que llega a superficie se denomina radiación solar difusa. Mientras que, la parte de la radiación solar que llega a la superficie sin ser dispersada se denomina radiación solar directa. Las cantidades de radiación a cielo despejado se calculan para las mismas condiciones atmosféricas de temperatura, humedad, ozono, gases traza y aerosoles, sin considerar la nubosidad. Las unidades en las que se mide este parámetro son julios por metro cuadrado ($\frac{J}{m^2}$).
+
+```{r radmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:radmes)"}
+knitr::include_graphics("images/imagescap4/radmes.png")
+```
+(ref:radmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la radiación de corta longitud de onda a lo largo del año.
+  
+  La figura \@ref(fig:radmes) muestra que la radiación solar promedio en la escala mensual se relaciona de forma inversa con respecto a la concentración de PM~2.5~. 
+  
+```{r radhor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:radhor)"}
+knitr::include_graphics("images/imagescap4/radhor.png")
+```
+(ref:radhor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la radiación de corta longitud de onda a lo largo del día.
+  
+  La figura \@ref(fig:radhor) permite apreciar que la relación que mejor describe la vinculación horaria entre la radiación solar y la concentración de PM~2.5~ es la relación inversa (Figura \@ref(fig:radhor)).
+  
+| Desfasaje | Con diferenciación | Sin diferenciación |
+|----------|:-------------:|:-------------:|
+| t-13 | 4.023e-07 | 2.753e-07 |
+| t-23 | -1.884e-06 | -2.413e-06 |
+
+  Luego de la estimación de la relación funcional se determinó que cada uno de los coeficientes significativos demostró una relación opuesta de vinculación. El desfasaje temporal con un *lag* de 13 horas resultó en una relación directa estadísticamente significativa, mientras que el *lag* de 23 horas resultó en una inversa estadísticamente significativa entre la radiación solar y la concentración de PM~2.5~. 
+
 ```{r shapurbrad, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapurbrad)"}
 knitr::include_graphics("images/imagescap5/shapurbrad.png")
 ```
 (ref:shapurbrad) Gráfico de la variable radiación solar contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo urbano.
 
-  La figura \@ref(fig:shapurbrad) muestra que valores de baja magnitud de radiación solar están asociados a incrementos en las predicciones de la variable respuesta, mientras que valores elevados están asociados con menores concentraciones de PM~2.5~ predichas. De esta forma se aprecia una relación del tipo inversa similar a la identificada en el capítulo [4](#cap:var). Además, puede notarse como los valores de mayor concentración de PM~2.5~ se hallan localizados en las zonas de menor radiación solar, momento en el cual se favorecen mayores concentraciones de dicho contaminante, demostrando la elevada capacidad predictiva de la variable.
+  La figura \@ref(fig:shapurbrad) muestra que valores de baja magnitud de radiación solar están asociados a incrementos en las predicciones de la variable respuesta, mientras que valores de elevada magnitud están asociados con menores concentraciones de PM~2.5~ predichas. De esta forma se aprecia una relación del tipo inversa similar a una de las identificadas a partir del análisis de vinculación entre ambas variables. Además, puede notarse como los valores de mayor concentración de PM~2.5~ se hallan localizados en las zonas de menor radiación solar, momento en el cual se favorecen mayores concentraciones de dicho contaminante, demostrando la elevada capacidad predictiva de la variable.
 
 #### Rugosidad de la superficie terrestre
 
-  La rugosidad de la superficie terrestre es la altura equivalente en metros de la rugosidad aerodinámica de la superficie terrestre. Es una medida de la resistencia que ejerce la superficie al flujo de aire, particularmente este parámetro se utiliza para determinar la transferencia de momento del aire a la superficie. Una mayor rugosidad de la superficie genera una reducción de la velocidad del viento cerca de la superficie. Esta variable se deriva de la cobertura, tipo de vegetación y presencia de nieve en la superficie terrestre y se expresa en metros ($m$).
+  La rugosidad de la superficie terrestre es la altura equivalente en metros de la rugosidad aerodinámica que posee la superficie del terreno. Esta es una medida de la resistencia que ejerce la superficie al flujo de aire, particularmente este parámetro se utiliza para determinar la transferencia de momento del aire a la superficie. Una mayor rugosidad de la superficie genera una reducción de la velocidad del viento cerca de la superficie. Esta variable se deriva de la cobertura, tipo de vegetación y presencia de nieve en la superficie terrestre y se expresa en metros ($m$).
 
   Es importante señalar que la rugosidad de la superficie terrestre es una variable que, en la escala temporal horaria, no presenta una variación significativa debido a que su cálculo implica la consideración de fenómenos cuyos rangos de variación y ocurrencia superan esta escala temporal. En consecuencia, durante el transcurso de las horas del día, su valor tiende a permanecer constante y solo varía en escalas temporales de mayor magnitud, como los meses del año. Por esta razón, se ha decidido excluir el análisis exploratorio en la escala temporal horaria.
 
@@ -229,22 +252,48 @@ knitr::include_graphics("images/imagescap5/shapurbrug.png")
 ```
 (ref:shapurbrug) Gráfico de la variable rugosidad de la superficie terrestre contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo urbano.
 
-  La figura \@ref(fig:shapurbrug) muestra que valores de baja magnitud de la rugosidad de la superficie terrestre se asocian con disminuciones en las predicciones de la variable respuesta, mientras que valores de elevada magnitud de la variable resultan en incrementos de las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo directa similar a la reportada previamente.
+  La figura \@ref(fig:shapurbrug) muestra que valores de baja magnitud de la rugosidad de la superficie terrestre se asocian con disminuciones en las predicciones de la variable respuesta, mientras que valores de elevada magnitud de la variable resultan en incrementos de las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo directa similar a la reportada por el análisis de vinculación conjunto entre ambas variables. 
 
 #### Presión atmosférica
+  
+  La presión atmosférica, es la fuerza por unidad de superficie que ejerce la atmósfera sobre la superficie terrestre. Esta es una medida del peso del aire en una columna situada verticalmente sobre un punto de la superficie terrestre. Las unidades en que se mide este parámetro son Pascales ($Pa$).
+  
+```{r presmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:presmes)"}
+knitr::include_graphics("images/imagescap4/presmes_b.png")
+```
+(ref:presmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la presión a lo largo del año.
+  
+  La figura \@ref(fig:presmes) permite apreciar una relación de vinculación directa entre la presión atmosférica y la concentración promedio de PM~2.5~ en la escala mensual.
+
+```{r preshor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:preshor)"}
+knitr::include_graphics("images/imagescap4/preshor_b.png")
+```
+(ref:preshor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la presión a lo largo del día.
+
+  La figura \@ref(fig:preshor) permite apreciar la variación horaria simultánea entre la presión atmosférica y la concentración de PM~2.5~. Se observa una relación inversa en la que los aumentos y disminuciones en las magnitudes son opuestos e instantáneos.
+
+Table: Coeficientes estimados de la relación funcional.\label{tab:coefpresmar}
+
+| Desfasaje | Con diferenciación | Sin diferenciación |
+|----------|:-------:|:-------:| 
+| t | -0.003024 | -3.434e-03 | 
+| t-9 | 0.002529 | -7.623e-04 | 
+| t-19 | 0.008081 | 6.478e-03 | 
+
+  Luego de la estimación de la relación funcional se determinó que uno de los tres coeficientes significativos demostró una relación del tipo aleatoria (t-9), mientras que los dos restantes exhibieron una relación de vinculación estadísticamente significativa (no espuria), tanto inversa en el presente (t) como directa teniendo en cuenta un *lag* de t-19, entre la presión atmosférica y la concentración de PM~2.5~.
   
 ```{r shapurbpresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapurbpresmar)"}
 knitr::include_graphics("images/imagescap5/shapurbpresmar_b.png")
 ```
 (ref:shapurbpresmar) Gráfico de la variable presión atmosférica ajustada al nivel del mar contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo urbano.
 
-  La figura \@ref(fig:shapurbpresmar) muestra que valores de baja magnitud de presión atmosférica favorecen incrementos en las predicciones de la variable respuesta, mientras que valores de elevada magnitud de la variable independiente resultan en disminuciones de las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo inversa similar a la reportada en el capítulo [4](#cap:var).
+  La figura \@ref(fig:shapurbpresmar) muestra que valores de baja magnitud de presión atmosférica favorecen incrementos en las predicciones de la variable respuesta, mientras que valores de elevada magnitud de la variable independiente resultan en disminuciones de las concentraciones de PM~2.5~ predichas. De esta forma se identifica que la relación que prevalece en el modelo predictivo es del tipo inversa, similar a la reportada sin considerar desfasaje entre las variables durante el análisis de vinculación conjunto realizado.
 
 ###  Modelado de PM~2.5~ en entornos industriales
 
 #### Comparación de algoritmos para el uso de suelo **industrial** 
 
-  En esta sección se desarrolló el modelado predictivo de la concentración de PM~2.5~ a partir de las base de datos original y reducida. La base de datos reducida contó con un total de 53 variables. Una descripción detallada de cada una de ellas puede hallarse en el Anexo 1.
+  Esta sección desarrolla el modelado predictivo de la concentración de PM~2.5~ a partir de las base de datos original y reducida. La base de datos reducida contó con un total de 53 variables. Una descripción detallada de cada una de ellas puede hallarse en el Anexo 1.
 
 Table: Métricas de ajuste de modelos predictivos aplicados en el contexto de aprendizaje automático en el set de datos de testeo para el uso de suelo industrial en ambas bases de datos evaluadas. Los valores de *RMSE* se encuentran en las mismas unidades que la concentración de PM~2.5~, es decir [$\frac{\mu g}{m^3}$]. \label{tab:modind}
 Referencias: Modelo, raíz del error cuadrático medio en la base de datos original (*RMSE* BD Original) y raíz del error cuadrático medio en la base de datos reducida (*RMSE* BD Reducida).
@@ -266,13 +315,13 @@ Referencias: Modelo, raíz del error cuadrático medio en la base de datos origi
 |  |  |  |  |  |
 | *Modelo de referencia* | 6.475 | 6.475 |
 
-  En la tabla \@ref(tab:modind) se presentan los resultados obtenidos en el modelado predictivo de los datos provenientes del uso de suelo industrial, puede apreciarse que estos son similares a los obtenidos para el uso de suelo urbano (Tabla \@ref(tab:modurb)). En primer lugar, puede apreciarse que el mejor desempeño predictivo es alcanzado por las redes neuronales recurrentes, sugiriendo que este algoritmo es robusto y efectivo en la predicción de la concentración de PM~2.5~. La distinción principal radica en que el óptimo desempeño se obtiene en este caso mediante el uso de la base de datos reducida. Específicamente el mejor desempeño predictivo fue alcanzado por el modelo que involucra redes con compuerta (*GRU*).
+  La tabla \@ref(tab:modind) presenta los resultados obtenidos en el proceso de modelado predictivo de los datos correspondientes al uso de suelo industrial. Estos resultados exhiben similitudes notables con los obtenidos para el uso de suelo urbano (Tabla \@ref(tab:modurb)). En primer lugar, se observa que las redes neuronales recurrentes logran el mejor desempeño predictivo, lo que sugiere su robustez y eficacia en la predicción de la concentración de PM~2.5~. La distinción principal radica en que el óptimo desempeño bajo la base de datos industrial se obtiene sobre los datos reducidos. De igual forma que para el uso de suelo urbano, el algoritmo de redes neuronales recurrentes que destaca por su desempeño predictivo es el modelo que involucra redes con compuerta (*GRU*).
   
-  Además, para este uso de suelo, se percibe que el único algoritmo predictivo que supera al modelo de referencia propuesto es el modelo de K vecinos más cercanos. A través de la estimación de la media entre K observaciones, este modelo logra un alto poder predictivo, aunque no necesariamente captura las interacciones existentes entre las variables.
+  Adicionalmente, para este tipo de uso de suelo, se evidencia que el único algoritmo predictivo que supera al modelo de referencia propuesto es el modelo de k vecinos más cercanos. A través de la estimación de la media entre k observaciones, este modelo logra un alto poder predictivo, aunque no necesariamente captura las interacciones existentes entre las variables.
  
-  Cabe destacar que los mejores resultados predictivos fueron obtenidos al emplear la base de datos reducida, proporcionando evidencia acerca de las ventajas de este tipo de base para el modelado predictivo. Por lo tanto, esta será la base de datos que se empleará para llevar a cabo el modelado y, posteriormente analizar la relación de vinculación entre las variables.
+  Cabe destacar que los mejores resultados predictivos fueron obtenidos al emplear la base de datos reducida, proporcionando evidencia acerca de las ventajas de este tipo de base para el modelado predictivo. Por lo tanto, esta será la base de datos elegida para realizar el modelado y, posteriormente, para analizar la relación de vinculación entre las variables.
 
-  El modelo de mejor ajuste quedo conformado en su primer aglomerado del apilamiento por un total de 200 neuronas en la capa con compuerta, seguido por una capa de dilución con un 30% de neuronas apagadas. La subsiguiente capa del aglomerado quedo conformada por un total de 100 neuronas en su capa con compuerta y un 30% de porcentaje de neuronas apagadas en su capa de dilución. Previo a la capa de salida, se encuentra la estructura clásica de capa densa totalmente conectada que permite la combinación de los coeficientes aprendidos por la red para dar como resultado la predicción final. En términos de rendimiento, las predicciones del modelo mejor ajuste difieren en promedio de los valores reales medidos de concentración de PM~2.5~ en 5.964 $\frac{\mu g}{m^3}$. 
+  El modelo de mejor ajuste quedo conformado en su primer aglomerado del apilamiento por un total de 200 neuronas en la capa con compuerta, seguido por una capa de dilución con un 30% de neuronas apagadas. La subsiguiente capa del aglomerado quedo conformada por un total de 100 neuronas en su capa con compuerta y un 30% de porcentaje de neuronas apagadas en su capa de dilución. Previo a la capa de salida, se encuentra la estructura clásica de capa densa totalmente conectada que permite la combinación de los coeficientes aprendidos por la red para dar como resultado la predicción final. En términos de rendimiento, las predicciones del modelo de mejor ajuste difieren en promedio de los valores reales medidos de concentración de PM~2.5~ en 5.964 $\frac{\mu g}{m^3}$. 
 
 #### Interpretación modelo predictivo:
 
@@ -291,12 +340,39 @@ knitr::include_graphics("images/imagescap5/varimpind.png")
 
 #### Velocidad del viento
   
+  La velocidad del viento considerada es la referida a su componente “neutra” a una altura de 10 metros sobre la superficie terrestre. Esta se calcula a partir de la tensión superficial y de la rugosidad de la superficie terrestre, considerando una estratificación neutra de la atmósfera derivada a partir del gradiente de temperaturas. Esta componente es de menor velocidad que el viento real bajo condiciones estables, y de mayor bajo condiciones inestables. Las unidades en las que se mide este parámetro son metros por segundos ($\frac{m}{s}$). 
+
+```{r vvientmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:vvientmes)"}
+knitr::include_graphics("images/imagescap4/vvientmes.png")
+```
+(ref:vvientmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la velocidad del viento a lo largo del año.
+  
+  La figura \@ref(fig:vvientmes) permite apreciar una relación de vinculación del tipo inversa entre la velocidad del viento y la concentración de PM~2.5~ en la escala promedio mensual.
+
+```{r vvienthor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:vvienthor)"}
+knitr::include_graphics("images/imagescap4/vvienthor.png")
+```
+(ref:vvienthor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la velocidad del viento a lo largo del día.
+  
+  La figura \@ref(fig:vvienthor) ilustra que la relación que mejor explica la vinculación horaria entre la velocidad del viento y la concentración promedio de PM~2.5~ es del tipo inversa.
+  
+Table: Coeficientes estimados de la relación funcional.\label{tab:coefvient}
+
+| Desfasaje | Con diferenciación | Sin diferenciación |
+|----------|:-------:|:-------:| 
+| t-5 | 0.1016645 | -0.1288 | 
+| t-7 | 0.1317611 | -0.03429  |
+| t-8 | 0.1445327 | -0.006416 |
+| t-24 | -0.1998146 | -0.3433 |
+  
+  Luego de la estimación de la relación funcional se determinó que tres de los cuatro coeficientes significativos demostraron estar influenciados por una relación espuria o aleatoria (t-5, t-7 y t-8), resultando en relaciones no significativas en términos estadísticos. Por otra parte, el coeficiente con un *lag* de t-24 horas, resultó en una relación inversa estadísticamente significativa (no espuria) entre velocidad del viento y la concentración de PM~2.5~.
+  
 ```{r shapindvvient, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapindvvient)"}
 knitr::include_graphics("images/imagescap5/shapindvvient.png")
 ```
 (ref:shapindvvient) Gráfico de la variable velocidad del viento contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo industrial.
 
-  La figura \@ref(fig:shapindvvient) muestra que valores de baja magnitud de velocidad del viento resultan en incrementos de las predicciones de la variable respuesta, mientras que valores de elevada magnitud de la variable independiente promueven disminuciones en las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo inversa similar a la encontrada en el capítulo [4](#cap:var). Además, se puede apreciar como los valores de mayores concentraciones de PM~2.5~ se localizan en zonas de reducida velocidad del viento, demostrando la gran capacidad predictiva de la variable.  
+  La figura \@ref(fig:shapindvvient) muestra que valores de baja magnitud de velocidad del viento resultan en incrementos de las predicciones de la variable respuesta, mientras que valores de elevada magnitud de la variable independiente promueven disminuciones en las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo inversa similar a la encontrada durante el análisis de vinculación conjunto. Además, se puede apreciar como los valores de mayores concentraciones de PM~2.5~ se localizan en zonas de reducida velocidad del viento, demostrando la gran capacidad predictiva de la variable.  
 
 #### Disipación en la capa límite atmosférica
 
@@ -339,7 +415,7 @@ knitr::include_graphics("images/imagescap5/shapinddisip.png")
 
 #### Integración vertical flujo ozono norte
 
-  La integración vertical de flujo de ozono norte es la tasa horizontal de flujo de ozono en dirección norte, por metro a través del flujo, para una columna de aire que se extiende desde la superficie hasta la parte superior de la atmósfera. Los valores positivos denotan un flujo de sur a norte. Las unidades en las que se mide este parámetro son kilogramos por metro por segundo ($\frac{Kg}{m.s}$).
+  La variable integración vertical de flujo de ozono norte refiere a la tasa horizontal de flujo de ozono en dirección norte, por metro a través del flujo, para una columna de aire que se extiende desde la superficie hasta la parte superior de la atmósfera. Los valores positivos denotan un flujo de sur a norte. Las unidades en las que se mide este parámetro son kilogramos por metro por segundo ($\frac{Kg}{m.s}$).
 
 ```{r oznormes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:oznormes)"}
 knitr::include_graphics("images/imagescap4/oznormes.png")
@@ -373,22 +449,47 @@ knitr::include_graphics("images/imagescap5/shapindoznor.png")
 ```
 (ref:shapindoznor) Gráfico de la variable integración vertical flujo ozono norte contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo industrial.
   
-  La figura \@ref(fig:shapurbrug) muestra que valores de baja magnitud de la integración vertical flujo ozono norte promueven reducciones en las predicciones de la variable respuesta, mientras que valores de elevada magnitud de la variable independiente resultan en incrementos de las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo directa similar a la reportada previamente.
+  La figura \@ref(fig:shapurbrug) muestra que valores de baja magnitud de la integración vertical flujo ozono norte promueven reducciones en las predicciones de la variable respuesta, mientras que valores de elevada magnitud de la variable independiente resultan en incrementos de las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo directa similar a la reportada por el análisis de variación conjunto entre ambas variables. 
 
 #### Humedad relativa
+
+  La humedad relativa a 2 metros por encima de la superficie terrestre establece la relación existente entre la presión parcial del vapor de agua y la presión de vapor de equilibrio del agua a la temperatura dada a esa altura. Esta variable es calculada a partir de la combinación de los datos de temperatura y presión estimados por el satélite y se expresa en porcentaje ($%$).
+  
+```{r hummes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:hummes)"}
+knitr::include_graphics("images/imagescap4/hummes.png")
+```
+(ref:hummes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la humedad relativa a lo largo del año.
+  
+  La figura \@ref(fig:hummes) muestra la relación entre los promedios mensuales de humedad relativa y la concentración de PM~2.5~ durante el año. Meses cuya humedad relativa se encuentra por debajo de la media, resultan en concentraciones promedio elevadas de PM~2.5~, mientras que meses en los que la humedad relativa es alta la concentración de PM~2.5~ se reduce en comparación con su media. Sin embargo, esta relación no es constante a lo largo del año y cambia en octubre.
+  
+```{r humhor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:humhor)"}
+knitr::include_graphics("images/imagescap4/humhor.png")
+```
+(ref:humhor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la humedad relativa a lo largo del día.
+  
+  La figura \@ref(fig:humhor) permite apreciar que la relación que mejor permite describir la conexión entre la humedad relativa y la concentración de PM~2.5~ en la escala temporal horaria es la del tipo inversa.
+  
+Table: Coeficientes estimados de la relación funcional.\label{tab:coefhum}
+
+| Desfasaje | Con diferenciación | Sin diferenciación |
+|----------|:-------:|:-------:| 
+| t-5 | -0.2681536 | -0.2548 | 
+| t-24 | 0.1367988 | 0.1309 |
+  
+  Luego de la estimación de la relación funcional se determinó que cada uno de los coeficientes significativos demostró una relación opuesta de vinculación. El *lag* temporal de 5 horas resultó en una relación inversa estadísticamente significativa, mientras que el *lag* de 24 horas lo hizo en una directa estadísticamente significativa, entre la humedad relativa y la concentración de PM~2.5~. 
   
 ```{r shapindhum, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapindhum)"}
 knitr::include_graphics("images/imagescap5/shapindhum.png")
 ```
 (ref:shapindhum) Gráfico de la variable humedad relativa contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo industrial.
   
-  La figura \@ref(fig:shapindhum) muestra que valores menores al 90% de humedad relativa favorecen incrementos de las concentraciones de PM~2.5~, mientras que humedades relativas mayores tienden a favorecer decrementos de la concentraciones. Además, puede apreciarse una mayor densidad de valores de elevada concentración de PM~2.5~ entre el 80% y 90% de humedad relativa. De esta forma, puede notarse que en este modelo predictivo valores por encima del 90% de humedad relativa favorecen la remoción de PM~2.5~, mientras que valores por debajo de este límite favorecen aportes a la concentración de dicho contaminante. Esta figura permite concluir que la relación de vinculación que prevalece en el modelo es la inversa.
+  La figura \@ref(fig:shapindhum) muestra que valores menores al 90% de humedad relativa favorecen incrementos de las concentraciones de PM~2.5~, mientras que humedades relativas mayores tienden a favorecer decrementos de la concentraciones. Además, puede apreciarse una mayor densidad de valores de elevada concentración de PM~2.5~ entre el 80% y 90% de humedad relativa. De esta forma, puede notarse que en este modelo predictivo valores por encima del 90% de humedad relativa favorecen la remoción de PM~2.5~, mientras que valores por debajo de este límite favorecen aportes a la concentración de dicho contaminante. De esta forma, puede concluirse que la relación de vinculación que prevalece en el modelo predictivo es del tipo inversa, similar a una de las reportadas durante el análisis de conexión entre las mismas.
 
 ###  Modelado de PM~2.5~ en entornos agrícola y área verde
 
 #### Comparación de algoritmos para el uso de suelo **agrícola/ área verde** 
 
-  En esta sección se desarrolló el modelado predictivo de la concentración de PM~2.5~ a partir de las base de datos original y reducida. La base de datos reducida contó con un total de 84 variables. Una descripción detallada de cada una de ellas puede hallarse en el Anexo 1. 
+  Esta sección desarrolla el modelado predictivo de la concentración de PM~2.5~ a partir de las base de datos original y reducida. La base de datos reducida contó con un total de 84 variables. Una descripción detallada de cada una de ellas puede hallarse en el Anexo 1. 
 
 Table: Métricas de ajuste de modelos predictivos aplicados en el contexto de aprendizaje automático en el set de datos de testeo para el uso de suelo agrícola y área verde en ambas bases de datos evaluadas. Los valores de *RMSE* se encuentran en las mismas unidades que la concentración de PM~2.5~, es decir [$\frac{\mu g}{m^3}$]. \label{tab:modaa} 
 Referencias: Modelo, raíz del error cuadrático medio en la base de datos original (*RMSE* BD Original) y raíz del error cuadrático medio en la base de datos reducida (*RMSE* BD Reducida).
@@ -410,9 +511,9 @@ Referencias: Modelo, raíz del error cuadrático medio en la base de datos origi
 |  |  |  |  |  |
 | *Modelo de referencia* | 2.775 | 2.775 |
 
-  En la tabla \@ref(tab:modaa) se presentan los resultados obtenidos en el modelado predictivo de los datos provenientes del uso de suelo agrícola y área verde. En este caso, se puede apreciar que el algoritmo de mayor desempeño predictivo fue el de bosques aleatorios en ambas versiones de la base de datos, destacando con el menor error el desarrollado sobre la base de datos reducida. La principal diferencia con respecto a los resultados obtenidos para los demás usos de suelo (Tabla \@ref(tab:modurb) y tabla \@ref(tab:modind)) es que las redes neuronales recurrentes no logran superar la línea de base propuesta. Esto podría encontrarse vinculado a las características propias de la serie de tiempo en estos entornos. 
+  La tabla \@ref(tab:modaa) presenta los resultados derivados del proceso de modelado predictivo empleando los datos correspondientes al uso de suelo agrícola y área verde. En este caso, puede apreciarse que el algoritmo que demuestra el mayor rendimiento predictivo es el de bosques aleatorios. Este resultado es independiente de la versión de la base de datos utilizada, destacando su mayor precisión en la versión desarrollada a partir de la base de datos reducida. A diferencia de los resultados obtenidos con respecto a los demás usos de suelo (Tabla \@ref(tab:modurb) y Tabla \@ref(tab:modind)) las redes neuronales recurrentes no logran superar el modelo de referencia propuesto. Este resultado podría encontrarse vinculado a las características propias de la serie de tiempo en entornos agrícolas y áreas verdes. 
 
-  El modelo óptimo en términos de su capacidad predictiva de bosques aleatorios se encontró compuesto por total de 200 árboles individuales en el bosque, además para lograr la separación en un nuevo nodo fue necesario contar con más de dos muestras en cada uno de ellos. Las predicciones del algoritmo que demostró mayor capacidad predictiva difieren en promedio de los valores reales medidos de concentración de PM~2.5~ en 2.324 $\frac{\mu g}{m^3}$.
+  El modelo óptimo en términos de capacidad predictiva dentro del enfoque de bosques aleatorios se encontró compuesto por un total de 200 árboles individuales que forman el bosque. Además, es interesante destacar que para lograr la separación en un nuevo nodo, se requiere contar con al menos dos muestras en cada uno de estos. Las predicciones generadas por este algoritmo difieren en promedio de los valores reales medidos de concentración de PM~2.5~ en 2.324 $\frac{\mu g}{m^3}$.
   
 #### Interpretación modelo predictivo:
 
@@ -425,18 +526,44 @@ knitr::include_graphics("images/imagescap5/varimpaa.png")
 ```
 (ref:varimpaa) Importancia relativa de las variables en las redes neuronales recurrentes para el uso de suelo agrícola/ área verde.
   
-  A partir de la figura \@ref(fig:varimpaa) pueden apreciarse las cinco variables de mayor importancia relativa para el modelo predictivo en el uso de suelo agrícola y área verde bajo la base de datos reducida. Dos de las mismas se encuentran vinculadas a la escala temporal, destacando la dependencia de la variable respuesta respecto a sus patrones de variación temporales explorados en el capítulo [3](#cap:expl). Las restantes son variables satelitales vinculadas a la variabilidad estudiada en el capítulo [4](#cap:var). Los resultados muestran que las cinco variables de mayor importancia relativa reúnen más del 40% de la misma. De esta forma puede apreciarse como en este uso de suelo se necesita menor cantidad de variables para reunir un mismo porcentaje de importancia relativa, demostrando mayor capacidad para explicar la concentración de PM~2.5~ con menor información.
+  A partir de la figura \@ref(fig:varimpaa) pueden apreciarse las cinco variables de mayor importancia relativa para el modelo predictivo en el uso de suelo agrícola y área verde bajo la base de datos reducida. Dos de las mismas se encuentran vinculadas a la escala temporal, destacando la dependencia de la variable respuesta respecto a sus patrones de variación temporales explorados en el capítulo [3](#cap:expl). Las restantes son variables satelitales vinculadas a la variabilidad estudiada en el capítulo [4](#cap:var). Los resultados muestran que las cinco variables de mayor importancia relativa reúnen más del 40% de la misma. De esta forma puede apreciarse como en este uso de suelo se requiere una menor cantidad de variables para reunir el mismo porcentaje de importancia relativa con respecto a los demás usos de suelo, demostrando de esta forma, mayor capacidad para explicar la variabilidad en la concentración de PM~2.5~ a partir de un porcentaje menor de información.
   
   A la hora de predecir la concentración de PM~2.5~ en entornos agrícolas y áreas verdes, es crucial considerar la estación del año, temperatura de rocío, escorrentía, temperatura y el mes del año. 
   
 #### Temperatura del punto de rocío
   
+  La temperatura del punto de rocío, es la temperatura a la cual tendría que enfriarse el aire a 2 metros por encima de la superficie terrestre para que se produzca la saturación, es decir, para que el vapor de agua se condense en rocío o escarcha. Esta temperatura se calcula interpolando entre el nivel más bajo obtenido por el modelo y la medición obtenida para la superficie terrestre, teniendo en cuenta las condiciones atmosféricas. Este parámetro se expresa en kelvin ($K$). 
+
+```{r rocmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:rocmes)"}
+knitr::include_graphics("images/imagescap4/rocmes.png")
+```
+(ref:rocmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la temperatura del punto de rocío a lo largo del año.
+  
+  La figura \@ref(fig:rocmes) revela la relación entre los promedios mensuales de la temperatura del punto de rocío y la concentración de PM~2.5~ a lo largo del año. En los meses donde la temperatura del punto de rocío es menor que su media, se observa una concentración promedio alta de PM~2.5~ Por otro lado, en los meses con una temperatura del punto de rocío alta, la concentración promedio de PM~2.5~ también es alta en comparación con su media.
+
+```{r rochor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:rochor)"}
+knitr::include_graphics("images/imagescap4/rochor.png")
+```
+(ref:rochor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la temperatura del punto de rocío a lo largo del día.
+
+  La figura \@ref(fig:rochor) permite apreciar que a medida que transcurren las horas del día, la temperatura del punto de rocío experimenta un ciclo de variación inverso al ciclo descripto por la concentración media horaria de PM~2.5~.
+
+Table: Coeficientes estimados de la relación funcional.\label{tab:coefroc}
+
+| Desfasaje | Con diferenciación | Sin diferenciación |
+|----------|:-------:|:-------:| 
+| t-11 | -0.1597575 | -0.2921 | 
+| t-14 | -0.3212396 | -0.3222  |
+| t-20 | 0.3752728 | -0.3377 |
+
+  Luego de la estimación de la relación funcional se determinó que dos de los tres coeficientes significativos demostraron una relación inversa estadísticamente significativa (no espuria) entre la temperatura del punto de roció (t-11 y t-14) y la concentración de PM~2.5~. Sin embargo, para el *lag* t-20 se detectó una relación espuria o aleatoria, invirtiendo su signo en ambas estimaciones de la relación funcional.
+
 ```{r shapaaroc, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapaaroc)"}
 knitr::include_graphics("images/imagescap5/shapaaroc.png")
 ```
 (ref:shapaaroc) Gráfico de la variable temperatura del punto de rocío contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo agrícola / área verde.
   
-  La figura \@ref(fig:shapaaroc) muestra que valores de baja magnitud de la temperatura del punto de rocío se asocian con altas concentraciones de PM~2.5~, mientras que valores elevada magnitud lo hacen con bajas concentraciones de PM~2.5~. De esta forma se identifica una relación del tipo inversa similar a la reportada en el capítulo [4](#cap:var).
+  La figura \@ref(fig:shapaaroc) muestra que valores de baja magnitud de la temperatura del punto de rocío se asocian con altas concentraciones de PM~2.5~, mientras que valores elevada magnitud lo hacen con bajas concentraciones de PM~2.5~. De esta forma se identifica una relación del tipo inversa similar a la reportada durante el estudio de la relación de vinculación entre ambas variables.
   
 #### Tasa media de escorrentía subterránea
 
@@ -467,7 +594,7 @@ knitr::include_graphics("images/imagescap5/shapaaesc.png")
 ```
 (ref:shapaaesc) Gráfico de la variable tasa media de escorrentía subterránea contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo agrícola / área verde.
   
-  La figura \@ref(fig:shapaaesc) muestra que valores de baja magnitud de la tasa media de escorrentía subterránea (menores a 5.07e-07) favorecen bajas concentraciones de PM~2.5~, mientras que valores superiores de la variable promueven un aumento en la concentración de PM~2.5~ predicha. Para valores superiores a 1.0e-06, la relación entre las variables permanece sin variaciones importantes respecto del aporte a la concentración. De esta forma se identifica una relación del tipo directa similar a la reportada previamente.
+  La figura \@ref(fig:shapaaesc) muestra que valores de baja magnitud de la tasa media de escorrentía subterránea (menores a 5.07e-07) favorecen bajas concentraciones de PM~2.5~, mientras que valores superiores de la variable promueven un aumento en la concentración de PM~2.5~ predicha. Para valores superiores a 1.0e-06, la relación entre las variables permanece sin variaciones importantes respecto del aporte a la concentración. De esta forma se identifica una relación del tipo directa similar a la reportada en el análisis de conexión entre las mismas. 
 
 #### Integración vertical de temperatura
 
@@ -508,7 +635,7 @@ knitr::include_graphics("images/imagescap5/shapaaintvert.png")
 ```
 (ref:shapaaintvert) Gráfico de la variable integración vertical de temperatura contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo agrícola / área verde.
 
-  La figura \@ref(fig:shapaaintvert) muestra que valores de baja magnitud de la integración vertical de temperatura se asocia con bajas predicciones de PM~2.5~, mientras que valores de elevada magnitud de la variable resultan en incrementos de las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo directa similar a la reportada previamente. 
+  La figura \@ref(fig:shapaaintvert) muestra que valores de baja magnitud de la integración vertical de temperatura se asocia con bajas predicciones de PM~2.5~, mientras que valores de elevada magnitud de la variable resultan en incrementos de las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo directa similar a la reportada en el análisis de conexión entre las mismas.
 
 ## Discusión
   

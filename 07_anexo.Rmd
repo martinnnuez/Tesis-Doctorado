@@ -1556,11 +1556,11 @@ Temperatura de la piel	k	Este parámetro es la temperatura de la superficie de l
 
 # Anexo 4: Optimización de los modelos predictivos {-}
 
-Tabla \@ref(tab:hypurb): Hiperparámetros optimizados para los algoritmos en el uso del suelo urbano sobre la base de datos reducida.
-Referencia: Modelo, biblioteca/paquete/fuente del algoritmo, nombre del hiperparámetro y valor del hiperparámetro. \label(#tab:hypurb)
+Table: Hiperparámetros optimizados para los algoritmos en el uso del suelo urbano sobre la base de datos reducida.
+Referencia: Modelo, biblioteca-paquete-fuente del algoritmo, nombre del hiperparámetro y valor del hiperparámetro.\label{tab:hypurb}
 
 | Modelo | Fuente | Hiperparámetro | Valor |
-|---------------|---------------------|-------------------|-------------|
+|---------------|--------------------|--------------|---------|
 | GBM | **lightgbm** | *n_estimators* | 350 |
 | | | *learning_rate* | 0.112 |
 | | | *num_leaves* | 300 |
@@ -1595,19 +1595,18 @@ Referencia: Modelo, biblioteca/paquete/fuente del algoritmo, nombre del hiperpar
 | | | *Units third layer* | 100 |
 | | | *Units fourth layer* | 100 |
 | | | *Units fifth layer* | 100 |
-| GRU | **tensorflow** | *Units first layer* | 200 |
+| **GRU** | **tensorflow** | *Units first layer* | 200 |
 | | | *Units second layer* | 100 |
 | | | *Units third layer* | 100 |
-| | | *Units fourth layer* | 100 |
 | RNN | **tensorflow** | *Units first layer* | 200 |
 | | | *Units second layer* | 100 |
 | | | *Units third layer* | 100 |
 
-Tabla \@ref(tab:hypind): Hiperparámetros optimizados para los algoritmos en el uso del suelo industrial sobre la base de datos reducida.
-Referencia: Modelo, biblioteca/paquete/fuente del algoritmo, nombre del hiperparámetro y valor del hiperparámetro. \label(#tab:hypaa)
+Table: Hiperparámetros optimizados para los algoritmos en el uso del suelo industrial sobre la base de datos reducida.
+Referencia: Modelo, biblioteca-paquete-fuente del algoritmo, nombre del hiperparámetro y valor del hiperparámetro. \label{tab:hypind}
 
 | Modelo | Fuente | Hiperparámetro | Valor |
-|---------------|---------------------|-------------------|-------------|
+|---------------|--------------------|--------------|---------|
 | GBM |**lightgbm**|*n_estimators*| 400 |
 | | |*learning_rate*| 0.215 |
 | | |*num_leaves*| 200 |
@@ -1639,16 +1638,16 @@ Referencia: Modelo, biblioteca/paquete/fuente del algoritmo, nombre del hiperpar
 | Regresión LASSO |**sklearn**|*alpha*| 0.376 |
 | LSTM |**tensorflow**|*Units first layer*| 200 |
 | | |*Units second layer*| 100 |
-| GRU |**tensorflow**|*Units first layer*| 200 |
+| **GRU** |**tensorflow**|*Units first layer*| 200 |
 | | |*Units second layer*| 100 |
 | RNN |**tensorflow**|*Units first layer*| 200 |
 | | |*Units second layer*| 100 |
 
-Tabla \@ref(tab:hypaa): Hiperparámetros optimizados para los algoritmos en el uso del suelo agrícola y áreas verdes sobre la base de datos reducida..
-Referencia: Modelo, biblioteca/paquete/fuente del algoritmo, nombre del hiperparámetro y valor del hiperparámetro. \label(#tab:hypaa)
+Table: Hiperparámetros optimizados para los algoritmos en el uso del suelo agrícola y áreas verdes sobre la base de datos reducida.
+Referencia: Modelo, biblioteca-paquete-fuente del algoritmo, nombre del hiperparámetro y valor del hiperparámetro.\label{tab:hypaa}
 
 | Modelo | Fuente | Hiperparámetro | Valor |
-|---------------|---------------------|-------------------|-------------|
+|---------------|--------------------|--------------|---------|
 | GBM |**lightgbm**|*n_estimators*| 310 |
 | | |*learning_rate*| 0.108 |
 | | |*num_leaves*| 220 |
@@ -1667,7 +1666,7 @@ Referencia: Modelo, biblioteca/paquete/fuente del algoritmo, nombre del hiperpar
 | | |*leaf_size*| 50 |
 | SVM |**sklearn**|*epsilon*| 0.2 |
 | | |*C*| 3 |
-| Bosques aleatorios |**sklearn**|*n_estimators*| 500 |
+| **Bosques aleatorios** |**sklearn**|*n_estimators*| 500 |
 | | |*max_depth*| 40 |
 | | |*min_samples_leaf*| 50 |
 | | |*min_samples_split*| 32 |
