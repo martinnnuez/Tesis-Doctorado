@@ -5,17 +5,17 @@ institution: 'Universidad Nacional de Córdoba'
 division: 'Facultad de Ciencias Exactas, Fisicas y Naturales'
 advisor: 'Hebe Alejandra Carreras'
 altadvisor: 'Monica Balzarini'
-title: 'DESARROLLO/EVALUACIÓN DE MODELO PREDICTIVO PARA ESTIMAR CONCENTRACIÓN DE AEROSOLES EN ATMOSFERAS DE ZONAS URBANAS'
+title: 'DESARROLLO DE MODELOS PREDICTIVOS PARA LA CONCENTRACIÓN DE AEROSOLES EN ATMOSFERAS URBANAS'
 department: 'Ciencias de la Ingenieria'
 degree: 'Doctor en Ciencias de la Ingenieria'
 knit: "bookdown::render_book"
 site: bookdown::bookdown_site
 output: 
-  thesisdown::thesis_pdf: default
+  # thesisdown::thesis_pdf: default
   # thesisdown::thesis_gitbook: default
   # thesisdown::thesis_word: default
   # bookdown::pdf_document2: default
-  # bookdown::word_document2: default
+  bookdown::word_document2: default
   # thesisdown::thesis_epub: default
 
 #### Important!

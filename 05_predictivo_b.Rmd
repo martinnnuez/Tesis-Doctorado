@@ -145,25 +145,28 @@ RMSE = \sqrt{\frac{1}{n}\sum\nolimits_{i=1}^N(y_i-\hat{y_i})^2}
 
   Esta sección desarrolla el modelado predictivo de la concentración de PM~2.5~ a partir de las base de datos original y reducida. La base de datos original involucró todas las variables independientes (193), mientras que la reducida contó con un total de 77 variables. Una descripción detallada de cada una de ellas puede hallarse en el Anexo 1.
 
-Table: Métricas de ajuste de modelos predictivos aplicados en el contexto de aprendizaje automático en el set de datos de testeo para el uso de suelo urbano en ambas bases de datos evaluadas. Los valores de *RMSE* se encuentran en las mismas unidades que la concentración de PM~2.5~, es decir [$\frac{\mu g}{m^3}$]. \label{tab:modurb}
-Referencias: Modelo predictivo, raíz del error cuadrático medio en la base de datos original (*RMSE* BD Original) y raíz del error cuadrático medio en la base de datos reducida (*RMSE* BD Reducida).
+Table: Error cuadrático medio de predicción (*RMSE*) de modelos ajustados para predecir la concentración de PM~2.5~ en el uso de suelo urbano a partir de 193 variables satelitales (base de datos original) y 77 variables seleccionadas (base de datos reducida). \label{tab:modurb}
 
-| Modelo  | *RMSE* BD Original | *RMSE* BD Reducida |
+| Modelo / Base de datos | Original | Reducida |
 |------------------------------|:-----------:|:-----------:|
-| **GRU** | 3.441 | 3.461 |
-| LSTM | 3.503 | 3.507 |
-| RNN | 4.441 | 4.258 |
-| Bosques aleatorios | 4.101 | 4.317 |
-| KNN | 3.552 | 3.602 |
-| SVM | 5.772 | 5.692 |
-| GBM | 7.123 | 7.283 |
-| Regresión lineal | 8.029 | 8.304 |
-| Regresión SGD | 8.030 | 8.260 |
-| Regresión Ridge | 8.029 | 8.304 |
-| Regresión LASSO | 9.011 | 9.023 |
-| Regresión de red elástica | 9.853 | 9.853 |
+| **GRU** | 3.44 | 3.46 |
+| LSTM | 3.50 | 3.50 |
+| RNN | 4.44 | 4.25 |
+| Bosques aleatorios | 4.10 | 4.31 |
+| KNN | 3.55 | 3.60 |
+| SVM | 5.77 | 5.69 |
+| GBM | 7.12 | 7.28 |
+| Regresión lineal | 8.02 | 8.30 |
+| Regresión SGD | 8.03 | 8.26 |
+| Regresión Ridge | 8.02 | 8.30 |
+| Regresión LASSO | 9.01 | 9.02 |
+| Regresión de red elástica | 9.85 | 9.85 |
 |  |  |  |  |  |
-| *Modelo de referencia* | 3.676 | 3.676 |
+| *Modelo de referencia* | 3.67 | 3.67 |
+\begin{flushleft}
+\setstretch{0.5}
+{\footnotesize Los valores de \textit{RMSE} se encuentran en las mismas unidades que la concentración de PM$_{2.5}$, es decir [$\frac{\mu g}{m^3}$]. Un menor valor de \textit{RMSE} indica mejor desempeño del modelo predictivo. El PM$_{2.5}$ promedio para el uso de suelo urbano fue de 11.54 $\frac{\mu g}{m^3}$. El \textit{RMSE} reportado se calculó sobre la base de datos de testeo.}
+\end{flushleft}
 
   Los resultados presentados en la Tabla \@ref(tab:modurb) demuestran que el algoritmo predictivo de mayor desempeño predictivo para el uso de suelo urbano fueron las redes neuronales recurrentes en sus versiones bajo la base de datos original y reducida. El gran desempeño predictivo demuestra como las características propias de aprendizaje del algoritmo logran captar las fuentes de variabilidad y realizar estimaciones acertadas de la variable respuesta. De entre las distintas arquitecturas de redes neuronales recurrentes evaluadas, específicamente el modelo que se destaca por su sobresaliente capacidad predictiva es aquel que incorpora redes con compuerta (*GRU*).
  
@@ -295,25 +298,28 @@ knitr::include_graphics("images/imagescap5/shapurbpresmar_b.png")
 
   Esta sección desarrolla el modelado predictivo de la concentración de PM~2.5~ a partir de las base de datos original y reducida. La base de datos reducida contó con un total de 53 variables. Una descripción detallada de cada una de ellas puede hallarse en el Anexo 1.
 
-Table: Métricas de ajuste de modelos predictivos aplicados en el contexto de aprendizaje automático en el set de datos de testeo para el uso de suelo industrial en ambas bases de datos evaluadas. Los valores de *RMSE* se encuentran en las mismas unidades que la concentración de PM~2.5~, es decir [$\frac{\mu g}{m^3}$]. \label{tab:modind}
-Referencias: Modelo, raíz del error cuadrático medio en la base de datos original (*RMSE* BD Original) y raíz del error cuadrático medio en la base de datos reducida (*RMSE* BD Reducida).
- 
-| Modelo  | *RMSE* BD Original | *RMSE* BD Reducida |
+Table: Error cuadrático medio de predicción (*RMSE*) de modelos ajustados para predecir la concentración de PM~2.5~ en el uso de suelo industrial a partir de 193 variables satelitales (base de datos original) y 53 variables seleccionadas (base de datos reducida). \label{tab:modind}
+
+| Modelo / Base de datos | Original | Reducida |
 |------------------------------|:-----------:|:-----------:|
-| **GRU** | 6.101 | 5.964 |
-| LSTM | 6.193 | 6.171 |
-| RNN | 6.723 | 6.598 |
-| Bosques aleatorios | 6.523 | 6.547 |
-| KNN | 6.248 | 6.263 |
-| SVM | 7.876 | 8.023 |
-| GBM | 9.344 | 9.533 |
-| Regresión lineal | 10.100 | 10.330 |
-| Regresión SGD | 10.110 | 10.240 |
-| Regresión Ridge | 10.100 | 10.330 |
-| Regresión LASSO | 10.920 | 10.930 |
-| Regresión de red elástica | 11.820 | 11.820 |
+| **GRU** | 6.10 | 5.96 |
+| LSTM | 6.19 | 6.17 |
+| RNN | 6.72 | 6.59 |
+| Bosques aleatorios | 6.52 | 6.54 |
+| KNN | 6.24 | 6.26 |
+| SVM | 7.87 | 8.02 |
+| GBM | 9.34 | 9.53 |
+| Regresión lineal | 10.10 | 10.33 |
+| Regresión SGD | 10.11 | 10.24 |
+| Regresión Ridge | 10.10 | 10.33 |
+| Regresión LASSO | 10.92 | 10.93 |
+| Regresión de red elástica | 11.82 | 11.82 |
 |  |  |  |  |  |
-| *Modelo de referencia* | 6.475 | 6.475 |
+| *Modelo de referencia* | 6.47 | 6.47 |
+\begin{flushleft}
+\setstretch{0.5}
+{\footnotesize Los valores de \textit{RMSE} se encuentran en las mismas unidades que la concentración de PM$_{2.5}$, es decir [$\frac{\mu g}{m^3}$]. Un menor valor de \textit{RMSE} indica mejor desempeño del modelo predictivo. El PM$_{2.5}$ promedio para el uso de suelo industrial fue de 14.22 $\frac{\mu g}{m^3}$. El \textit{RMSE} reportado se calculó sobre la base de datos de testeo.}
+\end{flushleft}
 
   La Tabla \@ref(tab:modind) presenta los resultados obtenidos en el proceso de modelado predictivo de los datos correspondientes al uso de suelo industrial. Estos resultados exhiben similitudes notables con los obtenidos para el uso de suelo urbano (Tabla \@ref(tab:modurb)). En primer lugar, se observa que las redes neuronales recurrentes logran el mejor desempeño predictivo, lo que sugiere su robustez y eficacia en la predicción de la concentración de PM~2.5~. La distinción principal radica en que el óptimo desempeño bajo la base de datos industrial se obtiene sobre los datos reducidos. De igual forma que para el uso de suelo urbano, el algoritmo de redes neuronales recurrentes que destaca por su desempeño predictivo es el modelo que involucra redes con compuerta (*GRU*).
   
@@ -491,25 +497,28 @@ knitr::include_graphics("images/imagescap5/shapindhum.png")
 
   Esta sección desarrolla el modelado predictivo de la concentración de PM~2.5~ a partir de las base de datos original y reducida. La base de datos reducida contó con un total de 84 variables. Una descripción detallada de cada una de ellas puede hallarse en el Anexo 1. 
 
-Table: Métricas de ajuste de modelos predictivos aplicados en el contexto de aprendizaje automático en el set de datos de testeo para el uso de suelo agrícola y área verde en ambas bases de datos evaluadas. Los valores de *RMSE* se encuentran en las mismas unidades que la concentración de PM~2.5~, es decir [$\frac{\mu g}{m^3}$]. \label{tab:modaa} 
-Referencias: Modelo, raíz del error cuadrático medio en la base de datos original (*RMSE* BD Original) y raíz del error cuadrático medio en la base de datos reducida (*RMSE* BD Reducida).
-        
-| Modelo  | *RMSE* BD Original | *RMSE* BD Reducida |
+Table: Error cuadrático medio de predicción (*RMSE*) de modelos ajustados para predecir la concentración de PM~2.5~ en el uso de suelo industrial a partir de 193 variables satelitales (base de datos original) y 84 variables seleccionadas (base de datos reducida). \label{tab:modaa} 
+
+| Modelo / Base de datos | Original | Reducida |
 |------------------------------|:-----------:|:-----------:|
-| GRU | 2.837 | 2.785 |
-| LSTM | 2.912 | 2.863 |
-| RNN | 3.354 | 3.101 |
-| **Bosques aleatorios** | 2.611 | 2.324 |
-| KNN | 2.747 | 2.651 |
-| SVM | 3.825 | 3.654 |
-| GBM | 4.509 | 4.606 |
-| Regresión lineal | 5.275 | 5.381 |
-| Regresión SGD | 5.182 | 5.258 |
-| Regresión Ridge | 5.381 | 5.381 |
-| Regresión LASSO | 5.809 | 5.809 |
-| Regresión de red elástica | 6.185 | 6.185 |
+| GRU | 2.83 | 2.76 |
+| LSTM | 2.91 | 2.86 |
+| RNN | 3.35 | 3.10 |
+| **Bosques aleatorios** | 2.61 | 2.32 |
+| KNN | 2.74 | 2.65 |
+| SVM | 3.82 | 3.65 |
+| GBM | 4.50 | 4.60 |
+| Regresión lineal | 5.27 | 5.38 |
+| Regresión SGD | 5.18 | 5.25 |
+| Regresión Ridge | 5.38 | 5.38 |
+| Regresión LASSO | 5.80 | 5.80 |
+| Regresión de red elástica | 6.18 | 6.18 |
 |  |  |  |  |  |
-| *Modelo de referencia* | 2.775 | 2.775 |
+| *Modelo de referencia* | 2.77 | 2.77 |
+\begin{flushleft}
+\setstretch{0.5}
+{\footnotesize Los valores de \textit{RMSE} se encuentran en las mismas unidades que la concentración de PM$_{2.5}$, es decir [$\frac{\mu g}{m^3}$]. Un menor valor de \textit{RMSE} indica mejor desempeño del modelo predictivo. El PM$_{2.5}$ promedio para el uso de suelo agrícola y área verde fue de 6.78 $\frac{\mu g}{m^3}$. El \textit{RMSE} reportado se calculó sobre la base de datos de testeo.}
+\end{flushleft}
 
   La Tabla \@ref(tab:modaa) presenta los resultados derivados del proceso de modelado predictivo empleando los datos correspondientes al uso de suelo agrícola y área verde. En este caso, puede apreciarse que el algoritmo que demuestra el mayor rendimiento predictivo es el de bosques aleatorios. Este resultado es independiente de la versión de la base de datos utilizada, destacando su mayor precisión en la versión desarrollada a partir de la base de datos reducida. A diferencia de los resultados obtenidos con respecto a los demás usos de suelo (Tabla \@ref(tab:modurb) y Tabla \@ref(tab:modind)) las redes neuronales recurrentes no logran superar el modelo de referencia propuesto. Este resultado podría encontrarse vinculado a las características propias de la serie de tiempo en entornos agrícolas y áreas verdes. 
 

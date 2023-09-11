@@ -1556,8 +1556,7 @@ Temperatura de la piel	k	Este parámetro es la temperatura de la superficie de l
 
 # Anexo 4: Optimización de los modelos predictivos {-}
 
-Table: Hiperparámetros optimizados para los algoritmos en el uso del suelo urbano sobre la base de datos reducida.
-Referencia: Modelo, biblioteca-paquete-fuente del algoritmo, nombre del hiperparámetro y valor del hiperparámetro.\label{tab:hypurb}
+Table: Hiperparámetros optimizados para los algoritmos en el uso del suelo urbano sobre la base de datos reducida.\label{tab:hypurb}
 
 | Modelo | Fuente | Hiperparámetro | Valor |
 |---------------|--------------------|--------------|---------|
@@ -1601,9 +1600,12 @@ Referencia: Modelo, biblioteca-paquete-fuente del algoritmo, nombre del hiperpar
 | RNN | **tensorflow** | *Units first layer* | 200 |
 | | | *Units second layer* | 100 |
 | | | *Units third layer* | 100 |
+\begin{flushleft}
+\setstretch{0.5}
+{\footnotesize Modelo, biblioteca-paquete-fuente del algoritmo, nombre del hiperparámetro y valor del hiperparámetro.}
+\end{flushleft}
 
-Table: Hiperparámetros optimizados para los algoritmos en el uso del suelo industrial sobre la base de datos reducida.
-Referencia: Modelo, biblioteca-paquete-fuente del algoritmo, nombre del hiperparámetro y valor del hiperparámetro. \label{tab:hypind}
+Table: Hiperparámetros optimizados para los algoritmos en el uso del suelo industrial sobre la base de datos reducida.\label{tab:hypind}
 
 | Modelo | Fuente | Hiperparámetro | Valor |
 |---------------|--------------------|--------------|---------|
@@ -1642,9 +1644,12 @@ Referencia: Modelo, biblioteca-paquete-fuente del algoritmo, nombre del hiperpar
 | | |*Units second layer*| 100 |
 | RNN |**tensorflow**|*Units first layer*| 200 |
 | | |*Units second layer*| 100 |
+\begin{flushleft}
+\setstretch{0.5}
+{\footnotesize Modelo, biblioteca-paquete-fuente del algoritmo, nombre del hiperparámetro y valor del hiperparámetro.}
+\end{flushleft}
 
-Table: Hiperparámetros optimizados para los algoritmos en el uso del suelo agrícola y áreas verdes sobre la base de datos reducida.
-Referencia: Modelo, biblioteca-paquete-fuente del algoritmo, nombre del hiperparámetro y valor del hiperparámetro.\label{tab:hypaa}
+Table: Hiperparámetros optimizados para los algoritmos en el uso del suelo agrícola y áreas verdes sobre la base de datos reducida. \label{tab:hypaa}
 
 | Modelo | Fuente | Hiperparámetro | Valor |
 |---------------|--------------------|--------------|---------|
@@ -1688,3 +1693,7 @@ Referencia: Modelo, biblioteca-paquete-fuente del algoritmo, nombre del hiperpar
 | | |*Units second layer*| 100 |
 | | |*Units third layer*| 100 |
 | | |*Units fourth layer*| 100 |
+\begin{flushleft}
+\setstretch{0.5}
+{\footnotesize Modelo, biblioteca-paquete-fuente del algoritmo, nombre del hiperparámetro y valor del hiperparámetro.}
+\end{flushleft}
