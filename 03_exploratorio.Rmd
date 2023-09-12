@@ -431,7 +431,7 @@ knitr::include_graphics("images/imagescap3/pmestacionhorauso.png")
   
   Los resultados sugieren que las condiciones meteorológicas durante la época fría generan condiciones adversas de calidad del aire, independientemente del uso de suelo. Además, la concentración promedio horaria de PM~2.5~ en los distintos usos de suelo presenta una tendencia a aumentar durante las horas de la mañana, disminuir en la tarde y aumentar nuevamente durante las horas de la noche.
   
-## Conclusión
+## Conclusiones
 
   La concentración de PM~2.5~ en el área metropolitana de la ciudad de Córdoba fue menor que la informada en otras ciudades del mundo, como: Riohacha (Colombia), Río de Janeiro y Porto Alegre (Brasil) y Estambul (Turquía). Sin embargo, los estándares de calidad de aire establecidos por las normativas locales (Tabla \@ref(tab:guiapm)) fueron superados múltiples veces tanto en la escala anual como de promedio de 24 horas (Tabla \@ref(tab:concanual) y Figura \@ref(fig:calendarcba)). 
   
