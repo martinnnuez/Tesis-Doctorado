@@ -1697,3 +1697,141 @@ Table: Hiperparámetros optimizados para los algoritmos en el uso del suelo agr�
 \setstretch{0.5}
 {\footnotesize Modelo, biblioteca-paquete-fuente del algoritmo, nombre del hiperparámetro y valor del hiperparámetro.}
 \end{flushleft}
+
+# Anexo 5: Variables no citadas en la literatura como relacionadas a la concentración de PM~2.5~ {-}
+
+#### Rugosidad de la superficie terrestre
+
+  La rugosidad de la superficie terrestre es la altura equivalente en metros de la rugosidad aerodinámica que posee la superficie del terreno. Esta es una medida de la resistencia que ejerce la superficie al flujo de aire, particularmente este parámetro se utiliza para determinar la transferencia de momento del aire a la superficie. Una mayor rugosidad de la superficie genera una reducción de la velocidad del viento cerca de la superficie. Esta variable se deriva de la cobertura, tipo de vegetación y presencia de nieve en la superficie terrestre y se expresa en metros ($m$).
+
+  La rugosidad de la superficie terrestre es una variable que, en la escala temporal horaria, no presenta una variación significativa debido a que su cálculo implica la consideración de fenómenos cuyos rangos de variación y ocurrencia superan esta escala temporal. En consecuencia, durante el transcurso de las horas del día, su valor tiende a permanecer constante y solo varía en escalas temporales de mayor magnitud, como los meses del año. Por esta razón, se ha decidido excluir el análisis exploratorio en la escala temporal horaria.
+
+```{r rugmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:rugmes)"}
+knitr::include_graphics("images/imagescap4/rugmes.png")
+```
+(ref:rugmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la rugosidad de la superficie terrestre a lo largo del año.
+
+  La figura \@ref(fig:rugmes) presenta el patrón de variación conjunto que describen los promedios mensuales de la rugosidad de la superficie terrestre y la concentración de PM~2.5~ a lo largo del año. Los mayores valores de la variable se registran durante la primavera, específicamente en el mes de septiembre, mientras que el mínimo se da durante el verano, en el mes de marzo. Estos resultados sugieren que existe una relación directa entre ambas variables, donde aumentos en la concentración del contaminante se ven favorecidos por mayores valores de rugosidad de la superficie terrestre.
+
+Table: Coeficientes estimados de la relación funcional.\label{tab:coefrou}
+
+| Desfasaje | Con diferenciación | Sin diferenciación |
+|----------|:-------:|:-------:| 
+| t | 9.317e+01 | 111.32 |
+| t-1 | -4.080e+01 | 92.03 |
+| t-9 | -1.868e+01 | 66.55 |
+| t-12 | 9.1090057  | 87.25 |
+| t-13 | 0.4461504  | 89.23 |
+| t-14 | 6.760e+00 | 91.01 |
+| t-23 | -1.032e+01 | 55.22 |
+
+  Las correlaciones significativas que perduran luego del procedimiento de filtrado de las series se observaron en los tiempos t, t-1, t-9, t-12, t-13, t-14 y t-23, cuatro de los coeficientes demostraron una relación directa estadísticamente significativa (t-0, t-12, t-13 y t-14), mientras que los tres restantes se vieron influenciados por una relación aleatoria (t-1, t-9 y t-23). 
+  
+#### Disipación en la capa límite atmosférica
+
+  La disipación en la capa límite atmosférica, indica la conversión acumulada de la energía cinética de flujo medio en calor en toda la columna atmosférica, por unidad de superficie, como consecuencia de los efectos de la tensión asociada a remolinos turbulentos cerca de la superficie y al arrastre de forma orográfica turbulenta. Los remolinos turbulentos cerca de la superficie están relacionados con la rugosidad superficial, mientras que el arrastre de forma orográfica turbulenta es la tensión debida a los valles, colinas y montañas en escalas horizontales inferiores a 5 km. Se espera que incrementos de la disipación en la capa limite atmosférica promueva reducciones de la concentración de partículas finas, como consecuencia de la influencia en la disipación de las mismas, por otra parte, reducciones de la disipación no favorecería el fenómeno de dispersión resultando en mayores concentraciones de PM~2.5~. Las unidades en las que se mide este parámetro son julios por metro cuadrado ($\frac{J}{m^2}$). 
+
+```{r disipmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:disipmes)"}
+knitr::include_graphics("images/imagescap4/disipmes.png")
+```
+(ref:disipmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la disipación en la capa límite atmosférica a lo largo del año.
+
+  A partir de la figura \@ref(fig:disipmes) puede visualizarse el patrón de variación conjunto que describen los promedios mensuales de la disipación en la capa límite atmosférica y la concentración de PM~2.5~ a lo largo del año. Puede notarse que los valores de menor magnitud de disipación registrados ocurren durante el verano en los meses de enero y diciembre, mientras que los de mayor magnitud ocurren durante la primavera en los meses de septiembre y octubre. A pesar de que no logra apreciarse una clara relación entre las variables en esta escala temporal, la tendencia podría asumirse que es del tipo directa. 
+
+```{r disiphor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:disiphor)"}
+knitr::include_graphics("images/imagescap4/disiphor.png")
+```
+(ref:disiphor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la disipación en la capa límite atmosférica a lo largo del día.
+  
+  La figura \@ref(fig:disiphor) presenta el patrón de variación conjunto que describen los promedios de la disipación en la capa límite atmosférica y la concentración de PM~2.5~ a lo largo de las horas del día. Puede notarse que ambas variables muestran una relación de vinculación del tipo inversa, en la cual valores de baja magnitud de la variable se condicen con elevadas concentraciones del contaminante, mientras que elevados valores de la variable ocurren en simultaneidad con reducidas concentraciones.
+
+Table: Coeficientes estimados de la relación funcional.\label{tab:coefdisip}
+
+| Desfasaje | Con diferenciación | Sin diferenciación |
+|----------|:-------:|:-------:| 
+| t | -7.918e-05 | -0.0001536 |
+| t-5 | 6.594e-05 | -0.000054 |
+| t-7 | 0.0000533 | -3.578e-05 |
+| t-20 | -8.173e-05 | -0.0001142 |
+| t-22 | -0.0001042 | -0.0001257 |
+
+  Las correlaciones significativas que perduran luego del procedimiento de filtrado de las series se observaron en los tiempos t, t-5, t-7, t-20 y t-22, dos de los cinco coeficientes demostraron estar influenciados por una relación aleatoria (t-5 y t-7), mientras que los tres restantes exhibieron una relación inversa estadísticamente significativa (t, t-20 y t-22) entre la concentración de PM~2.5~ y la disipación en la capa límite atmosférica.
+  
+#### Integración vertical flujo ozono norte
+
+  La variable integración vertical de flujo de ozono norte refiere a la tasa horizontal de flujo de ozono en dirección norte, por metro a través del flujo, para una columna de aire que se extiende desde la superficie hasta la parte superior de la atmósfera. Los valores positivos denotan un flujo de sur a norte. Las unidades en las que se mide este parámetro son kilogramos por metro por segundo ($\frac{Kg}{m.s}$).
+
+```{r oznormes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:oznormes)"}
+knitr::include_graphics("images/imagescap4/oznormes.png")
+```
+(ref:oznormes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la integración vertical del flujo de ozono proveniente del norte a lo largo del año.
+
+  La figura \@ref(fig:oznormes) presenta el patrón de variación conjunto que describen los promedios mensuales de la integración vertical del flujo de ozono norte y la concentración de PM~2.5~ a lo largo del año. A partir de esta puede notarse que los valores de menor magnitud registrados para la variable ocurren durante la primavera en los meses de septiembre y octubre, mientras que los de mayor magnitud fueron registrados durante el invierno, específicamente en los meses de mayo y junio. Esto sugiere que la relación de vinculación entre las variables es del tipo directa, evidenciando que bajas concentraciones se ven favorecidas por disminuciones de los valores que toma la variable, mientras que elevadas concentraciones se ven impulsadas por aumentos de la misma.
+
+```{r oznorhor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:oznorhor)"}
+knitr::include_graphics("images/imagescap4/oznorhor.png")
+```
+(ref:oznorhor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y  a lo largo del día.
+
+  A partir de la imagen \@ref(fig:oznorhor), puede apreciarse el patrón de variación de la integración vertical del flujo de ozono proveniente del norte promedio a lo largo de las horas del día. En este, puede notarse que los valores más elevados se registran durante la madrugada, específicamente entre las 0 y las 2 horas, experimentando un descenso gradual a lo largo de las horas del día hasta alcanzar su mínimo a las 17 horas. De esta forma, puede apreciarse que la relación de variación conjunta entre la concentración de PM~2.5~ y la integración vertical del flujo de ozono proveniente del norte es del tipo directa.
+
+Table: Coeficientes estimados de la relación funcional.\label{tab:coefoznor}
+
+| Desfasaje | Con diferenciación | Sin diferenciación |
+|----------|:-------:|:-------:| 
+| t-18 | -3.189e+01 | 43.90 |
+| t-19 | 1.219e+02 | 52.00 |
+
+  Las correlaciones significativas que perduran luego del procedimiento de filtrado de las series se observaron en los tiempos t-18 y t-19. El *lag* temporal de 5 horas resultó en una relación inversa estadísticamente significativa, mientras que el *lag* de 24 horas lo hizo en una directa estadísticamente significativa, entre la humedad relativa y la concentración de PM~2.5~. Luego de la estimación de la relación funcional se determinó que uno de los coeficientes demostró una relación aleatoria (t-18), mientras que el restante una relación directa estadísticamente significativa (t-19).
+  
+#### Tasa media de escorrentía subterránea
+
+  La tasa media de escorrentía subterránea, es la parte del agua procedente de las precipitaciones, del deshielo o de las napas, que escurre por debajo de la superficie terrestre. El agua que no se almacena escurre, esto puede ser por la superficie (escorrentía superficial) o por debajo del suelo (escorrentía subsuperficial), la suma de ambas se denomina escorrentía. Este parámetro refiere a la tasa que tendría la escorrentía si se repartiera uniformemente por la cuadrícula de resolución espacial. La escorrentía es una medida de la disponibilidad de agua en el suelo y puede utilizarse, por ejemplo, como indicador de sequía o inundación. Se espera que la influencia de la variable en la concentración de PM~2.5~, sea a través del proceso físico de refrigeración de la atmósfera, influyendo en los niveles de la capa límite atmosférica. Las unidades en las que se mide este parámetro son kilogramos por metro cuadrado por segundo ($\frac{Kg}{m^2.s}$). 
+    
+  Es importante mencionar que el análisis de la tasa media de escorrentía subterránea en la escala temporal horaria no proporciona información relevante dado a su estrecha relación con la precipitación. Cuando no ocurren precipitaciones, la tasa de escorrentía subterránea se mantiene constante a lo largo de las horas del día y, por lo tanto, la interpretación de sus valores podrían dirigirnos a conclusiones erradas. Como consecuencia de esto se decidió excluir el análisis exploratorio en esta escala temporal.
+
+```{r escmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:escmes)"}
+knitr::include_graphics("images/imagescap4/escmes.png")
+```
+(ref:escmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la tasa media de escorrentía subterránea a lo largo del año.
+
+  En la figura \@ref(fig:escmes) puede apreciarse el patrón de variación conjunto que describen los promedios mensuales de la tasa media de escorrentía subterránea y la concentración de PM~2.5~ a lo largo del año. Puede notarse que los valores de menor magnitud registrados para esta tasa ocurren en el verano durante los meses de diciembre, enero y febrero, mientras que los de mayor magnitud se registraron en el invierno durante el mes de junio. Puede notarse que la relación de vinculación entre ambas variables es del tipo directa, demostrando que bajas concentraciones se ven favorecidas por disminuciones de los valores que toma la variable, mientras que elevadas concentraciones se ven favorecidas por aumentos de la tasa media de escorrentía subterránea.
+
+Table: Coeficientes estimados de la relación funcional.\label{tab:coefesc}
+
+| Desfasaje | Con diferenciación | Sin diferenciación |
+|----------|:------------:|:------------:|
+| t-8 | -2.648e+05 | 5.770e+06 | 
+| t-15 | 5.326e+04 | 5.633e+06 | 
+  
+  Las correlaciones significativas que perduran luego del procedimiento de filtrado de las series se observaron en los tiempos t-8 y t-15, uno de los coeficientes demostró una relación aleatoria (t-8), mientras que el restante reveló una relación de vinculación directa estadísticamente significativa (t-15). 
+  
+#### Integración vertical de temperatura
+
+  La integración vertical de temperatura es la integral vertical de la temperatura para una columna de aire ponderada por su masa, que se extiende desde la superficie de la Tierra hasta la parte superior de la atmósfera. Este parámetro puede utilizarse para estudiar el balance energético atmosférico. Se espera que esta variable se vincule con la concentración de PM~2.5~, por medio de la relación existente entre la variación de la temperatura lo largo del espesor de la atmósfera y las estratificaciones que en esta se generan, resultando en aumentos o disminuciones de la concentración PM~2.5~, en función de la altura a la cual ocurre la estratificación. Este fenómeno se encuentra vinculado también con la variación de la altura de la capa límite atmosférica. Las unidades en las que se mide este parámetro son en kilogramos por Kelvin por metro cuadrado ($\frac{Kg.K}{m^2}$).
+  
+```{r intvertmes, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:intvertmes)"}
+knitr::include_graphics("images/imagescap4/intvertmes.png")
+```
+(ref:intvertmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la integración vertical de temperatura a lo largo del año.
+
+  En la figura \@ref(fig:intvertmes) puede visualizarse el patrón de variación conjunto que describen los promedios mensuales de la integración vertical de temperatura y la concentración de PM~2.5~ a lo largo del año. Puede notarse que los valores de baja magnitud de la variable fueron registrados durante el invierno, específicamente en el mes de junio, mientras que los mayores durante el verano en los meses de diciembre y enero. Estos hallazgos sugieren una relación de vinculación entre las variables del tipo inversa, lo que implica que aumentos en la magnitud de la variable se asocian con disminuciones en las concentraciones de PM~2.5~, mientras que disminuciones en la variable se vinculan con aumentos en las concentraciones del contaminante.
+
+```{r intverthor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:intverthor)"}
+knitr::include_graphics("images/imagescap4/intverthor.png")
+```
+(ref:intverthor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la integración vertical de temperatura a lo largo del día.
+
+  A partir de la figura \@ref(fig:intverthor) puede apreciarse el patrón de variación conjunto de la integración vertical de temperatura y la concentración de PM~2.5~ promedio a lo largo de las horas del día. Puede notarse que la temperatura presenta un perfil de variación opuesto al de la concentración de PM~2.5~, evidenciando una relación de vinculación inversa. De esta forma, valores de baja magnitud de la variable se condicen con aumentos de la concentración del contaminante, mientras que valores de mayor magnitud de la variable ocurren en simultaneidad con disminuciones de la concentración de PM~2.5~.
+
+Table: Coeficientes estimados de la relación funcional.\label{tab:coefinttemp}
+
+| Desfasaje | Con diferenciación | Sin diferenciación |
+|----------|:----------:|:-----------:|
+| t | 7.654e-05 | -3.442e-06 | 
+| t-15 | -1.411e-05 | -3.438e-05 | 
+| t-16 | 8.115e-06 | 2.149e-05 |
+| t-18 | 3.007e-05 | 6.352e-05 |
+| t-21 | 1.269e-05 | -6.070e-05 |
+
+  Las correlaciones significativas que perduran luego del procedimiento de filtrado de las series se observaron en los tiempos t, t-15, t-16, t-18 y t-21. Luego de la estimación de la relación funcional se determinó que dos de los cinco coeficientes significativos se vieron influenciados por efectos aleatorios (t y t-21), demostrando que estas relaciones no son significativas en términos estadísticos. En contraste, de los tres restantes demostraron relaciones estadísticamente significativas, dos de ellos directa (t-16 y t-18) y solo uno uno inversa (t-15).
