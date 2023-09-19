@@ -1711,7 +1711,7 @@ knitr::include_graphics("images/imagescap4/rugmes.png")
 ```
 (ref:rugmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la rugosidad de la superficie terrestre a lo largo del año.
 
-  La figura \@ref(fig:rugmes) presenta el patrón de variación conjunto que describen los promedios mensuales de la rugosidad de la superficie terrestre y la concentración de PM~2.5~ a lo largo del año. Los mayores valores de la variable se registran durante la primavera, específicamente en el mes de septiembre, mientras que el mínimo se da durante el verano, en el mes de marzo. Estos resultados sugieren que existe una relación directa entre ambas variables, donde aumentos en la concentración del contaminante se ven favorecidos por mayores valores de rugosidad de la superficie terrestre.
+  La Figura \@ref(fig:rugmes) presenta el patrón de variación conjunto que describen los promedios mensuales de la rugosidad de la superficie terrestre y la concentración de PM~2.5~ a lo largo del año. Los mayores valores de la variable se registran durante la primavera, específicamente en el mes de septiembre, mientras que el mínimo se da durante el verano, en el mes de marzo. Estos resultados sugieren que existe una relación directa entre ambas variables, donde aumentos en la concentración del contaminante se ven favorecidos por mayores valores de rugosidad de la superficie terrestre.
 
 Table: Coeficientes estimados de la relación funcional.\label{tab:coefrou}
 
@@ -1736,14 +1736,14 @@ knitr::include_graphics("images/imagescap4/disipmes.png")
 ```
 (ref:disipmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la disipación en la capa límite atmosférica a lo largo del año.
 
-  A partir de la figura \@ref(fig:disipmes) puede visualizarse el patrón de variación conjunto que describen los promedios mensuales de la disipación en la capa límite atmosférica y la concentración de PM~2.5~ a lo largo del año. Puede notarse que los valores de menor magnitud de disipación registrados ocurren durante el verano en los meses de enero y diciembre, mientras que los de mayor magnitud ocurren durante la primavera en los meses de septiembre y octubre. A pesar de que no logra apreciarse una clara relación entre las variables en esta escala temporal, la tendencia podría asumirse que es del tipo directa. 
+  A partir de la Figura \@ref(fig:disipmes) puede visualizarse el patrón de variación conjunto que describen los promedios mensuales de la disipación en la capa límite atmosférica y la concentración de PM~2.5~ a lo largo del año. Puede notarse que los valores de menor magnitud de disipación registrados ocurren durante el verano en los meses de enero y diciembre, mientras que los de mayor magnitud ocurren durante la primavera en los meses de septiembre y octubre. A pesar de que no logra apreciarse una clara relación entre las variables en esta escala temporal, la tendencia podría asumirse que es del tipo directa. 
 
 ```{r disiphor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:disiphor)"}
 knitr::include_graphics("images/imagescap4/disiphor.png")
 ```
 (ref:disiphor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la disipación en la capa límite atmosférica a lo largo del día.
   
-  La figura \@ref(fig:disiphor) presenta el patrón de variación conjunto que describen los promedios de la disipación en la capa límite atmosférica y la concentración de PM~2.5~ a lo largo de las horas del día. Puede notarse que ambas variables muestran una relación de vinculación del tipo inversa, en la cual valores de baja magnitud de la variable se condicen con elevadas concentraciones del contaminante, mientras que elevados valores de la variable ocurren en simultaneidad con reducidas concentraciones.
+  La Figura \@ref(fig:disiphor) presenta el patrón de variación conjunto que describen los promedios de la disipación en la capa límite atmosférica y la concentración de PM~2.5~ a lo largo de las horas del día. Puede notarse que ambas variables muestran una relación de vinculación del tipo inversa, en la cual valores de baja magnitud de la variable se condicen con elevadas concentraciones del contaminante, mientras que elevados valores de la variable ocurren en simultaneidad con reducidas concentraciones.
 
 Table: Coeficientes estimados de la relación funcional.\label{tab:coefdisip}
 
@@ -1766,7 +1766,7 @@ knitr::include_graphics("images/imagescap4/oznormes.png")
 ```
 (ref:oznormes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la integración vertical del flujo de ozono proveniente del norte a lo largo del año.
 
-  La figura \@ref(fig:oznormes) presenta el patrón de variación conjunto que describen los promedios mensuales de la integración vertical del flujo de ozono norte y la concentración de PM~2.5~ a lo largo del año. A partir de esta puede notarse que los valores de menor magnitud registrados para la variable ocurren durante la primavera en los meses de septiembre y octubre, mientras que los de mayor magnitud fueron registrados durante el invierno, específicamente en los meses de mayo y junio. Esto sugiere que la relación de vinculación entre las variables es del tipo directa, evidenciando que bajas concentraciones se ven favorecidas por disminuciones de los valores que toma la variable, mientras que elevadas concentraciones se ven impulsadas por aumentos de la misma.
+  La Figura \@ref(fig:oznormes) presenta el patrón de variación conjunto que describen los promedios mensuales de la integración vertical del flujo de ozono norte y la concentración de PM~2.5~ a lo largo del año. A partir de esta puede notarse que los valores de menor magnitud registrados para la variable ocurren durante la primavera en los meses de septiembre y octubre, mientras que los de mayor magnitud fueron registrados durante el invierno, específicamente en los meses de mayo y junio. Esto sugiere que la relación de vinculación entre las variables es del tipo directa, evidenciando que bajas concentraciones se ven favorecidas por disminuciones de los valores que toma la variable, mientras que elevadas concentraciones se ven impulsadas por aumentos de la misma.
 
 ```{r oznorhor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:oznorhor)"}
 knitr::include_graphics("images/imagescap4/oznorhor.png")
@@ -1795,7 +1795,7 @@ knitr::include_graphics("images/imagescap4/escmes.png")
 ```
 (ref:escmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la tasa media de escorrentía subterránea a lo largo del año.
 
-  En la figura \@ref(fig:escmes) puede apreciarse el patrón de variación conjunto que describen los promedios mensuales de la tasa media de escorrentía subterránea y la concentración de PM~2.5~ a lo largo del año. Puede notarse que los valores de menor magnitud registrados para esta tasa ocurren en el verano durante los meses de diciembre, enero y febrero, mientras que los de mayor magnitud se registraron en el invierno durante el mes de junio. Puede notarse que la relación de vinculación entre ambas variables es del tipo directa, demostrando que bajas concentraciones se ven favorecidas por disminuciones de los valores que toma la variable, mientras que elevadas concentraciones se ven favorecidas por aumentos de la tasa media de escorrentía subterránea.
+  En la Figura \@ref(fig:escmes) puede apreciarse el patrón de variación conjunto que describen los promedios mensuales de la tasa media de escorrentía subterránea y la concentración de PM~2.5~ a lo largo del año. Puede notarse que los valores de menor magnitud registrados para esta tasa ocurren en el verano durante los meses de diciembre, enero y febrero, mientras que los de mayor magnitud se registraron en el invierno durante el mes de junio. Puede notarse que la relación de vinculación entre ambas variables es del tipo directa, demostrando que bajas concentraciones se ven favorecidas por disminuciones de los valores que toma la variable, mientras que elevadas concentraciones se ven favorecidas por aumentos de la tasa media de escorrentía subterránea.
 
 Table: Coeficientes estimados de la relación funcional.\label{tab:coefesc}
 
@@ -1815,14 +1815,14 @@ knitr::include_graphics("images/imagescap4/intvertmes.png")
 ```
 (ref:intvertmes) Perfil de variación conjunto de los promedios mensuales del PM~2.5~ y la integración vertical de temperatura a lo largo del año.
 
-  En la figura \@ref(fig:intvertmes) puede visualizarse el patrón de variación conjunto que describen los promedios mensuales de la integración vertical de temperatura y la concentración de PM~2.5~ a lo largo del año. Puede notarse que los valores de baja magnitud de la variable fueron registrados durante el invierno, específicamente en el mes de junio, mientras que los mayores durante el verano en los meses de diciembre y enero. Estos hallazgos sugieren una relación de vinculación entre las variables del tipo inversa, lo que implica que aumentos en la magnitud de la variable se asocian con disminuciones en las concentraciones de PM~2.5~, mientras que disminuciones en la variable se vinculan con aumentos en las concentraciones del contaminante.
+  En la Figura \@ref(fig:intvertmes) puede visualizarse el patrón de variación conjunto que describen los promedios mensuales de la integración vertical de temperatura y la concentración de PM~2.5~ a lo largo del año. Puede notarse que los valores de baja magnitud de la variable fueron registrados durante el invierno, específicamente en el mes de junio, mientras que los mayores durante el verano en los meses de diciembre y enero. Estos hallazgos sugieren una relación de vinculación entre las variables del tipo inversa, lo que implica que aumentos en la magnitud de la variable se asocian con disminuciones en las concentraciones de PM~2.5~, mientras que disminuciones en la variable se vinculan con aumentos en las concentraciones del contaminante.
 
 ```{r intverthor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:intverthor)"}
 knitr::include_graphics("images/imagescap4/intverthor.png")
 ```
 (ref:intverthor) Perfil de variación conjunto de los promedios horarios del PM~2.5~ y la integración vertical de temperatura a lo largo del día.
 
-  A partir de la figura \@ref(fig:intverthor) puede apreciarse el patrón de variación conjunto de la integración vertical de temperatura y la concentración de PM~2.5~ promedio a lo largo de las horas del día. Puede notarse que la temperatura presenta un perfil de variación opuesto al de la concentración de PM~2.5~, evidenciando una relación de vinculación inversa. De esta forma, valores de baja magnitud de la variable se condicen con aumentos de la concentración del contaminante, mientras que valores de mayor magnitud de la variable ocurren en simultaneidad con disminuciones de la concentración de PM~2.5~.
+  A partir de la Figura \@ref(fig:intverthor) puede apreciarse el patrón de variación conjunto de la integración vertical de temperatura y la concentración de PM~2.5~ promedio a lo largo de las horas del día. Puede notarse que la temperatura presenta un perfil de variación opuesto al de la concentración de PM~2.5~, evidenciando una relación de vinculación inversa. De esta forma, valores de baja magnitud de la variable se condicen con aumentos de la concentración del contaminante, mientras que valores de mayor magnitud de la variable ocurren en simultaneidad con disminuciones de la concentración de PM~2.5~.
 
 Table: Coeficientes estimados de la relación funcional.\label{tab:coefinttemp}
 

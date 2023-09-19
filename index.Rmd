@@ -11,9 +11,9 @@ degree: 'Doctor en Ciencias de la Ingenieria'
 knit: "bookdown::render_book"
 site: bookdown::bookdown_site
 output: 
-  thesisdown::thesis_pdf: default
+  # thesisdown::thesis_pdf: default
   # thesisdown::thesis_gitbook: default
-  # thesisdown::thesis_word: default
+  thesisdown::thesis_word: default
   # bookdown::pdf_document2: default
   # bookdown::word_document2: default
   # thesisdown::thesis_epub: default

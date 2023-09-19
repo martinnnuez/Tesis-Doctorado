@@ -21,3 +21,5 @@ download: [["RodriguezNuñezMartin.pdf", "PDF"]]
 language:
   ui:
     chapter_name: "Capítulo "
+  label:
+    fig: 'Figura '

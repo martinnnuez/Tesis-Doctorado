@@ -21,7 +21,7 @@ knitr::include_graphics("images/GA/mod.png")
 ```
 (ref:mod) Resumen gráfico del protocolo analítico para selección del mejor modelo predictivo.
 
-  La figura \@ref(fig:mod) ilustra el protocolo analítico desarrollado en este capítulo, cuyo objetivo central es la construcción de un modelo predictivo para la concentración de PM~2.5~ en el Área Metropolitana de Córdoba, Argentina. Este modelo se destaca por prever la concentración de PM~2.5~ con cinco días de anticipación y emplea como entrada variables meteorológicas satelitales y temporales relacionadas a la variabilidad periódica de este contaminante. Se compararon modelos alternativos basados en aprendizaje automático y profundo, llevando a cabo el ajuste de cada uno de ellos, evaluación y selección del modelo de mayor capacidad predictiva para distintos usos de suelo. Es importante destacar que la presente sección se haya enmarcada dentro de un enfoque computacional de inteligencia artificial. 
+  La Figura \@ref(fig:mod) ilustra el protocolo analítico desarrollado en este capítulo, cuyo objetivo central es la construcción de un modelo predictivo para la concentración de PM~2.5~ en el Área Metropolitana de Córdoba, Argentina. Este modelo se destaca por prever la concentración de PM~2.5~ con cinco días de anticipación y emplea como entrada variables meteorológicas satelitales y temporales relacionadas a la variabilidad periódica de este contaminante. Se compararon modelos alternativos basados en aprendizaje automático y profundo, llevando a cabo el ajuste de cada uno de ellos, evaluación y selección del modelo de mayor capacidad predictiva para distintos usos de suelo. Es importante destacar que la presente sección se haya enmarcada dentro de un enfoque computacional de inteligencia artificial. 
   
   En primer lugar, se llevó a cabo una comparación exhaustiva de distintos algoritmos de aprendizaje automático (regresión lineal múltiple [@saunders1998ridge; @tibshirani1996regression; @zou2005regularization; @bottou2007tradeoffs], máquinas de vectores de soporte [@cortes1995support], k vecinos más cercanos [@fix1985discriminatory], bosques aleatorios [@breiman2001random] y máquina de aumento de gradiente [@friedman2001greedy]); y profundo (redes neuronales recurrentes [@bishop1995neural], redes de memoria a largo plazo [@hochreiter1997long] y redes recurrentes con compuerta [@cho2014properties]), con el propósito de identificar cuál de ellos demostraba el mejor rendimiento predictivo. La metodología de modelado abarcó el desarrollo de un modelo predictivo que considera un desfasaje temporal de 5 días. Además, se aplicó una estrategia de modelado que discriminó según el uso de suelo, permitiendo ajustar distintos modelos predictivos para cada uno de los usos considerados. También se evaluaron distintas alternativas de bases de datos como soporte para el modelo predictivo, una incluyó todas las variables predictoras y otra involucró una selección de variables para trabajar con una base de datos reducida. Esta última se creó mediante técnicas de reducción de dimensionalidad y selección de características (featurewiz [@bakheet2023hybrid], Boruta [@kursa2010boruta] y Boruta alternativo [@jamei2023surface]). Las variables incluidas en cada una de las bases de datos se encuentran mencionadas en el Anexo 1 para cada uso de suelo. Los algoritmos de aprendizaje evaluados fueron optimizados por medio de la búsqueda de hiperparámetros e interpretados a través de la implementación del método de Shapley (valores SHAP) [@lubo2020machine]. El entrenamiento de los algoritmos predictivos se realizó con un desfasaje de la variable respuesta respecto a las predictoras de 120 horas, es decir, cinco días, dadas las características de las bases de datos satelitales incorporadas como variables regresoras explicadas en el capítulo [1](#cap:ig). La evaluación de los modelos se realizó mediante la comparación de la métrica RMSE obtenida a partir de una validación cruzada *K-fold* con un K igual a 10.
 
@@ -187,7 +187,7 @@ knitr::include_graphics("images/imagescap5/varimpurb_b.png")
 ```
 (ref:varimpurb) Importancia relativa de las variables en las redes neuronales recurrentes para el uso de suelo urbano.
 
-  A partir de la figura \@ref(fig:varimpurb) pueden apreciarse las cinco variables de mayor importancia relativa para el modelo predictivo en el uso de suelo urbano bajo la base de datos reducida. Dos de las variables se encuentran vinculadas a la escala temporal, lo que destaca la influencia de los patrones de variación temporal en la variable objetivo, como se exploró en el capítulo [3](#cap:expl). Las variables restantes están asociadas con condiciones meteorológicas vinculadas a la variabilidad analizada en el capítulo [4](#cap:var). Los resultados muestran que las cinco variables de mayor importancia relativa abarcan menos del 25% de la importancia total. A la hora de predecir la concentración de PM~2.5~ en entornos urbanos, es crucial considerar la hora del día, la radiación solar, la rugosidad de la superficie terrestre, el día de la semana y la presión atmosférica. 
+  A partir de la Figura \@ref(fig:varimpurb) pueden apreciarse las cinco variables de mayor importancia relativa para el modelo predictivo en el uso de suelo urbano bajo la base de datos reducida. Dos de las variables se encuentran vinculadas a la escala temporal, lo que destaca la influencia de los patrones de variación temporal en la variable objetivo, como se exploró en el capítulo [3](#cap:expl). Las variables restantes están asociadas con condiciones meteorológicas vinculadas a la variabilidad analizada en el capítulo [4](#cap:var). Los resultados muestran que las cinco variables de mayor importancia relativa abarcan menos del 25% de la importancia total. A la hora de predecir la concentración de PM~2.5~ en entornos urbanos, es crucial considerar la hora del día, la radiación solar, la rugosidad de la superficie terrestre, el día de la semana y la presión atmosférica. 
 
 #### Radiación solar
 
@@ -196,7 +196,7 @@ knitr::include_graphics("images/imagescap5/shapurbrad.png")
 ```
 (ref:shapurbrad) Gráfico de la variable radiación solar contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo urbano.
 
-  La figura \@ref(fig:shapurbrad) muestra que valores de baja magnitud de radiación solar están asociados a incrementos en las predicciones de la variable respuesta, mientras que valores de elevada magnitud están asociados con menores concentraciones de PM~2.5~ predichas. De esta forma se aprecia una relación del tipo inversa similar a una de las identificadas a partir del análisis de vinculación entre ambas variables. Además, puede notarse como los valores de mayor concentración de PM~2.5~, en función de la escala de graduación de colores, se hallan concentrados en la zona de menores valores de radiación solar, lo cual se condice con la relación inversa descripta en el análisis exploratorio, demostrando que el modelo logra capturar la relación entre las variables. 
+  La Figura \@ref(fig:shapurbrad) muestra que valores de baja magnitud de radiación solar están asociados a incrementos en las predicciones de la variable respuesta, mientras que valores de elevada magnitud están asociados con menores concentraciones de PM~2.5~ predichas. De esta forma se aprecia una relación del tipo inversa similar a una de las identificadas a partir del análisis de vinculación entre ambas variables. Además, puede notarse como los valores de mayor concentración de PM~2.5~, en función de la escala de graduación de colores, se hallan concentrados en la zona de menores valores de radiación solar, lo cual se condice con la relación inversa descripta en el análisis exploratorio, demostrando que el modelo logra capturar la relación entre las variables. 
 
 #### Rugosidad de la superficie terrestre
 
@@ -207,7 +207,7 @@ knitr::include_graphics("images/imagescap5/shapurbrug.png")
 ```
 (ref:shapurbrug) Gráfico de la variable rugosidad de la superficie terrestre contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo urbano.
 
-  La figura \@ref(fig:shapurbrug) muestra una relación directa que coincide con la reportada por el análisis de vinculación conjunto entre ambas variables que se encuentra en el Anexo 5. Es decir que valores de baja magnitud de la rugosidad de la superficie terrestre se asocian con disminuciones en las predicciones de la variable respuesta. 
+  La Figura \@ref(fig:shapurbrug) muestra una relación directa que coincide con la reportada por el análisis de vinculación conjunto entre ambas variables que se encuentra en el Anexo 5. Es decir que valores de baja magnitud de la rugosidad de la superficie terrestre se asocian con disminuciones en las predicciones de la variable respuesta. 
   
 #### Presión atmosférica
   
@@ -216,7 +216,7 @@ knitr::include_graphics("images/imagescap5/shapurbpresmar_b.png")
 ```
 (ref:shapurbpresmar) Gráfico de la variable presión atmosférica contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo urbano.
 
-  La figura \@ref(fig:shapurbpresmar) muestra una asociación entre variables de tipo inversa similar a la reportada por el análisis de vinculación conjunto entre ambas variables sin considerar desfasaje (Capítulo [4](#cap:var)). Esto indica que valores de baja presión atmosférica favorecen incrementos en las predicciones de la variable respuesta, mientras que valores de elevada magnitud de la variable independiente resultan en disminuciones de las concentraciones de PM~2.5~ predichas.
+  La Figura \@ref(fig:shapurbpresmar) muestra una asociación entre variables de tipo inversa similar a la reportada por el análisis de vinculación conjunto entre ambas variables sin considerar desfasaje (Capítulo [4](#cap:var)). Esto indica que valores de baja presión atmosférica favorecen incrementos en las predicciones de la variable respuesta, mientras que valores de elevada magnitud de la variable independiente resultan en disminuciones de las concentraciones de PM~2.5~ predichas.
 
 ### Modelado de PM~2.5~ en entornos industriales
 
@@ -266,7 +266,7 @@ knitr::include_graphics("images/imagescap5/varimpind.png")
 ```
 (ref:varimpind) Importancia relativa de las variables en las redes neuronales recurrentes para el uso de suelo industrial.
 
-  A partir de la figura \@ref(fig:varimpind) pueden apreciarse las cinco variables de mayor importancia relativa para el modelo predictivo en el uso de suelo industrial bajo la base de datos reducida. Solo una de las variables se encuentra vinculada a la escala temporal, destacando la dependencia de la variable respuesta respecto a sus patrones de variación temporal explorados en el capítulo [3](#cap:expl). Las restantes son variables meteorológicas vinculadas a la variabilidad estudiada en el capítulo [4](#cap:var). Los resultados muestran que las cinco variables de mayor importancia relativa reúnen menos del 25% de la misma. 
+  A partir de la Figura \@ref(fig:varimpind) pueden apreciarse las cinco variables de mayor importancia relativa para el modelo predictivo en el uso de suelo industrial bajo la base de datos reducida. Solo una de las variables se encuentra vinculada a la escala temporal, destacando la dependencia de la variable respuesta respecto a sus patrones de variación temporal explorados en el capítulo [3](#cap:expl). Las restantes son variables meteorológicas vinculadas a la variabilidad estudiada en el capítulo [4](#cap:var). Los resultados muestran que las cinco variables de mayor importancia relativa reúnen menos del 25% de la misma. 
   
   A la hora de predecir la concentración de PM~2.5~ en entornos industriales, es crucial considerar la velocidad del viento, la disipación en la capa límite atmosférica, el flujo de ozono, la estación del año y la humedad relativa.
 
@@ -277,7 +277,7 @@ knitr::include_graphics("images/imagescap5/shapindvvient.png")
 ```
 (ref:shapindvvient) Gráfico de la variable velocidad del viento contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo industrial.
 
-  La figura \@ref(fig:shapindvvient) muestra que valores de baja magnitud de velocidad del viento resultan en incrementos de las predicciones de la variable respuesta, mientras que valores de elevada magnitud de la variable independiente promueven disminuciones en las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo inversa similar a la encontrada durante el análisis de vinculación conjunto entre ambas variables (Capítulo [4](#cap:var)). Además, se puede apreciar como los valores de mayores concentraciones de PM~2.5~ se localizan en zonas de reducida velocidad del viento, demostrando la gran capacidad predictiva de la variable.
+  La Figura \@ref(fig:shapindvvient) muestra que valores de baja magnitud de velocidad del viento resultan en incrementos de las predicciones de la variable respuesta, mientras que valores de elevada magnitud de la variable independiente promueven disminuciones en las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo inversa similar a la encontrada durante el análisis de vinculación conjunto entre ambas variables (Capítulo [4](#cap:var)). Además, se puede apreciar como los valores de mayores concentraciones de PM~2.5~ se localizan en zonas de reducida velocidad del viento, demostrando la gran capacidad predictiva de la variable.
 
 #### Disipación en la capa límite atmosférica
   
@@ -288,7 +288,7 @@ knitr::include_graphics("images/imagescap5/shapinddisip.png")
 ```
 (ref:shapinddisip) Gráfico de la variable disipación en la capa límite atmosférica contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo industrial.
   
-  La figura \@ref(fig:shapinddisip) permite apreciar que el mayor porcentaje de los datos se encuentra concentrado en valores de baja magnitud de disipación en la capa límite atmosférica. Por este motivo, no logra apreciarse una clara tendencia en cuanto al aporte de la variable predictora en el modelo predictivo dado a que en todo el rango de variación los aportes son tanto de incremento como de decremento de la concentración. Dada la inconsistencia existente en el rango de variación de los aportes, se concluye que para este modelo predictivo la importancia que adquiere la variable se encuentra vinculada al actuar conjunto con otras variables independientes.
+  La Figura \@ref(fig:shapinddisip) permite apreciar que el mayor porcentaje de los datos se encuentra concentrado en valores de baja magnitud de disipación en la capa límite atmosférica. Por este motivo, no logra apreciarse una clara tendencia en cuanto al aporte de la variable predictora en el modelo predictivo dado a que en todo el rango de variación los aportes son tanto de incremento como de decremento de la concentración. Dada la inconsistencia existente en el rango de variación de los aportes, se concluye que para este modelo predictivo la importancia que adquiere la variable se encuentra vinculada al actuar conjunto con otras variables independientes.
 
 #### Integración vertical flujo ozono norte
 
@@ -299,7 +299,7 @@ knitr::include_graphics("images/imagescap5/shapindoznor.png")
 ```
 (ref:shapindoznor) Gráfico de la variable integración vertical flujo ozono norte contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo industrial.
   
-  La figura \@ref(fig:shapurbrug) muestra que valores de baja magnitud de la integración vertical flujo ozono norte promueven reducciones en las predicciones de la variable respuesta, mientras que valores de elevada magnitud de la variable independiente resultan en incrementos de las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo directa similar a la reportada por el análisis de variación conjunto entre ambas variables (Anexo 5). 
+  La Figura \@ref(fig:shapurbrug) muestra que valores de baja magnitud de la integración vertical flujo ozono norte promueven reducciones en las predicciones de la variable respuesta, mientras que valores de elevada magnitud de la variable independiente resultan en incrementos de las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo directa similar a la reportada por el análisis de variación conjunto entre ambas variables (Anexo 5). 
 
 #### Humedad relativa
   
@@ -308,7 +308,7 @@ knitr::include_graphics("images/imagescap5/shapindhum.png")
 ```
 (ref:shapindhum) Gráfico de la variable humedad relativa contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo industrial.
   
-  La figura \@ref(fig:shapindhum) muestra que valores menores al 90% de humedad relativa favorecen incrementos de las concentraciones de PM~2.5~, mientras que humedades relativas mayores tienden a favorecer decrementos de la concentraciones. Además, puede apreciarse una mayor densidad de valores de elevada concentración de PM~2.5~ entre el 80% y 90% de humedad relativa. De esta forma, puede notarse que en este modelo predictivo valores por encima del 90% de humedad relativa favorecen la remoción de PM~2.5~, mientras que valores por debajo de este límite favorecen aportes a la concentración de dicho contaminante. De esta forma, puede concluirse que la relación de vinculación que prevalece en el modelo predictivo es del tipo inversa, similar a una de las reportadas durante el análisis de conexión entre las mismas (Capítulo [4](#cap:var)).
+  La Figura \@ref(fig:shapindhum) muestra que valores menores al 90% de humedad relativa favorecen incrementos de las concentraciones de PM~2.5~, mientras que humedades relativas mayores tienden a favorecer decrementos de la concentraciones. Además, puede apreciarse una mayor densidad de valores de elevada concentración de PM~2.5~ entre el 80% y 90% de humedad relativa. De esta forma, puede notarse que en este modelo predictivo valores por encima del 90% de humedad relativa favorecen la remoción de PM~2.5~, mientras que valores por debajo de este límite favorecen aportes a la concentración de dicho contaminante. De esta forma, puede concluirse que la relación de vinculación que prevalece en el modelo predictivo es del tipo inversa, similar a una de las reportadas durante el análisis de conexión entre las mismas (Capítulo [4](#cap:var)).
 
 ###  Modelado de PM~2.5~ en entornos agrícola y área verde
 
@@ -354,7 +354,7 @@ knitr::include_graphics("images/imagescap5/varimpaa.png")
 ```
 (ref:varimpaa) Importancia relativa de las variables en las redes neuronales recurrentes para el uso de suelo agrícola/ área verde.
   
-  A partir de la figura \@ref(fig:varimpaa) pueden apreciarse las cinco variables de mayor importancia relativa para el modelo predictivo en el uso de suelo agrícola y área verde bajo la base de datos reducida. Dos de las mismas se encuentran vinculadas a la escala temporal, destacando la dependencia de la variable respuesta respecto a sus patrones de variación temporales explorados en el capítulo [3](#cap:expl). Las restantes son variables meteorológicas vinculadas a la variabilidad estudiada en el capítulo [4](#cap:var). Los resultados muestran que las cinco variables de mayor importancia relativa reúnen más del 40% de la misma. De esta forma puede apreciarse como en este uso de suelo se requiere una menor cantidad de variables para reunir el mismo porcentaje de importancia relativa con respecto a los demás usos de suelo, demostrando de esta forma, mayor capacidad para explicar la variabilidad en la concentración de PM~2.5~ a partir de un porcentaje menor de información.
+  A partir de la Figura \@ref(fig:varimpaa) pueden apreciarse las cinco variables de mayor importancia relativa para el modelo predictivo en el uso de suelo agrícola y área verde bajo la base de datos reducida. Dos de las mismas se encuentran vinculadas a la escala temporal, destacando la dependencia de la variable respuesta respecto a sus patrones de variación temporales explorados en el capítulo [3](#cap:expl). Las restantes son variables meteorológicas vinculadas a la variabilidad estudiada en el capítulo [4](#cap:var). Los resultados muestran que las cinco variables de mayor importancia relativa reúnen más del 40% de la misma. De esta forma puede apreciarse como en este uso de suelo se requiere una menor cantidad de variables para reunir el mismo porcentaje de importancia relativa con respecto a los demás usos de suelo, demostrando de esta forma, mayor capacidad para explicar la variabilidad en la concentración de PM~2.5~ a partir de un porcentaje menor de información.
   
   A la hora de predecir la concentración de PM~2.5~ en entornos agrícolas y áreas verdes, es crucial considerar la estación del año, temperatura de rocío, escorrentía, temperatura y el mes del año. 
   
@@ -365,7 +365,7 @@ knitr::include_graphics("images/imagescap5/shapaaroc.png")
 ```
 (ref:shapaaroc) Gráfico de la variable temperatura del punto de rocío contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo agrícola / área verde.
   
-  La figura \@ref(fig:shapaaroc) muestra que valores de baja magnitud de la temperatura del punto de rocío se asocian con altas concentraciones de PM~2.5~, mientras que valores elevada magnitud lo hacen con bajas concentraciones de PM~2.5~. De esta forma se identifica una relación del tipo inversa similar a la reportada durante el estudio de la relación de vinculación entre ambas variables (Capítulo [4](#cap:var)).
+  La Figura \@ref(fig:shapaaroc) muestra que valores de baja magnitud de la temperatura del punto de rocío se asocian con altas concentraciones de PM~2.5~, mientras que valores elevada magnitud lo hacen con bajas concentraciones de PM~2.5~. De esta forma se identifica una relación del tipo inversa similar a la reportada durante el estudio de la relación de vinculación entre ambas variables (Capítulo [4](#cap:var)).
   
 #### Tasa media de escorrentía subterránea
 
@@ -376,7 +376,7 @@ knitr::include_graphics("images/imagescap5/shapaaesc.png")
 ```
 (ref:shapaaesc) Gráfico de la variable tasa media de escorrentía subterránea contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo agrícola / área verde.
   
-  La figura \@ref(fig:shapaaesc) muestra que valores de baja magnitud de la tasa media de escorrentía subterránea (menores a 5.07e-07) favorecen bajas concentraciones de PM~2.5~, mientras que valores superiores de la variable promueven un aumento en la concentración de PM~2.5~ predicha. Para valores superiores a 1.0e-06, la relación entre las variables permanece sin variaciones importantes respecto del aporte a la concentración. De esta forma se identifica una relación del tipo directa similar a la reportada en el análisis de conexión entre las mismas (Anexo 5). 
+  La Figura \@ref(fig:shapaaesc) muestra que valores de baja magnitud de la tasa media de escorrentía subterránea (menores a 5.07e-07) favorecen bajas concentraciones de PM~2.5~, mientras que valores superiores de la variable promueven un aumento en la concentración de PM~2.5~ predicha. Para valores superiores a 1.0e-06, la relación entre las variables permanece sin variaciones importantes respecto del aporte a la concentración. De esta forma se identifica una relación del tipo directa similar a la reportada en el análisis de conexión entre las mismas (Anexo 5). 
 
 #### Integración vertical de temperatura
 
@@ -387,7 +387,7 @@ knitr::include_graphics("images/imagescap5/shapaaintvert.png")
 ```
 (ref:shapaaintvert) Gráfico de la variable integración vertical de temperatura contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo agrícola / área verde.
 
-  La figura \@ref(fig:shapaaintvert) muestra que valores de baja magnitud de la integración vertical de temperatura se asocia con bajas predicciones de PM~2.5~, mientras que valores de elevada magnitud de la variable resultan en incrementos de las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo directa similar a la reportada en el análisis de conexión entre las mismas (Anexo 5).
+  La Figura \@ref(fig:shapaaintvert) muestra que valores de baja magnitud de la integración vertical de temperatura se asocia con bajas predicciones de PM~2.5~, mientras que valores de elevada magnitud de la variable resultan en incrementos de las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo directa similar a la reportada en el análisis de conexión entre las mismas (Anexo 5).
 
 ## Discusión
   

@@ -17,7 +17,7 @@ knitr::include_graphics("images/GA/sens.png")
 ```
 (ref:sens) Resumen gráfico del protocolo analítico desarrollado en el capítulo 2.
 
-  La figura \@ref(fig:sens) presenta el protocolo analítico desarrollado en el capítulo [2](#cap:sens), ofreciendo una visión ordenada de las distintas actividades llevadas a cabo para alcanzar el objetivo propuesto. En primer lugar, se destaca la intensa investigación de tecnologías disponibles en el mercado referidas a sensores de bajo costo. A continuación, se ilustra el procedimiento de armado y ensamble de los sensores de bajo costo, específicamente diseñado para la medición de concentración de PM~2.5~. Posteriormente se hace referencia a la evaluación de la calidad del dato recopilado, la cual se abordo en dos etapas: la primera se centra en determinar el consenso de las mediciones obtenidas por los distintos sensores, mientras que la segunda se enfoca en comparar las mediciones con respecto a las de una estación de referencia, evaluando su fiabilidad y precisión.
+  La Figura \@ref(fig:sens) presenta el protocolo analítico desarrollado en el capítulo [2](#cap:sens), ofreciendo una visión ordenada de las distintas actividades llevadas a cabo para alcanzar el objetivo propuesto. En primer lugar, se destaca la intensa investigación de tecnologías disponibles en el mercado referidas a sensores de bajo costo. A continuación, se ilustra el procedimiento de armado y ensamble de los sensores de bajo costo, específicamente diseñado para la medición de concentración de PM~2.5~. Posteriormente se hace referencia a la evaluación de la calidad del dato recopilado, la cual se abordo en dos etapas: la primera se centra en determinar el consenso de las mediciones obtenidas por los distintos sensores, mientras que la segunda se enfoca en comparar las mediciones con respecto a las de una estación de referencia, evaluando su fiabilidad y precisión.
 
 ### Desarrollo del sistema de monitoreo basado en sensores de bajo costo
 
@@ -87,7 +87,7 @@ knitr::include_graphics("images/imagescap2/SensorDentroRecorte.png")
 ```
 (ref:SensorDentroRecorte) Dispositivo de monitoreo de bajo costo ensamblado.
 
-  La figura \@ref(fig:SensorDentroRecorte) presenta una vista detallada de uno de los dispositivos de monitoreo de bajo costo en su última versión, donde pueden observarse los diferentes componentes, así como las interconexiones que permiten la comunicación entre ellos.
+  La Figura \@ref(fig:SensorDentroRecorte) presenta una vista detallada de uno de los dispositivos de monitoreo de bajo costo en su última versión, donde pueden observarse los diferentes componentes, así como las interconexiones que permiten la comunicación entre ellos.
 
   El sensor de mayor tamaño, localizado en el frente del dispositivo es el sensor PMS 1003, responsable de la medición la concentración de PM. Por este motivo es que tanto en su frente como en sus alrededores se realizaron perforaciones que garantizan el flujo de aire. 
   
@@ -98,7 +98,7 @@ knitr::include_graphics("images/imagescap2/LaReserva_Recorte.jpg")
 ```
 (ref:LaRes) Sistema de monitoreo de bajo costo en funcionamiento durante el muestreo en La Reserva Natural Urbana General San Martín de la Provincia de Córdoba.
 
-  La figura \@ref(fig:LaRes) muestra el sistema de monitoreo de bajo costo dispuesto en La Reserva Natural Urbana General San Martín. En la imagen, puede apreciarse cómo el sensor se encuentra instalado en el exterior del edificio, pero protegido de la lluvia, lo que garantiza su integridad y correcto funcionamiento.
+  La Figura \@ref(fig:LaRes) muestra el sistema de monitoreo de bajo costo dispuesto en La Reserva Natural Urbana General San Martín. En la imagen, puede apreciarse cómo el sensor se encuentra instalado en el exterior del edificio, pero protegido de la lluvia, lo que garantiza su integridad y correcto funcionamiento.
 
 ### Consenso de medición de la concentración de PM~2.5~ entre los sistemas de monitoreo de bajo costo
 
@@ -142,7 +142,7 @@ knitr::include_graphics("images/imagescap2/SeriesSuperpuestas.png")
 ```
 (ref:SeriesSuperpuestas) Series de tiempo de concentración de PM~2.5~ generadas durante la medición conjunta de los sistemas de monitoreo de bajo costo superpuestas.
 
-  En la figura \@ref(fig:SeriesSuperpuestas) puede notarse como a pesar de que las mediciones de los sensores a lo largo del tiempo siguen un patrón general común, pueden variar en magnitud en un mismo instante, dando lugar a pequeñas desviaciones en los registros. A pesar de esto, puede apreciarse que estas diferencias son bajas en comparación con el rango de variación de los valores que toma la variable de interés.
+  En la Figura \@ref(fig:SeriesSuperpuestas) puede notarse como a pesar de que las mediciones de los sensores a lo largo del tiempo siguen un patrón general común, pueden variar en magnitud en un mismo instante, dando lugar a pequeñas desviaciones en los registros. A pesar de esto, puede apreciarse que estas diferencias son bajas en comparación con el rango de variación de los valores que toma la variable de interés.
   
   Para evaluar esta deficiencia en el consenso de los sensores, se calculó la métrica de MAE (error absoluto medio), que refleja la media de la suma de las diferencias en valor absoluto de las mediciones entre los sensores, otorgando un resultado máximo de 2.66 entre los sensores. Este valor indica que los dos sensores que mayor discrepancia reflejaron en sus mediciones (sensor 2 y sensor 10) tienen una diferencia promedio en valor absoluto de 2.66 $\frac{\mu g}{m^3}$ en sus mediciones a lo largo del tiempo. Este valor representa el 4% del rango de variación promedio entre las mediciones de todos los sensores, el cual es de 69 $\frac{\mu g}{m^3}$ (Tabla \@ref(tab:sensres)). Además, la media de esta métrica arrojó un valor de 1.17 $\frac{\mu g}{m^3}$, demostrando que esta es la diferencia promedio en valor absoluto entre las mediciones de concentración de PM~2.5~ de los sistemas de monitoreo de bajo costo a lo largo del tiempo.
   
@@ -153,7 +153,7 @@ knitr::include_graphics("images/imagescap2/PairsPlot.png")
 ```
 (ref:PairsPlot) Relación entre las mediciones de concentración de PM~2.5~ de los distintos sistemas de monitoreo de bajo costo, su distribución y coeficientes de correlación.
 
-  La figura \@ref(fig:PairsPlot) confirma el consenso entre las mediciones de los distintos sensores. El diagrama de puntos generado por la combinación de cada par de sensores muestra una estrecha relación con la recta de similitud de 45 grados, demostrando una alta coincidencia en las mediciones a lo largo del tiempo. Además, los coeficientes de correlación calculados para cada par de sensores son siempre mayores a 0.99, indicando una correlación lineal muy fuerte entre las mediciones. En consecuencia, podemos concluir que los sistemas de monitoreo de bajo costo son capaces de medir con precisión el PM~2.5~ en el aire, y que existe un alto grado de acuerdo entre las mediciones obtenidas por cada uno de ellos.
+  La Figura \@ref(fig:PairsPlot) confirma el consenso entre las mediciones de los distintos sensores. El diagrama de puntos generado por la combinación de cada par de sensores muestra una estrecha relación con la recta de similitud de 45 grados, demostrando una alta coincidencia en las mediciones a lo largo del tiempo. Además, los coeficientes de correlación calculados para cada par de sensores son siempre mayores a 0.99, indicando una correlación lineal muy fuerte entre las mediciones. En consecuencia, podemos concluir que los sistemas de monitoreo de bajo costo son capaces de medir con precisión el PM~2.5~ en el aire, y que existe un alto grado de acuerdo entre las mediciones obtenidas por cada uno de ellos.
 
 ### Validación con respecto a la estación de referencia
 
@@ -162,7 +162,7 @@ knitr::include_graphics("images/imagescap2/reffacet10.png")
 ```
 (ref:reffacet) Series de tiempo generadas durante la medición simultánea de la estación de referencia y el dispositivo de monitoreo de bajo costo. 
 
-  En la figura \@ref(fig:reffacet) puede apreciarse que la tendencia general de las mediciones es similar para ambos instrumentos de medición, ya que ambas series muestran fluctuaciones similares, demostrando acuerdo entre sus registros. A partir de estos resultados, podría establecerse en primera instancia, que las mediciones de concentración de PM~2.5~ registradas por los sensores de bajo costo permitirían representar en términos generales los datos obtenidos por una estación de referencia. 
+  En la Figura \@ref(fig:reffacet) puede apreciarse que la tendencia general de las mediciones es similar para ambos instrumentos de medición, ya que ambas series muestran fluctuaciones similares, demostrando acuerdo entre sus registros. A partir de estos resultados, podría establecerse en primera instancia, que las mediciones de concentración de PM~2.5~ registradas por los sensores de bajo costo permitirían representar en términos generales los datos obtenidos por una estación de referencia. 
 
 ```{r refjuntas, echo=FALSE, out.width="100%", fig.align="center", fig.cap="(ref:refjuntas)"}
 knitr::include_graphics("images/imagescap2/refjuntas10.png")
