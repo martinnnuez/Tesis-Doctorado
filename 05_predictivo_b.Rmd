@@ -316,7 +316,7 @@ knitr::include_graphics("images/imagescap5/shapindhum.png")
 
   Esta sección desarrolla el modelado predictivo de la concentración de PM~2.5~ a partir de las base de datos original y reducida. La base de datos reducida contó con un total de 84 variables. Una descripción detallada de cada una de ellas puede hallarse en el Anexo 1. 
 
-Table: Error cuadrático medio de predicción (*RMSE*) de modelos ajustados para predecir la concentración de PM~2.5~ en el uso de suelo industrial a partir de 193 variables satelitales (base de datos original) y 84 variables seleccionadas (base de datos reducida). \label{tab:modaa} 
+Table: Error cuadrático medio de predicción (*RMSE*) de modelos ajustados para predecir la concentración de PM~2.5~ en el uso de suelo agrícola/ área verde a partir de 193 variables satelitales (base de datos original) y 84 variables seleccionadas (base de datos reducida). \label{tab:modaa} 
 
 | Modelo / Base de datos | Original | Reducida |
 |------------------------------|:-----------:|:-----------:|
