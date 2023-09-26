@@ -341,9 +341,7 @@ Table: Medidas descriptivas para las series temporales promedio para los distint
 | Medida | Urbano | Agrícola/Área Verde | Industrial |
 |----------------|:-----------:|:-----------------:|:-----------:|
 | Media | 11.54 | 6.78 | 14.22 |
-| Varianza | 97.91 | 37.23 | 134.22 |
 | Desviación estándar  | 9.90 | 6.10 | 11.59 |
-| CV | 0.86 | 0.90 | 0.81 |
 | Máximo | 81.80 | 47.02 | 93.17 |
 | Mínimo | 0.01 | 0 | 0.07 |
 | Percentil 50  | 8.41 | 4.92 | 10.81 |
@@ -354,14 +352,14 @@ Table: Medidas descriptivas para las series temporales promedio para los distint
 | RI | 7.31 | 4.38 | 9.15 |
 \begin{flushleft}
 \setstretch{0.5}
-{\footnotesize Coeficiente de variación (CV) y rango intercuartílico (RI).}
+{\footnotesize Rango intercuartílico (RI).}
 \end{flushleft}
 
   A partir de los datos presentados en la Tabla \@ref(tab:descript) puede apreciarse que la media para las series de datos industrial y urbana son superiores a la de la serie agrícola y área verde. Este hecho podría indicar que en entornos urbanos e industriales los niveles de partículas son mayores que los de áreas verdes. Sin embargo, esta medida de posición puede verse fuertemente influenciada por valores extremos, lo que reduce su utilidad para representar los distintos ambientes. Para realizar tal comparación se ha empleado la mediana o percentil 50. Puede apreciarse que en entornos urbanos el percentil 50 es igual a 8.41 $\frac{\mu g}{m^3}$, indicando que la mitad de los datos toman un valor igual o menor a este. Por otra parte, la mediana para los ambientes agrícolas y área verdes es de 4.92 $\frac{\mu g}{m^3}$ y para la industrial es de 10.81 $\frac{\mu g}{m^3}$. Estos datos sugieren que los entornos urbanos e industriales muestran concentraciones superiores que las provenientes de áreas agrícolas y verdes. Además, la concentración en entornos industriales demuestra ser superior a la registrada en entornos urbanos.
 
   También puede apreciarse que el valor del percentil 90 para la serie de datos agrícola y de área verde es prácticamente similar al percentil 75 de la serie de datos urbana y este es a su vez es similar al percentil 65 para la serie de datos industrial. Este hecho evidencia en términos generales que un mayor porcentaje de datos se encuentra por debajo del mismo límite numérico, de esta forma indicando que la serie de datos industrial toma valores de mayor magnitud que la serie de datos urbana y estás a su vez demuestran mayores magnitudes que la serie de datos agrícola/área verde.  
 
-  El coeficiente de variación permite concluir que la serie agrícola y área verde posee menor dispersión de datos respecto a su media o lo que es equivalente, mayor concentración de datos en torno a su media, respecto de las series urbana e industrial. A su vez, los registros de la serie urbana se encuentran más concentrados respecto a su media en comparación con la de entornos industriales. Esto indica que hay una mayor dispersión de datos respecto de su media en la serie industrial que en la serie urbana. Asimismo, es importante destacar que estos resultados son específicos para la zona y el período de estudio y que podrían variar en otras regiones geográficas y períodos de tiempo.
+  Estos datos permiten concluir que la serie agrícola y área verde posee menor dispersión de datos respecto a su media o lo que es equivalente, mayor concentración de datos en torno a su media, respecto de las series urbana e industrial. A su vez, los registros de la serie urbana se encuentran más concentrados respecto a su media en comparación con la de entornos industriales. Esto indica que hay una mayor dispersión de datos respecto de su media en la serie industrial que en la serie urbana. Asimismo, es importante destacar que estos resultados son específicos para la zona y el período de estudio y que podrían variar en otras regiones geográficas y períodos de tiempo.
 
 ```{r boxplotcomp, echo=FALSE, out.width="100%", fig.align="center", fig.cap="(ref:boxplotcomp)"}
 knitr::include_graphics("images/imagescap3/boxplotcomp.png")
