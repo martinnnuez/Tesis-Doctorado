@@ -343,7 +343,7 @@ Table: Medidas descriptivas para las series temporales promedio para los distint
 | Media | 11.54 | 6.78 | 14.22 |
 | Desviación estándar  | 9.90 | 6.10 | 11.59 |
 | Máximo | 81.80 | 47.02 | 93.17 |
-| Mínimo | 0.01 | 0 | 0.07 |
+| Mínimo | 0.01 | 0.00 | 0.07 |
 | Percentil 50  | 8.41 | 4.92 | 10.81 |
 | Percentil 65  | 12.03 | 7.07 | 15.51 |
 | Percentil 75  | 15.72 | 9.30 | 19.96 |
