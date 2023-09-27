@@ -336,7 +336,7 @@ Table: Error cuadrático medio de predicción (*RMSE*) de modelos ajustados para
 | *Modelo de referencia* | 2.77 | 2.77 |
 \begin{flushleft}
 \setstretch{0.5}
-{\footnotesize Los valores de \textit{RMSE} se encuentran en las mismas unidades que la concentración de PM$_{2.5}$, es decir [$\frac{\mu g}{m^3}$]. Un menor valor de \textit{RMSE} indica mejor desempeño del modelo predictivo. El PM$_{2.5}$ promedio para el uso de suelo agrícola y área verde fue de 6.78 $\frac{\mu g}{m^3}$. El \textit{RMSE} reportado se calculó sobre la base de datos de testeo.}
+{\footnotesize Los valores de \textit{RMSE} se encuentran en las mismas unidades que la concentración de PM$_{2.5}$, es decir [$\frac{\mu g}{m^3}$]. Un menor valor de \textit{RMSE} indica mejor desempeño del modelo predictivo. El PM$_{2.5}$ promedio para el uso de suelo agrícola y área verde fue de 2.76 $\frac{\mu g}{m^3}$. El \textit{RMSE} reportado se calculó sobre la base de datos de testeo.}
 \end{flushleft}
 
   La Tabla \@ref(tab:modaa) presenta los resultados derivados del proceso de modelado predictivo empleando los datos correspondientes al uso de suelo agrícola y área verde. En este caso, puede apreciarse que el algoritmo que demuestra el mayor rendimiento predictivo es el de bosques aleatorios. Este resultado es independiente de la versión de la base de datos utilizada, destacando su mayor precisión en la versión desarrollada a partir de la base de datos reducida. A diferencia de los resultados obtenidos con respecto a los demás usos de suelo (Tabla \@ref(tab:modurb) y Tabla \@ref(tab:modind)) las redes neuronales recurrentes no logran superar el modelo de referencia propuesto. Este resultado podría encontrarse vinculado a las características propias de la serie de tiempo en entornos agrícolas y áreas verdes. 
@@ -371,7 +371,7 @@ knitr::include_graphics("images/imagescap5/shapaaroc.png")
 
   La tasa media de escorrentía subterránea, es la parte del agua procedente de las precipitaciones, del deshielo o de las napas, que escurre por debajo de la superficie terrestre. El agua que no se almacena escurre, esto puede ser por la superficie (escorrentía superficial) o por debajo del suelo (escorrentía subsuperficial), la suma de ambas se denomina escorrentía. Este parámetro refiere a la tasa que tendría la escorrentía si se repartiera uniformemente por la cuadrícula de resolución espacial. La escorrentía es una medida de la disponibilidad de agua en el suelo y puede utilizarse, por ejemplo, como indicador de sequía o inundación. Se espera que la influencia de la variable en la concentración de PM~2.5~, sea a través del proceso físico de refrigeración de la atmósfera, influyendo en los niveles de la capa límite atmosférica. Las unidades en las que se mide este parámetro son kilogramos por metro cuadrado por segundo ($\frac{Kg}{m^2.s}$). 
 
-```{r shapaaesc, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(shapaaesc)"}
+```{r shapaaesc, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapaaesc)"}
 knitr::include_graphics("images/imagescap5/shapaaesc.png")
 ```
 (ref:shapaaesc) Gráfico de la variable tasa media de escorrentía subterránea contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo agrícola / área verde.
