@@ -243,7 +243,7 @@ Table: Concentración promedio anual de PM~2.5~ en cada uno de los sitios de mue
 {\footnotesize Sitio de muestreo, concentración promedio anual de PM$_{2.5}$ y desviación estándar estimada.}
 \end{flushleft}
 
-  La concentración media anual registrada para la mayoría de los sitios de muestreo supera los limites sugeridos por la OMS, lo que indica una situación preocupante en términos de calidad del aire en la provincia de Córdoba. Los únicos sitios que cumplen con las concentraciones  sugeridas por la OMS son Río Ceballos y Juarez Celman, lo que podría deberse a sus características geográficas y/o a las fuentes de emisión presentes en esas áreas. Por otro lado, la mitad de los sitios supera el estándar anual propuesto por la EPA, indicando que el 50% de las áreas muestreadas en la ciudad de Córdoba no cumple con este estándar (Tabla \@ref(tab:concanual)). 
+  La concentración media anual registrada para todos los sitios de muestreo supera los límites sugeridos por la OMS, lo que indica una situación preocupante en términos de calidad del aire en la provincia de Córdoba. Por otro lado, la mitad de los sitios supera el estándar anual propuesto por la EPA, indicando que el 50% de las áreas muestreadas en la ciudad de Córdoba no cumple con este estándar (Tabla \@ref(tab:concanual)). 
   
   Es importante destacar que la variación en las concentraciones anuales de PM~2.5~ promedio en los distintos sitios de muestreo ponen de manifiesto tanto las diferencias como las similitudes entre ellos respecto a la concentración de PM. Esta tendencia podría atribuirse a características que comparten estos sitios, lo que resulta fundamental para comprender la influencia de los mismos factores en la calidad del aire en estas ubicaciones (Tabla \@ref(tab:concanual)). Este hecho podría esta sugiriendo que la clasificación a priori establecida por uso de suelo en función de las características de cada uno de los sitios, podría no ser correcta. 
 
@@ -318,13 +318,13 @@ De esta forma se evidencia que aunque el uso del suelo determina el rango de var
 
   Es importante destacar que la magnitud de la concentración varía notablemente en los distintos usos de suelo, por lo que es necesario considerar de forma diferencial estos usos al explicar la variabilidad del contaminante en cuestión.
 
-Table: Cantidad de veces en el año que la concentración promedio diaria de PM~2.5~ supera las normativas guía en cada uno de los usos de suelos derivados del análisis de conglomerados.\label{tab:concsup}
+Table: Cantidad de veces en que la concentración promedio diaria de PM~2.5~ supera las normativas guía en cada uno de los usos de suelos derivados del análisis de conglomerados.\label{tab:concsup}
 
 | Uso de suelo | OMS | CBA |
 |--------|:--------:|:--------:|
-| Industrial | 35 / 10.20 % | 9 / 1.75 % |
-| Urbano | 20 / 5.48 %  | 4 / 0.55 % |
-| Agrícola/Área Verde | 3 / 0.82 % | 0 / 0 %|
+| Industrial | 152 / 38.97 % | 9 / 1.75 % |
+| Urbano | 111 / 26.93 %  | 4 / 0.55 % |
+| Agrícola/Área Verde | 35 / 0.85 % | 0 / 0 %|
 \begin{flushleft}
 \setstretch{0.5}
 {\footnotesize Uso de suelo, cantidad de veces que supera los límites propuestos por la Organización Mundial de la Salud (OMS) / porcentaje de tiempo en que se vio superada dicha normativa y cantidad de veces que supera la resolución 105/17 de la Provincia de Córdoba (CBA) / porcentaje de tiempo en que se vio superada dicha normativa.}
