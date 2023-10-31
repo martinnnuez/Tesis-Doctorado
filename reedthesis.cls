@@ -343,7 +343,7 @@
     % {UNC \par}
     {\fontsize{14}{14}\selectfont Directora: \@advisor \par}
     \vfil
-    {\fontsize{14}{14}\selectfont Codirectora: \@altadvisor \par}
+    % {\fontsize{14}{14}\selectfont Codirectora: \@altadvisor \par}
     \vfil
     \vfil
     \vfil
