@@ -118,7 +118,7 @@ Table: Medidas descriptivas de resumen de los distintos sensores.\label{tab:sens
 | 10  |    12.42 | 12.12 |  3.56  | 8.73 | 17.12 | 0.11  | 62.56 |
 | **General** | 14.05 | 13.55 | 4.07  | 10.05 | 19.38 | 0.08  | 69.08 |
 \begin{flushleft}
-\setstretch{0.5}
+\setstretch{1}
 {\footnotesize Sensor, media, desvio estándar, percentil Q1, mediana, percentil Q3, mínimo y máximo.}
 \end{flushleft}
 

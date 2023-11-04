@@ -23,13 +23,13 @@ knitr::include_graphics("images/GA/mod_2.png")
 
   La Figura \@ref(fig:mod) ilustra el protocolo analítico desarrollado en este capítulo, cuyo objetivo central es la construcción de un modelo predictivo para la concentración de PM~2.5~ en el Área Metropolitana de Córdoba, Argentina. Este modelo se destaca por prever la concentración de PM~2.5~ con cinco días de anticipación y emplea como entrada variables meteorológicas satelitales y temporales relacionadas a la variabilidad periódica de este contaminante. Se compararon modelos alternativos basados en aprendizaje automático y profundo, llevando a cabo el ajuste de cada uno de ellos, evaluación y selección del modelo de mayor capacidad predictiva para distintos usos de suelo. Es importante destacar que la presente sección se haya enmarcada dentro de un enfoque computacional de inteligencia artificial. 
   
-  En primer lugar, se llevó a cabo una comparación exhaustiva de distintos algoritmos de aprendizaje automático: regresión lineal múltiple [@saunders1998ridge; @tibshirani1996regression; @zou2005regularization; @bottou2007tradeoffs], máquinas de vectores de soporte [@cortes1995support], k vecinos más cercanos [@fix1985discriminatory], bosques aleatorios [@breiman2001random] y máquina de aumento de gradiente [@friedman2001greedy]); y profundo (redes neuronales recurrentes [@bishop1995neural], redes de memoria a largo plazo [@hochreiter1997long] y redes recurrentes con compuerta [@cho2014properties], con el propósito de identificar cuál de ellos demostraba el mejor rendimiento predictivo. La metodología de modelado abarcó el desarrollo de un modelo predictivo que considera un desfasaje temporal de 5 días. Además, se aplicó una estrategia de modelado que discriminó según el uso de suelo, permitiendo ajustar distintos modelos predictivos para cada uno de los usos considerados. También se evaluaron distintas alternativas de bases de datos como soporte para el modelo predictivo, una incluyó todas las variables predictoras y otra involucró una selección de variables para trabajar con una base de datos reducida. Esta última se creó mediante técnicas de reducción de dimensionalidad y selección de características (featurewiz [@bakheet2023hybrid], Boruta [@kursa2010boruta] y Boruta alternativo [@jamei2023surface]). Las variables incluidas en cada una de las bases de datos se encuentran mencionadas en el Anexo 1 para cada uso de suelo. Los algoritmos de aprendizaje evaluados fueron optimizados por medio de la búsqueda de hiperparámetros e interpretados a través de la implementación del método de Shapley (valores SHAP) [@lubo2020machine]. El entrenamiento de los algoritmos predictivos se realizó con un desfasaje de la variable respuesta respecto a las predictoras de 120 horas, es decir, cinco días, dadas las características de las bases de datos satelitales incorporadas como variables regresoras explicadas en el capítulo [1](#cap:ig). La evaluación de los modelos se realizó mediante la comparación de la métrica RMSE obtenida a partir de una validación cruzada *K-fold* con un K igual a 10.
+  En primer lugar, se llevó a cabo una comparación exhaustiva de distintos algoritmos de aprendizaje automático: regresión lineal múltiple [@saunders1998ridge; @tibshirani1996regression; @zou2005regularization; @bottou2007tradeoffs], máquinas de vectores de soporte [@cortes1995support], k vecinos más cercanos [@fix1985discriminatory], bosques aleatorios [@breiman2001random] y máquina de aumento de gradiente [@friedman2001greedy]); y profundo (redes neuronales recurrentes [@bishop1995neural], redes de memoria a largo plazo [@hochreiter1997long] y redes recurrentes con compuerta [@cho2014properties], con el propósito de identificar cuál de ellos demostraba el mejor rendimiento predictivo. La metodología de modelado abarcó el desarrollo de un modelo predictivo que considera un desfasaje temporal de 5 días. Además, se aplicó una estrategia de modelado que discriminó según el uso del suelo, permitiendo ajustar distintos modelos predictivos para cada uno de los usos considerados. También se evaluaron distintas alternativas de bases de datos como soporte para el modelo predictivo, una incluyó todas las variables predictoras y otra involucró una selección de variables para trabajar con una base de datos reducida. Esta última se creó mediante técnicas de reducción de dimensionalidad y selección de características (featurewiz [@bakheet2023hybrid], Boruta [@kursa2010boruta] y Boruta alternativo [@jamei2023surface]). Las variables incluidas en cada una de las bases de datos se encuentran mencionadas en el Anexo 1 para cada uso del suelo. Los algoritmos de aprendizaje evaluados fueron optimizados por medio de la búsqueda de hiperparámetros e interpretados a través de la implementación del método de Shapley (valores SHAP) [@lubo2020machine]. El entrenamiento de los algoritmos predictivos se realizó con un desfasaje de la variable respuesta respecto a las predictoras de 120 horas, es decir, cinco días, dadas las características de las bases de datos satelitales incorporadas como variables regresoras explicadas en el capítulo [1](#cap:ig). La evaluación de los modelos se realizó mediante la comparación de la métrica RMSE obtenida a partir de una validación cruzada *K-fold* con un K igual a 10.
 
 ### Base de datos
 
   En esta sección, se utilizó la misma base de datos que fue implementada en el capítulo [4](#cap:var), generada a partir de la combinación de los datos de concentración de PM~2.5~ recopilados durante el muestreo con sensores de bajo costo, analizados en el capítulo [3](#cap:expl), y los datos satelitales y meteorológicos analizados en el capítulo [4](#cap:var), descargados desde la nube. 
   
-  Además de las variables mencionadas, se incorporaron variables temporales como la estación del año, el mes, el día del mes, el día de la semana y la hora de la lectura del contaminante. Éstas se incluyeron tanto en su forma categórica original como luego de ser codificadas de manera cíclica mediante la introducción de las componentes de seno y coseno correspondientes. Es importante destacar que todas las variables numéricas se estandarizaron, unificando los rangos de variabilidad.
+  Además de las variables mencionadas, se incorporaron variables temporales como la estación del año, el mes, el día del mes, el día de la semana y la hora de la lectura del contaminante. Éstas se incluyeron tanto en su forma categórica original como luego de ser codificadas de manera cíclica mediante la introducción de las componentes de seno y coseno correspondientes. Es importante destacar que todas las variables numéricas se estandarizaron o normalizaron con el objetivo de homogeneizar sus rangos de variabilidad y ajustar su desviación estándar a 1. Este proceso permitió evitar problemas de escala y facilitó la comparación entre las variables.
 
   Para lograr una comprensión integral de la relación de vinculación entre las variables que resultaron relevantes en el proceso de modelado predictivo y la concentración de PM~2.5~ se incluyó el análisis exploratorio realizado durante el capítulo [4](#cap:var) de forma resumida haciendo especial énfasis en la conexión de las variables. Por otra parte, para aquellas variables que no fueron abordadas en el análisis del capítulo [4](#cap:var) dado a que no son habitualmente citadas en sustentos bibliográficos para describir la variación de la concentración de PM~2.5~, se incluyó un análisis exploratorio equivalente al desarrollado en dicho capítulo. En primer lugar, a pesar de existir una descripción detallada de cada una de las variables en el Anexo 3, se incluyó la definición de la variable en cuestión, proseguida de su análisis exploratorio. La inclusión de este análisis tiene por objetivo garantizar una interpretación e inferencia adecuada acerca de la manera en que se manifiesta la variabilidad conjunta desenmascarada entre la variable y la concentración de PM~2.5~, permitiendo generar independencia entre los capítulos de la presente tesis.
 
@@ -117,17 +117,45 @@ knitr::include_graphics("images/imagescap5/redalgo.png")
  
   Para comparar el desempeño predictivo de los distintos algoritmos ajustados tanto en el conjunto de datos de entrenamiento como en el de testeo, se implementó la métrica de rendimiento raíz del error cuadrático medio de predicción ($RMSE$), la cual se deriva  a partir del error cuadrático medio ($MSE$).
   
-  Error cuadrático medio (*mean squared error (MSE)*): es un estimador que mide el promedio de los errores al cuadrado, es decir, la diferencia entre el valor observado y su predicción por el modelo. Es una función de riesgo, correspondiente al valor esperado de la pérdida del error al cuadrado o pérdida cuadrática. Mientras menor es su valor, más exactos serán los pronósticos del modelo predictivo [@lehmann2006theory].
+  Error cuadrático medio (*mean squared error (MSE)*): es un estimador que mide el promedio de los errores al cuadrado, es decir, la diferencia entre el valor observado y su predicción por el modelo (Ecuación 2). Es una función de riesgo, correspondiente al valor esperado de la pérdida del error al cuadrado o pérdida cuadrática. Mientras menor es su valor, más exactos serán los pronósticos del modelo predictivo [@lehmann2006theory].
   
 \begin{equation*} 
-\sum_{i=1}^{N}(y_i-\hat{y_i})^2
+\sum_{i=1}^{N}(y_i-\hat{y_i})^2 \tag{2}
 \end{equation*} 
+\begin{flushleft}
+\setstretch{1}
+{\footnotesize
+\textbf{Ecuación 2:}
+  Error cuadrático medio (\textit{mean squared error}).
+  
+\textbf{Componentes}:
+\begin{itemize}
+    \item \textbf{y$_{i}$:} valor real u observado en el i-ésimo punto de datos en un conjunto de datos. Representa el resultado o la variable de respuesta que se está tratando de predecir o modelar en el contexto de un problema de regresión.
+    \item \textbf{$\hat{y_i}$:} predicción del modelo en el i-ésimo punto de datos. Es el valor estimado por el modelo para y$_{i}$.
+    \item \textbf{n:} número total de puntos en el conjunto de datos.
+\end{itemize}
+}
+\end{flushleft}
 
-  Raíz del error cuadrático medio (*root mean squared error ($RMSE$)*): expresa el promedio de la diferencia cuadrática entre los valores predichos por el modelo y los valores observados [@hyndman2006effect]. Esta es siempre no negativa, y un valor de 0 (poco común en la práctica) indicaría un ajuste perfecto a los datos. Generalmente, mientras menor $RMSE$ mejor ajuste o mayor exactitud en las predicciones. Esta métrica es sensible a valores atípicos y pone mayor peso en los grandes errores, ya que su coeficiente elevado al cuadrado influirá notablemente en el resultado [@lehmann2006theory; @pontius2008components; @willmott2006use].
+  Raíz del error cuadrático medio (*root mean squared error ($RMSE$)*): expresa el promedio de la diferencia cuadrática entre los valores predichos por el modelo y los valores observados [@hyndman2006effect] (Ecuación 3). Esta es siempre no negativa, y un valor de 0 (poco común en la práctica) indicaría un ajuste perfecto a los datos. Generalmente, mientras menor $RMSE$ mejor ajuste o mayor exactitud en las predicciones. Esta métrica es sensible a valores atípicos y pone mayor peso en los grandes errores, ya que su coeficiente elevado al cuadrado influirá notablemente en el resultado [@lehmann2006theory; @pontius2008components; @willmott2006use].
 
 \begin{equation*} 
-RMSE = \sqrt{\frac{1}{n}\sum\nolimits_{i=1}^N(y_i-\hat{y_i})^2}
+RMSE = \sqrt{\frac{1}{n}\sum\nolimits_{i=1}^N(y_i-\hat{y_i})^2} \tag{3}
 \end{equation*}
+\begin{flushleft}
+\setstretch{1}
+{\footnotesize
+\textbf{Ecuación 3:}
+  Raíz del error cuadrático medio (\textit{root mean squared error} ($RMSE$)).
+  
+\textbf{Componentes}:
+\begin{itemize}
+    \item \textbf{y$_{i}$:} valor real u observado en el i-ésimo punto de datos en un conjunto de datos. Representa el resultado o la variable de respuesta que se está tratando de predecir o modelar en el contexto de un problema de regresión.
+    \item \textbf{$\hat{y_i}$:} predicción del modelo en el i-ésimo punto de datos. Es el valor estimado por el modelo para y$_{i}$.
+    \item \textbf{n:} número total de puntos en el conjunto de datos.
+\end{itemize}
+}
+\end{flushleft}
  
   La metodología implementada para llevar a cabo el ajuste y evaluación de los modelos predictivos, se basó en un enfoque iterativo que involucró la de división de datos, entrenamiento del modelo y evaluación por medio de las métricas de desempeño. La base de datos se dividió en subconjuntos de entrenamiento, validación y testeo a partir de un muestreo aleatorio estratificado por meses, días y horas. Esta estratificación buscó maximizar la representatividad de las distintas condiciones temporales existentes en los distintos subconjuntos de datos para el ajuste del modelo predictivo. Las proporciones correspondientes para cada uno de los subconjuntos (entrenamiento, validación y testeo), fue de 70%, 15% y 15%, respectivamente. Posteriormente, se procedió a ajustar cada uno de los algoritmos de modelado predictivo en los subconjuntos de entrenamiento y validación. Una vez que los modelos fueron entrenados, se realizaron predicciones tanto en la base de datos de entrenamiento como en la de testeo. A partir de estas predicciones, se llevó a cabo el cálculo de las métricas de desempeño en la base de datos de testeo. Este procedimiento de entrenamiento y evaluación se repitió de forma iterativa 10 veces, variando las semillas aleatorias que determinaron las particiones de los datos en cada iteración. Finalizadas las iteraciones, se calculó el promedio de las métricas de desempeño para las 10 corridas del procedimiento en los de testeo. Finalmente, se compararon los resultados promedio de las métricas de desempeño para determinar cuál de los algoritmos predictivos fue el que generó el ajuste de mayor capacidad predictiva.
 
@@ -141,11 +169,11 @@ RMSE = \sqrt{\frac{1}{n}\sum\nolimits_{i=1}^N(y_i-\hat{y_i})^2}
 
 ### Modelado de PM~2.5~ en entornos urbanos
 
-#### Comparación de algoritmos para el uso de suelo **urbano** 
+#### Comparación de algoritmos para el uso del suelo **urbano** 
 
-  Esta sección desarrolla el modelado predictivo de la concentración de PM~2.5~ a partir de las base de datos original y reducida. La base de datos original involucró todas las variables independientes (193), mientras que la reducida contó con un total de 77 variables. Una descripción detallada de cada una de ellas puede hallarse en el Anexo 1.
+  Esta sección desarrolla el modelado predictivo de la concentración de PM~2.5~ a partir de las base de datos original y reducida. La base de datos original involucró todas las variables independientes (193), mientras que la reducida contó con un total de 77 variables. Una descripción detallada de cada una de ellas puede hallarse en el Anexo 1. Los resultados del modelo predictivo desarrollado en esta sección se presentan en la tabla \@ref(tab:modurb).
 
-Table: Error cuadrático medio de predicción (*RMSE*) de modelos ajustados para predecir la concentración de PM~2.5~ en el uso de suelo urbano a partir de 193 variables satelitales (base de datos original) y 77 variables seleccionadas (base de datos reducida). \label{tab:modurb}
+Table: Error cuadrático medio de predicción (*RMSE*) de modelos ajustados para predecir la concentración de PM~2.5~ en el uso del suelo urbano a partir de 193 variables derivadas a partir de información satelital (base de datos original) y 77 variables seleccionadas (base de datos reducida). \label{tab:modurb}
 
 | Modelo / Base de datos | Original | Reducida |
 |------------------------------|:-----------:|:-----------:|
@@ -164,11 +192,11 @@ Table: Error cuadrático medio de predicción (*RMSE*) de modelos ajustados para
 |  |  |  |  |  |
 | *Modelo de referencia* | 3.67 | 3.67 |
 \begin{flushleft}
-\setstretch{0.5}
-{\footnotesize Los valores de \textit{RMSE} se encuentran en las mismas unidades que la concentración de PM$_{2.5}$, es decir [$\frac{\mu g}{m^3}$]. Un menor valor de \textit{RMSE} indica mejor desempeño del modelo predictivo. El PM$_{2.5}$ promedio para el uso de suelo urbano fue de 11.54 $\frac{\mu g}{m^3}$. El \textit{RMSE} reportado se calculó sobre la base de datos de testeo.}
+\setstretch{1}
+{\footnotesize Los valores de \textit{RMSE} se encuentran en las mismas unidades que la concentración de PM$_{2.5}$, es decir [$\frac{\mu g}{m^3}$]. Un menor valor de \textit{RMSE} indica mejor desempeño del modelo predictivo. El PM$_{2.5}$ promedio para el uso del suelo urbano fue de 11.54 $\frac{\mu g}{m^3}$. El \textit{RMSE} reportado se calculó sobre la base de datos de testeo.}
 \end{flushleft}
 
-  Los resultados presentados en la Tabla \@ref(tab:modurb) demuestran que el algoritmo predictivo de mayor desempeño predictivo para el uso de suelo urbano fueron las redes neuronales recurrentes en sus versiones bajo la base de datos original y reducida. El gran desempeño predictivo demuestra como las características propias de aprendizaje del algoritmo logran captar las fuentes de variabilidad y realizar estimaciones acertadas de la variable respuesta. De entre las distintas arquitecturas de redes neuronales recurrentes evaluadas, específicamente el modelo que se destaca por su sobresaliente capacidad predictiva es aquel que incorpora redes con compuerta (*GRU*).
+  Los resultados presentados en la Tabla \@ref(tab:modurb) demuestran que el algoritmo predictivo de mayor desempeño predictivo para el uso del suelo urbano fueron las redes neuronales recurrentes en sus versiones bajo la base de datos original y reducida. El gran desempeño predictivo demuestra como las características propias de aprendizaje del algoritmo logran captar las fuentes de variabilidad y realizar estimaciones acertadas de la variable respuesta. De entre las distintas arquitecturas de redes neuronales recurrentes evaluadas, específicamente el modelo que se destaca por su sobresaliente capacidad predictiva es aquel que incorpora redes con compuerta (*GRU*).
  
   Además, es importante destacar que el único algoritmo predictivo que también es capaz de superar al modelo de referencia propuesto es el modelo de k vecinos más cercanos. Sin embargo, este algoritmo no garantiza el aprendizaje de la estructura de variabilidad presente en los datos, ya que su proceso de predicción se basa en identificar las k observaciones más similares en la base de datos de entrenamiento a partir de la matriz de distancias, y calcular su media para obtener la predicción final. Este algoritmo de modelado puede ser una forma novedosa y no convencional de calcular predicciones condicionadas por el parentesco entre los datos, a diferencia de los demás métodos que buscan calcular parámetros y pesos que les permiten inferir acerca de las interrelaciones entre las variables. 
 
@@ -185,16 +213,16 @@ Table: Error cuadrático medio de predicción (*RMSE*) de modelos ajustados para
 ```{r varimpurb, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:varimpurb)"}
 knitr::include_graphics("images/imagescap5/varimpurb_b.png")
 ```
-(ref:varimpurb) Importancia relativa de las variables en las redes neuronales recurrentes para el uso de suelo urbano.
+(ref:varimpurb) Importancia relativa de las variables en las redes neuronales recurrentes para el uso del suelo urbano.
 
-  A partir de la Figura \@ref(fig:varimpurb) pueden apreciarse las cinco variables de mayor importancia relativa para el modelo predictivo en el uso de suelo urbano bajo la base de datos reducida. Dos de las variables se encuentran vinculadas a la escala temporal, lo que destaca la influencia de los patrones de variación temporal en la variable objetivo, como se exploró en el capítulo [3](#cap:expl). Las variables restantes están asociadas con condiciones meteorológicas vinculadas a la variabilidad analizada en el capítulo [4](#cap:var). Los resultados muestran que las cinco variables de mayor importancia relativa abarcan menos del 25% de la importancia total. A la hora de predecir la concentración de PM~2.5~ en entornos urbanos, es crucial considerar la hora del día, la radiación solar, la rugosidad de la superficie terrestre, el día de la semana y la presión atmosférica. 
+  A partir de la Figura \@ref(fig:varimpurb) pueden apreciarse las cinco variables de mayor importancia relativa para el modelo predictivo en el uso del suelo urbano bajo la base de datos reducida. Dos de las variables se encuentran vinculadas a la escala temporal, lo que destaca la influencia de los patrones de variación temporal en la variable objetivo, como se exploró en el capítulo [3](#cap:expl). Las variables restantes están asociadas con condiciones meteorológicas vinculadas a la variabilidad analizada en el capítulo [4](#cap:var). Los resultados muestran que las cinco variables de mayor importancia relativa abarcan menos del 25% de la importancia total. A la hora de predecir la concentración de PM~2.5~ en entornos urbanos, es crucial considerar la hora del día, la radiación solar, la rugosidad de la superficie terrestre, el día de la semana y la presión atmosférica. 
 
 #### Radiación solar
 
 ```{r shapurbrad, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapurbrad)"}
 knitr::include_graphics("images/imagescap5/shapurbrad.png")
 ```
-(ref:shapurbrad) Gráfico de la variable radiación solar contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo urbano.
+(ref:shapurbrad) Gráfico de la variable radiación solar contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso del suelo urbano.
 
   La Figura \@ref(fig:shapurbrad) muestra que valores de baja magnitud de radiación solar están asociados a incrementos en las predicciones de la variable respuesta, mientras que valores de elevada magnitud están asociados con menores concentraciones de PM~2.5~ predichas. De esta forma se aprecia una relación del tipo inversa similar a una de las identificadas a partir del análisis de vinculación entre ambas variables. Además, puede notarse como los valores de mayor concentración de PM~2.5~, en función de la escala de graduación de colores, se hallan concentrados en la zona de menores valores de radiación solar, lo cual se condice con la relación inversa descripta en el análisis exploratorio, demostrando que el modelo logra capturar la relación entre las variables. 
 
@@ -205,7 +233,7 @@ knitr::include_graphics("images/imagescap5/shapurbrad.png")
 ```{r shapurbrug, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapurbrug)"}
 knitr::include_graphics("images/imagescap5/shapurbrug.png")
 ```
-(ref:shapurbrug) Gráfico de la variable rugosidad de la superficie terrestre contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo urbano.
+(ref:shapurbrug) Gráfico de la variable rugosidad de la superficie terrestre contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso del suelo urbano.
 
   La Figura \@ref(fig:shapurbrug) muestra una relación directa que coincide con la reportada por el análisis de vinculación conjunto entre ambas variables que se encuentra en el Anexo 5. Es decir que valores de baja magnitud de la rugosidad de la superficie terrestre se asocian con disminuciones en las predicciones de la variable respuesta. 
   
@@ -214,17 +242,17 @@ knitr::include_graphics("images/imagescap5/shapurbrug.png")
 ```{r shapurbpresmar, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapurbpresmar)"}
 knitr::include_graphics("images/imagescap5/shapurbpresmar_b.png")
 ```
-(ref:shapurbpresmar) Gráfico de la variable presión atmosférica contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo urbano.
+(ref:shapurbpresmar) Gráfico de la variable presión atmosférica contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso del suelo urbano.
 
   La Figura \@ref(fig:shapurbpresmar) muestra una asociación entre variables de tipo inversa similar a la reportada por el análisis de vinculación conjunto entre ambas variables sin considerar desfasaje (Capítulo [4](#cap:var)). Esto indica que valores de baja presión atmosférica favorecen incrementos en las predicciones de la variable respuesta, mientras que valores de elevada magnitud de la variable independiente resultan en disminuciones de las concentraciones de PM~2.5~ predichas.
 
 ### Modelado de PM~2.5~ en entornos industriales
 
-#### Comparación de algoritmos para el uso de suelo **industrial** 
+#### Comparación de algoritmos para el uso del suelo **industrial** 
 
-  Esta sección desarrolla el modelado predictivo de la concentración de PM~2.5~ a partir de las base de datos original y reducida. La base de datos reducida contó con un total de 53 variables. Una descripción detallada de cada una de ellas puede hallarse en el Anexo 1.
+  Esta sección desarrolla el modelado predictivo de la concentración de PM~2.5~ a partir de las base de datos original y reducida. La base de datos reducida contó con un total de 53 variables. Una descripción detallada de cada una de ellas puede hallarse en el Anexo 1. Los resultados del modelo predictivo desarrollado en esta sección se presentan en la tabla \@ref(tab:modind).
 
-Table: Error cuadrático medio de predicción (*RMSE*) de modelos ajustados para predecir la concentración de PM~2.5~ en el uso de suelo industrial a partir de 193 variables satelitales (base de datos original) y 53 variables seleccionadas (base de datos reducida). \label{tab:modind}
+Table: Error cuadrático medio de predicción (*RMSE*) de modelos ajustados para predecir la concentración de PM~2.5~ en el uso del suelo industrial a partir de 193 variables derivadas a partir de información satelital (base de datos original) y 53 variables seleccionadas (base de datos reducida). \label{tab:modind}
 
 | Modelo / Base de datos | Original | Reducida |
 |------------------------------|:-----------:|:-----------:|
@@ -243,13 +271,13 @@ Table: Error cuadrático medio de predicción (*RMSE*) de modelos ajustados para
 |  |  |  |  |  |
 | *Modelo de referencia* | 6.47 | 6.47 |
 \begin{flushleft}
-\setstretch{0.5}
-{\footnotesize Los valores de \textit{RMSE} se encuentran en las mismas unidades que la concentración de PM$_{2.5}$, es decir [$\frac{\mu g}{m^3}$]. Un menor valor de \textit{RMSE} indica mejor desempeño del modelo predictivo. El PM$_{2.5}$ promedio para el uso de suelo industrial fue de 14.22 $\frac{\mu g}{m^3}$. El \textit{RMSE} reportado se calculó sobre la base de datos de testeo.}
+\setstretch{1}
+{\footnotesize Los valores de \textit{RMSE} se encuentran en las mismas unidades que la concentración de PM$_{2.5}$, es decir [$\frac{\mu g}{m^3}$]. Un menor valor de \textit{RMSE} indica mejor desempeño del modelo predictivo. El PM$_{2.5}$ promedio para el uso del suelo industrial fue de 14.22 $\frac{\mu g}{m^3}$. El \textit{RMSE} reportado se calculó sobre la base de datos de testeo.}
 \end{flushleft}
 
-  La Tabla \@ref(tab:modind) presenta los resultados obtenidos en el proceso de modelado predictivo de los datos correspondientes al uso de suelo industrial. Estos resultados exhiben similitudes notables con los obtenidos para el uso de suelo urbano (Tabla \@ref(tab:modurb)). En primer lugar, se observa que las redes neuronales recurrentes logran el mejor desempeño predictivo, lo que sugiere su robustez y eficacia en la predicción de la concentración de PM~2.5~. La distinción principal radica en que el óptimo desempeño bajo la base de datos industrial se obtiene sobre los datos reducidos. De igual forma que para el uso de suelo urbano, el algoritmo de redes neuronales recurrentes que destaca por su desempeño predictivo es el modelo que involucra redes con compuerta (*GRU*).
+  La Tabla \@ref(tab:modind) presenta los resultados obtenidos en el proceso de modelado predictivo de los datos correspondientes al uso del suelo industrial. Estos resultados exhiben similitudes notables con los obtenidos para el uso del suelo urbano (Tabla \@ref(tab:modurb)). En primer lugar, se observa que las redes neuronales recurrentes logran el mejor desempeño predictivo, lo que sugiere su robustez y eficacia en la predicción de la concentración de PM~2.5~. La distinción principal radica en que el óptimo desempeño bajo la base de datos industrial se obtiene sobre los datos reducidos. De igual forma que para el uso del suelo urbano, el algoritmo de redes neuronales recurrentes que destaca por su desempeño predictivo es el modelo que involucra redes con compuerta (*GRU*).
   
-  Adicionalmente, para este tipo de uso de suelo, se evidencia que el único algoritmo predictivo que supera al modelo de referencia propuesto es el modelo de k vecinos más cercanos. A través de la estimación de la media entre k observaciones, este modelo logra un alto poder predictivo, aunque no necesariamente captura las interacciones existentes entre las variables.
+  Adicionalmente, para este tipo de uso del suelo, se evidencia que el único algoritmo predictivo que supera al modelo de referencia propuesto es el modelo de k vecinos más cercanos. A través de la estimación de la media entre k observaciones, este modelo logra un alto poder predictivo, aunque no necesariamente captura las interacciones existentes entre las variables.
  
   Cabe destacar que los mejores resultados predictivos fueron obtenidos al emplear la base de datos reducida, proporcionando evidencia acerca de las ventajas de este tipo de base para el modelado predictivo. Por lo tanto, esta será la base de datos elegida para realizar el modelado y, posteriormente, para analizar la relación de vinculación entre las variables.
 
@@ -264,9 +292,9 @@ Table: Error cuadrático medio de predicción (*RMSE*) de modelos ajustados para
 ```{r varimpind, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:varimpind)"}
 knitr::include_graphics("images/imagescap5/varimpind.png")
 ```
-(ref:varimpind) Importancia relativa de las variables en las redes neuronales recurrentes para el uso de suelo industrial.
+(ref:varimpind) Importancia relativa de las variables en las redes neuronales recurrentes para el uso del suelo industrial.
 
-  A partir de la Figura \@ref(fig:varimpind) pueden apreciarse las cinco variables de mayor importancia relativa para el modelo predictivo en el uso de suelo industrial bajo la base de datos reducida. Solo una de las variables se encuentra vinculada a la escala temporal, destacando la dependencia de la variable respuesta respecto a sus patrones de variación temporal explorados en el capítulo [3](#cap:expl). Las restantes son variables meteorológicas vinculadas a la variabilidad estudiada en el capítulo [4](#cap:var). Los resultados muestran que las cinco variables de mayor importancia relativa reúnen menos del 25% de la misma. 
+  A partir de la Figura \@ref(fig:varimpind) pueden apreciarse las cinco variables de mayor importancia relativa para el modelo predictivo en el uso del suelo industrial bajo la base de datos reducida. Solo una de las variables se encuentra vinculada a la escala temporal, destacando la dependencia de la variable respuesta respecto a sus patrones de variación temporal explorados en el capítulo [3](#cap:expl). Las restantes son variables meteorológicas vinculadas a la variabilidad estudiada en el capítulo [4](#cap:var). Los resultados muestran que las cinco variables de mayor importancia relativa reúnen menos del 25% de la misma. 
   
   A la hora de predecir la concentración de PM~2.5~ en entornos industriales, es crucial considerar la velocidad del viento, la disipación en la capa límite atmosférica, el flujo de ozono, la estación del año y la humedad relativa.
 
@@ -275,7 +303,7 @@ knitr::include_graphics("images/imagescap5/varimpind.png")
 ```{r shapindvvient, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapindvvient)"}
 knitr::include_graphics("images/imagescap5/shapindvvient.png")
 ```
-(ref:shapindvvient) Gráfico de la variable velocidad del viento contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo industrial.
+(ref:shapindvvient) Gráfico de la variable velocidad del viento contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso del suelo industrial.
 
   La Figura \@ref(fig:shapindvvient) muestra que valores de baja magnitud de velocidad del viento resultan en incrementos de las predicciones de la variable respuesta, mientras que valores de elevada magnitud de la variable independiente promueven disminuciones en las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo inversa similar a la encontrada durante el análisis de vinculación conjunto entre ambas variables (Capítulo [4](#cap:var)). Además, se puede apreciar como los valores de mayores concentraciones de PM~2.5~ se localizan en zonas de reducida velocidad del viento, demostrando la gran capacidad predictiva de la variable.
 
@@ -286,7 +314,7 @@ knitr::include_graphics("images/imagescap5/shapindvvient.png")
 ```{r shapinddisip, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapinddisip)"}
 knitr::include_graphics("images/imagescap5/shapinddisip.png")
 ```
-(ref:shapinddisip) Gráfico de la variable disipación en la capa límite atmosférica contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo industrial.
+(ref:shapinddisip) Gráfico de la variable disipación en la capa límite atmosférica contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso del suelo industrial.
   
   La Figura \@ref(fig:shapinddisip) permite apreciar que el mayor porcentaje de los datos se encuentra concentrado en valores de baja magnitud de disipación en la capa límite atmosférica. Por este motivo, no logra apreciarse una clara tendencia en cuanto al aporte de la variable predictora en el modelo predictivo dado a que en todo el rango de variación los aportes son tanto de incremento como de decremento de la concentración. Dada la inconsistencia existente en el rango de variación de los aportes, se concluye que para este modelo predictivo la importancia que adquiere la variable se encuentra vinculada al actuar conjunto con otras variables independientes.
 
@@ -297,7 +325,7 @@ knitr::include_graphics("images/imagescap5/shapinddisip.png")
 ```{r shapindoznor, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapindoznor)"}
 knitr::include_graphics("images/imagescap5/shapindoznor.png")
 ```
-(ref:shapindoznor) Gráfico de la variable integración vertical flujo ozono norte contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo industrial.
+(ref:shapindoznor) Gráfico de la variable integración vertical flujo ozono norte contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso del suelo industrial.
   
   La Figura \@ref(fig:shapurbrug) muestra que valores de baja magnitud de la integración vertical flujo ozono norte promueven reducciones en las predicciones de la variable respuesta, mientras que valores de elevada magnitud de la variable independiente resultan en incrementos de las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo directa similar a la reportada por el análisis de variación conjunto entre ambas variables (Anexo 5). 
 
@@ -306,17 +334,17 @@ knitr::include_graphics("images/imagescap5/shapindoznor.png")
 ```{r shapindhum, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapindhum)"}
 knitr::include_graphics("images/imagescap5/shapindhum.png")
 ```
-(ref:shapindhum) Gráfico de la variable humedad relativa contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo industrial.
+(ref:shapindhum) Gráfico de la variable humedad relativa contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso del suelo industrial.
   
   La Figura \@ref(fig:shapindhum) muestra que valores menores al 90% de humedad relativa favorecen incrementos de las concentraciones de PM~2.5~, mientras que humedades relativas mayores tienden a favorecer decrementos de la concentraciones. Además, puede apreciarse una mayor densidad de valores de elevada concentración de PM~2.5~ entre el 80% y 90% de humedad relativa. De esta forma, puede notarse que en este modelo predictivo valores por encima del 90% de humedad relativa favorecen la remoción de PM~2.5~, mientras que valores por debajo de este límite favorecen aportes a la concentración de dicho contaminante. De esta forma, puede concluirse que la relación de vinculación que prevalece en el modelo predictivo es del tipo inversa, similar a una de las reportadas durante el análisis de conexión entre las mismas (Capítulo [4](#cap:var)).
 
 ###  Modelado de PM~2.5~ en entornos agrícola y área verde
 
-#### Comparación de algoritmos para el uso de suelo **agrícola/ área verde** 
+#### Comparación de algoritmos para el uso del suelo **agrícola/ área verde** 
 
-  Esta sección desarrolla el modelado predictivo de la concentración de PM~2.5~ a partir de las base de datos original y reducida. La base de datos reducida contó con un total de 84 variables. Una descripción detallada de cada una de ellas puede hallarse en el Anexo 1. 
+  Esta sección desarrolla el modelado predictivo de la concentración de PM~2.5~ a partir de las base de datos original y reducida. La base de datos reducida contó con un total de 84 variables. Una descripción detallada de cada una de ellas puede hallarse en el Anexo 1. Los resultados del modelo predictivo desarrollado en esta sección se presentan en la tabla \@ref(tab:modaa).
 
-Table: Error cuadrático medio de predicción (*RMSE*) de modelos ajustados para predecir la concentración de PM~2.5~ en el uso de suelo agrícola/ área verde a partir de 193 variables satelitales (base de datos original) y 84 variables seleccionadas (base de datos reducida). \label{tab:modaa} 
+Table: Error cuadrático medio de predicción (*RMSE*) de modelos ajustados para predecir la concentración de PM~2.5~ en el uso del suelo agrícola/ área verde a partir de 193 variables derivadas a partir de información satelital (base de datos original) y 84 variables seleccionadas (base de datos reducida). \label{tab:modaa} 
 
 | Modelo / Base de datos | Original | Reducida |
 |------------------------------|:-----------:|:-----------:|
@@ -335,11 +363,11 @@ Table: Error cuadrático medio de predicción (*RMSE*) de modelos ajustados para
 |  |  |  |  |  |
 | *Modelo de referencia* | 2.77 | 2.77 |
 \begin{flushleft}
-\setstretch{0.5}
-{\footnotesize Los valores de \textit{RMSE} se encuentran en las mismas unidades que la concentración de PM$_{2.5}$, es decir [$\frac{\mu g}{m^3}$]. Un menor valor de \textit{RMSE} indica mejor desempeño del modelo predictivo. El PM$_{2.5}$ promedio para el uso de suelo agrícola y área verde fue de 2.76 $\frac{\mu g}{m^3}$. El \textit{RMSE} reportado se calculó sobre la base de datos de testeo.}
+\setstretch{1}
+{\footnotesize Los valores de \textit{RMSE} se encuentran en las mismas unidades que la concentración de PM$_{2.5}$, es decir [$\frac{\mu g}{m^3}$]. Un menor valor de \textit{RMSE} indica mejor desempeño del modelo predictivo. El PM$_{2.5}$ promedio para el uso del suelo agrícola y área verde fue de 2.76 $\frac{\mu g}{m^3}$. El \textit{RMSE} reportado se calculó sobre la base de datos de testeo.}
 \end{flushleft}
 
-  La Tabla \@ref(tab:modaa) presenta los resultados derivados del proceso de modelado predictivo empleando los datos correspondientes al uso de suelo agrícola y área verde. En este caso, puede apreciarse que el algoritmo que demuestra el mayor rendimiento predictivo es el de bosques aleatorios. Este resultado es independiente de la versión de la base de datos utilizada, destacando su mayor precisión en la versión desarrollada a partir de la base de datos reducida. A diferencia de los resultados obtenidos con respecto a los demás usos de suelo (Tabla \@ref(tab:modurb) y Tabla \@ref(tab:modind)) las redes neuronales recurrentes no logran superar el modelo de referencia propuesto. Este resultado podría encontrarse vinculado a las características propias de la serie de tiempo en entornos agrícolas y áreas verdes. 
+  La Tabla \@ref(tab:modaa) presenta los resultados derivados del proceso de modelado predictivo empleando los datos correspondientes al uso del suelo agrícola y área verde. En este caso, puede apreciarse que el algoritmo que demuestra el mayor rendimiento predictivo es el de bosques aleatorios. Este resultado es independiente de la versión de la base de datos utilizada, destacando su mayor precisión en la versión desarrollada a partir de la base de datos reducida. A diferencia de los resultados obtenidos con respecto a los demás usos de suelo (Tabla \@ref(tab:modurb) y Tabla \@ref(tab:modind)) las redes neuronales recurrentes no logran superar el modelo de referencia propuesto. Este resultado podría encontrarse vinculado a las características propias de la serie de tiempo en entornos agrícolas y áreas verdes. 
 
   El modelo óptimo en términos de capacidad predictiva dentro del enfoque de bosques aleatorios se encontró compuesto por un total de 200 árboles individuales que forman el bosque. Además, es interesante destacar que para lograr la separación en un nuevo nodo, se requiere contar con al menos dos muestras en cada uno de estos. Las predicciones generadas por este algoritmo difieren en promedio de los valores reales medidos de concentración de PM~2.5~ en 2.324 $\frac{\mu g}{m^3}$.
   
@@ -352,9 +380,9 @@ Table: Error cuadrático medio de predicción (*RMSE*) de modelos ajustados para
 ```{r varimpaa, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:varimpaa)"}
 knitr::include_graphics("images/imagescap5/varimpaa.png")
 ```
-(ref:varimpaa) Importancia relativa de las variables en el bosque aleatorio para el uso de suelo agrícola/ área verde.
+(ref:varimpaa) Importancia relativa de las variables en el bosque aleatorio para el uso del suelo agrícola/ área verde.
   
-  A partir de la Figura \@ref(fig:varimpaa) pueden apreciarse las cinco variables de mayor importancia relativa para el modelo predictivo en el uso de suelo agrícola y área verde bajo la base de datos reducida. Dos de las mismas se encuentran vinculadas a la escala temporal, destacando la dependencia de la variable respuesta respecto a sus patrones de variación temporales explorados en el capítulo [3](#cap:expl). Las restantes son variables meteorológicas vinculadas a la variabilidad estudiada en el capítulo [4](#cap:var). Los resultados muestran que las cinco variables de mayor importancia relativa reúnen más del 40% de la misma. De esta forma puede apreciarse como en este uso de suelo se requiere una menor cantidad de variables para reunir el mismo porcentaje de importancia relativa con respecto a los demás usos de suelo, demostrando de esta forma, mayor capacidad para explicar la variabilidad en la concentración de PM~2.5~ a partir de un porcentaje menor de información.
+  A partir de la Figura \@ref(fig:varimpaa) pueden apreciarse las cinco variables de mayor importancia relativa para el modelo predictivo en el uso del suelo agrícola y área verde bajo la base de datos reducida. Dos de las mismas se encuentran vinculadas a la escala temporal, destacando la dependencia de la variable respuesta respecto a sus patrones de variación temporales explorados en el capítulo [3](#cap:expl). Las restantes son variables meteorológicas vinculadas a la variabilidad estudiada en el capítulo [4](#cap:var). Los resultados muestran que las cinco variables de mayor importancia relativa reúnen más del 40% de la misma. De esta forma puede apreciarse como en este uso del suelo se requiere una menor cantidad de variables para reunir el mismo porcentaje de importancia relativa con respecto a los demás usos de suelo, demostrando de esta forma, mayor capacidad para explicar la variabilidad en la concentración de PM~2.5~ a partir de un porcentaje menor de información.
   
   A la hora de predecir la concentración de PM~2.5~ en entornos agrícolas y áreas verdes, es crucial considerar la estación del año, temperatura de rocío, escorrentía, temperatura y el mes del año. 
   
@@ -363,7 +391,7 @@ knitr::include_graphics("images/imagescap5/varimpaa.png")
 ```{r shapaaroc, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapaaroc)"}
 knitr::include_graphics("images/imagescap5/shapaaroc.png")
 ```
-(ref:shapaaroc) Gráfico de la variable temperatura del punto de rocío contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo agrícola / área verde.
+(ref:shapaaroc) Gráfico de la variable temperatura del punto de rocío contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso del suelo agrícola / área verde.
   
   La Figura \@ref(fig:shapaaroc) muestra que valores de baja magnitud de la temperatura del punto de rocío se asocian con altas concentraciones de PM~2.5~, mientras que valores elevada magnitud lo hacen con bajas concentraciones de PM~2.5~. De esta forma se identifica una relación del tipo inversa similar a la reportada durante el estudio de la relación de vinculación entre ambas variables (Capítulo [4](#cap:var)).
   
@@ -374,7 +402,7 @@ knitr::include_graphics("images/imagescap5/shapaaroc.png")
 ```{r shapaaesc, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapaaesc)"}
 knitr::include_graphics("images/imagescap5/shapaaesc.png")
 ```
-(ref:shapaaesc) Gráfico de la variable tasa media de escorrentía subterránea contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo agrícola / área verde.
+(ref:shapaaesc) Gráfico de la variable tasa media de escorrentía subterránea contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso del suelo agrícola / área verde.
   
   La Figura \@ref(fig:shapaaesc) muestra que valores de baja magnitud de la tasa media de escorrentía subterránea (menores a 5.07e-07) favorecen bajas concentraciones de PM~2.5~, mientras que valores superiores de la variable promueven un aumento en la concentración de PM~2.5~ predicha. Para valores superiores a 1.0e-06, la relación entre las variables permanece sin variaciones importantes respecto del aporte a la concentración. De esta forma se identifica una relación del tipo directa similar a la reportada en el análisis de conexión entre las mismas (Anexo 5). 
 
@@ -385,25 +413,25 @@ knitr::include_graphics("images/imagescap5/shapaaesc.png")
 ```{r shapaaintvert, echo=FALSE, out.width="100%", fig.align="center",fig.cap="(ref:shapaaintvert)"}
 knitr::include_graphics("images/imagescap5/shapaaintvert.png")
 ```
-(ref:shapaaintvert) Gráfico de la variable integración vertical de temperatura contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso de suelo agrícola / área verde.
+(ref:shapaaintvert) Gráfico de la variable integración vertical de temperatura contra su valor SHAP coloreado por el valor de PM~2.5~ para el uso del suelo agrícola / área verde.
 
   La Figura \@ref(fig:shapaaintvert) muestra que valores de baja magnitud de la integración vertical de temperatura se asocia con bajas predicciones de PM~2.5~, mientras que valores de elevada magnitud de la variable resultan en incrementos de las concentraciones de PM~2.5~ predichas. De esta forma se identifica una relación del tipo directa similar a la reportada en el análisis de conexión entre las mismas (Anexo 5).
 
 ## Discusión
   
-  Es interesante destacar que tanto para el uso de suelo urbano como para el industrial el algoritmo predictivo de mejor ajuste demostraron ser las redes neuronales recurrentes. Resultados similares fueron hallados por Ayturan et. al., evidenciando que las redes neuronales recurrentes, en especial las *GRU* destacan de entre múltiples algoritmos predictivos como las de mayor capacidad para predecir la concentración de PM~2.5~ [@ayturan2020short]. Además, otros estudios han demostrado la supremacía de las redes neuronales recurrentes para predecir la concentración de PM~2.5~ [@feng2019recurrent; @dhakal2021exploring; @casallas2021long]. En esta tesis el algoritmo de mayor capacidad predictiva para el uso de suelo urbano alcanzó un $RMSE$ de 3.46 $\frac{\mu g}{m^3}$ en el set de datos de testeo, mientras que para el uso de suelo industrial las redes neuronales recurrentes de mayor capacidad alcanzaron un $RMSE$ de 5.96 $\frac{\mu g}{m^3}$ en el set de datos de testeo.
+  Es interesante destacar que tanto para el uso del suelo urbano como para el industrial el algoritmo predictivo de mejor ajuste demostraron ser las redes neuronales recurrentes. Resultados similares fueron hallados por Ayturan et. al., evidenciando que las redes neuronales recurrentes, en especial las *GRU* destacan de entre múltiples algoritmos predictivos como las de mayor capacidad para predecir la concentración de PM~2.5~ [@ayturan2020short]. Además, otros estudios han demostrado la supremacía de las redes neuronales recurrentes para predecir la concentración de PM~2.5~ [@feng2019recurrent; @dhakal2021exploring; @casallas2021long]. En esta tesis el algoritmo de mayor capacidad predictiva para el uso del suelo urbano alcanzó un $RMSE$ de 3.46 $\frac{\mu g}{m^3}$ en el set de datos de testeo, mientras que para el uso del suelo industrial las redes neuronales recurrentes de mayor capacidad alcanzaron un $RMSE$ de 5.96 $\frac{\mu g}{m^3}$ en el set de datos de testeo.
   
-  Por otra parte, en el uso de suelo agrícola y área verde, el algoritmo predictivo que demostró mayor capacidad predictiva fue el de bosques aleatorios. Múltiples estudios han expuesto resultados coincidentes con los informados en este trabajo, destacando el algoritmo de bosques aleatorios como el de mayor capacidad para predecir la concentración de PM~2.5~ [@huang2018predicting; @suleiman2020comparative; @chen2018machine; @xu2021influence]. En el presente trabajo la mayor capacidad predictiva para este uso de suelo reportó un $RMSE$ de 2.32 $\frac{\mu g}{m^3}$ en el set de de datos de testeo. 
+  Por otra parte, en el uso del suelo agrícola y área verde, el algoritmo predictivo que demostró mayor capacidad predictiva fue el de bosques aleatorios. Múltiples estudios han expuesto resultados coincidentes con los informados en este trabajo, destacando el algoritmo de bosques aleatorios como el de mayor capacidad para predecir la concentración de PM~2.5~ [@huang2018predicting; @suleiman2020comparative; @chen2018machine; @xu2021influence]. En el presente trabajo la mayor capacidad predictiva para este uso del suelo reportó un $RMSE$ de 2.32 $\frac{\mu g}{m^3}$ en el set de de datos de testeo. 
   
   Los resultados de ajuste obtenidos para los distintos algoritmos predictivos ajustados provenientes tanto del contexto de aprendizaje automático como profundo demuestran que el mejor ajuste varia en función del uso del suelo analizado. Este resultado podría encontrarse vinculado no solo a las características propias de cada una de las series temporales, en cada uno de los usos de suelo descritas en el capítulo [3](#cap:expl), si no también a las de aprendizaje de los algoritmos empleados en el modelado predictivo.
   
-  Para el caso de la serie de temporal proveniente del uso de suelo agrícola y área verde, se observó que las realizaciones variaban en un entorno reducido respecto de su media. Esto indica una baja dispersión de los datos, lo que se traduce en una baja frecuencia de fluctuación entre valores de elevada y baja magnitud. Esta característica permite que la variable respuesta pueda ser explicada por un menor número de variables predictoras (Figura \@ref(fig:varimpaa)). Cabe destacar que más del 40% de la importancia relativa es acumulada por las cinco variables de mayor importancia para el modelo predictivo. En un set de datos que alberga un total de 70 variables, es destacable que prácticamente el 7% de las mismas concentren la información necesaria para describir la variable respuesta. Esta concentración de la información podría encontrarse sustentada en que al ser una serie de baja variabilidad se requiere menor información para describir sus fluctuaciones, ya que pueden ser explicadas la mayor parte del tiempo por las mismas variables predictoras.
+  Para el caso de la serie de temporal proveniente del uso del suelo agrícola y área verde, se observó que los datos de concentración de PM~2.5~ variaban en un entorno  variaban en un entorno reducido respecto de su media. Esto indica una baja dispersión de los datos, lo que se traduce en una baja frecuencia de fluctuación entre valores de elevada y baja magnitud. Esta característica permite que la variable respuesta pueda ser explicada por un menor número de variables predictoras (Figura \@ref(fig:varimpaa)). Cabe destacar que más del 40% de la importancia relativa es acumulada por las cinco variables de mayor importancia para el modelo predictivo. En un set de datos que alberga un total de 70 variables, es destacable que prácticamente el 7% de las mismas concentren la información necesaria para describir la variable respuesta. Esta concentración de la información podría encontrarse sustentada en que al ser una serie de baja variabilidad se requiere menor información para describir sus fluctuaciones, ya que pueden ser explicadas la mayor parte del tiempo por las mismas variables predictoras.
   
-  La concentración de información en un número reducido de variables podría favorecer el algoritmo de bosques aleatorios. Los bosques aleatorios resultaron eficientes detectando y utilizando la información de las variables de mayor importancia en la base de datos. Una vez detectadas, estas podrían haber sido retenidas en múltiples árboles individuales del bosque, generando una influencia de mayor peso en las predicciones. Dado al gran porcentaje de información contenido en una cantidad reducida de variables, los bosques aleatorios podrían haber logrado internalizar de forma efectiva las interrelaciones existentes entre las distintas variables, lo que resultó en un modelo predictivo de elevada exactitud. Resultados coincidentes fueron publicados por Pengcheng et. al., (2020) y por Wang et. al., (2021), quienes mostraron que el algoritmo de bosques aleatorios aumenta su capacidad predictiva al ser entrenado en bases de datos previamente reducidas por medio de algoritmos de selección de características [@pengcheng2020prediction; @wang2021using].
+  La concentración de información en un número reducido de variables podría favorecer el algoritmo de bosques aleatorios. Los bosques aleatorios resultaron eficientes detectando y utilizando la información de las variables de mayor importancia en la base de datos. Una vez detectadas, estas podrían haber sido retenidas en múltiples árboles individuales del bosque, generando una influencia de mayor peso en las predicciones. Dado al gran porcentaje de información contenido en una cantidad reducida de variables, los bosques aleatorios podrían haber logrado internalizar de forma efectiva las interrelaciones existentes entre las distintas variables, lo que resultó en un modelo predictivo de elevada exactitud. Resultados coincidentes fueron publicados por Pengcheng et. al., y por Wang et. al., quienes mostraron que el algoritmo de bosques aleatorios aumenta su capacidad predictiva al ser entrenado en bases de datos previamente reducidas por medio de algoritmos de selección de características [@pengcheng2020prediction; @wang2021using].
   
-  Por otra parte, es importante destacar que las series provenientes de entornos urbanos e industriales presentan una notoria dispersión en sus realizaciones. Esto implica que sus datos son menos homogéneos en comparación con la serie agrícola y de área verde. Las series urbana e industrial muestran continuas fluctuaciones entre valores de elevada y baja magnitud de concentración de PM~2.5~. Por este motivo, a diferencia de la serie temporal agrícola y área verde, en estos caso se requiere un número de variables superior para reunir el mismo porcentaje de importancia relativa (Figuras \@ref(fig:varimpurb) y \@ref(fig:varimpind)). Es importante destacar que la importancia relativa otorgada a cada una de las variables participantes en los modelos para cada uno de estos usos de suelo varía en un rango acotado. A diferencia del uso de suelo agrícola y área verde, no hay variables en ninguno de los restantes usos de suelo que demuestren supremacía en cuanto a su importancia relativa. Los resultados muestran que las primeras cinco variables explican menos del 25% de la importancia relativa para los usos de suelo de mayor variabilidad.
+  Por otra parte, es importante destacar que las series provenientes de entornos urbanos e industriales presentan una notoria dispersión en sus realizaciones. Esto implica que sus datos son menos homogéneos en comparación con la serie agrícola y de área verde. Las series urbana e industrial muestran continuas fluctuaciones entre valores de elevada y baja magnitud de concentración de PM~2.5~. Por este motivo, a diferencia de la serie temporal agrícola y área verde, en estos caso se requiere un número de variables superior para reunir el mismo porcentaje de importancia relativa (Figuras \@ref(fig:varimpurb) y \@ref(fig:varimpind)). Es importante destacar que la importancia relativa otorgada a cada una de las variables participantes en los modelos para cada uno de estos usos de suelo varía en un rango acotado. A diferencia del uso del suelo agrícola y área verde, no hay variables en ninguno de los restantes usos de suelo que demuestren supremacía en cuanto a su importancia relativa. Los resultados muestran que las primeras cinco variables explican menos del 25% de la importancia relativa para los usos de suelo de mayor variabilidad.
   
-  Los algoritmos de redes neuronales de mejor ajuste para los usos de suelo urbano e industrial no identificaron variables predictoras de elevada importancia relativa, a diferencia de lo que sucede con los bosques aleatorios en el uso de suelo agrícola y área verde. En las redes neuronales, todas las variables aportaron de forma homogénea a las predicciones, siendo el algoritmo predictivo el encargado de internalizar las ponderaciones de las mismas. En las figuras \@ref(fig:varimpurb) y \@ref(fig:varimpind), se presentaron los porcentaje de importancia relativa para los usos de suelo urbano e industrial respectivamente, los cuales evidenciaron ser inferiores a los del uso de suelo agrícola y área verde. 
+  Los algoritmos de redes neuronales de mejor ajuste para los usos de suelo urbano e industrial no identificaron variables predictoras de elevada importancia relativa, a diferencia de lo que sucede con los bosques aleatorios en el uso del suelo agrícola y área verde. En las redes neuronales, todas las variables aportaron de forma homogénea a las predicciones, siendo el algoritmo predictivo el encargado de internalizar las ponderaciones de las mismas. En las figuras \@ref(fig:varimpurb) y \@ref(fig:varimpind), se presentaron los porcentaje de importancia relativa para los usos de suelo urbano e industrial respectivamente, los cuales evidenciaron ser inferiores a los del uso del suelo agrícola y área verde. 
   
   Las características de la serie temporal urbana e industrial podrían favorecer el modelado predictivo a través de redes neuronales recurrentes, cuyo algoritmo posee numerosos parámetros que logran reflejar el aporte de cada una de las variables a la predicción bajo las distintas situaciones posibles presentes en la base de datos. Al calcularse una gran cantidad de parámetros, podría notarse reflejado en cada predicción la influencia de cada una de las variables presentes en la base de datos, siendo el algoritmo predictivo el encargado de ponderar las influencias en cada caso particular. Al tratarse de series en donde la importancia relativa atribuida a las distintas predictoras es similar, el contar con un algoritmo predictivo que tenga en cuenta la influencia conjunta de todas las variables podría resultar en un mayor desempeño predictivo. De esta forma en cada predicción se vería reflejada la influencia de cada una de las variables predictoras. Numerosos estudios han reflejado de forma similar la mejoría en la capacidad predictiva de la concentración de PM~2.5~ experimentada al aplicar redes neuronales recurrentes [@ding2022prediction ;@ayturan2020short ;@kim2023comparison ;@feng2019recurrent; @dhakal2021exploring; @casallas2021long].
   
@@ -421,8 +449,8 @@ knitr::include_graphics("images/imagescap5/shapaaintvert.png")
 
 ## Conclusiones
 
-  Los resultados obtenidos reflejan que los modelos predictivos desarrollados logran explicar la variabilidad de la concentración de PM~2.5~ a partir de variables satelitales y temporales. Estos modelos también han demostrado una interpretación acertada de las relaciones subyacentes entre la concentración de PM~2.5~ y las variables climáticas.
+  Los resultados obtenidos reflejan que los modelos predictivos desarrollados logran explicar la variabilidad de la concentración de PM~2.5~ a partir de variables derivadas a partir de información satelital y temporales. Estos modelos también han demostrado una interpretación acertada de las relaciones subyacentes entre la concentración de PM~2.5~ y las variables climáticas.
 
   La similitud existente entre las métricas obtenidas para el modelo de referencia y las de los modelos predictivos desarrollados evidencian su potencial para cumplir con el objetivo de alertar a la población ante condiciones adversas de calidad de aire con cinco días de anticipación. 
   
-  Las características propias de la variabilidad de cada una de las series temporales en los distintos usos de suelo, así como las características de aprendizaje de cada uno de los modelos predictivos ajustados, fueron determinantes en el tipo de algoritmo que demostró mayor exactitud en la predicción para cada uno de los usos de suelo. En el uso de suelo de menor variabilidad, el algoritmo de bosques aleatorios se desempeñó mejor que los algoritmos de aprendizaje profundo. Mientras que los de aprendizaje profundo permitieron ajustar modelos de mayor capacidad predictiva en usos de suelo donde la serie de PM~2.5~ se caracterizaba por una mayor variabilidad.
+  Las características propias de la variabilidad de cada una de las series temporales en los distintos usos de suelo, así como las características de aprendizaje de cada uno de los modelos predictivos ajustados, fueron determinantes en el tipo de algoritmo que demostró mayor exactitud en la predicción para cada uno de los usos de suelo. En el uso del suelo de menor variabilidad, el algoritmo de bosques aleatorios se desempeñó mejor que los algoritmos de aprendizaje profundo. Mientras que los de aprendizaje profundo permitieron ajustar modelos de mayor capacidad predictiva en usos de suelo donde la serie de PM~2.5~ se caracterizaba por una mayor variabilidad.
