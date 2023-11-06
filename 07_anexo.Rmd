@@ -1,4 +1,4 @@
-# Anexo 1: Bases de datos satelitales {-}
+# Anexo 1: Bases de datos {-}
 
 ### Base de datos original
 
@@ -980,7 +980,7 @@ Table: Resumen de los desfasajes temporales con capacidad predictiva para cada u
 |   |  t-20 | Inversa  | * |
 |   | t-22  | Inversa  |  |
 
-# Anexo 3: Descripción de variables meteorológicos y satelitales {-}
+# Anexo 3: Descripción de variables {-}
 
   Las variables que involucran la base de datos empleada en la presente tesis fueron recopiladas a partir de múltiples fuentes de datos. Las meteorológicas, climáticas y ambientales provienen de fuentes de datos obtenidas a partir de la medición de satélites, mientras que las variables temporales fueron derivadas a partir de la fecha en que cada dato fue recopilado. Todas aquellas variables que en su definición no incluyan explícitamente la fuente de datos de la cual fueron obtenidas pertenecen a las derivadas a partir del método de ERA5. A continuación se presenta una descripción detallada de cada una de las variables:
   
