@@ -52,7 +52,7 @@
 
 ### Objetivo general
 
-  Desarrollar un modelo predictivo de concentración de aerosoles para el área metropolitana de la provincia de Córdoba en función de variables derivadas a partir de información satelital de público acceso, variables meteorológicas, temporales y de uso del suelo, y validar el empleo de sensores de bajo costo para determinar partículas finas en áreas urbanas.
+  Desarrollar un modelo predictivo de concentración de aerosoles para el área metropolitana de la provincia de Córdoba en función de variables derivadas a partir de información satelital de acceso público, variables meteorológicas, temporales y de uso del suelo, y validar el empleo de sensores de bajo costo para determinar partículas finas en áreas urbanas.
 
 ### Objetivos específicos
 
