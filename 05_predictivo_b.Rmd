@@ -117,15 +117,15 @@ knitr::include_graphics("images/imagescap5/redalgo.png")
  
   Para comparar el desempeño predictivo de los distintos algoritmos ajustados tanto en el conjunto de datos de entrenamiento como en el de testeo, se implementó la métrica de rendimiento raíz del error cuadrático medio de predicción ($RMSE$), la cual se deriva  a partir del error cuadrático medio ($MSE$).
   
-  Error cuadrático medio (*mean squared error (MSE)*): es un estimador que mide el promedio de los errores al cuadrado, es decir, la diferencia entre el valor observado y su predicción por el modelo (Ecuación 2). Es una función de riesgo, correspondiente al valor esperado de la pérdida del error al cuadrado o pérdida cuadrática. Mientras menor es su valor, más exactos serán los pronósticos del modelo predictivo [@lehmann2006theory].
+  Error cuadrático medio (*mean squared error (MSE)*): es un estimador que mide el promedio de los errores al cuadrado, es decir, la diferencia entre el valor observado y su predicción por el modelo (Ecuación 5.1). Es una función de riesgo, correspondiente al valor esperado de la pérdida del error al cuadrado o pérdida cuadrática. Mientras menor es su valor, más exactos serán los pronósticos del modelo predictivo [@lehmann2006theory].
   
 \begin{equation*} 
-\sum_{i=1}^{N}(y_i-\hat{y_i})^2 \tag{2}
+\sum_{i=1}^{N}(y_i-\hat{y_i})^2 \tag{5.1}
 \end{equation*} 
 \begin{flushleft}
 \setstretch{1}
 {\footnotesize
-\textbf{Ecuación 2:}
+\textbf{Ecuación 5.1:}
   Error cuadrático medio (\textit{mean squared error}).
   
 \textbf{Componentes}:
@@ -137,15 +137,15 @@ knitr::include_graphics("images/imagescap5/redalgo.png")
 }
 \end{flushleft}
 
-  Raíz del error cuadrático medio (*root mean squared error ($RMSE$)*): expresa el promedio de la diferencia cuadrática entre los valores predichos por el modelo y los valores observados (Ecuación 3). Esta es siempre no negativa, y un valor de 0 (poco común en la práctica) indicaría un ajuste perfecto a los datos. Generalmente, mientras menor $RMSE$ mejor ajuste o mayor exactitud en las predicciones. Esta métrica es sensible a valores atípicos y pone mayor peso en los grandes errores, ya que su coeficiente elevado al cuadrado influirá notablemente en el resultado [@lehmann2006theory; @pontius2008components; @willmott2006use]. Esta métrica se encuentra definida hace muchos años y es ampliamente recomendada para evaluar el desempeño de modelos de calidad del aire [@thunis2011procedure; @zhang2014evaluation].
+  Raíz del error cuadrático medio (*root mean squared error ($RMSE$)*): expresa el promedio de la diferencia cuadrática entre los valores predichos por el modelo y los valores observados (Ecuación 5.2). Esta es siempre no negativa, y un valor de 0 (poco común en la práctica) indicaría un ajuste perfecto a los datos. Generalmente, mientras menor $RMSE$ mejor ajuste o mayor exactitud en las predicciones. Esta métrica es sensible a valores atípicos y pone mayor peso en los grandes errores, ya que su coeficiente elevado al cuadrado influirá notablemente en el resultado [@lehmann2006theory; @pontius2008components; @willmott2006use]. Esta métrica se encuentra definida hace muchos años y es ampliamente recomendada para evaluar el desempeño de modelos de calidad del aire [@thunis2011procedure; @zhang2014evaluation].
 
 \begin{equation*} 
-RMSE = \sqrt{\frac{1}{n}\sum\nolimits_{i=1}^N(y_i-\hat{y_i})^2} \tag{3}
+RMSE = \sqrt{\frac{1}{n}\sum\nolimits_{i=1}^N(y_i-\hat{y_i})^2} \tag{5.2}
 \end{equation*}
 \begin{flushleft}
 \setstretch{1}
 {\footnotesize
-\textbf{Ecuación 3:}
+\textbf{Ecuación 5.2:}
   Raíz del error cuadrático medio (\textit{root mean squared error} ($RMSE$)).
   
 \textbf{Componentes}:
