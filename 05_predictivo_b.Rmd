@@ -48,7 +48,6 @@ knitr::include_graphics("images/GA/mod_2.png")
   En este estudio, se recopilaron datos horarios durante un periodo de un año y tres meses, totalizando aproximadamente 70,000 datos horarios teniendo en cuenta todos los sitios de muestreo. Este volumen se redujo al calcular los promedios para los distintos usos de suelo, dando por resultado 10,152 datos horarios para uso urbano, 8,648 para uso industrial y 9,695 para uso agrícola/área verde. Aunque estos volúmenes de datos pueden parecer limitados en comparación con otros estudios, investigaciones recientes han demostrado que es posible desarrollar modelos predictivos efectivos con conjuntos de datos de tamaño similar. Huang et al., (1998) demostraron que mediante técnicas adecuadas de modelado y preprocesamiento, es posible obtener predicciones precisas incluso con conjuntos de datos pequeños, alrededor de 10,000 observaciones [@maior2024time]. Asimismo, el estudio de Musah Lampo et al., (2024) sobre el uso de herramientas de *AutoML* en series temporales mostró que volúmenes de datos que oscilan entre 8,000 y 12,000 observaciones horarias son suficientes para generar modelos predictivos robustos y precisos. Evaluaron diversas herramientas y modelos en múltiples conjuntos de datos, concluyendo que la cantidad de datos utilizada, cuando se combina con técnicas avanzadas de manejo de datos, puede ser altamente efectiva [@westergaard2024time].
   
   
-
 ### Protocolo estadístico
 
 #### Modelos predictivos comparados
