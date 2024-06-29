@@ -62,7 +62,7 @@ knitr::include_graphics("images/imagescap2/MedicionConjunta.png")
 
 #### Validación del consenso entre las mediciones de los sistemas de monitoreo de bajo costo
   
-  La determinación del consenso entre las mediciones de los sistemas de monitoreo de bajo costo fue abordada por diversas estrategias. En primer lugar, se llevó a cabo el cálculo y comparación de medidas descriptivas a partir de las series temporales recopiladas. Estas medidas incluyeron la media, la desviación estándar, el primer cuartil, la mediana, el tercer cuartil, el mínimo y el máximo de la medición de PM2.5, con frecuencia horaria. Esta comparación permitió determinar si existían discrepancias significativas entre los distintos sensores.
+  La determinación del consenso entre las mediciones de los sistemas de monitoreo de bajo costo fue abordada por diversas estrategias. En primer lugar, se llevó a cabo el cálculo y comparación de medidas descriptivas a partir de las series temporales recopiladas. Estas medidas incluyeron la media, la desviación estándar, el primer cuartil, la mediana, el tercer cuartil, el mínimo y el máximo de la medición de PM~2.5~, con frecuencia horaria. Esta comparación permitió determinar si existían discrepancias significativas entre los distintos sensores.
 
   En segundo lugar, se realizaron gráficos exploratorios de las series temporales recopiladas por los sensores. Estos fueron comparados con el objetivo de detectar patrones comunes en los datos y evaluar si los sensores mostraban tendencias similares. Además, se buscó detectar anomalías o fluctuaciones inusuales en los datos.
 

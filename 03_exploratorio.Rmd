@@ -160,7 +160,7 @@ Modelo lineal generalizado mixto de efectos aleatorios ajustado para determinar 
 
   En esta etapa de preprocesamiento se excluyeron las observaciones de PM~2.5~ que se encontraban alejados de la media por más de 5 desvíos estándares. Como resultado de este proceso, se excluyeron un total de 218 datos, cuyos valores de PM~2.5~ se correspondían con eventos y/o mediciones anómalas sucedidos en los sitios durante el muestreo, como por ejemplo, incendios cercanos o caídas del sensor. Estos valores resultaban notablemente superiores al resto de los datos, interpretándose como una fuente de ruido para el análisis. 
 
-#### Filtrado *outliers* temporales
+#### Filtrado de *outliers* temporales
 
   En primer lugar, se determinó cuál era la distribución que mejor ajustaba a la variable respuesta. Los resultados evidenciaron que la distribución *gamma* logró minimizar los criterios de AIC y BIC. Una vez establecida la distribución se procedió a ajustar un Modelo Lineal Generalizado Mixto, con el objetivo de determinar cuáles variables temporales explicaban mayor porcentaje de varianza (Tabla \@ref(tab:comptemp)).
   
@@ -193,7 +193,7 @@ Table: Variabilidad explicada por las componentes temporales presentes en la bas
 ```{r pmhorariolinea, echo=FALSE, out.width="100%", fig.align="center", fig.cap="(ref:pmhorariolinea)"}
 knitr::include_graphics("images/imagescap3/pmhorariolinea.png")
 ```
-(ref:pmhorariolinea) Perfil de concentración promedio horario de PM~2.5~ a lo largo de las horas en los sitios en estudio a lo largo de todo el periodo de muestreo.
+(ref:pmhorariolinea) Perfil de concentración promedio horario de PM~2.5~ a lo largo de las horas en los sitios en estudio a lo largo de todo el periodo de muestreo, en azul se graficó la desviación estándar.
 
   La Figura \@ref(fig:pmhorariolinea) ilustra el patrón de variabilidad de la concentración promedio horaria de PM~2.5~ a lo largo de las horas del día. Este se caracteriza por mostrar un mínimo de concentración entre las 15 y 17 horas, delimitado por dos picos que ocurren por la mañana entre las 7 y 9 horas y por la noche entre las 21 y 23 horas. Además, puede observarse que el menor desvió estándar promedio se encuentra localizado en la zona de los baches, mientras que los picos que encierran este bache destacan el mayor. Este patrón de concentración horaria puede estar influenciado por diversos factores, como los patrones de emisión de las fuentes de contaminación, la estabilidad de la atmósfera, los patrones de tráfico, entre otros.
   
@@ -202,14 +202,14 @@ knitr::include_graphics("images/imagescap3/pmhorariolinea.png")
 ```{r pmdialineageneral, echo=F, out.width="100%", fig.align='center', fig.cap="(ref:pmdialineageneral)"}
 knitr::include_graphics("images/imagescap3/pmdialineageneral.png")
 ```
-(ref:pmdialineageneral) Perfil de concentración promedio diario de PM~2.5~ a lo largo de los días de la semana en los sitios en estudio a lo largo de todo el periodo de muestreo.
+(ref:pmdialineageneral) Perfil de concentración promedio diario de PM~2.5~ a lo largo de los días de la semana en los sitios en estudio a lo largo de todo el periodo de muestreo, en azul se graficó la desviación estándar.
 
   En la Figura \@ref(fig:pmdialineageneral) puede apreciarse el patrón de variabilidad de la concentración promedio diaria de PM~2.5~ a lo largo de los días de la semana. La tendencia observada es un aumento en las concentraciones de PM~2.5~ a medida que nos adentramos en la semana, con un pico máximo de concentración los días miércoles y jueves. En contraste, los días domingo se registran las concentraciones más bajas de PM~2.5~y a partir de ese día, éstas aumentan gradualmente hasta alcanzar su punto máximo durante la mitad de la semana. A partir de ese punto, se observa un descenso gradual en las concentraciones hasta llegar al fin de semana. Puede apreciarse que el desvió estándar promedio para los distintos días de la semana es similar a lo largo de los distintos días y demuestra una magnitud apreciable con respecto a la media general. Los valores de promedios diarios son coincidentes con los datos observados en la Figura \@ref(fig:pmhorariolinea), y muestran una elevada variabilidad asociada a la notable variación de la concentración a lo largo de las horas del día. Esta tendencia semanal podría encontrarse principalmente influenciada por los patrones de movilidad de la población, estrechamente vinculados con su comportamiento a lo largo de los días de la semana.
   
 ```{r pmdialinea, echo=F, out.width="100%", fig.align='center', fig.cap="(ref:pmdialinea)"}
 knitr::include_graphics("images/imagescap3/pmdialinea.png")
 ```
-(ref:pmdialinea) Perfil de concentración promedio horario de PM~2.5~ en cada día de la semana a lo largo de la semana en los sitios en estudio a lo largo de todo el periodo de muestreo.
+(ref:pmdialinea) Perfil de concentración promedio horario de PM~2.5~ en cada día de la semana a lo largo de la semana en los sitios en estudio a lo largo de todo el periodo de muestreo, en azul se graficó la desviación estándar.
 
   En la Figura \@ref(fig:pmdialinea) puede apreciarse el patrón de variabilidad de la concentración de PM~2.5~ a lo largo de las horas del día en los distintos días de la semana. Puede observarse una clara estacionalidad, demostrando que las concentraciones de PM~2.5~ en una hora determinada son similares a lo largo de los distintos días de la semana. Además, las concentraciones guardan un mayor parentesco en su magnitud mientras más próximos entre sí se encuentren los días de la semana. Por otra parte, puede notarse un aumento de la variabilidad de los datos los días miércoles y jueves, variabilidad que genera que sus promedios diarios sean superiores a los de los demás días de la semana. 
 
@@ -227,14 +227,14 @@ knitr::include_graphics("images/imagescap3/pmdialinea.png")
 ```{r pmmeslineageneral, echo=F, out.width="100%", fig.align='center', fig.cap="(ref:pmmeslineageneral)"}
 knitr::include_graphics("images/imagescap3/pmmeslineageneral.png")
 ```
-(ref:pmmeslineageneral) Perfil de concentración promedio mensual de PM~2.5~ a lo largo del año en los sitios en estudio a lo largo de todo el periodo de muestreo.
+(ref:pmmeslineageneral) Perfil de concentración promedio mensual de PM~2.5~ a lo largo del año en los sitios en estudio a lo largo de todo el periodo de muestreo, en azul se graficó la desviación estándar.
 
   En la Figura \@ref(fig:pmmeslineageneral), se aprecian las concentraciones de PM~2.5~ promedio mensuales registradas a lo largo de los distintos meses del año. Puede notarse que las mayores concentraciones fueron registradas durante los meses de mayo, junio, julio y agosto, mientras que en los meses de noviembre, marzo y diciembre se registraron las menores concentraciones. Como era de esperarse la variabilidad aumenta notablemente en aquellos meses que demuestran mayor media de concentración de PM~2.5~.
 
 ```{r pmmeslinea, echo=F, out.width="100%", fig.align='center',  fig.cap="(ref:pmmeslinea)"}
 knitr::include_graphics("images/imagescap3/pmmeslinea.png")
 ```
-(ref:pmmeslinea) Perfil de concentración promedio horario de PM~2.5~ para cada mes a lo largo del año en los sitios en estudio a lo largo de todo el periodo de muestreo.
+(ref:pmmeslinea) Perfil de concentración promedio horario de PM~2.5~ para cada mes a lo largo del año en los sitios en estudio a lo largo de todo el periodo de muestreo, en azul se graficó la desviación estándar.
 
   En la Figura \@ref(fig:pmmeslinea) se destaca el patrón de variabilidad en la concentración del PM~2.5~ a lo largo de las horas del día en los distintos meses del año, el cual refleja que el ciclo de concentración de PM~2.5~ a lo largo de las horas del día muestra una forma similar a lo largo de los distintos meses. En otras palabras, las caídas de concentración se dan de entre las 12 y 18 horas, mientras que los picos máximos pueden apreciarse entre las 6 y 12 horas y luego de las 18 horas. Además, el parentesco entre los ciclos guarda una mayor correlación mientras más cercanos se encuentren los meses a lo largo del año.
 
@@ -243,14 +243,14 @@ knitr::include_graphics("images/imagescap3/pmmeslinea.png")
 ```{r pmest, echo=F, out.width="100%", fig.align='center', fig.cap="(ref:pmest)"}
 knitr::include_graphics("images/imagescap3/pmestacion.png")
 ```
-(ref:pmest) Perfil de concentración promedio por estación de PM~2.5~ a lo largo del año en los sitios en estudio a lo largo de todo el periodo de muestreo.
+(ref:pmest) Perfil de concentración promedio por estación de PM~2.5~ a lo largo del año en los sitios en estudio a lo largo de todo el periodo de muestreo, en azul se graficó la desviación estándar.
 
   La Figura \@ref(fig:pmest) muestra el patrón de variabilidad en la concentración de PM~2.5~ promedio a lo largo de las diferentes estaciones del año. Puede notarse que las mayores concentraciones se registraron en las estaciones de otoño e invierno. Por otro lado, las menores concentraciones se registraron durante la primavera y el verano. Estos resultados indican una clara dependencia de la concentración de PM~2.5~ con la estación del año.
 
 ```{r pmestacionhora, echo=F, out.width="100%", fig.align='center',  fig.cap="(ref:pmestacionhora)"}
 knitr::include_graphics("images/imagescap3/pmestacionhora.png")
 ```
-(ref:pmestacionhora) Perfil de concentración promedio horario de PM~2.5~ para cada estación a lo largo del año en los sitios en estudio a lo largo de todo el periodo de muestreo.
+(ref:pmestacionhora) Perfil de concentración promedio horario de PM~2.5~ para cada estación a lo largo del año en los sitios en estudio a lo largo de todo el periodo de muestreo, en azul se graficó la desviación estándar.
 
   La Figura \@ref(fig:pmestacionhora) destaca el patrón de variabilidad de la concentración de PM~2.5~ a lo largo de las horas del día en las distintas estaciones del año. Puede notarse que la concentración de PM~2.5~ varía en magnitud según la estación del año, siendo más elevadas en invierno y otoño, mientras que en primavera y verano las concentraciones son menores. Además, se evidencia que, dentro de cada estación, las concentraciones de PM~2.5~ presentan un patrón similar a lo largo de las distintas horas del día. Este patrón evidencia que a lo largo de las horas del día ocurren dos picos de concentraciones, con valores de menor magnitud entre las 12 y 20 horas. Es pertinente destacar en la Figura \@ref(fig:pmestacionhora), el aumento de la variabilidad que sufre la concentración de PM~2.5~ promedio en las estaciones donde se observan las mayores concentraciones a lo largo de las horas del día. 
 
@@ -377,14 +377,14 @@ De esta forma se evidencia que aunque el uso del suelo determina el rango de var
 
 Table: Cantidad de veces en que la concentración promedio diaria de PM~2.5~ supera las normativas guía en cada uno de los usos de suelos derivados del análisis de conglomerados.\label{tab:concsup}
 
-| uso del suelo | OMS | CBA |
+| Uso del suelo | OMS | CBA |
 |--------|:--------:|:--------:|
 | Industrial | 152 / 38.97 % | 9 / 1.75 % |
 | Urbano | 111 / 26.93 %  | 4 / 0.55 % |
 | Agrícola/Área Verde | 35 / 0.85 % | 0 / 0 %|
 \begin{flushleft}
 \setstretch{1}
-{\footnotesize uso del suelo, cantidad de veces que supera los límites propuestos por la Organización Mundial de la Salud (OMS) / porcentaje de tiempo en que se vio superada dicha normativa y cantidad de veces que supera la resolución 105/17 de la Provincia de Córdoba (CBA) / porcentaje de tiempo en que se vio superada dicha normativa.}
+{\footnotesize Uso del suelo, cantidad de veces que supera los límites propuestos por la Organización Mundial de la Salud (OMS) / porcentaje de tiempo en que se vio superada dicha normativa y cantidad de veces que supera la resolución 105/17 de la Provincia de Córdoba (CBA) / porcentaje de tiempo en que se vio superada dicha normativa.}
 \end{flushleft}
 
   En la Tabla \@ref(tab:concsup) se presenta la frecuencia en que se supera la concentración establecida por la legislación provincial, así como las concentraciones sugeridas por la OMS en cada uno de los usos de suelo considerados. Puede notarse que esta frecuencia es mayor en el uso del suelo industrial, seguido por el uso del suelo urbano y finalmente el agrícola/área verde. Es relevante destacar que en este último caso, las concentraciones de PM~2.5~ nunca superaron los valores límites mencionados por la normativa de la provincia de Córdoba. Estos resultados permiten afirmar que el uso del suelo es un factor determinante en la variabilidad de la concentración de PM~2.5~ y que a su vez es un indicador de la cantidad de veces en las que las normativas se superan. Por lo tanto, puede establecerse que el uso del suelo que propicia concentraciones de mayor adversidad para la salud humana es en primer lugar el industrial, seguido por el urbano y en tercer lugar el agrícola/área verde.
