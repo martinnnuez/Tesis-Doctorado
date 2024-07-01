@@ -1,11 +1,11 @@
 ---
 author: 'Rodriguez Nuñez Martin'
-date: 'Octubre 2023'
+date: 'Julio 2024'
 institution: 'Universidad Nacional de Córdoba'
 division: 'Facultad de Ciencias Exactas, Fisicas y Naturales'
 advisor: 'Hebe Alejandra Carreras'
 # altadvisor: 'Monica Balzarini'
-title: 'DESARROLLO DE MODELOS PREDICTIVOS PARA LA ESTIMACIÓN DE CONCENTRACIÓN DE MATERIAL PARTICULADO FINO EN ATMOSFERAS URBANAS'
+title: 'DESARROLLO DE MODELOS PREDICTIVOS PARA LA CONCENTRACIÓN DE MATERIAL PARTICULADO FINO EN ATMOSFERAS URBANAS'
 department: 'Ciencias de la Ingenieria'
 degree: 'Doctor en Ciencias de la Ingenieria'
 knit: "bookdown::render_book"
