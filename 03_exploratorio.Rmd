@@ -258,7 +258,7 @@ knitr::include_graphics("images/imagescap3/pmestacionhora.png")
 
   Numerosos estudios han demostrando que durante el invierno, la concentración de PM~2.5~ es significativamente mayor en comparación con la estación cálida [@lalchandani2022effect; @rasheed2015measurement; @kumar2020source; @saxena2017water]. En algunas ciudades, la concentración de PM~2.5~ en invierno puede ser varias veces mayor que en verano. Por ejemplo, en Santiago de Chile, la concentración de PM~2.5~ en la estación fría fue tres veces mayor que en la estación cálida [@sax2007trends], mientras que en Cracovia, Polonia, la concentración en la estación fría fue 2.6 veces superior a la estación cálida [@samek2020seasonal]. Los resultados relevados en la presente tesis muestran que para la ciudad de Córdoba, Argentina, la concentración de PM~2.5~ registrada durante la estación fría fue 1.75 veces mayor que la de la estación cálida durante todo el período analizado.
 
-  Esta variación estacional en los niveles de PM2.5 podría atribuirse a factores como la meteorología, la quema de biomasa agrícola y la calefacción doméstica, entre otros [@jain2020seasonal; @tiwari2013diurnal]. Sin embargo, en la ciudad de Córdoba, la principal fuente de variabilidad estacional son las condiciones meteorológicas durante el invierno, que favorecen la ocurrencia de inversiones térmicas provocando que los contaminantes y aerosoles queden atrapados en una capa inferior a los 200 m [@lopez2011elemental].
+  Esta variación estacional en los niveles de PM~2.5~ podría atribuirse a factores como la meteorología, la quema de biomasa agrícola y la calefacción doméstica, entre otros [@jain2020seasonal; @tiwari2013diurnal]. Sin embargo, en la ciudad de Córdoba, la principal fuente de variabilidad estacional son las condiciones meteorológicas durante el invierno, que favorecen la ocurrencia de inversiones térmicas provocando que los contaminantes y aerosoles queden atrapados en una capa inferior a los 200 m [@lopez2011elemental].
 
 ### Análisis espacial de la concentración de PM~2.5~
 
@@ -285,12 +285,12 @@ Table: Concentración promedio anual de PM~2.5~ en cada uno de los sitios de mue
 
 | Sitio | Concentración | Desviación estándar | 
 |--------|:--------:|:--------:|
-| Ferreyra | 15.1 | ±12.7 |
-| Los Boulevares | 13.6 | ±12.8 |
-| Tablada Park | 13.89 | ±12.7  |
-| Casa Radical | 12.1 | ±10.2 |
-| Ciudad Universitaria | 11.5 | ±10.7 |
-| La Reserva | 10.3 | ±10.2 |
+| Ferreyra | 15.10 | ±12.70 |
+| Los Boulevares | 13.89 | ±12.80 |
+| Tablada Park | 13.60 | ±12.70  |
+| Casa Radical | 12.10 | ±10.20 |
+| Ciudad Universitaria | 11.50 | ±10.70 |
+| La Reserva | 10.30 | ±10.20 |
 | Alta Córdoba | 9.08 | ±8.60 |
 | Campo Escuela | 8.88 | ±9.22  |
 | Río Ceballos | 6.40 | ±6.36 |
@@ -371,7 +371,8 @@ knitr::include_graphics("images/imagescap3/calendarind.png")
   Esto demuestra que, aunque el uso del suelo influye en la concentración de PM~2.5~, la variabilidad mensual de las condiciones meteorológicas es uno de los principales factores que contribuyen a explicar la variabilidad del contaminante. Los resultados obtenidos sugieren que la temporada invernal es especialmente crítica en términos de calidad del aire en la ciudad de Córdoba, por lo que se debería prestar especial atención a la planificación y gestión de políticas ambientales en este período.
   
   A partir de los resultados obtenidos se demuestra que los patrones de variación de la concentración de PM~2.5~ en las distintas escalas temporales se mantienen constantes en los distintos usos de suelo. A pesar de ello, la magnitud de su influencia varía en función del uso del suelo, lo cual podría encontrarse vinculado a los efectos de la microescala propios de cada uno de los sitios como fuentes de emisión y cobertura de vegetación.
-De esta forma se evidencia que aunque el uso del suelo determina el rango de variación de la concentración del contaminante, la variabilidad del mismo se encuentra estrechamente vinculada a la fluctuación de las condiciones meteorológicas a lo largo del año.
+  
+  De esta forma se evidencia que aunque el uso del suelo determina el rango de variación de la concentración del contaminante, la variabilidad del mismo se encuentra estrechamente vinculada a la fluctuación de las condiciones meteorológicas a lo largo del año.
 
   Es importante destacar que la magnitud de la concentración varía notablemente en los distintos usos de suelo, por lo que es necesario considerar de forma diferencial estos usos al explicar la variabilidad del contaminante en cuestión.
 
